@@ -1,0 +1,6 @@
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\bin\Debug\DTO.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\bin\Debug\DTO.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\obj\Debug\DTO.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\obj\Debug\DTO.pdb

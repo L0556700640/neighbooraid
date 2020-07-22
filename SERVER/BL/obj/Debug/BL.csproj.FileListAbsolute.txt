@@ -1,0 +1,5 @@
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\BL.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\BL.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\obj\Debug\BL.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\obj\Debug\BL.pdb
