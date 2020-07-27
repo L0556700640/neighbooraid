@@ -1,0 +1,5 @@
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\DAL.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\DAL.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\obj\Debug\DAL.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\obj\Debug\DAL.pdb
