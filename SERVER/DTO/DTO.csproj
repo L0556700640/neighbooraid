@@ -51,14 +51,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Convertors\Class1.cs" />
+    <Compile Include="Cases.cs" />
+    <Compile Include="CasesToDoctor.cs" />
+    <Compile Include="Contacts.cs" />
+    <Compile Include="Doctor.cs" />
+    <Compile Include="HelpCall.cs" />
+    <Compile Include="Keyword.cs" />
+    <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchWord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

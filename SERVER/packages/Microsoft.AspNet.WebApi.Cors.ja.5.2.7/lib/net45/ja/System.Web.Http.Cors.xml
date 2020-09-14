@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Web.Http.Cors</name>
+  </assembly>
+  <members>
+    <member name="T:System.Web.Http.CorsHttpConfigurationExtensions">
+      <summary>
+        <see cref="T:System.Web.Http.HttpConfiguration" /> の CORS 関連の拡張メソッド。</summary>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.EnableCors(System.Web.Http.HttpConfiguration)">
+      <summary>CORS のサポートを有効にします。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.EnableCors(System.Web.Http.HttpConfiguration,System.Web.Http.Cors.ICorsPolicyProvider)">
+      <summary>CORS のサポートを有効にします。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <param name="defaultPolicyProvider">既定の <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration</exception>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.GetCorsEngine(System.Web.Http.HttpConfiguration)">
+      <summary>
+        <see cref="T:System.Web.Http.HttpConfiguration" /> から <see cref="T:System.Web.Cors.ICorsEngine" /> を取得します。</summary>
+      <returns>
+        <see cref="T:System.Web.Cors.ICorsEngine" />。</returns>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration</exception>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.GetCorsPolicyProviderFactory(System.Web.Http.HttpConfiguration)">
+      <summary>
+        <see cref="T:System.Web.Http.HttpConfiguration" /> から <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" /> を取得します。</summary>
+      <returns>
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" />。</returns>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration</exception>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.SetCorsEngine(System.Web.Http.HttpConfiguration,System.Web.Cors.ICorsEngine)">
+      <summary>
+        <see cref="T:System.Web.Http.HttpConfiguration" /> に <see cref="T:System.Web.Cors.ICorsEngine" /> を設定します。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <param name="corsEngine">
+        <see cref="T:System.Web.Cors.ICorsEngine" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration または corsEngine</exception>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.SetCorsPolicyProviderFactory(System.Web.Http.HttpConfiguration,System.Web.Http.Cors.ICorsPolicyProviderFactory)">
+      <summary>
+        <see cref="T:System.Web.Http.HttpConfiguration" /> に <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" /> を設定します。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <param name="corsPolicyProviderFactory">
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration または corsPolicyProviderFactory</exception>
+    </member>
+    <member name="T:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory">
+      <summary>コントローラーまたはアクション属性から <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" /> を返す <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" /> の実装。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory.#ctor">
+      <summary>
+        <see cref="T:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory.DefaultPolicyProvider">
+      <summary>既定の <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" /> を取得または設定します。</summary>
+      <returns>既定の <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</returns>
+    </member>
+    <member name="M:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory.GetCorsPolicyProvider(System.Net.Http.HttpRequestMessage)">
+      <summary>要求の <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" /> を取得します。</summary>
+      <returns>
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</returns>
+      <param name="request">要求。</param>
+      <exception cref="T:System.ArgumentNullException">要求</exception>
+    </member>
+    <member name="T:System.Web.Http.Cors.CorsHttpRequestMessageExtensions">
+      <summary>
+        <see cref="T:System.Net.Http.HttpRequestMessage" /> の CORS 関連の拡張メソッド。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsHttpRequestMessageExtensions.GetCorsRequestContext(System.Net.Http.HttpRequestMessage)">
+      <summary>指定された要求の <see cref="T:System.Web.Cors.CorsRequestContext" /> を取得します。</summary>
+      <returns>
+        <see cref="T:System.Web.Cors.CorsRequestContext" />。</returns>
+      <param name="request">
+        <see cref="T:System.Net.Http.HttpRequestMessage" />。</param>
+      <exception cref="T:System.ArgumentNullException">要求</exception>
+    </member>
+    <member name="T:System.Web.Http.Cors.CorsHttpResponseMessageExtensions">
+      <summary>
+        <see cref="T:System.Net.Http.HttpResponseMessage" /> の CORS 関連の拡張メソッド。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsHttpResponseMessageExtensions.WriteCorsHeaders(System.Net.Http.HttpResponseMessage,System.Web.Cors.CorsResult)">
+      <summary>CORS ヘッダーを応答に書き込みます。</summary>
+      <param name="response">
+        <see cref="T:System.Net.Http.HttpResponseMessage" />。</param>
+      <param name="corsResult">
+        <see cref="T:System.Web.Cors.CorsResult" />。</param>
+      <exception cref="T:System.ArgumentNullException">応答または corsResult</exception>
+    </member>
+    <member name="T:System.Web.Http.Cors.CorsMessageHandler">
+      <summary>CORS 要求を処理するためのカスタム <see cref="T:System.Net.Http.DelegatingHandler" />。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsMessageHandler.#ctor(System.Web.Http.HttpConfiguration)">
+      <summary>
+        <see cref="T:System.Web.Http.Cors.CorsMessageHandler" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration</exception>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsMessageHandler.HandleCorsPreflightRequestAsync(System.Net.Http.HttpRequestMessage,System.Web.Cors.CorsRequestContext,System.Threading.CancellationToken)">
+      <summary>CORS で指定されたプレフライト要求を処理します。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task`1" />。</returns>
+      <param name="request">要求。</param>
+      <param name="corsRequestContext">CORS 要求コンテキスト。</param>
+      <param name="cancellationToken">キャンセル トークン。</param>
+      <exception cref="T:System.ArgumentNullException">要求または corsRequestContext</exception>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsMessageHandler.HandleCorsRequestAsync(System.Net.Http.HttpRequestMessage,System.Web.Cors.CorsRequestContext,System.Threading.CancellationToken)">
+      <summary>実際の CORS 要求を処理します。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task`1" />。</returns>
+      <param name="request">
+        <see cref="T:System.Net.Http.HttpRequestMessage" />。</param>
+      <param name="corsRequestContext">
+        <see cref="T:System.Web.Cors.CorsRequestContext" />。</param>
+      <param name="cancellationToken">
+        <see cref="T:System.Threading.CancellationToken" />。</param>
+      <exception cref="T:System.ArgumentNullException">要求または corsRequestContext</exception>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+      <summary>非同期操作としてサーバーに送信する HTTP 要求を内部ハンドラーに送信します。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task`1" /> を返します。非同期操作を表すタスク オブジェクト。</returns>
+      <param name="request">サーバーに送信する HTTP 要求メッセージ。</param>
+      <param name="cancellationToken">操作を取り消すキャンセル トークン。</param>
+    </member>
+    <member name="T:System.Web.Http.Cors.DisableCorsAttribute">
+      <summary>このクラスは、CORS を無効化するためにアクションまたはコントローラーに適用できる属性を定義します。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.DisableCorsAttribute.#ctor">
+      <summary>
+        <see cref="T:System.Web.Http.Cors.DisableCorsAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.DisableCorsAttribute.GetCorsPolicyAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+      <summary>CORS ポリシーを非同期に取得します。</summary>
+      <returns>この操作用に新しく作成されたタスク。</returns>
+      <param name="request">要求。</param>
+      <param name="cancellationToken">このタスクに割り当てられたキャンセル トークン。</param>
+    </member>
+    <member name="T:System.Web.Http.Cors.EnableCorsAttribute">
+      <summary>このクラスは、CORS を有効にするためにアクションまたはコントローラーに適用できる属性を定義します。既定では、すべての生成元、メソッド、およびヘッダーを許可します。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.EnableCorsAttribute.#ctor(System.String,System.String,System.String)">
+      <summary>
+        <see cref="T:System.Web.Http.Cors.EnableCorsAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="origins">リソースへのアクセスを許可された生成元のコンマ区切りリスト。すべて許可するには "*" を使用します。</param>
+      <param name="headers">リソースでサポートされるヘッダーのコンマ区切りリスト。すべて許可するには "*" を使用します。すべて許可しないには null または空の文字列を使用します。</param>
+      <param name="methods">リソースでサポートされるメソッドのコンマ区切りリスト。すべて許可するには "*" を使用します。すべて許可しないには null または空の文字列を使用します。注意: "*" を使用しない場合、HTTP 動詞は大文字と小文字が区別されます。GET、PUT、POST、DELETE などを指定する場合は大文字を使用する必要があります。例:var cors = new EnableCorsAttribute("http://localhost:1234", "*", "GET,PUT,POST,DELETE");  </param>
+    </member>
+    <member name="M:System.Web.Http.Cors.EnableCorsAttribute.#ctor(System.String,System.String,System.String,System.String)">
+      <summary>
+        <see cref="T:System.Web.Http.Cors.EnableCorsAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="origins">リソースへのアクセスを許可された生成元のコンマ区切りリスト。すべて許可するには "*" を使用します。</param>
+      <param name="headers">リソースでサポートされるヘッダーのコンマ区切りリスト。すべて許可するには "*" を使用します。すべて許可しないには null または空の文字列を使用します。</param>
+      <param name="methods">リソースでサポートされるメソッドのコンマ区切りリスト。すべて許可するには "*" を使用します。すべて許可しないには null または空の文字列を使用します。</param>
+      <param name="exposedHeaders">リソースが使用し、公開される可能性があるヘッダーのコンマ区切りリスト。何も公開しない場合は null または空の文字列を使用します。</param>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.ExposedHeaders">
+      <summary>リソースが使用し、公開される可能性があるヘッダーを取得します。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.EnableCorsAttribute.GetCorsPolicyAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)"></member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.Headers">
+      <summary>リソースによってサポートされているヘッダーを取得します。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.Methods">
+      <summary>リソースによってサポートされているメソッドを取得します。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.Origins">
+      <summary>リソースへのアクセスを許可されている発生元を取得します。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.PreflightMaxAge">
+      <summary>プリフライト要求の結果をキャッシュできる秒数を取得または設定します。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.SupportsCredentials">
+      <summary>リソースが要求でユーザー資格情報をサポートするかどうかを示す値を取得または設定します。</summary>
+    </member>
+    <member name="T:System.Web.Http.Cors.ICorsPolicyProvider">
+      <summary>
+        <see cref="T:System.Web.Cors.CorsPolicy" /> を取得するための抽象型を提供します。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.ICorsPolicyProvider.GetCorsPolicyAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+      <summary>
+        <see cref="T:System.Web.Cors.CorsPolicy" /> を取得します。</summary>
+      <returns>
+        <see cref="T:System.Web.Cors.CorsPolicy" />。</returns>
+      <param name="request">要求。</param>
+      <param name="cancellationToken">キャンセル トークン。</param>
+    </member>
+    <member name="T:System.Web.Http.Cors.ICorsPolicyProviderFactory">
+      <summary>
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" /> を取得するための抽象型を提供します。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.ICorsPolicyProviderFactory.GetCorsPolicyProvider(System.Net.Http.HttpRequestMessage)">
+      <summary>要求の <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" /> を取得します。</summary>
+      <returns>
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</returns>
+      <param name="request">要求。</param>
+    </member>
+    <member name="T:System.Web.Http.Cors.Tracing.TraceCategories">
+      <summary>既定の CORS トレース実装によって追跡されるカテゴリ名。</summary>
+    </member>
+    <member name="F:System.Web.Http.Cors.Tracing.TraceCategories.CorsCategory">
+      <summary>CORS 関連イベントのトレース カテゴリ。</summary>
+    </member>
+  </members>
+</doc>
