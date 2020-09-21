@@ -78,3 +78,7 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\DTO.dll.config
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\DAL.pdb
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\DAL.dll.config
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\System.Web.Cors.dll
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\System.Web.Http.Cors.dll
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\System.Web.Http.Cors.xml
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\ja\System.Web.Http.Cors.resources.dll

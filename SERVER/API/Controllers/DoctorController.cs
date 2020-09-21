@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace API.Controllers
 {
-    [RoutePrefix("API/Cases")]
+    [RoutePrefix("API/Doctor")]
     public class DoctorController : ApiController
     {
         [Route("AddDoctor")]
