@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="neighboorAidDBModelStoreContainer" CdmEntityContainer="neighboorAidDBEntities">
+    <EntitySetMapping Name="Cases">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.Case">
+        <MappingFragment StoreEntitySet="Cases">
+          <ScalarProperty Name="caseId" ColumnName="caseId" />
+          <ScalarProperty Name="caseName" ColumnName="caseName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CasesToDoctors">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.CasesToDoctor">
+        <MappingFragment StoreEntitySet="CasesToDoctor">
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="caseId" ColumnName="caseId" />
+          <ScalarProperty Name="satisfaction" ColumnName="satisfaction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.Contact">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="contactId" ColumnName="contactId" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="contactPhone" ColumnName="contactPhone" />
+          <ScalarProperty Name="contactName" ColumnName="contactName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctors">
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="doctorPhone" ColumnName="doctorPhone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="pictureDiploma" ColumnName="pictureDiploma" />
+          <ScalarProperty Name="isConfirmed" ColumnName="isConfirmed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HelpCalls">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.HelpCall">
+        <MappingFragment StoreEntitySet="HelpCalls">
+          <ScalarProperty Name="callId" ColumnName="callId" />
+          <ScalarProperty Name="caseId" ColumnName="caseId" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="addressX" ColumnName="addressX" />
+          <ScalarProperty Name="addressY" ColumnName="addressY" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Keywords">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.Keyword">
+        <MappingFragment StoreEntitySet="Keywords">
+          <ScalarProperty Name="keywordId" ColumnName="keywordId" />
+          <ScalarProperty Name="keyWord1" ColumnName="keyWord" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.Patient">
+        <MappingFragment StoreEntitySet="Patients">
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="patientPhone" ColumnName="patientPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SearchWords">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.SearchWord">
+        <MappingFragment StoreEntitySet="SearchWords">
+          <ScalarProperty Name="wordId" ColumnName="wordId" />
+          <ScalarProperty Name="word" ColumnName="word" />
+          <ScalarProperty Name="caseId" ColumnName="caseId" />
+          <ScalarProperty Name="numberSearchWord" ColumnName="numberSearchWord" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DoctorsFromContacts" TypeName="neighboorAidDBModel.DoctorsFromContacts" StoreEntitySet="DoctorsFromContacts">
+      <EndProperty Name="Contacts">
+        <ScalarProperty Name="contactId" ColumnName="contactId" />
+      </EndProperty>
+      <EndProperty Name="Doctors">
+        <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KeywordsToCase" TypeName="neighboorAidDBModel.KeywordsToCase" StoreEntitySet="KeywordsToCase">
+      <EndProperty Name="Cases">
+        <ScalarProperty Name="caseId" ColumnName="caseId" />
+      </EndProperty>
+      <EndProperty Name="Keywords">
+        <ScalarProperty Name="keywordId" ColumnName="keywordId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -51,12 +51,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CasesBL.cs" />
+    <Compile Include="Convertors\CaseConvertor.cs" />
+    <Compile Include="Convertors\CaseToDoctorConvertor.cs" />
+    <Compile Include="Convertors\ContactsConvertor.cs" />
+    <Compile Include="Convertors\DoctorConvertor.cs" />
+    <Compile Include="Convertors\HelpCallConvertor.cs" />
+    <Compile Include="Convertors\KeywordConvertors.cs" />
+    <Compile Include="Convertors\PatientConvertor.cs" />
+    <Compile Include="Convertors\SearchWordConvertor.cs" />
+    <Compile Include="DoctorBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{c9abc2ea-d040-466a-a5de-26c78d6d0e54}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{6cbdf019-c364-43cd-aff9-fa913dd13de7}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
