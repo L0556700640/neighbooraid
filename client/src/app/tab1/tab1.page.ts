@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Doctor } from '../shared/models/doctor.model';
 import { DoctorService } from '../shared/services/doctor.service';
+import { DoctorDetails } from '../shared/models/doctorDelails.model';
+import { Cases } from '../shared/models/cases.model';
+import { CasesService } from '../shared/services/cases.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,30 +15,17 @@ export class Tab1Page {
   page2 = false;
   page3 = false;
   finish = false;
-  public form = [
-    { val: 'כויות', isChecked: false },
-    { val: 'חתכים', isChecked: false },
-    { val: 'מכות יבשות', isChecked: false },
-    { val: 'התחשמלות', isChecked: false },
-    { val: 'עקיצה', isChecked: false },
-    { val: 'פריחה', isChecked: false },
-    { val: 'הקשה', isChecked: false },
-    { val: 'נשיכה', isChecked: false },
-    { val: 'התקף חרדה', isChecked: false },
-    { val: 'רעלים', isChecked: false },
-    { val: 'חום', isChecked: false }
-  ];
-  constructor(private doctorService: DoctorService,  private doctor: Doctor ) { }
+ allCases:Cases[]=[];
+ doctor: DoctorDetails= new DoctorDetails();
+  constructor(private doctorService: DoctorService,private casesService:CasesService ) { 
+   this.casesService.getAllCases().subscribe(res=>{this.allCases=res;});
+  }
 
   next1() {
     this.page1 = false;
     this.page2 = true;
-    this.doctor.firstName = document.getElementById('firstName').innerHTML;
-    this.doctor.lastName = document.getElementById('lastName').innerHTML;
-    //this.doctor.doctorId=document.getElementById('identityNum').innerHTML;
-    this.doctor.address = document.getElementById('address').innerHTML;
-    this.doctor.doctorPhone = document.getElementById('phoneNum').innerHTML;
-    this.doctor.isConfirmed = false;
+    this.doctor.Doctor.isConfirmed = false;
+  
   }
 
   next2() {
@@ -44,7 +34,10 @@ export class Tab1Page {
   }
 
   next3() {
-    this.doctorService.addDoctor(this.doctor);
+    
+    this.doctorService.addDoctor(this.doctor).subscribe(
+      (res)=>{alert(res)}
+    )
     this.page3 = false;
     this.finish = true;
   }

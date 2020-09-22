@@ -55,6 +55,7 @@
     <Compile Include="CasesToDoctor.cs" />
     <Compile Include="Contacts.cs" />
     <Compile Include="Doctor.cs" />
+    <Compile Include="DoctorsDetails.cs" />
     <Compile Include="HelpCall.cs" />
     <Compile Include="Keyword.cs" />
     <Compile Include="Patient.cs" />
