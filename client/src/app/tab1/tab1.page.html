@@ -9,10 +9,10 @@
 <ion-content [fullscreen]="true">
 
   <app-explore-container name=""></app-explore-container>
-  <div *ngIf="page1==true" style="text-align: center; direction: rtl;">
+  <div *ngIf="page1==true" style="text-align: center; direction: rtl; float:right !important;">
     <p> הזן פרטים על מנת להירשם כמגיש עזרה ראשונה</p>
     <ion-item>
-      <ion-label position="floating">שם פרטי</ion-label>
+      <ion-label position="floating" style="display:flex;" >שם פרטי</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.firstName"></ion-input>
     </ion-item>
     <ion-item>
@@ -20,15 +20,15 @@
       <ion-input [(ngModel)]="doctor.Doctor.lastName"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">תעודת זהות</ion-label>
+      <ion-label position="floating" required="true">תעודת זהות</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.doctorId"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">כתובת</ion-label>
+      <ion-label position="floating" required="true">כתובת</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">פלאפון</ion-label>
+      <ion-label position="floating" required="true">פלאפון</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.doctorPhone"></ion-input>
     </ion-item>
     <ion-button color="primary" (click)="next1()">הבא
@@ -44,7 +44,7 @@
         <ion-select multiple="true">
           <ion-label>בחר\י את ההתמחויות שלך</ion-label>
           <ion-item *ngFor="let case of allCases">
-            <ion-select-option  value="case.caseId" >
+            <ion-select-option  [value]="case.caseId" >
               {{case.caseName}}
             </ion-select-option>
           </ion-item>

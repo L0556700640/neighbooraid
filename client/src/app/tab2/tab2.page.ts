@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Cases } from '../shared/models/cases.model';
+import { CasesService } from '../shared/services/cases.service';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  searchPage = true;
+  familyPage = false;
+  doctorsPage = false;
+  responsePage = false;
+  allCases: Cases[] = [];
+  constructor(private casesService: CasesService) {
+    this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
+  }
+  next1() {
+    this.doctorsPage = true;
+    this.searchPage = false;
 
-  constructor() {}
-
+  }
 }
