@@ -6,68 +6,62 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" >
 
   <app-explore-container name=""></app-explore-container>
-  <div *ngIf="page1==true" style="text-align: center; direction: rtl;">
-    <p> הזן פרטים על מנת להירשם כמגיש עזרה ראשונה</p>
+  <div *ngIf="page1==true"  style="text-align: center; direction: rtl; float: right;">
+    <p> הזן את פרטיך על מנת להירשם כמגיש עזרה ראשונה</p>
     <ion-item>
-      <ion-label position="floating">שם פרטי</ion-label>
-      <ion-input [(ngModel)]="doctor.Doctor.firstName"></ion-input>
+      <ion-label  position="fixed" class="text">שם פרטי</ion-label>
+      <ion-input [(ngModel)]="doctor.Doctor.firstName" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">שם משפחה</ion-label>
+      <ion-label position="fixed" class="text">שם משפחה</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.lastName"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">תעודת זהות</ion-label>
+      <ion-label position="fixed" class="text">תעודת זהות</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.doctorId"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">כתובת</ion-label>
+      <ion-label position="fixed" class="text">כתובת</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">פלאפון</ion-label>
+      <ion-label position="fixed" class="text">פלאפון</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.doctorPhone"></ion-input>
     </ion-item>
-    <ion-button color="primary" (click)="next1()">הבא
+
+    
+    <ion-item>
+      <ion-label class="text">בחר\י את ההתמחויות שלך</ion-label>
+      <ion-select multiple="true" >
+        <ion-label class="text">בחר\י את ההתמחויות שלך</ion-label>
+        <ion-item *ngFor="let case of allCases">
+          <!-- value="case.caseId" -->
+          <ion-select-option class="text" >
+            {{case.caseName}}
+          </ion-select-option>
+        </ion-item>
+      </ion-select>
+    </ion-item>
+
+   
+    
+      
+    <ion-button color="primary" (click)="next()">הבא
       <ion-icon name="chevron-back"></ion-icon>
     </ion-button>
   </div>
-
-
 
   <div *ngIf="page2==true" style="text-align: center; direction: rtl; ">
-    <ion-label>בחר\י את ההתמחויות שלך</ion-label>
-    <ion-item>
-        <ion-select multiple="true">
-          <ion-label>בחר\י את ההתמחויות שלך</ion-label>
-          <ion-item *ngFor="let case of allCases">
-            <ion-select-option  value="case.caseId" >
-              {{case.caseName}}
-            </ion-select-option>
-          </ion-item>
-        </ion-select>
-      </ion-item>
-
-
-    <ion-button color="primary" (click)="previous1()">
-      <ion-icon name="chevron-forward"></ion-icon>הקודם
-    </ion-button>
-    <ion-button color="primary" (click)="next2()">הבא
-      <ion-icon name="chevron-back"></ion-icon>
-    </ion-button>
-  </div>
-
-  <div *ngIf="page3==true" style="text-align: center; direction: rtl; ">
     <h5>צירוף תעודות</h5>
     <ion-item>
-      <ion-label position="floating">מספר מע"ר</ion-label>
+      <ion-label position="fixed" class="text">מספר מע"ר</ion-label>
       <ion-input></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">תוקף תעודה</ion-label>
+      <ion-label position="fixed" class="text">תוקף תעודה</ion-label>
       <ion-datetime displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
     </ion-item>
     <!-- <ion-item>
@@ -75,25 +69,26 @@
       <ion-input type="File" accept="image/*"></ion-input>
     </ion-item> -->
     <ion-item>
-      <ion-label position="fixed" color="primary" stacked>צירוף קבצים</ion-label>
-      <ion-input type="File" accept="image/*" [(ngModel)]="doctor.Doctor.pictureDiploma"></ion-input>
+      <ion-label position="fixed" color="primary" stacked></ion-label>
+      <ion-input type="File" accept="image/*" [(ngModel)]="doctor.Doctor.pictureDiploma" (change)="changeListener($event)"></ion-input>
       <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
-
     </ion-item>
-
-    <ion-button color="primary" (click)="previous2()">
+    <ion-button color="primary" (click)="previous()">
       <ion-icon name="chevron-forward"></ion-icon>הקודם
     </ion-button>
-    <ion-button color="primary" (click)="next3()">סיים
+    <ion-button color="primary" (click)="next()">סיים
       <ion-icon name="chevron-back"></ion-icon>
     </ion-button>
   </div>
+
+
 
   <div *ngIf="finish==true" style="text-align: center; direction: rtl; ">
     <h1>תודה!!!<br></h1>
     <h3>בקשתך נקלטה במערכת.<br> אנו נעבור עליה, ונעדכן את פרטיך במאגר הנתונים.</h3>
   </div>
 
+  
 
 
 </ion-content>

@@ -18,3 +18,13 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\DAL\bin\Debug\DTO.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\DAL\bin\Debug\DTO.pdb
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\DAL\bin\Debug\DTO.dll.config
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\DAL.dll.config
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\DTO.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\EntityFramework.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\DTO.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\DTO.dll.config
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\EntityFramework.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DAL\obj\Debug\DAL.csproj.CopyComplete
