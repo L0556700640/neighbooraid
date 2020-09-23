@@ -25,7 +25,9 @@
     </ion-item>
     <ion-item>
       <ion-label position="fixed" class="text">כתובת</ion-label>
-      <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input>
+      <input  ngx-google-places-autocomplete #placesRef="ngx-places"
+  (onAddressChange)="handleDestinationChange($event)" placeholder="הכנס כתובת" [(ngModel)]="doctor.Doctor.address">
+      <!-- <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input> -->
     </ion-item>
     <ion-item>
       <ion-label position="fixed" class="text">פלאפון</ion-label>
@@ -70,7 +72,7 @@
     </ion-item> -->
     <ion-item>
       <ion-label position="fixed" color="primary" stacked></ion-label>
-      <ion-input type="File" accept="image/*" [(ngModel)]="doctor.Doctor.pictureDiploma" (change)="changeListener($event)"></ion-input>
+      <ion-input type="File" accept="image/*" (change)="changeListener($event)"></ion-input>
       <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
     </ion-item>
     <ion-button color="primary" (click)="previous()">
@@ -87,7 +89,7 @@
   </div>
 
   
-  <h2>שלום וברכה</h2>
+
 
 
 </ion-content>

@@ -4,6 +4,10 @@ import { DoctorService } from '../shared/services/doctor.service';
 import { DoctorDetails } from '../shared/models/doctorDelails.model';
 import { Cases } from '../shared/models/cases.model';
 import { CasesService } from '../shared/services/cases.service';
+import { promise } from 'protractor';
+import {Address} from 'ngx-google-places-autocomplete/objects/address';
+import {GooglePlaceDirective} from 'ngx-google-places-autocomplete';
+
 
 @Component({
   selector: 'app-tab1',
@@ -16,30 +20,34 @@ export class Tab1Page {
   finish = false;
   imagePath;
   imageProvider;
-  allCases:Cases[]=[];
-  chooseCases=[]
-  doctor: DoctorDetails= new DoctorDetails();
-  constructor(private doctorService: DoctorService,private casesService:CasesService ) { 
-   this.casesService.getAllCases().subscribe(res=>{this.allCases=res;});
+  allCases: Cases[] = [];
+  chooseCases = []
+  doctor: DoctorDetails = new DoctorDetails();
+  constructor(private doctorService: DoctorService, private casesService: CasesService) {
+    this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
   }
 
   next() {
-    if(this.page1==true)
-    {
+    if (this.page1 == true) {
       this.page1 = false;
       this.page2 = true;
       this.doctor.Doctor.isConfirmed = false;
     }
-    else
-    {
+    else {
       this.page2 = false;
-      this.finish = true; 
-      this.doctorService.addDoctor(this.doctor).subscribe(
-        (res)=>{alert(res)}
+      this.finish = true;
+      this.doctorService.addDoctor(this.doctor,this.myFile).subscribe(
+        (res) => { alert(res) }
       )
     }
+
+
+  }
+
+
+ handleDestinationChange(a:Address){
     
-  
+    console.log(a)
   }
 
   previous() {
@@ -55,11 +63,31 @@ export class Tab1Page {
   //   this.page2 = true;
   //   this.page3 = false;
   // }
-
+myFile:File;
   changeListener($event): void {
-    this.imagePath = $event.target.files[0];
-    console.log($event.target.files[0])
-    //this.imageProvider.uploadImage(this.imagePath)
+     this.myFile = $event.target.files[0];
+
+    
+    
+    ;
+  }
+
+
+//   getByteArray(file:File) {
+//     let fileReader = new FileReader();
+//     return new Promise(function(resolve, reject) {
+//         fileReader.readAsArrayBuffer(file);
+//         fileReader.onload = function(ev) {
+//             const array = new Uint8Array(ev.target.result as Uint8Array);
+//             const fileByteArray = [];
+//             for (let i = 0; i < array.length; i++) {
+//                 fileByteArray.push(array[i]);
+//             }
+//             resolve(array);  // successful
+//         }
+//         fileReader.onerror = reject; // call reject if error
+//     })
+//  }  
 }
-}
+
 
