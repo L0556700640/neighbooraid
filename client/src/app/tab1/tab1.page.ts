@@ -5,8 +5,8 @@ import { DoctorDetails } from '../shared/models/doctorDelails.model';
 import { Cases } from '../shared/models/cases.model';
 import { CasesService } from '../shared/services/cases.service';
 import { promise } from 'protractor';
-import {Address} from 'ngx-google-places-autocomplete/objects/address';
-import {GooglePlaceDirective} from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 
 
 @Component({
@@ -23,10 +23,24 @@ export class Tab1Page {
   allCases: Cases[] = [];
   chooseCases = []
   doctor: DoctorDetails = new DoctorDetails();
+
   constructor(private doctorService: DoctorService, private casesService: CasesService) {
     this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
   }
+  ngOnInit() {
 
+    let input_from = (<HTMLInputElement>document.getElementById("places"));
+    let autocomplete1 = new google.maps.places.Autocomplete(input_from);
+    // let options = {
+    //   types: [],
+    //   componentRestrictions: { country: "uk" }
+    // }
+
+    google.maps.event.addListener(autocomplete1, 'place_changed', function () {
+      console.log("FROM CHANGED!");
+
+    });
+  }
   next() {
     if (this.page1 == true) {
       this.page1 = false;
@@ -36,7 +50,7 @@ export class Tab1Page {
     else {
       this.page2 = false;
       this.finish = true;
-      this.doctorService.addDoctor(this.doctor,this.myFile).subscribe(
+      this.doctorService.addDoctor(this.doctor, this.myFile).subscribe(
         (res) => { alert(res) }
       )
     }
@@ -45,8 +59,8 @@ export class Tab1Page {
   }
 
 
- handleDestinationChange(a:Address){
-    
+  handleDestinationChange(a: Address) {
+
     console.log(a)
   }
 
@@ -54,40 +68,12 @@ export class Tab1Page {
     this.page1 = true;
     this.page2 = false;
   }
-  // next3() {
-  //   this.page3 = false;
-  //   this.finish = true;
-  // }
 
-  // previous2() {
-  //   this.page2 = true;
-  //   this.page3 = false;
-  // }
-myFile:File;
+  myFile: File;
   changeListener($event): void {
-     this.myFile = $event.target.files[0];
-
-    
-    
+    this.myFile = $event.target.files[0];
     ;
   }
-
-
-//   getByteArray(file:File) {
-//     let fileReader = new FileReader();
-//     return new Promise(function(resolve, reject) {
-//         fileReader.readAsArrayBuffer(file);
-//         fileReader.onload = function(ev) {
-//             const array = new Uint8Array(ev.target.result as Uint8Array);
-//             const fileByteArray = [];
-//             for (let i = 0; i < array.length; i++) {
-//                 fileByteArray.push(array[i]);
-//             }
-//             resolve(array);  // successful
-//         }
-//         fileReader.onerror = reject; // call reject if error
-//     })
-//  }  
+ 
 }
-
 

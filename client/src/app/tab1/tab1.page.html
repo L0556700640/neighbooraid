@@ -6,14 +6,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" >
+<ion-content [fullscreen]="true">
 
   <app-explore-container name=""></app-explore-container>
-  <div *ngIf="page1==true"  style="text-align: center; direction: rtl; float: right;">
+  <div *ngIf="page1==true" style="text-align: center; direction: rtl; float: right;">
     <p> הזן את פרטיך על מנת להירשם כמגיש עזרה ראשונה</p>
     <ion-item>
-      <ion-label  position="fixed" class="text">שם פרטי</ion-label>
-      <ion-input [(ngModel)]="doctor.Doctor.firstName" ></ion-input>
+      <ion-label position="fixed" class="text">שם פרטי</ion-label>
+      <ion-input [(ngModel)]="doctor.Doctor.firstName"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="fixed" class="text">שם משפחה</ion-label>
@@ -25,32 +25,41 @@
     </ion-item>
     <ion-item>
       <ion-label position="fixed" class="text">כתובת</ion-label>
-      <input  ngx-google-places-autocomplete #placesRef="ngx-places"
-  (onAddressChange)="handleDestinationChange($event)" placeholder="הכנס כתובת" [(ngModel)]="doctor.Doctor.address">
-      <!-- <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input> -->
+      <!-- מהמורה -->
+
+      <!-- <ion-input  ngx-google-places-autocomplete #placesRef="ngx-places"
+  (onAddressChange)="handleDestinationChange($event)" placeholder="הכנס כתובת" [(ngModel)]="doctor.Doctor.address"></ion-input> -->
+     
+  <!-- חיפוש- input ngx-google-places-autocomplete in ionic -->
+
+      <!-- <ion-input id="places" name="places"  type="text" placeholder="הכנס כתובת"  [(ngModel)]="doctor.Doctor.address" > 
+      </ion-input>-->
+     
+      <!-- מה שהיה קודם -->
+      <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="fixed" class="text">פלאפון</ion-label>
       <ion-input [(ngModel)]="doctor.Doctor.doctorPhone"></ion-input>
     </ion-item>
 
-    
+
     <ion-item>
       <ion-label class="text">בחר\י את ההתמחויות שלך</ion-label>
-      <ion-select multiple="true" >
+      <ion-select multiple="true">
         <ion-label class="text">בחר\י את ההתמחויות שלך</ion-label>
         <ion-item *ngFor="let case of allCases">
           <!-- value="case.caseId" -->
-          <ion-select-option class="text" >
+          <ion-select-option class="text">
             {{case.caseName}}
           </ion-select-option>
         </ion-item>
       </ion-select>
     </ion-item>
 
-   
-    
-      
+
+
+
     <ion-button color="primary" (click)="next()">הבא
       <ion-icon name="chevron-back"></ion-icon>
     </ion-button>
@@ -88,7 +97,7 @@
     <h3>בקשתך נקלטה במערכת.<br> אנו נעבור עליה, ונעדכן את פרטיך במאגר הנתונים.</h3>
   </div>
 
-  
+
 
 
 
