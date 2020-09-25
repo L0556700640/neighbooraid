@@ -55,6 +55,7 @@ $( document ).ready(function() {
     recognition.interimResults = true;
 
     recognition.onstart = function() {
+      console.log("start recording");
       recognizing = true;
       showInfo('speak_now');
       start_img.src = 'images/mic-animation.gif';
