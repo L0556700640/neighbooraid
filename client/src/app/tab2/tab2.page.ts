@@ -7,18 +7,25 @@ import { CasesService } from '../shared/services/cases.service';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
+export class Tab2Page 
+{
   searchPage = true;
   familyPage = false;
   doctorsPage = false;
   responsePage = false;
   allCases: Cases[] = [];
-  constructor(private casesService: CasesService) {
+  constructor(private casesService: CasesService) 
+  {
     this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
   }
-  next1() {
+  next1() 
+  {
     this.doctorsPage = true;
     this.searchPage = false;
 
+  }
+  searchVoice()
+  {
+    
   }
 }

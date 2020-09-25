@@ -22,4 +22,17 @@ describe('Tab1Page', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`should have as title 'autoCompleteGoogleMaps'`, () => {
+    const fixture = TestBed.createComponent(Tab1Page);
+    const app = fixture.componentInstance;
+    //expect(app.title).toEqual('autoCompleteGoogleMaps');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(Tab1Page);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.content span').textContent).toContain('autoCompleteGoogleMaps app is running!');
+  });
 });

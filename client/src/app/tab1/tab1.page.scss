@@ -1,5 +1,38 @@
 .text
 {
     color:rgb(25, 63, 99) ;
-    
+    font-family: 'Guttman Haim';
+    font-size: 15px;
+    margin: 0px;
+}
+
+.answer
+{
+    color:#eb445a ;
+    font-family: 'Guttman Haim';
+    font-size: 15px;
+}
+
+
+ion-content.background
+{
+     //background-image: url(../../assets/img/logo1.png);
+    --ion-background-color:#FDF6F2
+
+ 
+}
+
+.input-style
+{
+    width: 120px;
+    height: 40px;
+    border: 2px solid white;
+    padding: 0px;
+    font-size: 15px;
+    color: #eb445a;
+    font-family: 'Guttman Haim';
+    background-repeat: no-repeat;
+    background-position: right;
+    outline: 0;
+    margin: 0px;
 }

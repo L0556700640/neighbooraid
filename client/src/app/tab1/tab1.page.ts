@@ -4,6 +4,9 @@ import { DoctorService } from '../shared/services/doctor.service';
 import { DoctorDetails } from '../shared/models/doctorDelails.model';
 import { Cases } from '../shared/models/cases.model';
 import { CasesService } from '../shared/services/cases.service';
+import {Address} from 'ngx-google-places-autocomplete/objects/address';
+import { FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-tab1',
@@ -17,7 +20,7 @@ export class Tab1Page {
   imagePath;
   imageProvider;
   allCases:Cases[]=[];
-  chooseCases=[]
+  myForm:FormGroup;  
   doctor: DoctorDetails= new DoctorDetails();
   constructor(private doctorService: DoctorService,private casesService:CasesService ) { 
    this.casesService.getAllCases().subscribe(res=>{this.allCases=res;});
@@ -46,20 +49,17 @@ export class Tab1Page {
     this.page1 = true;
     this.page2 = false;
   }
-  // next3() {
-  //   this.page3 = false;
-  //   this.finish = true;
-  // }
-
-  // previous2() {
-  //   this.page2 = true;
-  //   this.page3 = false;
-  // }
-
-  changeListener($event): void {
-    this.imagePath = $event.target.files[0];
+  
+  changeListener($event): void 
+  {
+    this.imagePath = $event.target.files[0].name;
     console.log($event.target.files[0])
-    //this.imageProvider.uploadImage(this.imagePath)
-}
+    this.imageProvider.uploadImage(this.imagePath)
+  }
+
+  handleDestinationChange(a:Address){
+    
+    console.log(a)
+  }
 }
 

@@ -6,41 +6,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="true" style="text-align: right; direction: rtl;" class="background">
+ <!-- <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large"> כניסת מטופל
-      </ion-title>
+     <ion-title size="medium"> כניסת מטופל 
+       </ion-title> 
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <app-explore-container name=""> </app-explore-container>
 
-  <div *ngIf="searchPage==true">
-    <ion-label>
-      <h3>מה קרה? דבר אלי</h3>
+  <div *ngIf="searchPage==true" class="text">
+    <ion-label style="text-align: center;" >
+      <h1 >מה קרה? דבר אלי</h1>
+      <h1><ion-icon name="mic" size="large" (click)="searchVoice()"></ion-icon></h1>
     </ion-label>
-    <!-- <ion-item>
-      <ion-select interface="">
-        <ion-label>בחר\י את ההתמחויות שלך</ion-label>
-        <ion-item *ngFor="let case of allCases">
-          <ion-select-option value="case.caseId">
-            {{case.caseName}}
-          </ion-select-option>
-        </ion-item>
-      </ion-select>
-    </ion-item> -->
 
-    <ion-list>
+
+    
+    <ion-list class="text">
       <ion-radio-group value="cases">
         <ion-list-header>
-          <ion-label>
+          <ion-label style="text-align: center;">
             זה מה שחיפשת?
           </ion-label>
         </ion-list-header>
 
         <ion-item *ngFor="let case of allCases">
-          <ion-label>
+          <ion-label class="text">
             {{case.caseName}}
           </ion-label>
           <ion-radio slot="start" [value]="case.caseId"></ion-radio>
@@ -57,6 +50,12 @@
         </ion-item> -->
       </ion-radio-group>
     </ion-list>
+
+    <ion-button color="danger" shape="round" fill="outline" expand="left" (click)="next1()">הבא
+      <ion-icon name="chevron-back"></ion-icon>
+    </ion-button>
+   
+
 
   </div>
   <!-- בין רופאים למשפחה- ion-slide -->
