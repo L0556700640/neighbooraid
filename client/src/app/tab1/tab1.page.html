@@ -7,55 +7,57 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" >
+<ion-content [fullscreen]="true" class="background">
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7Wui1ikC-x4CMLYBpPz-8Yutf2l3glNo&sensor=true&libraries=places,geometry,drawing&sensor=true&language=he" ></script>
 
   <app-explore-container name=""></app-explore-container>
-  <div *ngIf="page1==true"  style="text-align: center; direction: rtl; float: right;">
-    <p> הזן את פרטיך על מנת להירשם כמגיש עזרה ראשונה</p>
-    <ion-item>
-      <ion-label  position="fixed" class="text">שם פרטי</ion-label>
-      <ion-input [(ngModel)]="doctor.Doctor.firstName" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="fixed" class="text">שם משפחה</ion-label>
-      <ion-input [(ngModel)]="doctor.Doctor.lastName"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="fixed" class="text">תעודת זהות</ion-label>
-      <ion-input [(ngModel)]="doctor.Doctor.doctorId"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="fixed" class="text">כתובת</ion-label>
-      <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="fixed" class="text">פלאפון</ion-label>
-      <ion-input [(ngModel)]="doctor.Doctor.doctorPhone"></ion-input>
-    </ion-item>
-
-    
-    <ion-item>
-      <ion-label class="text">בחר\י את ההתמחויות שלך</ion-label>
-      <ion-select multiple="true" >
-        <ion-label class="text">בחר\י את ההתמחויות שלך</ion-label>
-        <ion-item *ngFor="let case of allCases">
-          <!-- value="case.caseId" -->
-          <ion-select-option class="text" >
-            {{case.caseName}}
-          </ion-select-option>
-        </ion-item>
-      </ion-select>
-    </ion-item>
-
-   
-    
+    <div *ngIf="page1==true"  style="text-align: right; direction: rtl; float: right;" >
       
-    <ion-button color="primary" (click)="next()">הבא
-      <ion-icon name="chevron-back"></ion-icon>
-    </ion-button>
-  </div>
+      <p>הזן את פרטיך על מנת להירשם כמגיש עזרה ראשונה</p>
+      <ion-item>
+        <ion-label  position="fixed" class="text">שם פרטי</ion-label>
+        <ion-input [(ngModel)]="doctor.Doctor.firstName" class="answer"></ion-input>
+      </ion-item >
+      <ion-item >
+        <ion-label position="fixed" class="text">שם משפחה</ion-label>
+        <ion-input [(ngModel)]="doctor.Doctor.lastName" class="answer"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed" class="text">תעודת זהות</ion-label>
+        <ion-input [(ngModel)]="doctor.Doctor.doctorId" class="answer"></ion-input>
+      </ion-item>
+      <ion-item style="width: 290px;">
+        <ion-label position="fixed" class="text" style="margin: 0px; width: 20%; size: 0px;">כתובת</ion-label>
+        <ion-img src="../../assets/img/Location.png" style="height: 40px;"></ion-img>
+        <!-- <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input> -->
+        <input type="search"  class="input-style" ngx-google-places-autocomplete  #placesRef="ngx-places"
+        (onAddressChange)="handleDestinationChange($event)" placeholder="הזן כתובת" [(ngModel)]="doctor.Doctor.address">‏
+        
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed" class="text">פלאפון</ion-label>
+        <ion-input [(ngModel)]="doctor.Doctor.doctorPhone" class="answer" placeholder="000-0000000"></ion-input>
+      </ion-item>
+
+      
+      <ion-item >
+        <ion-label class="text">בחר\י את ההתמחויות שלך</ion-label>
+        <ion-select multiple="true" >
+          <ion-label class="text">בחר\י את ההתמחויות שלך</ion-label>
+          <ion-item *ngFor="let case of allCases" class="text">
+            <ion-select-option class="text"  [value]="case.caseId">
+              {{case.caseName}}
+            </ion-select-option>
+          </ion-item>
+        </ion-select>
+      </ion-item>
+
+    
+      <ion-button color="danger" shape="round" fill="outline" (click)="next()">הבא
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </div>
 
   <div *ngIf="page2==true" style="text-align: center; direction: rtl; ">
     <h5>צירוף תעודות</h5>
@@ -67,19 +69,17 @@
       <ion-label position="fixed" class="text">תוקף תעודה</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" min="2020-01-01" max="2025-01-01" class="answer"></ion-datetime>
     </ion-item>
-    <!-- <ion-item>
-      <ion-label position="fixed" color="primary" stacked>צירוף תמונה</ion-label>
-      <ion-input type="File" accept="image/*"></ion-input>
-    </ion-item> -->
-    <ion-item>
-      <ion-label position="fixed" color="primary" stacked></ion-label>
-      <ion-input type="File" accept="image/*" [(ngModel)]="doctor.Doctor.pictureDiploma" (change)="changeListener($event)"></ion-input>
-      <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
+    
+    <p class="text" >בחר קובץ להצגת תעודה:</p>
+    <input type="File"  id="uploader"  [(ngModel)]="doctor.Doctor.pictureDiploma"  (change)="changeListener($event)" style="height:50px; width: 50px;" hidden>
+    <ion-item> 
+      <ion-img src="../../assets/img/Folder-Upload.png" onclick="document.querySelector('#uploader').click()"  style="text-align: center; width: 60px;"></ion-img> 
+      <label class="answer" style="text-align: center;">{{imagePath.name}}</label>
     </ion-item>
-    <ion-button color="primary" shape="round" fill="outline" (click)="previous()">
+    <ion-button color="danger" shape="round" fill="outline" (click)="previous()">
       <ion-icon name="chevron-forward"></ion-icon>הקודם
     </ion-button>
-    <ion-button color="primary" shape="round" fill="outline" (click)="next()">סיים
+    <ion-button color="danger" shape="round" fill="outline" (click)="next()">סיים
       <ion-icon name="chevron-back"></ion-icon>
     </ion-button>
   </div>
@@ -89,8 +89,11 @@
     <h3>בקשתך נקלטה במערכת.<br> אנו נעבור עליה, ונעדכן את פרטיך במאגר הנתונים.</h3>
   </div>
 
-  
-  <h2>שלום וברכה</h2>
+
+ 
+</ion-content>
+
+
 
 <!-- <ion-tab-bar slot="bottom" style="width: 50%;" class="background" >
   <ion-tab-button tab="tab1">
@@ -103,3 +106,4 @@
     <ion-img src="../../assets/img/Bookmark_Info.png"></ion-img>
   </ion-tab-button>
 </ion-tab-bar> --> 
+

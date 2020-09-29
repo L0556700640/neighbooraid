@@ -37,7 +37,7 @@ export class Tab1Page {
     {
       this.page2 = false;
       this.finish = true; 
-      this.doctorService.addDoctor(this.doctor).subscribe(
+      this.doctorService.addDoctor(this.doctor,this.imagePath).subscribe(
         (res)=>{alert(res)}
       )
     }
@@ -52,9 +52,9 @@ export class Tab1Page {
   
   changeListener($event): void 
   {
-    this.imagePath = $event.target.files[0].name;
+    this.imagePath = $event.target.files[0];
     console.log($event.target.files[0])
-    this.imageProvider.uploadImage(this.imagePath)
+    //this.imageProvider.uploadImage(this.imagePath)
   }
 
   handleDestinationChange(a:Address){
