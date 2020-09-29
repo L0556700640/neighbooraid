@@ -4,7 +4,6 @@ import { from } from 'rxjs';
 import { Cases } from '../shared/models/cases.model';
 import { CasesService } from '../shared/services/cases.service';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
-
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -29,6 +28,6 @@ export class Tab2Page {
   searchVoice() {
     
   }
-
+  languageOptions=[];
   
 }
