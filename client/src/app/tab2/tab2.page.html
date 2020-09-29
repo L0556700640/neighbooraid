@@ -4,36 +4,77 @@
       כניסת מטופל
     </ion-title>
   </ion-toolbar>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/style/web-speech.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </ion-header>
 
-<ion-content [fullscreen]="true" style="text-align: right; direction: rtl;" class="background">
- <!-- <ion-header collapse="condense">
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
     <ion-toolbar>
-     <ion-title size="medium"> כניסת מטופל 
-       </ion-title> 
+      <ion-title size="large"> כניסת מטופל
+      </ion-title>
     </ion-toolbar>
-  </ion-header> -->
+  </ion-header>
 
   <app-explore-container name=""> </app-explore-container>
 
-  <div *ngIf="searchPage==true" class="text">
-    <ion-label style="text-align: center;" >
-      <h1 >מה קרה? דבר אלי</h1>
-      <h1><ion-icon name="mic" size="large" (click)="searchVoice()"></ion-icon></h1>
+  <div *ngIf="searchPage==true">
+    <ion-label>
+      <h3>מה קרה? דבר אלי</h3>
     </ion-label>
+    <ion-item>
+      <!-- <main> -->
+      <div class="container mt-3">
+        <div id="info"></div>
+        <div class="float-right">
+          <ion-button id="start_button">
+            <ion-img src="../../assets/images/mic.gif" id="start_img" alt="Start"></ion-img>
+          </ion-button>
+        </div>
+        <div id="results">
+          <span id="final_span" class="final"></span>
+          <span id="interim_span" class="interim"></span>
+          <p>
+        </div>
+        <div class="row col-12 p-0 m-0">
+          <div class="row col-12 col-md-8 col-lg-6 p-0 m-0">
+            <ion-select id="select_language"></ion-select>
+            <ion-select id="select_dialect"></ion-select>
+          </div>
+          <!-- <div class="col-12 col-md-4 col-lg-6 mt-3 mt-md-0 p-0 m-0">
+            <div class="float-right">
+              <ion-button id="copy_button" class="btn btn-primary ">Copy</ion-button>
+            </div>
+          </div> -->
+        </div>
 
+      </div>
+      <!-- </main> -->
+      <script src="../../assets/js/languages.js"></script>
+      <script src="../../assets/js/web-speech-api.js"></script>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-select interface="">
+        <ion-label>בחר\י את ההתמחויות שלך</ion-label>
+        <ion-item *ngFor="let case of allCases">
+          <ion-select-option value="case.caseId">
+            {{case.caseName}}
+          </ion-select-option>
+        </ion-item>
+      </ion-select>
+    </ion-item> -->
 
-    
-    <ion-list class="text">
+    <ion-list>
       <ion-radio-group value="cases">
         <ion-list-header>
-          <ion-label style="text-align: center;">
+          <ion-label>
             זה מה שחיפשת?
           </ion-label>
         </ion-list-header>
 
         <ion-item *ngFor="let case of allCases">
-          <ion-label class="text">
+          <ion-label>
             {{case.caseName}}
           </ion-label>
           <ion-radio slot="start" [value]="case.caseId"></ion-radio>
@@ -50,12 +91,6 @@
         </ion-item> -->
       </ion-radio-group>
     </ion-list>
-
-    <ion-button color="danger" shape="round" fill="outline" expand="left" (click)="next1()">הבא
-      <ion-icon name="chevron-back"></ion-icon>
-    </ion-button>
-   
-
 
   </div>
   <!-- בין רופאים למשפחה- ion-slide -->

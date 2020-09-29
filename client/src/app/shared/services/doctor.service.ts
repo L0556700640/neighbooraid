@@ -11,7 +11,10 @@ import { DoctorDetails } from '../models/doctorDelails.model';
 export class DoctorService {
   constructor(private http: HttpClient) { }
 
-  addDoctor(doctor: DoctorDetails): Observable<boolean> {
-    return this.http.post<boolean>(environment.url + 'Doctor/AddDoctor', doctor)
+  addDoctor(doctor: DoctorDetails,file:File): Observable<boolean> {
+    let data=new FormData();
+    data.append('doctor',JSON.stringify(doctor));
+    data.append('file',file)
+    return this.http.post<boolean>(environment.url + 'Doctor/AddDoctor', data)
   }
-}
+} 

@@ -8,6 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http'
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,8 +18,22 @@ import {HttpClientModule} from '@angular/common/http'
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    GooglePlaceModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.threeBounce,
+      backdropBackgroundColour: 'rgba(0,0,0,0)', 
+      backdropBorderRadius: '0.01px',
+      primaryColour: 'green', 
+      secondaryColour: 'green', 
+      tertiaryColour: 'green'
+    }),
+    AgmCoreModule.forRoot(  {
+      apiKey: 'AIzaSyD7Wui1ikC-x4CMLYBpPz-8Yutf2l3glNo',
+     libraries: ["places"]
+    })
+
   ],
   providers: [
     StatusBar,
