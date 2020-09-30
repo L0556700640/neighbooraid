@@ -26,6 +26,16 @@
       <h3>מה קרה? דבר אלי</h3>
     </ion-label>
     <div>
+      <div >
+        <h6>Voice recognition</h6>
+        <ion-button *ngIf="isRecording==false" (click)="startMicrophoneService()">Start
+          <ion-img src="../../assets/images/mic.gif" id="start_img"></ion-img>
+        </ion-button>
+        <ion-button *ngIf="isRecording==true" (click)="stopMicrophoneService()">Stop
+          <ion-img style="width: 50%; height: 50%;" src="../../assets/images/stopRecord.png" id="stop_img" ></ion-img>
+        </ion-button>
+        <p>{{microphoneService.text}}</p>
+    </div>
     <!-- <ion-item>
        <main> 
       <div class="container mt-3">

@@ -5,6 +5,7 @@ import { from } from 'rxjs';
 import { Cases } from '../shared/models/cases.model';
 import { CasesService } from '../shared/services/cases.service';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { VoiceRecognitionService } from '../shared/services/voice-recognition.service';
 declare global {
   interface Window {
     webkitSpeechRecognition: any,
@@ -150,8 +151,9 @@ export class Tab2Page {
 //   currentMessage;
  
 //#endregion
-  constructor(private casesService: CasesService) {
+  constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService) {
     this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
+    this.microphoneService.init()
   }
   next1() {
     this.doctorsPage = true;
@@ -161,6 +163,16 @@ export class Tab2Page {
   searchVoice() {
 
   }
+  startMicrophoneService(){
+    this.isRecording=true;
+    this.microphoneService.start()
+  }
+
+  stopMicrophoneService(){
+    this.isRecording=false;
+    this.microphoneService.stop()
+  }
+
 //#region try microphone
 
 
@@ -340,4 +352,6 @@ export class Tab2Page {
 //   }
 // }
 //#endregion
+//microphone from https://codeburst.io/creating-a-speech-recognition-app-in-angular-8d1fd8d977ca- teacher
+
 }
