@@ -22,9 +22,15 @@ namespace API.Controllers
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             DTO.DoctorsDetailsDTO doctor = serializer.Deserialize<DTO.DoctorsDetailsDTO>(HttpContext.Current.Request["doctor"]);
 
-            
+
             int doctorId= BL.DoctorBL.AddDoctor(doctor,file);
             return Ok(doctorId);
+        }
+        [Route("ConfirmDoctor/{doctorId}/{isConfirmed}")]
+        public IHttpActionResult ConfirmDoctor(int doctorId,bool isConfirmed)//להצפין קוד רופא
+        {
+           BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
+            return Ok("הפעולה בוצעה בהצלחה");
         }
     }
 }

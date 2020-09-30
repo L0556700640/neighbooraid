@@ -5,10 +5,10 @@
     </ion-title>
   </ion-toolbar>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../../assets/style/web-speech.css">
+  <!-- <link rel="stylesheet" href="../../assets/style/web-speech.css"> -->
+  <!-- <script src="./config.js"></script> -->
+
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="../../assets/js/languages.js"></script>
-  <script src="../../assets/js/web-speech-api.js"></script>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -25,21 +25,22 @@
     <ion-label>
       <h3>מה קרה? דבר אלי</h3>
     </ion-label>
-    <ion-item>
-      <!-- <main> -->
+    <div>
+    <!-- <ion-item>
+       <main> 
       <div class="container mt-3">
-        <div id="info"></div>
+        <div id="info">{{currentMessage}}</div>
         <div class="float-right">
-          <button id="start_button">
+          <ion-button id="start_button" (click)="recognition.onstart()">
             <ion-img src="../../assets/images/mic.gif" id="start_img" alt="Start"></ion-img>
-          </button>
+          </ion-button>
         </div>
         <div id="results">
           <span id="final_span" class="final"></span>
           <span id="interim_span" class="interim"></span>
-          <p>
-        </div>
-        <div class="row col-12 p-0 m-0">
+        
+        </div> -->
+        <!-- <div class="row col-12 p-0 m-0">
           <div class="row col-12 col-md-8 col-lg-6 p-0 m-0">
             <!-- <ion-select id="select_language">
               <ion-item *ngFor="let lan in languageOptions">
@@ -47,18 +48,18 @@
             </ion-item>
             </ion-select>
             <ion-select id="select_dialect"></ion-select> -->
-          </div>
-          <!-- <div class="col-12 col-md-4 col-lg-6 mt-3 mt-md-0 p-0 m-0">
+        <!-- </div>
+           <div class="col-12 col-md-4 col-lg-6 mt-3 mt-md-0 p-0 m-0">
             <div class="float-right">
               <ion-button id="copy_button" class="btn btn-primary ">Copy</ion-button>
             </div>
-          </div> -->
-        </div>
-
+          </div> 
+        </div> -->
+<!-- 
       </div>
-      <!-- </main> -->
-   
-    </ion-item>
+       </main> 
+
+    </ion-item> -->
     <!-- <ion-item>
       <ion-select interface="">
         <ion-label>בחר\י את ההתמחויות שלך</ion-label>
@@ -97,6 +98,8 @@
       </ion-radio-group>
     </ion-list>
 
-  </div>
+ 
+</div>
+</div>
   <!-- בין רופאים למשפחה- ion-slide -->
 </ion-content>

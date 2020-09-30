@@ -18,7 +18,6 @@ namespace BL.Convertors
                 firstName=myDoctor.firstName,
                 isConfirmed=myDoctor.isConfirmed,
                 lastName=myDoctor.lastName,
-                pictureDiploma=myDoctor.pictureDiploma
             };
         }
         public static DAL.Doctor ConvertDoctorToDAL(DTO.Doctor myDoctor)
@@ -31,7 +30,6 @@ namespace BL.Convertors
                 firstName = myDoctor.firstName,
                 isConfirmed = myDoctor.isConfirmed,
                 lastName = myDoctor.lastName,
-                pictureDiploma = myDoctor.pictureDiploma
             };
         }
     }

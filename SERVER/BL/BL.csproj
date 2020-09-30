@@ -62,6 +62,7 @@
     <Compile Include="Convertors\PatientConvertor.cs" />
     <Compile Include="Convertors\SearchWordConvertor.cs" />
     <Compile Include="DoctorBL.cs" />
+    <Compile Include="ManagerBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

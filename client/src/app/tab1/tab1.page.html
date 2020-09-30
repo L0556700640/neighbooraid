@@ -71,7 +71,7 @@
     </ion-item>
     
     <p class="text" >בחר קובץ להצגת תעודה:</p>
-    <input type="File"  id="uploader"  [(ngModel)]="doctor.Doctor.pictureDiploma"  (change)="changeListener($event)" style="height:50px; width: 50px;" hidden>
+    <input type="File"  id="uploader"    (change)="changeListener($event)" style="height:50px; width: 50px;" hidden>
     <ion-item> 
       <ion-img src="../../assets/img/Folder-Upload.png" onclick="document.querySelector('#uploader').click()"  style="text-align: center; width: 60px;"></ion-img> 
       <label class="answer" style="text-align: center;">{{imagePath.name}}</label>

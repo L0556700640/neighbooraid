@@ -4,6 +4,5 @@ export class Doctor {
     lastName: string
     doctorPhone:string
     address:string
-    pictureDiploma:File// to check what is byte[] in ts
     isConfirmed: boolean
 }
