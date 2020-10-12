@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,7 +19,7 @@ namespace API.Controllers
         [HttpGet]
         public IHttpActionResult GetAllCases()
         {
-            return Ok(BL.CasesBL.getAllCases());
+            return Ok(CasesBL.getAllCases());
         }
     }
 }

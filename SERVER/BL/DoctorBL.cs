@@ -16,7 +16,6 @@ namespace BL
         {
             try
             {
-
                 using (neighboorAidDBEntities db=new neighboorAidDBEntities())
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
@@ -39,7 +38,7 @@ namespace BL
                         ) ;
                     }
                     db.SaveChanges();
-                    ManagerBL.SendMailToConfirmDoctor(newDoctor.doctorId);
+                    ManagerBL.SendMailToConfirmDoctor(newDoctor);
 
                     return newDoctor.doctorId;}
             }

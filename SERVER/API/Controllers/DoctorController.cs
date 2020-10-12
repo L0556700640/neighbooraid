@@ -18,7 +18,7 @@ namespace API.Controllers
         [HttpPost]
         public IHttpActionResult AddDoctor()
         {
-            HttpPostedFile file = HttpContext.Current.Request.Files[0];
+           HttpPostedFile file = HttpContext.Current.Request.Files[0];
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             DTO.DoctorsDetailsDTO doctor = serializer.Deserialize<DTO.DoctorsDetailsDTO>(HttpContext.Current.Request["doctor"]);
 
@@ -27,7 +27,8 @@ namespace API.Controllers
             return Ok(doctorId);
         }
         [Route("ConfirmDoctor/{doctorId}/{isConfirmed}")]
-        public IHttpActionResult ConfirmDoctor(int doctorId,bool isConfirmed)//להצפין קוד רופא
+        [HttpPost]
+        public IHttpActionResult ConfirmDoctor(int doctorId,bool isConfirmed)//todo להצפין קוד רופא
         {
            BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
             return Ok("הפעולה בוצעה בהצלחה");

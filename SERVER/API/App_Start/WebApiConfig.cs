@@ -11,6 +11,7 @@ namespace API
         {
             // Web API configuration and services
 
+            AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.EnableCors();

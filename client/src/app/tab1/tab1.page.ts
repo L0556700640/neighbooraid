@@ -58,7 +58,7 @@ export class Tab1Page {
   }
 
   handleDestinationChange(a:Address){
-    
+    this.doctor.Doctor.address=(a.formatted_address);
     console.log(a)
   }
 }
