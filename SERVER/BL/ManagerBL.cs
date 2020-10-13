@@ -97,7 +97,9 @@ namespace BL
 
             msg.From = new MailAddress(email);
             msg.To.Add(new MailAddress("l0556700640@gmail.com"));
-            msg.To.Add(new MailAddress("hadarotmi123@gmail.com"));
+            msg.To.Add(new MailAddress("hila2977@gmail.com"));
+
+            //msg.To.Add(new MailAddress("hadarotmi123@gmail.com"));
             msg.Subject = "אישור רופא";
             var base64 = Convert.ToBase64String(doctor.pictureDiploma);
             msg.Body = string.Format(
@@ -129,46 +131,52 @@ namespace BL
                     <br />
 </div>
 <div>
-                    <a style='display: inline-block;
-        font-weight: 400;
-        text-align: center;
-        vertical-align: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        border: 1px solid transparent;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        border-radius: 0.25rem;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; 
-      color: #fff;
-      background-color: #28a745;
-      border-color: #28a745;'
-            href = "" https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/true"">
+<div style='display: inline-block;'>
+ <form action='https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/true' method='post' >
+                        <button type='submit'
+                           style='display: inline-block;
+                           font-weight: 400;
+                           text-align: center;
+                           vertical-align: middle;
+                           -webkit-user-select: none;
+                           -moz-user-select: none;
+                           -ms-user-select: none;
+                           user-select: none;
+                           border: 1px solid transparent;
+                           padding: 0.375rem 0.75rem;
+                           font-size: 1rem;
+                           line-height: 1.5;
+                           border-radius: 0.25rem;
+                           transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                           color: #fff;
+                           background-color: #28a745;
+                           border-color: #28a745;'>
                         Confirm
-                    </a>
-                    <a style='display: inline-block;
-        font-weight: 400;
-        text-align: center;
-        vertical-align: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        border: 1px solid transparent;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        border-radius: 0.25rem;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      color: #fff;
-      background-color: #dc3545;
-  border-color: #dc3545;'
-href = "" https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/false"">
+                          </button>
+                        </form>
+</div>
+                     <form action='https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/false' method='post'>
+                        <button type='submit'
+                           style='display: inline-block;
+                           font-weight: 400;
+                           text-align: center;
+                           vertical-align: middle;
+                           -webkit-user-select: none;
+                           -moz-user-select: none;
+                           -ms-user-select: none;
+                           user-select: none;
+                           border: 1px solid transparent;
+                           padding: 0.375rem 0.75rem;
+                           font-size: 1rem;
+                           line-height: 1.5;
+                           border-radius: 0.25rem;
+                           transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                           color: #fff;
+                           background-color: #dc3545;
+                           border-color: #dc3545;'>
                         UnConfirm
-                    </a>
+                    </button>
+                 </form>
                  </div>
 </div>
 "

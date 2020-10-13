@@ -51,6 +51,14 @@ namespace BL
 
         public static void ConfirmDoctor(int doctorId, bool isConfirmed)
         {
-        }
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                (from d in db.Doctors
+                 where d.doctorId == doctorId
+                 select d).ToList().ForEach(d => d.isConfirmed = isConfirmed);
+                db.SaveChanges();
+            }
+
+         }
     }
 }
