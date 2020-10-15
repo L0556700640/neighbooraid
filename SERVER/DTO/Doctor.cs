@@ -13,7 +13,6 @@ namespace DTO
         public string lastName { get; set; }
         public string doctorPhone { get; set; }
         public string address { get; set; }
-        public byte[] pictureDiploma { get; set; }
         public bool isConfirmed { get; set; }
     }
 }
