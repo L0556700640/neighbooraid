@@ -16,4 +16,7 @@ export class CasesService {
   getAllCases(): Observable<Cases[]> {
     return this.http.get<Cases[]>(environment.url + "Cases/GetAllCases");
   }
+  GetRelatedCases(searchSentence) : Observable<Cases[]> {
+    return this.http.get<Cases[]>(environment.url + "Cases/GetRelatedCases/" + searchSentence);
+  }
 }

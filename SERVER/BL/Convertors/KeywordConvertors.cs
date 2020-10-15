@@ -13,7 +13,7 @@ namespace BL.Convertors
             return new DTO.Keyword
             {
                 keyWord1 = keyword.keyWord1,
-                keywordId = keyword.keywordId
+                Cases = keyword.Cases.ToList().Select(c=> Convertors.CaseConvertor.ConvertCaseToDTO(c) ).ToList()
             };
         }
         public static DAL.Keyword ConvertKeywordsToDAL(DTO.Keyword keyword)
@@ -21,7 +21,8 @@ namespace BL.Convertors
             return new DAL.Keyword
             {
                 keyWord1 = keyword.keyWord1,
-                keywordId = keyword.keywordId
+                keywordId = keyword.keywordId,
+                Cases= (ICollection<DAL.Case>)keyword.Cases
             };
         }
     }

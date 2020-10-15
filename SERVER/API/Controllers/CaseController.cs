@@ -21,5 +21,14 @@ namespace API.Controllers
         {
             return Ok(CasesBL.getAllCases());
         }
+
+
+
+        [Route("GetRelatedCases/{searchSentence}")]
+        [HttpGet]
+        public IHttpActionResult GetRelatedCases(string searchSentence)
+        {
+            return Ok(CasesBL.getTheCasesRelatedByTheSearch(searchSentence));
+        }
     }
 }

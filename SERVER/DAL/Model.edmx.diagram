@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="00e8a475c2cc4d3498d757d018cd5255" Name="Diagram1">
         <EntityTypeShape EntityType="neighboorAidDBModel.Case" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.CasesToDoctor" Width="1.5" PointX="2.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.CasesToDoctor" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="neighboorAidDBModel.Contact" Width="1.5" PointX="9" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="neighboorAidDBModel.Doctor" Width="1.5" PointX="6.875" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="neighboorAidDBModel.HelpCall" Width="1.5" PointX="4.875" PointY="2.375" IsExpanded="true" />

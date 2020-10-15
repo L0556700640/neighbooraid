@@ -95,6 +95,7 @@
           </ion-label>
           <ion-radio slot="start" [value]="case.caseId"></ion-radio>
         </ion-item>
+        <ion-button  *ngIf="fullCasesList==false" (click)="showFullCasesList()">הצג את הרשימה המלאה</ion-button>
 
         <!-- <ion-item>
           <ion-label>Griff</ion-label>
