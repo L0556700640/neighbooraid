@@ -11,12 +11,43 @@ import {HttpClientModule} from '@angular/common/http'
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
 import { AgmCoreModule } from '@agm/core';
+import{GpsComponent} from './gps/gps.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MicrophoneComponent } from './Patient/microphone/microphone.component';
+import { LoginComponent } from './Doctor/login/login.component';
+import { PersonalInformationComponent } from './Registration/personal-information/personal-information.component';
+import { CasesService } from './shared/services/cases.service';
+import { CasesComponent } from './Registration/cases/cases.component';
+import { MoreCasesComponent } from './Patient/more-cases/more-cases.component';
+import { ContactsComponent } from './Patient/contacts/contacts.component';
+import { LocationComponent } from './Patient/location/location.component';
+import { CriticismComponent } from './Patient/criticism/criticism.component';
+import { ProfileComponent } from './Doctor/profile/profile.component';
+import { DiplomaComponent } from './Registration/diploma/diploma.component';
+import { FinishComponent } from './Registration/finish/finish.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: 
+  [
+    AppComponent,
+    GpsComponent,
+    MicrophoneComponent,
+    MoreCasesComponent,
+    ContactsComponent,
+    LocationComponent,
+    CriticismComponent,
+    LoginComponent,
+    ProfileComponent,
+    PersonalInformationComponent,
+    CasesComponent,
+    DiplomaComponent,
+    FinishComponent,
+  ],
   entryComponents: [],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
+    FormsModule,
     IonicModule.forRoot(),
     GooglePlaceModule,
     AppRoutingModule,

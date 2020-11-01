@@ -47,7 +47,7 @@ export class VoiceRecognitionService {
   }
   stop() {
     this.isStoppedSpeechRecog = true;
-    // this.wordConcat()
+    this.wordConcat()
     this.recognition.stop();
     console.log("End speech recognition")
   }
