@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gps',
@@ -6,8 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gps.component.scss'],
 })
 export class GpsComponent implements OnInit {
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {}
 
+  getCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+console.log(position)
+       // this.currLat = position.coords.latitude;
+       // this.currLng = position.coords.longitude;
+       this.router.navigateByUrl('microphone')
+
+      });
+    }
+    else {
+      alert("Geolocation is not supported by this browser.");
+    }
+
+  }
+ 
 }

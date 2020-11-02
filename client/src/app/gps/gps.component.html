@@ -24,7 +24,7 @@
         style="font-style:normal;font-weight:bold;font-size:16px;">GPS </span><span
         style="font-style:normal;font-weight:normal;font-size:16px;">מבקשת להפעיל<br />על מנת לאתר את מיקומך</span>
     </div>
-    <button routerLink="microphone" routerLinkActive="activelink"><svg class="Rectangle_3">
+    <button (click)="getCurrentLocation()"  routerLinkActive="activelink"><svg class="Rectangle_3">
         <rect id="Rectangle_3" rx="15" ry="15" x="0" y="0" width="111" height="30">
         </rect>
       </svg>
