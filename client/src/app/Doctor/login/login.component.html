@@ -1,0 +1,161 @@
+<ion-content [fullscreen]="true">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+
+  <body>
+    <div id="_2__1">
+      <!-- <svg class="Rectangle_10">
+        <rect id="Rectangle_10" rx="31" ry="31" x="0" y="0" width="218" height="136">
+        </rect>
+      </svg> -->
+      <button routerLink="/profile" routerLinkActive="activelink">
+        <div id="Component_1__4" class="Component_1___4">
+          <svg class="Rectangle_8">
+            <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="273" height="40">
+            </rect>
+          </svg>
+
+          <div id="_">
+            <span>התחבר </span>
+          </div>
+        </div>
+      </button>
+      <div id="\">
+        <span>כניסה</span>
+      </div>
+      <!-- <div id="__w">
+        <span>שם משתמש</span>
+      </div>
+      <div id="__x">
+        <span>תעודת זהות</span>
+      </div> -->
+      <button routerLink="/personalInformation" routerLinkActive="activelink">
+        <div id="__y">
+          <span>אינני רשום</span>
+        </div>
+      </button>
+      <!-- <svg class="Line_23" viewBox="0 0 91.345 1">
+        <path id="Line_23" d="M 91.34519195556641 0 L 0 0">
+        </path>
+      </svg>
+      <svg class="Line_24" viewBox="0 0 93.865 1">
+        <path id="Line_24" d="M 93.86505889892578 0 L 0 0">
+        </path>
+      </svg> -->
+
+<ion-card id="form">
+     </ion-card>
+
+
+      <svg class="Line_25" viewBox="0 0 65 2">
+        <path id="Line_25" d="M 0 0 L 65 0">
+        </path>
+      </svg>
+      <button routerLink="/microphone" routerLinkActive="activelink">
+        <div id="_ba">
+          <span>מטופל/פצוע</span>
+        </div>
+      </button>
+      <svg class="Line_48" viewBox="0 0 133.319 2">
+        <path id="Line_48" d="M 0 0 L 133.3186798095703 0">
+        </path>
+      </svg>
+      <button routerLink="/login" routerLinkActive="activelink">
+        <div id="__">
+          <span>מגיש עזרה ראשונה</span>
+        </div>
+      </button>
+      <svg class="Line_49" viewBox="0 0 130.389 3">
+        <path id="Line_49" d="M 0 0 L 130.3885955810547 0">
+        </path>
+      </svg>
+    </div>
+  </body>
+  <!-- <body>
+    <div id="_2__1">
+      <svg class="Rectangle_10">
+        <rect id="Rectangle_10" rx="31" ry="31" x="0" y="0" width="218" height="136">
+        </rect>
+      </svg>
+      <button routerLink="/login" routerLinkActive="activelink">
+        <div id="__">
+          <span>מגיש עזרה ראשונה</span>
+        </div>
+      </button>
+      <button routerLink="/microphone" routerLinkActive="activelink">
+        <div id="\">
+          <span>מטופל/פצוע</span>
+        </div>
+      </button>
+      <svg class="Line_2" viewBox="0 0 133.319 2">
+        <path id="Line_2" d="M 0 0 L 133.3186798095703 0">
+        </path>
+      </svg>
+      <svg class="Line_3" viewBox="0 0 130.389 3">
+        <path id="Line_3" d="M 0 0 L 130.3885955810547 0">
+        </path>
+      </svg>
+      <button routerLink="/profile" routerLinkActive="activelink">
+        <div id="Component_1__4" class="Component_1___4">
+          <svg class="Rectangle_8">
+            <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="273" height="40">
+            </rect>
+          </svg>
+          <div id="_">
+            <span>התחבר </span>
+          </div>
+        </div>
+      </button>
+
+      <div id="_z">
+        <span>כניסה</span>
+      </div>
+      <div id="__ba">
+        <span>שם משתמש</span>
+      </div>
+      <div id="__bb">
+        <span>תעודת זהות</span>
+      </div>
+      <button routerLink="/personalInformation" routerLinkActive="activelink">
+        <div id="__bc">
+          <span>אינני רשום</span>
+        </div>
+        <svg class="Line_24" viewBox="0 0 93.865 1">
+          <path id="Line_24" d="M 93.86505889892578 0 L 0 0">
+          </path>
+        </svg>
+      </button>
+      <svg class="Line_23" viewBox="0 0 91.345 1">
+        <path id="Line_23" d="M 91.34519195556641 0 L 0 0">
+        </path>
+      </svg>
+
+      <svg class="Line_25" viewBox="0 0 65 2">
+        <path id="Line_25" d="M 0 0 L 65 0">
+        </path>
+      </svg>
+    </div>
+  </body> -->
+</ion-content>
+<ion-content>
+<form [formGroup]="loginForm" >  
+  <div class="form-group" >             
+      <ion-label>שם משתמש:</ion-label>    
+      <div class="error" *ngIf="loginForm.controls['username'].errors!=null"> שדה נדרש </div>               
+      <ion-input type="text" class="form-control" formControlName="username"></ion-input>             
+         
+  </div> 
+
+  <div class="form-group">             
+      <ion-label> סיסמה: </ion-label>            
+      <div class="error" *ngIf="loginForm.controls['password'].errors!=null"> שדה נדרש </div>         
+      <ion-input type="password" class="form-control" formControlName="password"> </ion-input>       
+  </div> 
+
+
+</form> </ion-content>

@@ -4,3 +4,72 @@
     color:#4590B3 ;
     font-family: 'Guttman Haim';
 }
+
+#__ {
+    left: 171px;
+    top: 40px;
+    position: absolute;
+    overflow: visible;
+    width: 79px;
+    white-space: nowrap;
+    line-height: 18px;
+    margin-top: -4px;
+    text-align: center;
+    font-family: Heebo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: rgba(253,0,16,1);
+  }
+  #\  {
+    left: 45px;
+    top: 40px;
+    position: absolute;
+    overflow: visible;
+    width: 53px;
+    white-space: nowrap;
+    line-height: 18px;
+    margin-top: -4px;
+    text-align: center;
+    font-family: Heebo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: rgba(0,0,0,1);
+  }
+  #Line_2 {
+    fill: transparent;
+    stroke: rgba(0,0,0,1);
+    stroke-width: 2px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+  }
+  .Line_2 {
+    overflow: visible;
+    position: absolute;
+    width: 136.198px;
+    height: 2px;
+    left: 0.341px;
+    top: 63.983px;
+    transform: matrix(1,0,0,1,0,0);
+  }
+  #Line_3 {
+    fill: transparent;
+    stroke: rgba(253,0,16,1);
+    stroke-width: 3px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+  }
+  .Line_3 {
+    overflow: visible;
+    position: absolute;
+    width: 133.204px;
+    height: 3px;
+    left: 147.016px;
+    top: 63.983px;
+    transform: matrix(1,0,0,1,0,0);
+  }
