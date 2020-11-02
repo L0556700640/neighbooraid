@@ -48,8 +48,22 @@
         </path>
       </svg> -->
 
-<ion-card id="form">
-     </ion-card>
+
+      <form id="login_form" [formGroup]="loginForm" >  
+        <div class="form-group" >             
+            <label>שם משתמש:</label>    
+            <div class="error" *ngIf="loginForm.controls['username'].errors!=null"> שדה נדרש </div>               
+            <input type="text" class="form-control" formControlName="username">           
+               
+        </div> 
+ 
+        <div class="form-group">             
+            <ion-label> סיסמה: </ion-label>            
+            <div class="error" *ngIf="loginForm.controls['password'].errors!=null"> שדה נדרש </div>         
+            <ion-input type="password" class="form-control" formControlName="password"> </ion-input>       
+        </div> 
+
+    </form>
 
 
       <svg class="Line_25" viewBox="0 0 65 2">
@@ -142,20 +156,3 @@
     </div>
   </body> -->
 </ion-content>
-<ion-content>
-<form [formGroup]="loginForm" >  
-  <div class="form-group" >             
-      <ion-label>שם משתמש:</ion-label>    
-      <div class="error" *ngIf="loginForm.controls['username'].errors!=null"> שדה נדרש </div>               
-      <ion-input type="text" class="form-control" formControlName="username"></ion-input>             
-         
-  </div> 
-
-  <div class="form-group">             
-      <ion-label> סיסמה: </ion-label>            
-      <div class="error" *ngIf="loginForm.controls['password'].errors!=null"> שדה נדרש </div>         
-      <ion-input type="password" class="form-control" formControlName="password"> </ion-input>       
-  </div> 
-
-
-</form> </ion-content>
