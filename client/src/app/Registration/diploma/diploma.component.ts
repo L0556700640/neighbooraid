@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-diploma',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class DiplomaComponent implements OnInit {
   imagePath;
   imageProvider;
+  myForm: FormGroup;
   constructor() { }
 
   ngOnInit() {}

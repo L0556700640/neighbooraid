@@ -190,7 +190,7 @@
           </svg>
           <div id="_ba">
             <span>
-              <הבא</span>
+              הבא></span>
           </div>
         </div>
       </button>
@@ -270,37 +270,36 @@
 
   </form> 
     </ion-card>-->
-    <ion-card id="form">
-      <form [formGroup]="myForm">
+      <form id="form" [formGroup]="myForm">
       <div class="from-group">
         <ion-label position="fixed" >שם פרטי</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.firstName" class="form-control" ></ion-input>
+        <ion-input [(ngModel)]="doctor.Doctor.firstName" class="form-control" style="font-size: 13px;"></ion-input>
       </div>
       <div class="from-group">
         <ion-label position="fixed"  >שם משפחה</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.lastName" class="form-control"></ion-input>
+        <ion-input [(ngModel)]="doctor.Doctor.lastName" class="form-control" style="font-size: 13px;"></ion-input>
       </div>
       <div class="from-group">
         <ion-label position="fixed"  >תעודת זהות</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.doctorId" class="form-control"></ion-input>
+        <ion-input [(ngModel)]="doctor.Doctor.doctorId" class="form-control" style="font-size: 13px;"></ion-input>
+      </div>
+     
+      <div class="from-group">
+        <ion-label position="fixed">פלאפון</ion-label>
+        <ion-input [(ngModel)]="doctor.Doctor.doctorPhone" class="form-control" style="font-size: 13px;" > </ion-input>
       </div>
       <div class="from-group">
-        <label >כתובת<br></label>
+        <ion-label position="fixed" >מייל\דואר אלקטרוני</ion-label>
+        <ion-input class="form-control" style="font-size: 13px;"></ion-input>
+      </div>
+      <div class="from-group">
+        <ion-label position="fixed">כתובת<br></ion-label>
        <!-- <ion-img src="../../assets/img/Location.png" style="height: 40px;"></ion-img>  -->
         <!-- <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input> -->
         <input  ngx-google-places-autocomplete #placesRef="ngx-places"
           (onAddressChange)="handleDestinationChange($event)"
-          [(ngModel)]="doctor.Doctor.address">‏
-      </div>
-      <div class="from-group">
-        <ion-label position="fixed">פלאפון</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.doctorPhone" class="form-control" > </ion-input>
-      </div>
-      <div class="from-group">
-        <ion-label position="fixed" >מייל\דואר אלקטרוני</ion-label>
-        <ion-input class="form-control" ></ion-input>
+          [(ngModel)]="doctor.Doctor.address" class="form-control" style="font-size: 13px;">‏
       </div>
     </form>
-  </ion-card>
   </body>
 </ion-content>

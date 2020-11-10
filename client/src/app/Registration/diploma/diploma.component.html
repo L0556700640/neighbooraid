@@ -7,44 +7,29 @@
     
     </head>
     <body>
-    <div id="_3">
-      <svg class="Rectangle_9">
-        <rect id="Rectangle_9" rx="19" ry="19" x="0" y="0" width="83" height="84">
-        </rect>
-      </svg>
+     
+    <div id="_3"> 
+      
       <div id="__">
         <span>צירוף תעודת מע"ר</span>
       </div>
-      <div id="_">
+      <!-- <div id="_">
         <span>מספר תעודה</span>
       </div>
       <div id="\">
         <span>תוקף</span>
-      </div>
+      </div> -->
       <div id="___">
         <span>צירוף קובץ של תעודה</span>
       </div>
-      <svg class="Line_19" viewBox="0 0 114.52 1">
+      <!-- <svg class="Line_19" viewBox="0 0 114.52 1">
         <path id="Line_19" d="M 114.5195388793945 0 L 0 0">
         </path>
       </svg>
       <div id="______________">
         <span>___ /___ /______</span>
-      </div>
-      <div id="Group_8">
-        <svg class="Path_31" viewBox="1877.806 482.135 22.742 31.622">
-          <path id="Path_31" d="M 1883.25048828125 482.1348266601563 L 1883.25048828125 500.4091186523438 L 1877.80615234375 500.4091186523438 L 1889.177001953125 513.7571411132813 L 1900.5478515625 500.4091186523438 L 1895.103515625 500.4091186523438 L 1895.103515625 482.1348266601563">
-          </path>
-        </svg>
-        <svg class="Path_32" viewBox="1858.463 566.241 35.057 11.188">
-          <path id="Path_32" d="M 1893.52001953125 566.2409057617188 L 1893.52001953125 577.4293212890625 L 1858.462890625 577.4293212890625 L 1858.462890625 566.2409057617188">
-          </path>
-        </svg>
-        <svg class="Line_20" viewBox="0 0 35.057 3.312570095062256">
-          <path id="Line_20" d="M 35.05693435668945 0 L 0 0">
-          </path>
-        </svg>
-      </div>
+      </div> -->
+     
       <button routerLink="/finish" routerLinkActive="activelink">
       <div id="Component_1__2" class="Component_1___2">
         <svg class="Rectangle_8">
@@ -96,23 +81,44 @@
         </path>
       </svg>
     </div>
-    <!-- <div  style="text-align: center; direction: rtl;">
-      <ion-item>
+    <form id="form" [formGroup]="myForm">
+      <div class="from-group">
         <ion-label position="fixed" class="text">מספר מע"ר</ion-label>
-        <ion-input class="answer"></ion-input>
-      </ion-item>
+        <ion-input class="form-control" style="font-size: 13px;"></ion-input>
+      </div>
       <ion-item>
+        <ion-label stacked>label</ion-label>
+        <ion-input  formControlName="issueDateValidator" class="hotfix" ></ion-input>
+        <ion-datetime formControlName="issueDateValidator"  displayFormat="DD/MM/YYYY" ></ion-datetime>
+   </ion-item>
+      <div class="from-group">
         <ion-label position="fixed" class="text">תוקף תעודה</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" min="2020-01-01" max="2025-01-01" class="answer"></ion-datetime>
-      </ion-item>
-  
-      <p class="text">בחר קובץ להצגת תעודה:</p>
-      <input type="File" id="uploader" (change)="changeListener($event)" style="height:50px; width: 50px;" hidden>
-      <ion-item>
-        <ion-img src="../../assets/img/Folder-Upload.png" onclick="document.querySelector('#uploader').click()"
-          style="text-align: center; width: 60px;"></ion-img>
-        <label class="answer" style="text-align: center;">{{imagePath.name}}</label>
-      </ion-item>
-    </div> -->
+        <ion-datetime displayFormat="DD/MM/YYYY" min="2020-01-01" max="2025-01-01" style="font-size: 13px;"></ion-datetime>
+      </div>
+      <div class="from-group">
+      <input type="File" id="uploader" (change)="changeListener($event)" class="form-control" style="font-size: 13px;" hidden>
+        <!-- <ion-img src="../../assets/img/Folder-Upload.png" onclick="document.querySelector('#uploader').click()"
+          style="text-align: center; width: 60px;"></ion-img> -->
+        <label class="form-control" style="font-size: 13px; margin-top: 180px;">{{imagePath.name}}</label>
+      </div>
+    </form><button onclick="document.querySelector('#uploader').click()">
+      <svg class="Rectangle_9">
+        <rect id="Rectangle_9" rx="19" ry="19" x="0" y="0" width="83" height="84">
+        </rect>
+      </svg> 
+      <div id="Group_8">
+        <svg class="Path_31" viewBox="1877.806 482.135 22.742 31.622">
+          <path id="Path_31" d="M 1883.25048828125 482.1348266601563 L 1883.25048828125 500.4091186523438 L 1877.80615234375 500.4091186523438 L 1889.177001953125 513.7571411132813 L 1900.5478515625 500.4091186523438 L 1895.103515625 500.4091186523438 L 1895.103515625 482.1348266601563">
+          </path>
+        </svg>
+        <svg class="Path_32" viewBox="1858.463 566.241 35.057 11.188">
+          <path id="Path_32" d="M 1893.52001953125 566.2409057617188 L 1893.52001953125 577.4293212890625 L 1858.462890625 577.4293212890625 L 1858.462890625 566.2409057617188">
+          </path>
+        </svg>
+        <svg class="Line_20" viewBox="0 0 35.057 3.312570095062256">
+          <path id="Line_20" d="M 35.05693435668945 0 L 0 0">
+          </path>
+        </svg>
+      </div></button>
     </body>
 </ion-content>
