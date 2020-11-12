@@ -27,7 +27,7 @@ namespace API.Controllers
         [Route("GetRelatedCases/{searchSentence}")]
         [HttpGet]
         public IHttpActionResult GetRelatedCases(string searchSentence)
-        {
+         {
             return Ok(CasesBL.getTheCasesRelatedByTheSearch(searchSentence));
         }
     }
