@@ -34,3 +34,6 @@ C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\obj\Debug\BL.csprojAssemblyReference.cache
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\obj\Debug\BL.csproj.CopyComplete
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\HtmlAgilityPack.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\HtmlAgilityPack.xml

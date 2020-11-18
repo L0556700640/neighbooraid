@@ -44,10 +44,10 @@
     <EntitySetMapping Name="HelpCalls">
       <EntityTypeMapping TypeName="neighboorAidDBModel.HelpCall">
         <MappingFragment StoreEntitySet="HelpCalls">
+          <ScalarProperty Name="adrressX" ColumnName="adrressX" />
           <ScalarProperty Name="callId" ColumnName="callId" />
           <ScalarProperty Name="caseId" ColumnName="caseId" />
           <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-          <ScalarProperty Name="addressX" ColumnName="addressX" />
           <ScalarProperty Name="addressY" ColumnName="addressY" />
           <ScalarProperty Name="date" ColumnName="date" />
         </MappingFragment>

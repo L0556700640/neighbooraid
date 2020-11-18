@@ -182,7 +182,7 @@
         <path id="Line_34" d="M 145 0 L 0 0">
         </path>
       </svg> -->
-      <button routerLink="/cases" routerLinkActive="activelink">
+      <button (click)="next()" routerLinkActive="activelink">
         <div id="Component_1__1" class="Component_1___1">
           <svg class="Rectangle_8">
             <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="281" height="41">
@@ -201,7 +201,7 @@
         <span>צירוף תעודה</span>
       </div>
       <div id="__bc">
-        <span>בחירת התמחויות</span>
+        <span>בחירת התמחויות</span> 
       </div>
       <svg class="Line_30" viewBox="0 0 83.066 6">
         <path id="Line_30" d="M 83.06571197509766 0 L 0 0">
@@ -273,24 +273,24 @@
       <form id="form" [formGroup]="myForm">
       <div class="from-group">
         <ion-label position="fixed" >שם פרטי</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.firstName" class="form-control" style="font-size: 13px;"></ion-input>
+        <ion-input [(ngModel)]="doctor.Doctor.firstName" formControlName="firstName" class="form-control" style="font-size: 13px;"></ion-input>
       </div>
       <div class="from-group">
         <ion-label position="fixed"  >שם משפחה</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.lastName" class="form-control" style="font-size: 13px;"></ion-input>
+        <ion-input [(ngModel)]="doctor.Doctor.lastName" formControlName="lastName" class="form-control" style="font-size: 13px;"></ion-input>
       </div>
       <div class="from-group">
         <ion-label position="fixed"  >תעודת זהות</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.doctorId" class="form-control" style="font-size: 13px;"></ion-input>
+        <ion-input [(ngModel)]="doctor.Doctor.doctorId" formControlName="id" class="form-control" style="font-size: 13px;"></ion-input>
       </div>
      
       <div class="from-group">
         <ion-label position="fixed">פלאפון</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.doctorPhone" class="form-control" style="font-size: 13px;" > </ion-input>
+        <ion-input [(ngModel)]="doctor.Doctor.doctorPhone" formControlName="phone" class="form-control" style="font-size: 13px;" > </ion-input>
       </div>
       <div class="from-group">
         <ion-label position="fixed" >מייל\דואר אלקטרוני</ion-label>
-        <ion-input class="form-control" style="font-size: 13px;"></ion-input>
+        <ion-input class="form-control" formControlName="mail" style="font-size: 13px;"></ion-input>
       </div>
       <div class="from-group">
         <ion-label position="fixed">כתובת<br></ion-label>
@@ -298,7 +298,7 @@
         <!-- <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input> -->
         <input  ngx-google-places-autocomplete #placesRef="ngx-places"
           (onAddressChange)="handleDestinationChange($event)"
-          [(ngModel)]="doctor.Doctor.address" class="form-control" style="font-size: 13px;">‏
+          [(ngModel)]="doctor.Doctor.address" formControlName="address" class="form-control" style="font-size: 13px;">‏
       </div>
     </form>
   </body>

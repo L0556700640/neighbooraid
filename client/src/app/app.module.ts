@@ -25,7 +25,6 @@ import { CriticismComponent } from './Patient/criticism/criticism.component';
 import { ProfileComponent } from './Doctor/profile/profile.component';
 import { DiplomaComponent } from './Registration/diploma/diploma.component';
 import { FinishComponent } from './Registration/finish/finish.component';
-
 @NgModule({
   declarations: 
   [
