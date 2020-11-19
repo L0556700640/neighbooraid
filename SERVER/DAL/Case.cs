@@ -18,9 +18,9 @@ namespace DAL
         public Case()
         {
             this.CasesToDoctors = new HashSet<CasesToDoctor>();
-            this.HelpCalls = new HashSet<HelpCall>();
             this.SearchWords = new HashSet<SearchWord>();
             this.Keywords = new HashSet<Keyword>();
+            this.HelpCalls = new HashSet<HelpCall>();
         }
     
         public int caseId { get; set; }
@@ -29,10 +29,10 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CasesToDoctor> CasesToDoctors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HelpCall> HelpCalls { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SearchWord> SearchWords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Keyword> Keywords { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HelpCall> HelpCalls { get; set; }
     }
 }

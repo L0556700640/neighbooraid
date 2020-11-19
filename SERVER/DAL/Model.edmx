@@ -34,7 +34,7 @@
           <Key>
             <PropertyRef Name="doctorId" />
           </Key>
-          <Property Name="doctorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="doctorId" Type="int" Nullable="false" />
           <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="doctorPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
@@ -57,7 +57,7 @@
           <Property Name="callId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="caseId" Type="int" Nullable="false" />
           <Property Name="doctorId" Type="int" Nullable="false" />
-          <Property Name="adrressX" Type="float" Nullable="false" />
+          <Property Name="addressX" Type="float" Nullable="false" />
           <Property Name="addressY" Type="float" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
         </EntityType>
@@ -275,9 +275,9 @@
           <Property Name="caseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="caseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CasesToDoctors" Relationship="Self.FK__CasesToDo__caseI__3F466844" FromRole="Cases" ToRole="CasesToDoctor" />
-          <NavigationProperty Name="HelpCalls" Relationship="Self.FK__HelpCalls__caseI__4316F928" FromRole="Cases" ToRole="HelpCalls" />
           <NavigationProperty Name="SearchWords" Relationship="Self.FK__SearchWor__caseI__46E78A0C" FromRole="Cases" ToRole="SearchWords" />
           <NavigationProperty Name="Keywords" Relationship="Self.KeywordsToCase" FromRole="Cases" ToRole="Keywords" />
+          <NavigationProperty Name="HelpCalls" Relationship="neighboorAidDBModel.FK__HelpCalls__caseI__4316F928" FromRole="Case" ToRole="HelpCall" />
         </EntityType>
         <EntityType Name="CasesToDoctor">
           <Key>
@@ -288,7 +288,7 @@
           <Property Name="caseId" Type="Int32" Nullable="false" />
           <Property Name="satisfaction" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Case" Relationship="Self.FK__CasesToDo__caseI__3F466844" FromRole="CasesToDoctor" ToRole="Cases" />
-          <NavigationProperty Name="Doctor" Relationship="Self.FK__CasesToDo__docto__3E52440B" FromRole="CasesToDoctor" ToRole="Doctors" />
+          <NavigationProperty Name="Doctor" Relationship="neighboorAidDBModel.FK__CasesToDo__docto__6FE99F9F" FromRole="CasesToDoctor" ToRole="Doctor" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -299,36 +299,7 @@
           <Property Name="contactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="contactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Patient" Relationship="Self.FK__Contacts__patien__403A8C7D" FromRole="Contacts" ToRole="Patients" />
-          <NavigationProperty Name="Doctors" Relationship="Self.DoctorsFromContacts" FromRole="Contacts" ToRole="Doctors" />
-        </EntityType>
-        <EntityType Name="Doctor">
-          <Key>
-            <PropertyRef Name="doctorId" />
-          </Key>
-          <Property Name="doctorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="doctorPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="pictureDiploma" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="isConfirmed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CasesToDoctors" Relationship="Self.FK__CasesToDo__docto__3E52440B" FromRole="Doctors" ToRole="CasesToDoctor" />
-          <NavigationProperty Name="HelpCalls" Relationship="Self.FK__HelpCalls__docto__440B1D61" FromRole="Doctors" ToRole="HelpCalls" />
-          <NavigationProperty Name="Contacts" Relationship="Self.DoctorsFromContacts" FromRole="Doctors" ToRole="Contacts" />
-        </EntityType>
-        <EntityType Name="HelpCall">
-          <Key>
-            <PropertyRef Name="callId" />
-          </Key>
-          <Property Name="callId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="caseId" Type="Int32" Nullable="false" />
-          <Property Name="doctorId" Type="Int32" Nullable="false" />
-          <Property Name="addressX" Type="Double" Nullable="false" />
-          <Property Name="addressY" Type="Double" Nullable="false" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Case" Relationship="Self.FK__HelpCalls__caseI__4316F928" FromRole="HelpCalls" ToRole="Cases" />
-          <NavigationProperty Name="Doctor" Relationship="Self.FK__HelpCalls__docto__440B1D61" FromRole="HelpCalls" ToRole="Doctors" />
-          <Property Name="adrressX" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="neighboorAidDBModel.DoctorsFromContacts" FromRole="Contact" ToRole="Doctor" />
         </EntityType>
         <EntityType Name="Keyword">
           <Key>
@@ -368,18 +339,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HelpCalls__caseI__4316F928">
-          <End Role="Cases" Type="Self.Case" Multiplicity="1" />
-          <End Role="HelpCalls" Type="Self.HelpCall" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cases">
-              <PropertyRef Name="caseId" />
-            </Principal>
-            <Dependent Role="HelpCalls">
-              <PropertyRef Name="caseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__SearchWor__caseI__46E78A0C">
           <End Role="Cases" Type="Self.Case" Multiplicity="1" />
           <End Role="SearchWords" Type="Self.SearchWord" Multiplicity="*" />
@@ -389,18 +348,6 @@
             </Principal>
             <Dependent Role="SearchWords">
               <PropertyRef Name="caseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CasesToDo__docto__3E52440B">
-          <End Role="Doctors" Type="Self.Doctor" Multiplicity="1" />
-          <End Role="CasesToDoctor" Type="Self.CasesToDoctor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="doctorId" />
-            </Principal>
-            <Dependent Role="CasesToDoctor">
-              <PropertyRef Name="doctorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -416,22 +363,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HelpCalls__docto__440B1D61">
-          <End Role="Doctors" Type="Self.Doctor" Multiplicity="1" />
-          <End Role="HelpCalls" Type="Self.HelpCall" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="doctorId" />
-            </Principal>
-            <Dependent Role="HelpCalls">
-              <PropertyRef Name="doctorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="DoctorsFromContacts">
-          <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
-          <End Role="Doctors" Type="Self.Doctor" Multiplicity="*" />
-        </Association>
         <Association Name="KeywordsToCase">
           <End Role="Cases" Type="Self.Case" Multiplicity="*" />
           <End Role="Keywords" Type="Self.Keyword" Multiplicity="*" />
@@ -440,8 +371,6 @@
           <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="CasesToDoctors" EntityType="Self.CasesToDoctor" />
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
-          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
-          <EntitySet Name="HelpCalls" EntityType="Self.HelpCall" />
           <EntitySet Name="Keywords" EntityType="Self.Keyword" />
           <EntitySet Name="Patients" EntityType="Self.Patient" />
           <EntitySet Name="SearchWords" EntityType="Self.SearchWord" />
@@ -449,36 +378,106 @@
             <End Role="Cases" EntitySet="Cases" />
             <End Role="CasesToDoctor" EntitySet="CasesToDoctors" />
           </AssociationSet>
-          <AssociationSet Name="FK__HelpCalls__caseI__4316F928" Association="Self.FK__HelpCalls__caseI__4316F928">
-            <End Role="Cases" EntitySet="Cases" />
-            <End Role="HelpCalls" EntitySet="HelpCalls" />
-          </AssociationSet>
           <AssociationSet Name="FK__SearchWor__caseI__46E78A0C" Association="Self.FK__SearchWor__caseI__46E78A0C">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="SearchWords" EntitySet="SearchWords" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CasesToDo__docto__3E52440B" Association="Self.FK__CasesToDo__docto__3E52440B">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="CasesToDoctor" EntitySet="CasesToDoctors" />
           </AssociationSet>
           <AssociationSet Name="FK__Contacts__patien__403A8C7D" Association="Self.FK__Contacts__patien__403A8C7D">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Contacts" EntitySet="Contacts" />
           </AssociationSet>
-          <AssociationSet Name="FK__HelpCalls__docto__440B1D61" Association="Self.FK__HelpCalls__docto__440B1D61">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="HelpCalls" EntitySet="HelpCalls" />
-          </AssociationSet>
-          <AssociationSet Name="DoctorsFromContacts" Association="Self.DoctorsFromContacts">
-            <End Role="Contacts" EntitySet="Contacts" />
-            <End Role="Doctors" EntitySet="Doctors" />
-          </AssociationSet>
           <AssociationSet Name="KeywordsToCase" Association="Self.KeywordsToCase">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Keywords" EntitySet="Keywords" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="HelpCalls" EntityType="neighboorAidDBModel.HelpCall" />
+          <AssociationSet Name="FK__HelpCalls__caseI__4316F928" Association="neighboorAidDBModel.FK__HelpCalls__caseI__4316F928">
+            <End Role="Case" EntitySet="Cases" />
+            <End Role="HelpCall" EntitySet="HelpCalls" />
+          </AssociationSet>
+          <EntitySet Name="Doctors" EntityType="neighboorAidDBModel.Doctor" />
+          <AssociationSet Name="FK__CasesToDo__docto__6FE99F9F" Association="neighboorAidDBModel.FK__CasesToDo__docto__6FE99F9F">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="CasesToDoctor" EntitySet="CasesToDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HelpCalls__docto__71D1E811" Association="neighboorAidDBModel.FK__HelpCalls__docto__71D1E811">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="HelpCall" EntitySet="HelpCalls" />
+          </AssociationSet>
+          <AssociationSet Name="DoctorsFromContacts" Association="neighboorAidDBModel.DoctorsFromContacts">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="HelpCall">
+          <Key>
+            <PropertyRef Name="callId" />
+          </Key>
+          <Property Name="callId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="caseId" Type="Int32" Nullable="false" />
+          <Property Name="doctorId" Type="Int32" Nullable="false" />
+          <Property Name="addressX" Type="Double" Nullable="false" />
+          <Property Name="addressY" Type="Double" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Case" Relationship="neighboorAidDBModel.FK__HelpCalls__caseI__4316F928" FromRole="HelpCall" ToRole="Case" />
+          <NavigationProperty Name="Doctor" Relationship="neighboorAidDBModel.FK__HelpCalls__docto__71D1E811" FromRole="HelpCall" ToRole="Doctor" />
+        </EntityType>
+        <Association Name="FK__HelpCalls__caseI__4316F928">
+          <End Type="neighboorAidDBModel.Case" Role="Case" Multiplicity="1" />
+          <End Type="neighboorAidDBModel.HelpCall" Role="HelpCall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Case">
+              <PropertyRef Name="caseId" />
+            </Principal>
+            <Dependent Role="HelpCall">
+              <PropertyRef Name="caseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="doctorId" />
+          </Key>
+          <Property Name="doctorId" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doctorPhone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pictureDiploma" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="isConfirmed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CasesToDoctors" Relationship="neighboorAidDBModel.FK__CasesToDo__docto__6FE99F9F" FromRole="Doctor" ToRole="CasesToDoctor" />
+          <NavigationProperty Name="HelpCalls" Relationship="neighboorAidDBModel.FK__HelpCalls__docto__71D1E811" FromRole="Doctor" ToRole="HelpCall" />
+          <NavigationProperty Name="Contacts" Relationship="neighboorAidDBModel.DoctorsFromContacts" FromRole="Doctor" ToRole="Contact" />
+        </EntityType>
+        <Association Name="FK__CasesToDo__docto__6FE99F9F">
+          <End Type="neighboorAidDBModel.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="neighboorAidDBModel.CasesToDoctor" Role="CasesToDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="CasesToDoctor">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HelpCalls__docto__71D1E811">
+          <End Type="neighboorAidDBModel.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="neighboorAidDBModel.HelpCall" Role="HelpCall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="HelpCall">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DoctorsFromContacts">
+          <End Type="neighboorAidDBModel.Contact" Role="Contact" Multiplicity="*" />
+          <End Type="neighboorAidDBModel.Doctor" Role="Doctor" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -511,31 +510,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Doctors">
-            <EntityTypeMapping TypeName="neighboorAidDBModel.Doctor">
-              <MappingFragment StoreEntitySet="Doctors">
-                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="doctorPhone" ColumnName="doctorPhone" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="pictureDiploma" ColumnName="pictureDiploma" />
-                <ScalarProperty Name="isConfirmed" ColumnName="isConfirmed" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HelpCalls">
-            <EntityTypeMapping TypeName="neighboorAidDBModel.HelpCall">
-              <MappingFragment StoreEntitySet="HelpCalls">
-                <ScalarProperty Name="adrressX" ColumnName="adrressX" />
-                <ScalarProperty Name="callId" ColumnName="callId" />
-                <ScalarProperty Name="caseId" ColumnName="caseId" />
-                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-                <ScalarProperty Name="addressY" ColumnName="addressY" />
-                <ScalarProperty Name="date" ColumnName="date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Keywords">
             <EntityTypeMapping TypeName="neighboorAidDBModel.Keyword">
               <MappingFragment StoreEntitySet="Keywords">
@@ -562,20 +536,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="DoctorsFromContacts" TypeName="neighboorAidDBModel.DoctorsFromContacts" StoreEntitySet="DoctorsFromContacts">
-            <EndProperty Name="Contacts">
-              <ScalarProperty Name="contactId" ColumnName="contactId" />
-            </EndProperty>
-            <EndProperty Name="Doctors">
-              <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="KeywordsToCase" TypeName="neighboorAidDBModel.KeywordsToCase" StoreEntitySet="KeywordsToCase">
             <EndProperty Name="Cases">
               <ScalarProperty Name="caseId" ColumnName="caseId" />
             </EndProperty>
             <EndProperty Name="Keywords">
               <ScalarProperty Name="keywordId" ColumnName="keywordId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="HelpCalls">
+            <EntityTypeMapping TypeName="neighboorAidDBModel.HelpCall">
+              <MappingFragment StoreEntitySet="HelpCalls">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="addressY" ColumnName="addressY" />
+                <ScalarProperty Name="addressX" ColumnName="addressX" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="caseId" ColumnName="caseId" />
+                <ScalarProperty Name="callId" ColumnName="callId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="neighboorAidDBModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="isConfirmed" ColumnName="isConfirmed" />
+                <ScalarProperty Name="pictureDiploma" ColumnName="pictureDiploma" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="doctorPhone" ColumnName="doctorPhone" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="DoctorsFromContacts" TypeName="neighboorAidDBModel.DoctorsFromContacts" StoreEntitySet="DoctorsFromContacts">
+            <EndProperty Name="Doctor">
+              <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+            </EndProperty>
+            <EndProperty Name="Contact">
+              <ScalarProperty Name="contactId" ColumnName="contactId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -28,10 +28,10 @@ namespace DAL
         public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<CasesToDoctor> CasesToDoctors { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<Doctor> Doctors { get; set; }
-        public virtual DbSet<HelpCall> HelpCalls { get; set; }
         public virtual DbSet<Keyword> Keywords { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<SearchWord> SearchWords { get; set; }
+        public virtual DbSet<HelpCall> HelpCalls { get; set; }
+        public virtual DbSet<Doctor> Doctors { get; set; }
     }
 }

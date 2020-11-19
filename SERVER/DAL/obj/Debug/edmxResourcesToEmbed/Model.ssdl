@@ -29,7 +29,7 @@
     <Key>
       <PropertyRef Name="doctorId" />
     </Key>
-    <Property Name="doctorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="doctorId" Type="int" Nullable="false" />
     <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="doctorPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
@@ -52,7 +52,7 @@
     <Property Name="callId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="caseId" Type="int" Nullable="false" />
     <Property Name="doctorId" Type="int" Nullable="false" />
-    <Property Name="adrressX" Type="float" Nullable="false" />
+    <Property Name="addressX" Type="float" Nullable="false" />
     <Property Name="addressY" Type="float" Nullable="false" />
     <Property Name="date" Type="datetime" Nullable="false" />
   </EntityType>
