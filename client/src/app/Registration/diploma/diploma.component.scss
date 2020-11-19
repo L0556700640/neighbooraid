@@ -407,3 +407,21 @@
   top: 125.85px;
   transform: matrix(1,0,0,1,0,0);
 }
+
+#form
+{
+  text-align: right;
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  color: rgba(0,0,0,1);
+  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.31));
+  position: absolute;
+  overflow: visible;
+  width: 260px;
+  //height: 125px;
+  left: 8px;
+  top: 170px;
+  fill: rgba(255,255,255,1);
+}

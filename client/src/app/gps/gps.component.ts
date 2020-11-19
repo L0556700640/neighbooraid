@@ -7,24 +7,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./gps.component.scss'],
 })
 export class GpsComponent implements OnInit {
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-console.log(position)
-       // this.currLat = position.coords.latitude;
-       // this.currLng = position.coords.longitude;
-       this.router.navigateByUrl('microphone')
+        console.log(position)
+        // this.currLat = position.coords.latitude;
+        // this.currLng = position.coords.longitude;
+
 
       });
     }
     else {
       alert("Geolocation is not supported by this browser.");
     }
-
+    this.router.navigateByUrl('microphone')
   }
- 
+
 }

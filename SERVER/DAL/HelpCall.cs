@@ -20,6 +20,7 @@ namespace DAL
         public double addressX { get; set; }
         public double addressY { get; set; }
         public System.DateTime date { get; set; }
+        public double adrressX { get; set; }
     
         public virtual Case Case { get; set; }
         public virtual Doctor Doctor { get; set; }

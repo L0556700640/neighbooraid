@@ -267,7 +267,7 @@
 		font-family: Heebo;
 		font-style: normal;
 		font-weight: normal;
-		font-size: 20px;
+		font-size: 13px;
 		color: rgba(0,0,0,1);
 		filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.31));
 		position: absolute;
@@ -278,6 +278,8 @@
 		top: 200px;
 		fill: rgba(255,255,255,1);
 		border-radius: 10%;
+		// margin-top: 152px;
+direction: rtl;
 
 	}
 	.error
