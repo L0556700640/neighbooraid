@@ -166,3 +166,5 @@ C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\AP
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\API\obj\Debug\API.csproj.CopyComplete
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\API\obj\Debug\API.dll
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\API\obj\Debug\API.pdb
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\RestSharp.dll
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\API\bin\RestSharp.xml
