@@ -30,7 +30,7 @@
         <span>___ /___ /______</span>
       </div> -->
      
-      <button routerLink="/finish" routerLinkActive="activelink">
+      <button (click)="next()" routerLinkActive="activelink">
       <div id="Component_1__2" class="Component_1___2">
         <svg class="Rectangle_8">
           <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="276" height="39">
@@ -86,22 +86,21 @@
         <ion-label position="fixed" class="text">מספר מע"ר</ion-label>
         <ion-input class="form-control" style="font-size: 13px;"></ion-input>
       </div>
-      <ion-item>
-        <ion-label stacked>label</ion-label>
-        <ion-input  formControlName="issueDateValidator" class="hotfix" ></ion-input>
-        <ion-datetime formControlName="issueDateValidator"  displayFormat="DD/MM/YYYY" ></ion-datetime>
-   </ion-item>
+      
       <div class="from-group">
-        <ion-label position="fixed" class="text">תוקף תעודה</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" min="2020-01-01" max="2025-01-01" style="font-size: 13px;"></ion-datetime>
+        <ion-label position="fixed" >תוקף תעודה</ion-label>
+        <ion-button (click)="openDateTimePicker(datePicker)"></ion-button>
+        <ion-datetime #datePicker displayFormat="DD/MM/YYYY"  min="2020-01-01" max="2025-01-01"  ></ion-datetime>
       </div>
+   
       <div class="from-group">
-      <input type="File" id="uploader" (change)="changeListener($event)" class="form-control" style="font-size: 13px;" hidden>
+      <input type="File" id="uploader" (change)="changeListener($event)" class="form-control" style="font-size: 13px;" formControlName="diploma" hidden>
         <!-- <ion-img src="../../assets/img/Folder-Upload.png" onclick="document.querySelector('#uploader').click()"
           style="text-align: center; width: 60px;"></ion-img> -->
-        <label class="form-control" style="font-size: 13px; margin-top: 180px;">{{imagePath.name}}</label>
+        <label class="form-control"  style="font-size: 13px; margin-top: 180px;">{{imagePath.name}}</label>
       </div>
-    </form><button onclick="document.querySelector('#uploader').click()">
+    </form>
+    <button onclick="document.querySelector('#uploader').click()">
       <svg class="Rectangle_9">
         <rect id="Rectangle_9" rx="19" ry="19" x="0" y="0" width="83" height="84">
         </rect>
