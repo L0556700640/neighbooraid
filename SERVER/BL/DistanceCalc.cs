@@ -30,6 +30,5 @@ namespace BL
                 return -1;
             }
         }
-
     }
 }

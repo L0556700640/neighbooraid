@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
+
     public class RootBL
     {
         public static string analyzeWord(string word)
@@ -132,6 +134,54 @@ namespace BL
         {
             //todo: fill the function
             return false;
+        }
+
+        public static void translateSearchSentenceByMicrosoft()
+         {
+            var client = new RestClient("https://microsoft-translator-text.p.rapidapi.com/translate?to=undefined&api-version=3.0&profanityAction=NoAction&textType=plain");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", "application/json");
+            request.AddHeader("x-rapidapi-key", "b8cc91e82amsh6abf96f948748c9p19f114jsn31497aaab51c");
+            request.AddHeader("x-rapidapi-host", "microsoft-translator-text.p.rapidapi.com");
+            request.AddParameter("application/json", "[\r {\r \"Text\": \"I would really like to drive your car around the block a few times.\"\r }\r]", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            //           JsonParameter jsonParameter= {
+            //            "detectedLanguage":{
+            //                                "score":""
+            //                        }
+            //                "translations":
+            //                    [
+            //                    0:{
+            //                    "text":""
+            //                    "transliteration":
+            //                        {
+            //                         "text":""
+            //                         "script":""
+            //                        }
+            //                    "to":""
+            //                    "alignment":{
+            //                       "proj":""
+            //}
+            //                    "sentLen":{
+            //                        2 items
+            //                    "srcSentLen":[1 item
+            //                    0:{ ...}
+            //                        1 item
+            //                    ]
+            //"transSentLen":[1 item
+            //                    0:{ ...}
+            //                        1 item
+            //                    ]
+            //}
+            //                }
+            //]
+            //}
+            //]
+
+            JsonParameter Subscription=  new JsonParameter
+                (
+                "Subscription ID" , "91d93a27 - 0dcf - 4c58 - a41f - c2efb380fbb9"
+                );
         }
     }
 }
