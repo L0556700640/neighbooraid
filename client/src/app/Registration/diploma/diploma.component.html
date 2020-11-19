@@ -89,14 +89,15 @@
       
       <div class="from-group">
         <ion-label position="fixed" >תוקף תעודה</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" min="2020-01-01" max="2025-01-01" ></ion-datetime>
+        <ion-button (click)="openDateTimePicker(datePicker)"></ion-button>
+        <ion-datetime #datePicker displayFormat="DD/MM/YYYY"  min="2020-01-01" max="2025-01-01"  ></ion-datetime>
       </div>
    
       <div class="from-group">
-      <input type="File" id="uploader" (change)="changeListener($event)" class="form-control" style="font-size: 13px;" hidden>
+      <input type="File" id="uploader" (change)="changeListener($event)" class="form-control" style="font-size: 13px;" formControlName="diploma" hidden>
         <!-- <ion-img src="../../assets/img/Folder-Upload.png" onclick="document.querySelector('#uploader').click()"
           style="text-align: center; width: 60px;"></ion-img> -->
-        <label class="form-control" style="font-size: 13px; margin-top: 180px;">{{imagePath.name}}</label>
+        <label class="form-control"  style="font-size: 13px; margin-top: 180px;">{{imagePath.name}}</label>
       </div>
     </form>
     <button onclick="document.querySelector('#uploader').click()">
