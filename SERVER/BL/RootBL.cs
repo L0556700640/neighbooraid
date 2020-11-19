@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
+
     public class RootBL
     {
         public static string analyzeWord(string word)
@@ -177,6 +178,10 @@ namespace BL
             //}
             //]
 
+            JsonParameter Subscription=  new JsonParameter
+                (
+                "Subscription ID" , "91d93a27 - 0dcf - 4c58 - a41f - c2efb380fbb9"
+                );
         }
     }
 }
