@@ -97,7 +97,7 @@ namespace BL
 
             msg.From = new MailAddress(email);
             msg.To.Add(new MailAddress("l0556700640@gmail.com"));
-            msg.To.Add(new MailAddress("hila2977@gmail.com"));
+            msg.To.Add(new MailAddress("hadarotmi123@gmail.com"));
 
             //msg.To.Add(new MailAddress("hadarotmi123@gmail.com"));
             msg.Subject = "אישור רופא";
