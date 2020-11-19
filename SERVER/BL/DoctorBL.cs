@@ -12,7 +12,7 @@ namespace BL
 {
     public class DoctorBL
     {
-        public static int AddDoctor(DTO.DoctorsDetailsDTO doctor,HttpPostedFile file)
+        public static string AddDoctor(DTO.DoctorsDetailsDTO doctor,HttpPostedFile file)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace BL
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
-                return -1;
+                return (-1).ToString();
             }
         }
 
