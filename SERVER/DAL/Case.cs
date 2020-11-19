@@ -17,9 +17,9 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Case()
         {
-            this.CasesToDoctors = new HashSet<CasesToDoctor>();
             this.SearchWords = new HashSet<SearchWord>();
             this.Keywords = new HashSet<Keyword>();
+            this.CasesToDoctors = new HashSet<CasesToDoctor>();
             this.HelpCalls = new HashSet<HelpCall>();
         }
     
@@ -27,11 +27,11 @@ namespace DAL
         public string caseName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CasesToDoctor> CasesToDoctors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SearchWord> SearchWords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Keyword> Keywords { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CasesToDoctor> CasesToDoctors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpCall> HelpCalls { get; set; }
     }

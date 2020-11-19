@@ -22,13 +22,16 @@ namespace DAL
             this.Contacts = new HashSet<Contact>();
         }
     
-        public int doctorId { get; set; }
+        public string doctorId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string doctorPhone { get; set; }
         public string address { get; set; }
         public byte[] pictureDiploma { get; set; }
         public bool isConfirmed { get; set; }
+        public string mail { get; set; }
+        public System.DateTime certificateValidity { get; set; }
+        public string certificateNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CasesToDoctor> CasesToDoctors { get; set; }
