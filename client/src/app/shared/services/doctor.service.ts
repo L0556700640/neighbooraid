@@ -10,15 +10,21 @@ import { DoctorDetails } from '../models/doctorDelails.model';
 })
 export class DoctorService {
   data=new FormData();
-
+doctor:DoctorDetails = new DoctorDetails();
   constructor(private http: HttpClient) { }
-addDoctor(doctor: DoctorDetails)
+
+addDoctor(d: DoctorDetails)
 {
- this.data.append('doctor',JSON.stringify(doctor));
+ this.doctor=d
 }
-  finishAddDoctor(file:File): Observable<boolean> 
+  finishAddDoctor(file:File,d:DoctorDetails): Observable<boolean> 
   {
+    this.doctor.Doctor.certificateNumber=d.Doctor.certificateNumber
+    this.doctor.Doctor.certificateValidity=d.Doctor.certificateValidity
+    console.log(this.doctor)
+    this.data.append('doctor',JSON.stringify(this.doctor));
     this.data.append('file',file)
+    
     return this.http.post<boolean>(environment.url + 'Doctor/AddDoctor', this.data)
   }
 }

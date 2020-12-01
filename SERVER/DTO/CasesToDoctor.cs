@@ -8,7 +8,7 @@ namespace DTO
 {
     public class CasesToDoctor
     {
-        public int doctorId { get; set; }
+        public string doctorId { get; set; }
         public int caseId { get; set; }
         public int satisfaction { get; set; }
     }

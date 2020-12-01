@@ -12,7 +12,7 @@
       <PropertyRef Name="doctorId" />
       <PropertyRef Name="caseId" />
     </Key>
-    <Property Name="doctorId" Type="int" Nullable="false" />
+    <Property Name="doctorId" Type="nvarchar" MaxLength="12" Nullable="false" />
     <Property Name="caseId" Type="int" Nullable="false" />
     <Property Name="satisfaction" Type="int" Nullable="false" />
   </EntityType>
@@ -29,13 +29,16 @@
     <Key>
       <PropertyRef Name="doctorId" />
     </Key>
-    <Property Name="doctorId" Type="int" Nullable="false" />
+    <Property Name="doctorId" Type="nvarchar" MaxLength="12" Nullable="false" />
     <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="doctorPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="pictureDiploma" Type="varbinary(max)" Nullable="false" />
     <Property Name="isConfirmed" Type="bit" Nullable="false" />
+    <Property Name="mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="certificateValidity" Type="date" Nullable="false" />
+    <Property Name="certificateNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="DoctorsFromContacts">
     <Key>
@@ -43,7 +46,7 @@
       <PropertyRef Name="doctorId" />
     </Key>
     <Property Name="contactId" Type="int" Nullable="false" />
-    <Property Name="doctorId" Type="int" Nullable="false" />
+    <Property Name="doctorId" Type="nvarchar" MaxLength="12" Nullable="false" />
   </EntityType>
   <EntityType Name="HelpCalls">
     <Key>
@@ -51,7 +54,7 @@
     </Key>
     <Property Name="callId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="caseId" Type="int" Nullable="false" />
-    <Property Name="doctorId" Type="int" Nullable="false" />
+    <Property Name="doctorId" Type="nvarchar" MaxLength="12" Nullable="false" />
     <Property Name="addressX" Type="float" Nullable="false" />
     <Property Name="addressY" Type="float" Nullable="false" />
     <Property Name="date" Type="datetime" Nullable="false" />
@@ -76,7 +79,7 @@
       <PropertyRef Name="patientId" />
     </Key>
     <Property Name="patientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="patientPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="patientPhone" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <EntityType Name="SearchWords">
     <Key>
@@ -87,7 +90,7 @@
     <Property Name="caseId" Type="int" Nullable="false" />
     <Property Name="numberSearchWord" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__CasesToDo__caseI__3E52440B">
+  <Association Name="FK__CasesToDo__caseI__7B5B524B">
     <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
     <End Role="CasesToDoctor" Type="Self.CasesToDoctor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -99,7 +102,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CasesToDo__docto__6FE99F9F">
+  <Association Name="FK__CasesToDo__docto__7C4F7684">
     <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
     <End Role="CasesToDoctor" Type="Self.CasesToDoctor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -123,7 +126,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DoctorsFr__conta__412EB0B6">
+  <Association Name="FK__DoctorsFr__conta__7F2BE32F">
     <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
     <End Role="DoctorsFromContacts" Type="Self.DoctorsFromContacts" Multiplicity="*" />
     <ReferentialConstraint>
@@ -135,7 +138,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DoctorsFr__docto__70DDC3D8">
+  <Association Name="FK__DoctorsFr__docto__7D439ABD">
     <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
     <End Role="DoctorsFromContacts" Type="Self.DoctorsFromContacts" Multiplicity="*" />
     <ReferentialConstraint>
@@ -159,7 +162,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__HelpCalls__docto__71D1E811">
+  <Association Name="FK__HelpCalls__docto__7E37BEF6">
     <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
     <End Role="HelpCalls" Type="Self.HelpCalls" Multiplicity="*" />
     <ReferentialConstraint>
@@ -183,7 +186,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__KeywordsT__keywo__45F365D3">
+  <Association Name="FK__KeywordsT__keywo__49C3F6B7">
     <End Role="Keywords" Type="Self.Keywords" Multiplicity="1" />
     <End Role="KeywordsToCase" Type="Self.KeywordsToCase" Multiplicity="*" />
     <ReferentialConstraint>
@@ -218,11 +221,11 @@
     <EntitySet Name="KeywordsToCase" EntityType="Self.KeywordsToCase" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SearchWords" EntityType="Self.SearchWords" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__CasesToDo__caseI__3E52440B" Association="Self.FK__CasesToDo__caseI__3E52440B">
+    <AssociationSet Name="FK__CasesToDo__caseI__7B5B524B" Association="Self.FK__CasesToDo__caseI__7B5B524B">
       <End Role="Cases" EntitySet="Cases" />
       <End Role="CasesToDoctor" EntitySet="CasesToDoctor" />
     </AssociationSet>
-    <AssociationSet Name="FK__CasesToDo__docto__6FE99F9F" Association="Self.FK__CasesToDo__docto__6FE99F9F">
+    <AssociationSet Name="FK__CasesToDo__docto__7C4F7684" Association="Self.FK__CasesToDo__docto__7C4F7684">
       <End Role="Doctors" EntitySet="Doctors" />
       <End Role="CasesToDoctor" EntitySet="CasesToDoctor" />
     </AssociationSet>
@@ -230,11 +233,11 @@
       <End Role="Patients" EntitySet="Patients" />
       <End Role="Contacts" EntitySet="Contacts" />
     </AssociationSet>
-    <AssociationSet Name="FK__DoctorsFr__conta__412EB0B6" Association="Self.FK__DoctorsFr__conta__412EB0B6">
+    <AssociationSet Name="FK__DoctorsFr__conta__7F2BE32F" Association="Self.FK__DoctorsFr__conta__7F2BE32F">
       <End Role="Contacts" EntitySet="Contacts" />
       <End Role="DoctorsFromContacts" EntitySet="DoctorsFromContacts" />
     </AssociationSet>
-    <AssociationSet Name="FK__DoctorsFr__docto__70DDC3D8" Association="Self.FK__DoctorsFr__docto__70DDC3D8">
+    <AssociationSet Name="FK__DoctorsFr__docto__7D439ABD" Association="Self.FK__DoctorsFr__docto__7D439ABD">
       <End Role="Doctors" EntitySet="Doctors" />
       <End Role="DoctorsFromContacts" EntitySet="DoctorsFromContacts" />
     </AssociationSet>
@@ -242,7 +245,7 @@
       <End Role="Cases" EntitySet="Cases" />
       <End Role="HelpCalls" EntitySet="HelpCalls" />
     </AssociationSet>
-    <AssociationSet Name="FK__HelpCalls__docto__71D1E811" Association="Self.FK__HelpCalls__docto__71D1E811">
+    <AssociationSet Name="FK__HelpCalls__docto__7E37BEF6" Association="Self.FK__HelpCalls__docto__7E37BEF6">
       <End Role="Doctors" EntitySet="Doctors" />
       <End Role="HelpCalls" EntitySet="HelpCalls" />
     </AssociationSet>
@@ -250,7 +253,7 @@
       <End Role="Cases" EntitySet="Cases" />
       <End Role="KeywordsToCase" EntitySet="KeywordsToCase" />
     </AssociationSet>
-    <AssociationSet Name="FK__KeywordsT__keywo__45F365D3" Association="Self.FK__KeywordsT__keywo__45F365D3">
+    <AssociationSet Name="FK__KeywordsT__keywo__49C3F6B7" Association="Self.FK__KeywordsT__keywo__49C3F6B7">
       <End Role="Keywords" EntitySet="Keywords" />
       <End Role="KeywordsToCase" EntitySet="KeywordsToCase" />
     </AssociationSet>

@@ -14,17 +14,19 @@ export class DiplomaComponent implements OnInit {
   imagePath;
   imageProvider;
   myForm: FormGroup;
-  // doctor: DoctorDetails = new DoctorDetails();
+  doctor: DoctorDetails = new DoctorDetails();
   constructor(private doctorService: DoctorService,private router: Router) { }
 
   ngOnInit() {
     this.myForm = new FormGroup({
       diploma: new FormControl(),
-    
+      certificateNumber:new FormControl(),
+      certificateValidity:new FormControl(),
+
    });
   }
   next() {
-    this.doctorService.finishAddDoctor(this.imagePath).subscribe(
+    this.doctorService.finishAddDoctor(this.imagePath,this.doctor).subscribe(
       (res) => { alert(res) }
     )
     this.router.navigateByUrl('finish')

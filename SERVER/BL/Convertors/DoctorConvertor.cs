@@ -18,6 +18,9 @@ namespace BL.Convertors
                 firstName=myDoctor.firstName,
                 isConfirmed=myDoctor.isConfirmed,
                 lastName=myDoctor.lastName,
+                mail = myDoctor.mail,
+                certificateNumber = myDoctor.certificateNumber,
+                certificateValidity = myDoctor.certificateValidity
             };
         }
         public static DAL.Doctor ConvertDoctorToDAL(DTO.Doctor myDoctor)
@@ -30,6 +33,9 @@ namespace BL.Convertors
                 firstName = myDoctor.firstName,
                 isConfirmed = myDoctor.isConfirmed,
                 lastName = myDoctor.lastName,
+                mail = myDoctor.mail,
+                certificateNumber = myDoctor.certificateNumber,
+                certificateValidity=myDoctor.certificateValidity
             };
         }
     }
