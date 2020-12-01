@@ -84,12 +84,12 @@
     <form id="form" [formGroup]="myForm">
       <div class="from-group">
         <ion-label position="fixed" class="text">מספר מע"ר</ion-label>
-        <ion-input class="form-control" style="font-size: 13px;"></ion-input>
+        <ion-input class="form-control" [(ngModel)]="doctor.Doctor.certificateNumber" formControlName="certificateNumber" style="font-size: 13px;"></ion-input>
       </div>
       
       <div class="from-group">
         <ion-label position="fixed" >תוקף תעודה</ion-label>
-        <input type="date" displayFormat="DD/MM/YYYY" value="ghh"  min="2020-01-01" max="2025-01-01" class="form-control">
+        <input type="date" [(ngModel)]="doctor.Doctor.certificateValidity" formControlName="certificateValidity" displayFormat="DD/MM/YYYY" value="ghh"  min="2020-01-01" max="2025-01-01" class="form-control">
       </div>
    
       <div class="from-group">

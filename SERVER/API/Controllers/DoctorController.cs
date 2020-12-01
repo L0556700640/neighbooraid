@@ -24,7 +24,7 @@ namespace API.Controllers
             DTO.DoctorsDetailsDTO doctor = JsonConvert.DeserializeObject<DTO.DoctorsDetailsDTO>(HttpContext.Current.Request["doctor"]);
 
 
-            int doctorId= BL.DoctorBL.AddDoctor(doctor,file);
+            string doctorId = BL.DoctorBL.AddDoctor(doctor,file);
             return Ok(doctorId);
         }
         [Route("ConfirmDoctor/{doctorId}/{isConfirmed}")]
@@ -33,6 +33,17 @@ namespace API.Controllers
         {
            BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
             return Ok("הפעולה בוצעה בהצלחה");
+        }
+       
+        [Route("CheckUser")]   
+        [HttpPost]
+        public IHttpActionResult CheckDoctor()//todo להצפין קוד רופא
+        {
+            string doctorName = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["firstName"]);
+            string doctorId= JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["id"]);
+
+            //BL.DoctorBL.CheckUser(doctorName, doctorId);
+            return Ok(BL.DoctorBL.CheckUser(doctorName, doctorId));
         }
     }
 }

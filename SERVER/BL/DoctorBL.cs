@@ -54,11 +54,24 @@ namespace BL
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
                 (from d in db.Doctors
-                 where d.doctorId == doctorId
+                 where d.doctorId.Equals(doctorId)
                  select d).ToList().ForEach(d => d.isConfirmed = isConfirmed);
                 db.SaveChanges();
             }
 
          }
+        public static bool CheckUser(string firstName,string id)
+        {
+            List<DAL.Doctor> dd;
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                dd = (from d in db.Doctors
+                        where d.doctorId.Equals(id) && d.firstName.Equals(firstName) select d).ToList();
+               // db.SaveChanges();
+            }
+            if (dd.Count > 0)
+                return true;
+            return false;
+        }
     }
 }

@@ -13,7 +13,7 @@
         <rect id="Rectangle_10" rx="31" ry="31" x="0" y="0" width="218" height="136">
         </rect>
       </svg> -->
-      <button routerLink="/profile" routerLinkActive="activelink">
+      <button (click)="checkUser()" routerLinkActive="activelink">
         <div id="Component_1__4" class="Component_1___4">
           <svg class="Rectangle_8">
             <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="273" height="40">
@@ -51,21 +51,22 @@
 
       <form id="form" [formGroup]="loginForm" >  
         <div class="form-group" >             
-            <label>שם משתמש:</label>    
+            <label>שם פרטי:</label>    
             <div class="error" *ngIf="loginForm.controls['username'].errors!=null"> שדה נדרש </div>               
             <input type="text" class="form-control" formControlName="username">           
                
         </div> 
  
         <div class="form-group">             
-            <ion-label> סיסמה: </ion-label>            
+            <ion-label> תעודת זהות: </ion-label>            
             <div class="error" *ngIf="loginForm.controls['password'].errors!=null"> שדה נדרש </div>         
             <ion-input type="password" class="form-control" formControlName="password"> </ion-input>       
         </div> 
 
+ <div class="error" *ngIf="failedMessage"> שם משתמש או סיסמה שגויים </div> 
+
     </form>
-
-
+   
       <svg class="Line_25" viewBox="0 0 65 2">
         <path id="Line_25" d="M 0 0 L 65 0">
         </path>
