@@ -49,6 +49,20 @@ export class PersonalInformationComponent implements OnInit {
 //     this.doctor.Doctor.doctorPhone=this.myForm.controls.phone.value;
 //     this.doctor.Doctor.address=this.myForm.controls.address.value;
     this.doctorService.addDoctor(this.doctor)
+    // let express = require('express')
+    // let cases = require('./cases/cases') 
+
+    // let app = express()
+
+    // app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+ 
+
+    // app.get('/cases',(req, res) => 
+    // {
+    //   res.render('cases')
+    // })
+    // app.set('view engine', 'ejs')
+
     this.router.navigateByUrl('cases')
   }
 }

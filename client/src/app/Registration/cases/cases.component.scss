@@ -1636,10 +1636,16 @@
 	color: rgba(0,0,0,1);
 	filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.31));
 	position: absolute;
-	overflow: visible;
-	width: 260px;
+	direction: rtl;;
+	//width: 260px;
 	//height: 125px;
-	left: 8px;
+	left: 15px;
 	top: 170px;
+	height: 60%;
 	fill: rgba(255,255,255,1);
+	overflow-y:scroll !important; 
+	overflow-x:hidden;
+	
 }
+
+  

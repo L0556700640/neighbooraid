@@ -13,6 +13,7 @@ export class CasesComponent implements OnInit {
   allCases: Cases[] = [];
   myForm: FormGroup;
   three='333';
+  i=0
   constructor( private casesService: CasesService,private router: Router) 
   { 
     this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
@@ -20,8 +21,13 @@ export class CasesComponent implements OnInit {
 
   ngOnInit() {}
 
-  add(index:number)
+  clickCases()
   {
-    index++;
+    
+  }
+  add()
+  {
+    
+    return this.i++;
   }
 }
