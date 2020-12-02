@@ -36,33 +36,42 @@ namespace BL
         }
         public static List<DTO.Cases> getTheCasesRelatedByTheSearch(string sentence)
         {
-            List<string> words =new List<string>();
-            words=sentence.Split(' ').ToList();
-            //todo: למחוק את מילות הקישור מהמערך
-            bool remove = true;
-            List<string> linkWords = new List<string>
-            {
-                "את",
-                "כל",
-                "על",
-                "בתוך",
-                "מעל",
-                "כואב",
-                "לי",
-                "לו",
-                "להם",
-                "להן",
-                "אני",
-            };
-            foreach (var w in linkWords)
-            {
-                while (remove != false)
-                {
-                    remove = words.Remove(w);
-                }
-                remove = true;
-            }
-            //get the keywords table from db.
+            //List<string> words =new List<string>();
+            //words=sentence.Split(' ').ToList();
+            ////todo: למחוק את מילות הקישור מהמערך
+            //bool remove = true;
+            //List<string> linkWords = new List<string>
+            //{
+            //    "את",
+            //    "כל",
+            //    "על",
+            //    "בתוך",
+            //    "מעל",
+            //    "כואב",
+            //    "לי",
+            //    "לו",
+            //    "להם",
+            //    "להן",
+            //    "אני",
+            //};
+            //foreach (var w in linkWords)
+            //{
+            //    while (remove != false)
+            //    {
+            //        remove = words.Remove(w);
+            //    }
+            //    remove = true;
+            //}
+            ////get the keywords table from db.
+            //List<string> translatedWords = new List<string>();
+            //foreach (var w in words)
+            //{
+            //   translatedWords.Add(TranslateBL.Translate(w));
+            //}
+          string translateSentence=TranslateBL.Translate(sentence);
+            List<string> words = new List<string>();
+            words= translateSentence.Split(' ').ToList();
+
             List<DAL.Keyword> dalKeyWords = new List<Keyword>();
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {

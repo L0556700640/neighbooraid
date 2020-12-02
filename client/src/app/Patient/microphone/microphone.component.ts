@@ -43,6 +43,7 @@ export class MicrophoneComponent implements OnInit {
     this.microphoneService.stop()
     this.searchVoice();
     console.log('this.sen'+this.microphoneService.text)
+    
   }
   }
 }
