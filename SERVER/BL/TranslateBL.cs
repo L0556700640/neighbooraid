@@ -16,10 +16,11 @@ namespace BL
         // This is required if using a Cognitive Services resource.
         private static readonly string location = "East US";
 
-        public static string  Translate(string text,string path)
+        public static string Translate(string text)
         //public static void translateByMicrosoft(string sentenceToTranslate)
         {
-             path =path+"\\card.json";
+
+            string path = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\API\\card.json";
 
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS",path);
 
@@ -27,12 +28,11 @@ namespace BL
             TranslationClient client = TranslationClient.Create();
             TranslationResult result = client.TranslateText(
                 text: text,
-                targetLanguage: "en",  
-                sourceLanguage: "he",  
+                targetLanguage: "en",
+                sourceLanguage: "he",
                 model: TranslationModel.NeuralMachineTranslation);
-           
            return result.TranslatedText;
         }
         }
-    
+
 }

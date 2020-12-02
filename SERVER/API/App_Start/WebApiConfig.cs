@@ -10,7 +10,6 @@ namespace API
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            BL.RootBL.translateSearchSentenceByMicrosoft();
             AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
             // Web API routes
             config.MapHttpAttributeRoutes();
