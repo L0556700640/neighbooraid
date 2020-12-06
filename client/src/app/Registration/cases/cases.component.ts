@@ -12,8 +12,8 @@ import { CasesService } from 'src/app/shared/services/cases.service';
 export class CasesComponent implements OnInit {
   allCases: Cases[] = [];
   myForm: FormGroup;
-  three='333';
-  i=0
+  isChoose=true
+  i=-1;
   constructor( private casesService: CasesService,private router: Router) 
   { 
     this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
@@ -23,11 +23,11 @@ export class CasesComponent implements OnInit {
 
   clickCases()
   {
-    
+    this.isChoose=true
+    console.log(this.isChoose)
   }
   add()
   {
-    
     return this.i++;
   }
 }

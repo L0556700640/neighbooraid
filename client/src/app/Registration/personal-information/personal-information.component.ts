@@ -7,6 +7,7 @@ import { Doctor } from 'src/app/shared/models/doctor.model';
 import { DoctorDetails } from 'src/app/shared/models/doctorDelails.model';
 import { CasesService } from 'src/app/shared/services/cases.service';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
+import { LoginService } from 'src/app/shared/services/login.service';
 
 @Component({
   selector: 'app-personal-information',
@@ -19,50 +20,49 @@ export class PersonalInformationComponent implements OnInit {
   allCases: Cases[] = [];
   myForm: FormGroup;
   doctor: DoctorDetails = new DoctorDetails();
-  constructor(private doctorService: DoctorService, private casesService: CasesService,private router: Router) {
+  user: DoctorDetails = new DoctorDetails()
+  constructor(private doctorService: DoctorService, private loginService: LoginService, private casesService: CasesService, private router: Router) {
     this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
+
   }
 
   ngOnInit() {
     this.myForm = new FormGroup({
       firstName: new FormControl(),
-      lastName:new FormControl(),
-      phone:new FormControl(),
-      mail:new FormControl(),
-      id:new FormControl(),
-      address:new FormControl()
-   });
-   }
+      lastName: new FormControl(),
+      phone: new FormControl(),
+      mail: new FormControl(),
+      id: new FormControl(),
+      address: new FormControl()
+    });
+    this.doctorService.getCurrentDoctor(this.loginService.CurrnetUser).subscribe(
+      res => {
+        if (this.loginService.IsLogin) {
+          this.user.Doctor = res;
+          this.myForm.controls.firstName.setValue(this.user.Doctor.firstName)
+          this.myForm.controls.lastName.setValue(this.user.Doctor.lastName)
+          this.myForm.controls.id.setValue(this.user.Doctor.doctorId)
+          this.myForm.controls.phone.setValue(this.user.Doctor.doctorPhone)
+          this.myForm.controls.mail.setValue(this.user.Doctor.mail)
+          this.myForm.controls.address.setValue(this.user.Doctor.address)
+          console.log(this.user.Doctor);
+        }
 
- 
+      });
+
+
+
+
+  }
+
+
   handleDestinationChange(a: Address) {
     this.doctor.Doctor.address = (a.formatted_address);
     console.log(a)
   }
 
-  next()
-  {
-
-//     this.doctor.Doctor.firstName=this.myForm.controls.firstName.value;
-//     this.doctor.Doctor.lastName=this.myForm.controls.lastName.value;
-//     this.doctor.Doctor.doctorId=this.myForm.controls.id.value;
-//     this.doctor.Doctor.doctorPhone=this.myForm.controls.phone.value;
-//     this.doctor.Doctor.address=this.myForm.controls.address.value;
+  next() {
     this.doctorService.addDoctor(this.doctor)
-    // let express = require('express')
-    // let cases = require('./cases/cases') 
-
-    // let app = express()
-
-    // app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
- 
-
-    // app.get('/cases',(req, res) => 
-    // {
-    //   res.render('cases')
-    // })
-    // app.set('view engine', 'ejs')
-
     this.router.navigateByUrl('cases')
   }
 }

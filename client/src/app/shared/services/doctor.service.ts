@@ -27,4 +27,18 @@ addDoctor(d: DoctorDetails)
     
     return this.http.post<boolean>(environment.url + 'Doctor/AddDoctor', this.data)
   }
+
+  getCurrentDoctor(id:string):Observable<Doctor>
+  {
+    return this.http.get<Doctor>(environment.url + 'Doctor/user/'+id)
+
+  }
+
+  delete(id:string):Observable<boolean>
+  {
+    const data=new FormData();
+    data.append('id',JSON.stringify(id));
+    return this.http.post<boolean>(environment.url + 'Doctor/DeleteDoctor',data)
+
+  }
 }

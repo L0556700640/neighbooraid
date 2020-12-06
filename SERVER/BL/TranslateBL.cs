@@ -20,7 +20,7 @@ namespace BL
         //public static void translateByMicrosoft(string sentenceToTranslate)
         {
 
-            string path = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\API\\card.json";
+            string path = "C:\\Users\\hadar\\Desktop\\למידה מרחוק\\פרויקט\\neighbooraid\\SERVER\\API\\card.json";
 
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS",path);
 

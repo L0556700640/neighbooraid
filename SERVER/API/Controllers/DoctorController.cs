@@ -45,5 +45,26 @@ namespace API.Controllers
             //BL.DoctorBL.CheckUser(doctorName, doctorId);
             return Ok(BL.DoctorBL.CheckUser(doctorName, doctorId));
         }
+
+        [Route("User/{doctorId}")]
+        [HttpGet]
+        public IHttpActionResult User(string doctorId)//todo להצפין קוד רופא
+        {
+
+
+            //BL.DoctorBL.CheckUser(doctorName, doctorId);
+            return  Ok(BL.DoctorBL.User(doctorId));
+        }
+
+        [Route("DeleteDoctor")]
+        [HttpPost]
+        public IHttpActionResult DeleteDoctor()//todo להצפין קוד רופא
+        {
+
+            string doctorId = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["id"]);
+
+            //BL.DoctorBL.CheckUser(doctorName, doctorId);
+            return Ok(BL.DoctorBL.DeleteDoctor(doctorId));
+        }
     }
 }

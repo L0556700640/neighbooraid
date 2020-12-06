@@ -74,9 +74,9 @@
       </div> -->
 
       <table>
-        <tbody id="form" class="scrollbar scrollbar-primary">
-          <tr *ngFor="let case of allCases;">
-            <button style="padding: 0px !important;" (click)="clickCases()">
+        <tbody id="form" class="scrollbar scrollbar-primary" >
+          <tr *ngFor="let case of allCases;" >
+            <button (click)="clickCases()" *ngIf="i<allCases.length">
               <td class="Rectangle_76">
                 <ion-card id="Rectangle_76" rx="20" ry="20" x="0" y="0" width="63" height="75">
                   <div id="firstLetter">
@@ -88,7 +88,7 @@
                 </ion-card>
               </td>
             </button>
-            <button style="padding: 0px !important;" (click)="clickCases()">
+            <button (click)="clickCases()" >
               <td class="Rectangle_76">
                 <ion-card id="Rectangle_76" rx="20" ry="20" x="0" y="0" width="63" height="75">
                   <div id="firstLetter">
@@ -101,9 +101,9 @@
 
               </td>
             </button>
-            <button style="padding:0px !important;" (click)="clickCases()">
+            <button (click)="clickCases()"  >
               <td class="Rectangle_76">
-                <ion-card id="Rectangle_76" rx="20" ry="20" x="0" y="0" width="63" height="75">
+                <ion-card id="Rectangle_76" rx="20" ry="20" x="0" y="0" width="63" height="75" [ngClass]="{'choose':isChoose}">
                   <div id="firstLetter">
                     <span>{{allCases[i].caseName[0]}} </span>
                   </div>
@@ -458,7 +458,7 @@
             <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="307" height="41">
             </rect>
           </svg>
-          <div id="_dr">
+          <div id="_dr" >
             <span>
               <הבא</span>
           </div>

@@ -96,7 +96,7 @@
       <input type="File" id="uploader" (change)="changeListener($event)" class="form-control" style="font-size: 13px;" formControlName="diploma" hidden>
         <!-- <ion-img src="../../assets/img/Folder-Upload.png" onclick="document.querySelector('#uploader').click()"
           style="text-align: center; width: 60px;"></ion-img> -->
-        <label class="form-control"  style="font-size: 13px; margin-top: 180px;">{{imagePath.name}}</label>
+        <label class="form-control"  style="font-size: 13px; margin-top: 180px;" formControlName="diplomaName"  >{{imagePath.name}}</label>
       </div>
     </form>
     <button onclick="document.querySelector('#uploader').click()">

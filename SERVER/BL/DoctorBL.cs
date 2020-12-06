@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -66,12 +67,48 @@ namespace BL
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
                 dd = (from d in db.Doctors
-                        where d.doctorId.Equals(id) && d.firstName.Equals(firstName) select d).ToList();
+                        where d.doctorId.Equals(id) && d.firstName.Equals(firstName)&& d.isConfirmed==true select d).ToList();
                // db.SaveChanges();
             }
             if (dd.Count > 0)
                 return true;
             return false;
+        }
+        public static DTO.Doctor User(string id)
+        {
+           
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                var doctors =(from d in db.Doctors
+                             where d.doctorId.Equals(id)
+                             select d).ToList();
+               return doctors.Select(d=> Convertors.DoctorConvertor.ConvertDoctorToDTO(d)).FirstOrDefault();
+                // db.SaveChanges();
+            }
+
+        }
+
+        public static bool DeleteDoctor(string id)
+        {
+            try
+            {
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                {
+                    var doctors = (from d in db.Doctors
+                                   where d.doctorId.Equals(id)
+                                   select d).ToList();
+
+                    db.Doctors.Remove(doctors.FirstOrDefault());
+                    db.SaveChanges(); 
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+
         }
     }
 }

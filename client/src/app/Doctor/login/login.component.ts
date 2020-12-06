@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
   checkUser() 
   {     
     const firstName = this.loginForm.controls.username.value;     
-    const doctorId = this.loginForm.controls.password.value;     
+    const doctorId = this.loginForm.controls.password.value;  
+    this.loginService.setCurrentUser(doctorId)   
     this.loginService.chackUser(firstName,doctorId).subscribe(
       res=>
       {
@@ -41,9 +42,10 @@ export class LoginComponent implements OnInit {
          
       }
     )
-    
-        
-   
-  
   } 
+  Registration(){
+    this.loginService.setCurrentUser(undefined)
+    this.router.navigate(['/personalInformation']);
+
+  }
 }
