@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Google.Cloud.Translation.V2;
 using Newtonsoft.Json; // Install Newtonsoft.Json with NuGet
+using TextRazor.Net;
+
 namespace BL
 {
     public class TranslateBL
@@ -33,6 +36,29 @@ namespace BL
                 model: TranslationModel.NeuralMachineTranslation);
            return result.TranslatedText;
         }
+
+        public static async Task Analysis(string text)
+        {
+            TextRazorClient textRazor = null;
+            ApiResponse response = null;
+
+            try
+            {
+                textRazor = new TextRazorClient("http://localhost:44314/patientCase/sentence", "609f93b005493f2a387f36f9bee78b8b2bbfe72f023737d9cde5c4d7");
+                response= await textRazor.Analyze(text, TextRazor.Net.Models.ExtratorsType.Words);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+            //if (response.Ok)
+            //{
+                //List<string> relactionList = new List<string>();
+                var relactionList = response.Response.Relations;
+                var topicList = response.Response.Topics;
+                var nounList = response.Response.NounPhrases;
+            //}
         }
+    }
 
 }

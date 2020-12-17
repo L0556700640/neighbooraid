@@ -127,6 +127,10 @@
       <Project>{6cbdf019-c364-43cd-aff9-fa913dd13de7}</Project>
       <Name>DTO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NLP\NLP.csproj">
+      <Project>{c09b826b-3042-47d6-86b1-4242503f1033}</Project>
+      <Name>NLP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

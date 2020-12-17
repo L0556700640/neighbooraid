@@ -34,7 +34,7 @@ namespace BL
                 return null;
             }
         }
-        public static List<DTO.Cases> getTheCasesRelatedByTheSearch(string sentence)
+        public static async Task<List<DTO.Cases>> getTheCasesRelatedByTheSearchAsync(string sentence)
         {
             //List<string> words =new List<string>();
             //words=sentence.Split(' ').ToList();
@@ -69,6 +69,7 @@ namespace BL
             //   translatedWords.Add(TranslateBL.Translate(w));
             //}
           string translateSentence=TranslateBL.Translate(sentence);
+            await TranslateBL.Analysis(translateSentence);
             List<string> words = new List<string>();
             words= translateSentence.Split(' ').ToList();
 

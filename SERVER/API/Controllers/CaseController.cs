@@ -38,7 +38,7 @@ namespace API.Controllers
         [HttpGet]
         public IHttpActionResult GetRelatedCases(string searchSentence)
          {
-            return Ok(CasesBL.getTheCasesRelatedByTheSearch(searchSentence));
+            return Ok(CasesBL.getTheCasesRelatedByTheSearchAsync(searchSentence));
         }
 
     }

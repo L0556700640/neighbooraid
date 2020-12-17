@@ -21,3 +21,4 @@ C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DT
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\bin\Debug\EntityFramework.xml
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\DTO\obj\Debug\DTO.csproj.CopyComplete
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
