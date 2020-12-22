@@ -75,7 +75,7 @@
   color: rgba(0,0,0,1);
 }
 #__u {
-  left: 73px;
+  left:70px;
   top: 101px;
   position: absolute;
   overflow: visible;
@@ -431,4 +431,8 @@
   left: 142.94px;
   top: 64.539px;
   transform: matrix(1,0,0,1,0,0);
+}
+ion-alert {
+  position: absolute;
+  overflow: visible;
 }

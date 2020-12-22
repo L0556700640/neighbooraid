@@ -165,6 +165,7 @@
 	overflow: visible;
 	width: 80px !important;
 	height: 93px;
+	padding: 3px;
 	//left: 201px;
 	//top: 187px;
 }
@@ -241,7 +242,7 @@
 	font-family: Heebo;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 10px;
+	font-size: 15px;
 	color: rgba(0,0,0,1);
 }
 #firstLetter {
@@ -254,7 +255,7 @@
 	//line-height: 24px;
 	//margin-top: -7px;
 	text-align: center !important;
-	font-family: Heebo ;
+	font-family: Guttman Mantova-Decor ;
 	//font-style: normal ;
 	font-weight: bold;
 	font-size: 30px;
@@ -1628,18 +1629,30 @@
 
 #form
 {
-	text-align: right;
+	text-align: left;
 	font-family: Heebo;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 13px;
-	color: rgba(0,0,0,1);
+	//color: rgba(0,0,0,1);
 	filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.31));
 	position: absolute;
-	overflow: visible;
-	width: 260px;
+	direction: rtl;;
+	//width: 100px;
 	//height: 125px;
-	left: 8px;
+	left: 10px;
 	top: 170px;
+	height: 60%;
 	fill: rgba(255,255,255,1);
+	overflow-y:scroll !important; 
+	overflow-x:hidden;
+	
+}
+.choose
+{
+	border:palevioletred 2px solid !important;     
+    border-radius: 4px;     
+	background-color: pink !important; 
+	
+ 
 }

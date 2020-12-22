@@ -8,6 +8,7 @@ export class Doctor {
     address: string;
     isConfirmed: boolean
     mail:string
+    diploma:File
     certificateNumber:string
     certificateValidity:Date
 }

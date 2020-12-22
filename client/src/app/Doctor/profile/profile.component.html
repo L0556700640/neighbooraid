@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true" class="background">
+<ion-content [fullscreen]="true" >
 
   <head>
     <meta charset="utf-8" />
@@ -10,8 +10,12 @@
   </head>
 
   <body>
-    <div id="_2__6">
-      <button routerLink="/personalInformation" routerLinkActive="activelink">
+  <button (click)="deleteDoctor()">
+        <div id="__t">
+          <span>מחיקת הפרופיל</span>
+        </div>
+      </button>
+      <button (click)="updateDoctor()" routerLinkActive="activelink">
         <svg class="Rectangle_41">
           <rect id="Rectangle_41" rx="16.5" ry="16.5" x="0" y="0" width="129" height="33">
           </rect>
@@ -20,13 +24,9 @@
           <span>עידכון פרטים</span>
         </div>
       </button>
-      <button>
-        <div id="__t">
-          <span>מחיקת הפרופיל</span>
-        </div>
-      </button>
+     
       <div id="__u">
-        <span>רונן אלכסיי</span>
+        <span>{{user.Doctor.firstName}} {{user.Doctor.lastName}} </span>
       </div>
       <div id="\">
         <span>רעל</span>
@@ -109,6 +109,6 @@
         <path id="Line_49" d="M 0 0 L 130.3885955810547 0">
         </path>
       </svg>
-    </div>
+  
   </body>
 </ion-content>
