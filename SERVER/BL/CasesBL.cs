@@ -34,7 +34,7 @@ namespace BL
                 return null;
             }
         }
-        public static async Task<List<DTO.Cases>> getTheCasesRelatedByTheSearchAsync(string sentence)
+        public static List<DTO.Cases> GetTheCasesRelatedByTheSearch(string sentence)
         {
             //List<string> words =new List<string>();
             //words=sentence.Split(' ').ToList();
@@ -68,15 +68,15 @@ namespace BL
             //{
             //   translatedWords.Add(TranslateBL.Translate(w));
             //}
-          string translateSentence=TranslateBL.Translate(sentence);
-            await TranslateBL.Analysis(translateSentence);
+            string translateSentence = TranslateBL.Translate(sentence);
+            TranslateBL.Analysis(translateSentence);
             List<string> words = new List<string>();
-            words= translateSentence.Split(' ').ToList();
+            words = translateSentence.Split(' ').ToList();
 
             List<DAL.Keyword> dalKeyWords = new List<Keyword>();
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
-                 dalKeyWords = db.Keywords.Include(k=>k.Cases).ToList();
+                dalKeyWords = db.Keywords.Include(k => k.Cases).ToList();
             }
             List<DTO.Keyword> dtoKeyWords = new List<DTO.Keyword>();
             foreach (var w in dalKeyWords)
@@ -100,7 +100,7 @@ namespace BL
                     }
                 }
             }
-                return relatedCases;//todo: return the correct list
+            return relatedCases;//todo: return the correct list
         }
     }
 }

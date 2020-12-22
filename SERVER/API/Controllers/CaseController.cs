@@ -28,7 +28,7 @@ namespace API.Controllers
             //{
             //    newPath += ss[i] + "\\";
             //}
-           string s=  BL.TranslateBL.Translate("שלום עולם");
+          // string s=  BL.TranslateBL.Translate("שלום עולם");
             return Ok(CasesBL.getAllCases());
         }
 
@@ -38,7 +38,7 @@ namespace API.Controllers
         [HttpGet]
         public IHttpActionResult GetRelatedCases(string searchSentence)
          {
-            return Ok(CasesBL.getTheCasesRelatedByTheSearchAsync(searchSentence));
+            return Ok(CasesBL.GetTheCasesRelatedByTheSearch(searchSentence));
         }
 
     }
