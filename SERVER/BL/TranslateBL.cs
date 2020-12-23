@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Google.Cloud.Translation.V2;
 using Newtonsoft.Json; // Install Newtonsoft.Json with NuGet
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using TextRazor.Net;
 
@@ -42,9 +43,9 @@ namespace BL
 
         public static void Analysis(string text)
         {
-            //    TextRazorClient textRazor = null;
-            //    ApiResponse response = null;
-
+             // TextRazorClient textRazor = null;
+             // ApiResponse response = null;
+             //
             //    try
             //    {
             //        textRazor = new TextRazorClient("http://localhost:44314/patientCase/sentence", "609f93b005493f2a387f36f9bee78b8b2bbfe72f023737d9cde5c4d7");
@@ -57,7 +58,7 @@ namespace BL
             //    //if (response.Ok)
             //    //{
             //        //List<string> relactionList = new List<string>();
-            //        var relactionList = response.Response.Relations;
+                   //var relactionList = response.Response.;
             //        var topicList = response.Response.Topics;
             //        var nounList = response.Response.NounPhrases;
             //    //}
@@ -66,10 +67,30 @@ namespace BL
             var request = new RestRequest(Method.POST);
             request.AddHeader("x-textrazor-key", "cdb11bdc9d8349e443743989ee597ac296cb58438a6423bae48f9bd5");
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.AddParameter("extractors", "entities");
+            //request.AddParameter("extractors", "topics");
+            //request.AddParameter("extractors", "relations");
+            //request.AddParameter("extractors", "dependency-trees");
             request.AddParameter("extractors", "entailments");
-            request.AddParameter("text", "Spain's stricken Bankia expects to sell off its vast portfolio of industrial holdings that includes a stake in the parent company of British Airways and Iberia");
+            //request.AddParameter("extractors", "senses");
+            //request.AddParameter("extractors", "spelling");
+            request.AddParameter("text", text);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
+            dynamic data = JObject.Parse(response.Content);
+            List<object> importantWordFromTheString = new List<object>();
+            foreach (var item in data.response.entailments)
+            {
+                if (item.score > 0.98)
+                {
+                    //Type t = (item.entailedWords).getType();
+                    importantWordFromTheString.Add(item.entailedWords);
+                }
+            }
+            int l;
+                l= importantWordFromTheString.Count;
+
+
 
         }
 
