@@ -22,7 +22,7 @@ namespace BL.Convertors
             {
                 keyWord1 = keyword.keyWord1,
                 keywordId = keyword.keywordId,
-                Cases= (ICollection<DAL.Case>)keyword.Cases
+                Cases = keyword.Cases.ToList().Select(c => Convertors.CaseConvertor.ConvertCaseToDAL(c)).ToList()
             };
         }
     }

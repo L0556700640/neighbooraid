@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace BL
            return result.TranslatedText;
         }
 
-        public static void Analysis(string text)
+        public static List<string> Analysis(string text)
         {
              // TextRazorClient textRazor = null;
              // ApiResponse response = null;
@@ -81,17 +82,30 @@ namespace BL
             List<object> importantWordFromTheString = new List<object>();
             foreach (var item in data.response.entailments)
             {
-                if (item.score > 0.98)
+                if (item.score > 0.985)
                 {
                     //Type t = (item.entailedWords).getType();
                     importantWordFromTheString.Add(item.entailedWords);
                 }
             }
-            int l;
-                l= importantWordFromTheString.Count;
+            List<object> words= importantWordFromTheString.Distinct().ToList<object>();
+            List<string> returnedWords = new List<string>();
+            string w;
+            var charsToRemove = new string[] { "\n", "\r", " ", "\"","[","]" };
+            foreach (var item in words)
+            {
+                w = item.ToString();
+                foreach (var c in charsToRemove)
+                {
+                    w = w.Replace(c, string.Empty);
+                }
+                returnedWords.Add(w);
+            }
 
+            //delete deplicute
+            returnedWords = returnedWords.GroupBy(k=>k).Select(y => y.First()).ToList();
 
-
+            return returnedWords ;
         }
 
     }

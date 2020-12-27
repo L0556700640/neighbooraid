@@ -108,6 +108,7 @@
     <Compile Include="Convertors\SearchWordConvertor.cs" />
     <Compile Include="DistanceCalc.cs" />
     <Compile Include="DoctorBL.cs" />
+    <Compile Include="KeywordBL.cs" />
     <Compile Include="ManagerBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RootBL.cs" />
