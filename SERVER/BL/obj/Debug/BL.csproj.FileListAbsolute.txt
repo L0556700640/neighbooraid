@@ -108,3 +108,6 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\obj\Debug\BL.csproj.CopyComplete
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\obj\Debug\BL.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\obj\Debug\BL.pdb
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.dll
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.pdb
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.xml

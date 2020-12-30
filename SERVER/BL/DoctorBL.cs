@@ -49,7 +49,6 @@ namespace BL
                 return (-1).ToString();
             }
         }
-
         public static void ConfirmDoctor(int doctorId, bool isConfirmed)
         {
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())

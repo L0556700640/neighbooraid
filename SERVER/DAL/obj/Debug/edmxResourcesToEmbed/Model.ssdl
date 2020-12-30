@@ -73,6 +73,7 @@
     </Key>
     <Property Name="caseId" Type="int" Nullable="false" />
     <Property Name="keywordId" Type="int" Nullable="false" />
+    <Property Name="numOfUsingThisRelation" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Patients">
     <Key>
