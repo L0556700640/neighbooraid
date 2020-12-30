@@ -76,7 +76,7 @@ namespace BL
         }
         public static DTO.Doctor User(string id)
         {
-           
+
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
                 var doctors =(from d in db.Doctors
@@ -99,7 +99,7 @@ namespace BL
                                    select d).ToList();
 
                     db.Doctors.Remove(doctors.FirstOrDefault());
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
                 return true;
             }
@@ -109,6 +109,23 @@ namespace BL
             }
 
 
+        }
+        public static List<DTO.Doctor> GetDoctorsToCase(DTO.Cases correntCase)
+        {
+            List<DTO.Doctor> doctorsToCorrentCase = new List<DTO.Doctor>();
+            List<DAL.Doctor> doctorsOfCorrentCaseFromDB = new List<DAL.Doctor>();
+            try
+            {
+            using(neighboorAidDBEntities db=new neighboorAidDBEntities())
+            {
+            }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            return new List<DTO.Doctor>();
         }
     }
 }

@@ -12,6 +12,7 @@ export class MicrophoneComponent implements OnInit {
   doctorsPage = false;
   responsePage = false;
   allCases: Cases[] = [];
+  relatedCases: Cases[] = [];
   fullCasesList = true;
 
   matches: String[];
@@ -29,7 +30,7 @@ export class MicrophoneComponent implements OnInit {
   searchVoice() {
     let sentence=this.microphoneService.text;
     sentence=sentence.split('.').join('');
-    this.casesService.GetRelatedCases(sentence).subscribe(res => { this.allCases = res; });
+    this.casesService.GetRelatedCases(sentence).subscribe(res => { this.relatedCases = res; });
     this.fullCasesList = false;
   }
   startMicrophoneService() {
@@ -45,5 +46,8 @@ export class MicrophoneComponent implements OnInit {
     console.log('this.sen'+this.microphoneService.text)
     
   }
+  }
+  getTheProfessionalDoctors(){
+    
   }
 }

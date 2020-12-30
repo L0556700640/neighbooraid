@@ -17,13 +17,13 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Keyword()
         {
-            this.Cases = new HashSet<Case>();
+            this.KeywordsToCases = new HashSet<KeywordsToCase>();
         }
     
         public int keywordId { get; set; }
         public string keyWord1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Case> Cases { get; set; }
+        public virtual ICollection<KeywordsToCase> KeywordsToCases { get; set; }
     }
 }

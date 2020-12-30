@@ -36,6 +36,7 @@ namespace BL
         }
         public static List<DTO.Cases> GetTheCasesRelatedByTheSearch(string sentence)
         {
+            BL.KeywordBL.keywordsInThisSearch = new List<DTO.Keyword>();
             string translateSentence = TranslateBL.Translate(sentence);
             List<string> importantWords = new List<string>();
             importantWords= TranslateBL.Analysis(translateSentence);
@@ -106,5 +107,6 @@ namespace BL
             #endregion
             return relatedCases;
         }
-    }
+
+           }
 }

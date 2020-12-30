@@ -11,7 +11,6 @@ namespace DTO
         private static int keywordsCounter = 0;
         public int keywordId { get; set; }
         public string keyWord1 { get; set; }
-        public List<DTO.Cases> Cases { get; set; } = new List<Cases>();
 
         public Keyword(string keyWord1)
         {
@@ -24,11 +23,10 @@ namespace DTO
             keywordsCounter++;
         }
 
-        public Keyword(int keywordId, string keyWord1, List<Cases> cases)
+        public Keyword(int keywordId, string keyWord1)
         {
             this.keywordId = keywordId;
             this.keyWord1 = keyWord1;
-            Cases = cases;
             keywordsCounter++;
         }
     }

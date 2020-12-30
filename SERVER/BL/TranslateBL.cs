@@ -44,9 +44,10 @@ namespace BL
 
         public static List<string> Analysis(string text)
         {
-             // TextRazorClient textRazor = null;
-             // ApiResponse response = null;
-             //
+            #region commit
+            // TextRazorClient textRazor = null;
+            // ApiResponse response = null;
+            //
             //    try
             //    {
             //        textRazor = new TextRazorClient("http://localhost:44314/patientCase/sentence", "609f93b005493f2a387f36f9bee78b8b2bbfe72f023737d9cde5c4d7");
@@ -59,10 +60,11 @@ namespace BL
             //    //if (response.Ok)
             //    //{
             //        //List<string> relactionList = new List<string>();
-                   //var relactionList = response.Response.;
+            //var relactionList = response.Response.;
             //        var topicList = response.Response.Topics;
             //        var nounList = response.Response.NounPhrases;
             //    //}
+            #endregion
             var client = new RestClient("https://api.textrazor.com");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
