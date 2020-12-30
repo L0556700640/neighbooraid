@@ -34,72 +34,79 @@ namespace BL
                 return null;
             }
         }
-        public static List<DTO.Cases> getTheCasesRelatedByTheSearch(string sentence)
+        public static List<DTO.Cases> GetTheCasesRelatedByTheSearch(string sentence)
         {
-            //List<string> words =new List<string>();
-            //words=sentence.Split(' ').ToList();
-            ////todo: למחוק את מילות הקישור מהמערך
-            //bool remove = true;
-            //List<string> linkWords = new List<string>
-            //{
-            //    "את",
-            //    "כל",
-            //    "על",
-            //    "בתוך",
-            //    "מעל",
-            //    "כואב",
-            //    "לי",
-            //    "לו",
-            //    "להם",
-            //    "להן",
-            //    "אני",
-            //};
-            //foreach (var w in linkWords)
-            //{
-            //    while (remove != false)
-            //    {
-            //        remove = words.Remove(w);
-            //    }
-            //    remove = true;
-            //}
-            ////get the keywords table from db.
-            //List<string> translatedWords = new List<string>();
-            //foreach (var w in words)
-            //{
-            //   translatedWords.Add(TranslateBL.Translate(w));
-            //}
-          string translateSentence=TranslateBL.Translate(sentence);
-            List<string> words = new List<string>();
-            words= translateSentence.Split(' ').ToList();
+            BL.KeywordBL.keywordsInThisSearch = new List<DTO.Keyword>();
+            string translateSentence = TranslateBL.Translate(sentence);
+            List<string> importantWords = new List<string>();
+            importantWords= TranslateBL.Analysis(translateSentence);
 
-            List<DAL.Keyword> dalKeyWords = new List<Keyword>();
-            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
-            {
-                 dalKeyWords = db.Keywords.Include(k=>k.Cases).ToList();
-            }
-            List<DTO.Keyword> dtoKeyWords = new List<DTO.Keyword>();
-            foreach (var w in dalKeyWords)
-            {
-                dtoKeyWords.Add(
-                    Convertors.KeywordConvertors.ConvertKeywordsToDTO(w)
-                    );
-            }
-            //
             List<DTO.Cases> relatedCases = new List<DTO.Cases>();
-            foreach (var searchWord in words)
-            {
-                foreach (var keyword in dtoKeyWords)
-                {
-                    if (keyword.keyWord1.Equals(searchWord))
-                    {
-                        foreach (var c in keyword.Cases)
-                        {
-                            relatedCases.Add(c);
-                        }
-                    }
-                }
-            }
-                return relatedCases;//todo: return the correct list
+            relatedCases = KeywordBL.GetRelatedCasesByKeywords(importantWords);
+            #region function in KeywordBL
+            // List<DAL.Keyword> dalKeyWords = new List<Keyword>();
+            //using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            // {
+            //dalKeyWords = db.Keywords.Include(k => k.Cases).ToList();
+            ////}
+            ////List<DTO.Keyword> dtoKeyWords = new List<DTO.Keyword>();
+            ////foreach (var w in dalKeyWords)
+            ////{
+            ////    dtoKeyWords.Add(
+            ////        Convertors.KeywordConvertors.ConvertKeywordsToDTO(w)
+            ////        );
+            ////}
+            //////dtokeywords.keyword1;
+            //////words
+            ////List<DTO.Keyword> keywordsToAdd = new List<DTO.Keyword>();
+            ////List<DTO.Cases> relatedCases = new List<DTO.Cases>();
+            ////bool flag = false;
+            ////foreach (var word in words)
+            ////{
+            ////    foreach (var keyword in dtoKeyWords)
+            ////    {
+            ////        if (word.Equals(keyword))
+            ////        {
+            ////            flag = true;
+            ////            foreach (var c in keyword.Cases)
+            ////            {
+            ////                relatedCases.Add(c);
+            ////            }
+            ////        }
+            ////    }
+            ////    if (!flag)
+            ////    {
+            ////        keywordsToAdd.Add(new DTO.Keyword(word));
+            ////    }
+            ////}
+            ////List<DAL.Keyword> addToDBKeywords = new List<DAL.Keyword>();
+            ////foreach (var w in keywordsToAdd)
+            ////{
+            ////    addToDBKeywords.Add(
+            ////        Convertors.KeywordConvertors.ConvertKeywordsToDAL(w)
+            ////        );
+            ////}
+
+
+            //todo: extra- to return the corrected list
+
+
+            //foreach (var searchWord in words)
+            //{
+            //    foreach (var keyword in dtoKeyWords)
+            //    {
+            //        if (keyword.keyWord1.Equals(searchWord))
+            //        {
+            //            foreach (var c in keyword.Cases)
+            //            {
+            //                relatedCases.Add(c);
+            //            }
+            //        }
+            //    }
+            //}
+            #endregion
+            return relatedCases;
         }
-    }
+
+           }
 }

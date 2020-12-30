@@ -4,26 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="00e8a475c2cc4d3498d757d018cd5255" Name="Diagram1" ZoomLevel="70">
-        <EntityTypeShape EntityType="neighboorAidDBModel.Case" Width="1.5" PointX="2.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.Contact" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.Keyword" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.Patient" Width="1.5" PointX="4.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.SearchWord" Width="1.5" PointX="0.5" PointY="2.375" IsExpanded="true" />
-        <AssociationConnector Association="neighboorAidDBModel.FK__CasesToDo__caseI__3E52440B" ManuallyRouted="false" />
+      <Diagram DiagramId="50bd6b4dde8c436592e371066ce5d8e6" Name="Diagram1">
+        <EntityTypeShape EntityType="neighboorAidDBModel.Case" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.CasesToDoctor" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.Contact" Width="1.5" PointX="1.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.Doctor" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.HelpCall" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.Keyword" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.KeywordsToCase" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.Patient" Width="1.5" PointX="1.5" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.SearchWord" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="neighboorAidDBModel.FK__CasesToDo__caseI__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="neighboorAidDBModel.FK__HelpCalls__caseI__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="neighboorAidDBModel.FK__KeywordsT__caseI__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="neighboorAidDBModel.FK__SearchWor__caseI__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="neighboorAidDBModel.FK__CasesToDo__docto__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="neighboorAidDBModel.FK__CasesToDo__docto__7C4F7684" ManuallyRouted="false" />
         <AssociationConnector Association="neighboorAidDBModel.FK__Contacts__patien__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="neighboorAidDBModel.FK__HelpCalls__docto__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="neighboorAidDBModel.KeywordsToCase" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.CasesToDoctor" Width="1.5" PointX="7.25" PointY="3.875" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.Doctor" Width="1.5" PointX="2.5" PointY="3.125" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.HelpCall" Width="1.5" PointX="7.125" PointY="0.5" />
-        <AssociationConnector Association="neighboorAidDBModel.FK__CasesToDo__caseI__7B5B524B" />
-        <AssociationConnector Association="neighboorAidDBModel.FK__HelpCalls__caseI__4316F928" />
-        <AssociationConnector Association="neighboorAidDBModel.FK__CasesToDo__docto__7C4F7684" />
-        <AssociationConnector Association="neighboorAidDBModel.FK__HelpCalls__docto__7E37BEF6" />
-        <AssociationConnector Association="neighboorAidDBModel.DoctorsFromContacts" />
+        <AssociationConnector Association="neighboorAidDBModel.FK__HelpCalls__docto__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="neighboorAidDBModel.FK__KeywordsT__keywo__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="neighboorAidDBModel.DoctorsFromContacts" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

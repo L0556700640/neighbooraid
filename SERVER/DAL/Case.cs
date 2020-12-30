@@ -14,25 +14,27 @@ namespace DAL
     
     public partial class Case
     {
+        public object keyWord1;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Case()
         {
-            this.SearchWords = new HashSet<SearchWord>();
-            this.Keywords = new HashSet<Keyword>();
             this.CasesToDoctors = new HashSet<CasesToDoctor>();
             this.HelpCalls = new HashSet<HelpCall>();
+            this.KeywordsToCases = new HashSet<KeywordsToCase>();
+            this.SearchWords = new HashSet<SearchWord>();
         }
     
         public int caseId { get; set; }
         public string caseName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SearchWord> SearchWords { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Keyword> Keywords { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CasesToDoctor> CasesToDoctors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpCall> HelpCalls { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KeywordsToCase> KeywordsToCases { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SearchWord> SearchWords { get; set; }
     }
 }

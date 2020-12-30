@@ -58,6 +58,7 @@
     <Compile Include="DoctorsDetails.cs" />
     <Compile Include="HelpCall.cs" />
     <Compile Include="Keyword.cs" />
+    <Compile Include="KeywordsToCase.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchWord.cs" />

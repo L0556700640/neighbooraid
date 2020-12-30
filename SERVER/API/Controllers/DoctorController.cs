@@ -34,8 +34,8 @@ namespace API.Controllers
            BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
             return Ok("הפעולה בוצעה בהצלחה");
         }
-       
-        [Route("CheckUser")]   
+
+        [Route("CheckUser")]
         [HttpPost]
         public IHttpActionResult CheckDoctor()//todo להצפין קוד רופא
         {
@@ -52,7 +52,7 @@ namespace API.Controllers
         {
 
 
-            //BL.DoctorBL.CheckUser(doctorName, doctorId);
+           // BL.DoctorBL.CheckUser(doctorName, doctorId);
             return  Ok(BL.DoctorBL.User(doctorId));
         }
 

@@ -1,0 +1,9 @@
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\bin\Debug\NLP.dll
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\bin\Debug\NLP.pdb
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\obj\Debug\NLP.csprojAssemblyReference.cache
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\obj\Debug\NLP.csproj.CoreCompileInputs.cache
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\obj\Debug\NLP.csproj.CopyComplete
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\obj\Debug\NLP.dll
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\obj\Debug\NLP.pdb
