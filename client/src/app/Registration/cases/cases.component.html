@@ -75,10 +75,9 @@
 
       <table>
         <tbody id="form" class="scrollbar scrollbar-primary" >
-          <tr *ngFor="let case of allCases;" >
-            <button (click)="clickCases()" *ngIf="i<allCases.length">
-              <td class="Rectangle_76">
-                <ion-card id="Rectangle_76" rx="20" ry="20" x="0" y="0" width="63" height="75">
+          <tr *ngFor="let case of [].constructor(len);let j=index" >
+              <td  class="Rectangle_76" (click)="clickCases()">
+                <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75">
                   <div id="firstLetter">
                     <span>{{allCases[i].caseName[0]}} </span>
                   </div>
@@ -87,10 +86,10 @@
                   </div>
                 </ion-card>
               </td>
-            </button>
-            <button (click)="clickCases()" >
-              <td class="Rectangle_76">
-                <ion-card id="Rectangle_76" rx="20" ry="20" x="0" y="0" width="63" height="75">
+           
+           
+              <td  class="Rectangle_76" (click)="clickCases()" >
+                <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75">
                   <div id="firstLetter">
                     <span>{{allCases[i].caseName[0]}} </span>
                   </div>
@@ -100,11 +99,11 @@
                 </ion-card>
 
               </td>
-            </button>
-            <button (click)="clickCases()"  >
-              <td class="Rectangle_76">
-                <ion-card id="Rectangle_76" rx="20" ry="20" x="0" y="0" width="63" height="75" [ngClass]="{'choose':isChoose}">
-                  <div id="firstLetter">
+            
+            
+              <td  class="Rectangle_76" (click)="clickCases()">
+                <ion-card  id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75" [ngClass]="'{choose:isChoose}'">
+                  <div id="firstLetter" >
                     <span>{{allCases[i].caseName[0]}} </span>
                   </div>
                   <div id="__">
@@ -112,7 +111,7 @@
                   </div>
                 </ion-card>
               </td>
-            </button>
+           
           </tr>
         </tbody>
       </table>
