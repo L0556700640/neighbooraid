@@ -478,6 +478,22 @@
         <member name="M:Google.Apis.Requests.ClientServiceRequest`1.AddParameters(Google.Apis.Requests.RequestBuilder,Google.Apis.Requests.Parameters.ParameterCollection)">
             <summary>Adds path and query parameters to the given <c>requestBuilder</c>.</summary>
         </member>
+        <member name="T:Google.Apis.Requests.ClientServiceRequestExtensions">
+            <summary>
+            Extension methods for request objects.
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Requests.ClientServiceRequestExtensions.Configure``1(``0,System.Action{``0})">
+            <summary>
+            Allows a request to be configured in a fluent manner, where normally separate statements are required
+            after the request creation method is called.
+            </summary>
+            <typeparam name="TRequest">The type of the request to configure.</typeparam>
+            <param name="request">The request to configure. Must not be null.</param>
+            <param name="configurationAction">The configuration action to apply to the request. This is typically
+            setting properties. Must not be null.</param>
+            <returns>The value of <paramref name="request"/>, after applying the configuration action.</returns>
+        </member>
         <member name="T:Google.Apis.Requests.HttpRequestMessageExtenstions">
             <summary>Extension methods to <see cref="T:System.Net.Http.HttpRequestMessage"/>.</summary>
         </member>
@@ -1028,17 +1044,13 @@
             unknown. 
             </summary>
         </member>
-        <member name="P:Google.Apis.Upload.ResumableUpload.LastMediaRequest">
+        <member name="P:Google.Apis.Upload.ResumableUpload.Buffer">
             <summary>
-            Gets or sets the content of the last buffer request to the server or <c>null</c>. It is used when the media
-            content length is unknown, for resending it in case of server error.
-            Only used with a non-seekable stream.
-            </summary>
-        </member>
-        <member name="P:Google.Apis.Upload.ResumableUpload.LastMediaLength">
-            <summary>
-            Gets or sets the last request length.
-            Only used with a non-seekable stream.
+            The buffer used for reading from the stream, to prepare HTTP requests.
+            This is used for both seekable and non-seekable streams, but in a slightly different way:
+            with seekable streams, we never reuse any *data* between chunks, just the allocated byte arrays.
+            For non-seekable streams, if some of the data we sent was not received by the server,
+            we reuse the data in the buffer.
             </summary>
         </member>
         <member name="P:Google.Apis.Upload.ResumableUpload.UploadUri">
@@ -1278,10 +1290,10 @@
         <member name="M:Google.Apis.Upload.ResumableUpload.MediaCompleted(System.Net.Http.HttpResponseMessage)">
             <summary>A callback when the media was uploaded successfully.</summary>
         </member>
-        <member name="M:Google.Apis.Upload.ResumableUpload.PrepareNextChunkUnknownSizeAsync(System.IO.Stream,System.Threading.CancellationToken)">
+        <member name="M:Google.Apis.Upload.ResumableUpload.PrepareBufferUnknownSizeAsync(System.IO.Stream,System.Threading.CancellationToken)">
             <summary>Prepares the given request with the next chunk in case the steam length is unknown.</summary>
         </member>
-        <member name="M:Google.Apis.Upload.ResumableUpload.PrepareNextChunkKnownSizeAsync(System.IO.Stream,System.Threading.CancellationToken)">
+        <member name="M:Google.Apis.Upload.ResumableUpload.PrepareBufferKnownSizeAsync(System.IO.Stream,System.Threading.CancellationToken)">
             <summary>Prepares the given request with the next chunk in case the steam length is known.</summary>
         </member>
         <member name="M:Google.Apis.Upload.ResumableUpload.GetNextByte(System.String)">
@@ -1303,6 +1315,77 @@
             <param name="chunkStart">Start of the chunk.</param>
             <param name="chunkSize">Size of the chunk being sent.</param>
             <returns>The content range header value.</returns>
+        </member>
+        <member name="T:Google.Apis.Upload.ResumableUpload.UploadBuffer">
+            <summary>
+            A buffer to be uploaded. This abstraction allows us to use small byte arrays,
+            avoiding anything which might end up on the large object heap.
+            </summary>
+        </member>
+        <member name="F:Google.Apis.Upload.ResumableUpload.UploadBuffer.upload">
+            <summary>
+            The upload using this buffer; used to find the chunk size etc.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Upload.ResumableUpload.UploadBuffer.Capacity">
+            <summary>
+            The capacity of this buffer; <see cref="M:Google.Apis.Upload.ResumableUpload.UploadBuffer.PopulateFromStreamAsync(System.IO.Stream,System.Threading.CancellationToken)"/>
+            will read until the buffer contains this much data.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Upload.ResumableUpload.UploadBuffer.Length">
+            <summary>
+            The amount of usable data within the buffer.
+            </summary>
+        </member>
+        <member name="F:Google.Apis.Upload.ResumableUpload.UploadBuffer.blocks">
+            <summary>
+            The data in the buffer, divided into blocks each of size (at most) <see cref="F:Google.Apis.Upload.ResumableUpload.UploadBuffer.BlockSize"/>.
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Upload.ResumableUpload.UploadBuffer.PopulateFromStreamAsync(System.IO.Stream,System.Threading.CancellationToken)">
+            <summary>
+            Reads from the stream until the stream has run out of data, or the buffer is full.
+            </summary>
+            <param name="stream">The stream to read from</param>
+            <param name="cancellationToken"></param>
+            <returns>true if the stream is exhausted; false otherwise</returns>
+        </member>
+        <member name="M:Google.Apis.Upload.ResumableUpload.UploadBuffer.Reset">
+            <summary>
+            Resets the length of this buffer to 0, *effectively* discarding the data within it.
+            (The blocks are actually retained for reuse.)
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Upload.ResumableUpload.UploadBuffer.EnsureBlockAtPosition(System.Int32,System.Int32@)">
+            <summary>
+            Returns the block that contains the specified offset, creating it if necessary.
+            </summary>
+            <param name="bufferOffset">The offset within the buffer to fetch the block for.</param>
+            <param name="blockOffset">The offset within the returned block corresponding to <paramref name="bufferOffset"/> within the buffer.</param>
+            <returns>The block for the given position.</returns>
+        </member>
+        <member name="M:Google.Apis.Upload.ResumableUpload.UploadBuffer.MoveUnsentDataToStartOfBuffer(System.Int64,System.Int64)">
+            <summary>
+            Moves any unsent data to the start of this buffer, based on the number of bytes we actually sent,
+            and the number of bytes the server received.
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Upload.ResumableUpload.UploadBuffer.CreateContent(System.Int32@)">
+            <summary>
+            Creates an HttpContent for the data in this buffer, up to <paramref name="contentLength"/> bytes.
+            </summary>
+            <param name="contentLength">The length of the content.</param>
+        </member>
+        <member name="M:Google.Apis.Upload.ResumableUpload.UploadBuffer.GetActualUploadChunkSize">
+            <summary>
+            Determines how much data should actually be sent from this buffer.
+            </summary>
+        </member>
+        <member name="T:Google.Apis.Upload.ResumableUpload.UploadBuffer.BufferViewStream">
+            <summary>
+            A read-only stream reading from an UploadBuffer, reading all the blocks in turn.
+            </summary>
         </member>
         <member name="T:Google.Apis.Upload.ResumableUpload`1">
             <summary>

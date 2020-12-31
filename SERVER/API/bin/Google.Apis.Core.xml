@@ -1611,6 +1611,26 @@
         <member name="M:Google.Apis.Util.Utilities.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>Returns <c>true</c> in case the enumerable is <c>null</c> or empty.</summary>
         </member>
+        <member name="M:Google.Apis.Util.Utilities.CheckEnumValue``1(``0,System.String)">
+            <summary>
+            Checks that the given value is in fact defined in the enum used as the type argument of the method.
+            </summary>
+            <typeparam name="T">The enum type to check the value within.</typeparam>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The name of the parameter whose value is being tested.</param>
+            <returns><paramref name="value"/> if it was a defined value</returns>
+        </member>
+        <member name="M:Google.Apis.Util.Utilities.CheckArgument``2(System.Boolean,System.String,System.String,``0,``1)">
+            <summary>
+            Checks that given argument-based condition is met, throwing an <see cref="T:System.ArgumentException"/> otherwise.
+            </summary>
+            <param name="condition">The (already evaluated) condition to check.</param>
+            <param name="paramName">The name of the parameter whose value is being tested.</param>
+            <param name="format">The format string to use to create the exception message if the
+            condition is not met.</param>
+            <param name="arg0">The first argument to the format string.</param>
+            <param name="arg1">The second argument to the format string.</param>
+        </member>
         <member name="M:Google.Apis.Util.Utilities.GetCustomAttribute``1(System.Reflection.MemberInfo)">
             <summary>
             A Google.Apis utility method for returning the first matching custom attribute (or <c>null</c>) of the specified member.

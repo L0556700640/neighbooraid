@@ -9,6 +9,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CasesToDoctors">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.CasesToDoctor">
+        <MappingFragment StoreEntitySet="CasesToDoctor">
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="caseId" ColumnName="caseId" />
+          <ScalarProperty Name="satisfaction" ColumnName="satisfaction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Contacts">
       <EntityTypeMapping TypeName="neighboorAidDBModel.Contact">
         <MappingFragment StoreEntitySet="Contacts">
@@ -19,11 +28,48 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctors">
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="doctorPhone" ColumnName="doctorPhone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="pictureDiploma" ColumnName="pictureDiploma" />
+          <ScalarProperty Name="isConfirmed" ColumnName="isConfirmed" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="certificateValidity" ColumnName="certificateValidity" />
+          <ScalarProperty Name="certificateNumber" ColumnName="certificateNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HelpCalls">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.HelpCall">
+        <MappingFragment StoreEntitySet="HelpCalls">
+          <ScalarProperty Name="callId" ColumnName="callId" />
+          <ScalarProperty Name="caseId" ColumnName="caseId" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="addressX" ColumnName="addressX" />
+          <ScalarProperty Name="addressY" ColumnName="addressY" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Keywords">
       <EntityTypeMapping TypeName="neighboorAidDBModel.Keyword">
         <MappingFragment StoreEntitySet="Keywords">
           <ScalarProperty Name="keywordId" ColumnName="keywordId" />
           <ScalarProperty Name="keyWord1" ColumnName="keyWord" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KeywordsToCases">
+      <EntityTypeMapping TypeName="neighboorAidDBModel.KeywordsToCase">
+        <MappingFragment StoreEntitySet="KeywordsToCase">
+          <ScalarProperty Name="caseId" ColumnName="caseId" />
+          <ScalarProperty Name="keywordId" ColumnName="keywordId" />
+          <ScalarProperty Name="numOfUsingThisRelation" ColumnName="numOfUsingThisRelation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -45,57 +91,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="KeywordsToCase" TypeName="neighboorAidDBModel.KeywordsToCase" StoreEntitySet="KeywordsToCase">
-      <EndProperty Name="Cases">
-        <ScalarProperty Name="caseId" ColumnName="caseId" />
-      </EndProperty>
-      <EndProperty Name="Keywords">
-        <ScalarProperty Name="keywordId" ColumnName="keywordId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <EntitySetMapping Name="CasesToDoctors">
-      <EntityTypeMapping TypeName="neighboorAidDBModel.CasesToDoctor">
-        <MappingFragment StoreEntitySet="CasesToDoctor">
-          <ScalarProperty Name="satisfaction" ColumnName="satisfaction" />
-          <ScalarProperty Name="caseId" ColumnName="caseId" />
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Doctors">
-      <EntityTypeMapping TypeName="neighboorAidDBModel.Doctor">
-        <MappingFragment StoreEntitySet="Doctors">
-          <ScalarProperty Name="certificateNumber" ColumnName="certificateNumber" />
-          <ScalarProperty Name="certificateValidity" ColumnName="certificateValidity" />
-          <ScalarProperty Name="mail" ColumnName="mail" />
-          <ScalarProperty Name="isConfirmed" ColumnName="isConfirmed" />
-          <ScalarProperty Name="pictureDiploma" ColumnName="pictureDiploma" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="doctorPhone" ColumnName="doctorPhone" />
-          <ScalarProperty Name="lastName" ColumnName="lastName" />
-          <ScalarProperty Name="firstName" ColumnName="firstName" />
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HelpCalls">
-      <EntityTypeMapping TypeName="neighboorAidDBModel.HelpCall">
-        <MappingFragment StoreEntitySet="HelpCalls">
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="addressY" ColumnName="addressY" />
-          <ScalarProperty Name="addressX" ColumnName="addressX" />
-          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-          <ScalarProperty Name="caseId" ColumnName="caseId" />
-          <ScalarProperty Name="callId" ColumnName="callId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="DoctorsFromContacts" TypeName="neighboorAidDBModel.DoctorsFromContacts" StoreEntitySet="DoctorsFromContacts">
-      <EndProperty Name="Doctor">
-        <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-      </EndProperty>
-      <EndProperty Name="Contact">
+      <EndProperty Name="Contacts">
         <ScalarProperty Name="contactId" ColumnName="contactId" />
+      </EndProperty>
+      <EndProperty Name="Doctors">
+        <ScalarProperty Name="doctorId" ColumnName="doctorId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
