@@ -99,7 +99,7 @@ namespace BL
             {
                 foreach (var keyword in dtoKeyWords)
                 {
-                                       if (word.Equals(keyword.keyWord1))
+               if (word.Equals(keyword.keyWord1))
                     {
                         flag = true;
                         keywordsInThisSearch.Add(keyword);
