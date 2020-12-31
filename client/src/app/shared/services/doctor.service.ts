@@ -4,6 +4,8 @@ import { Doctor } from '../models/doctor.model';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { DoctorDetails } from '../models/doctorDelails.model';
+import { CasesToDoctor } from '../models/caseToDoctor.model';
+import { Cases } from '../models/cases.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +43,6 @@ addDoctor(d: DoctorDetails)
     return this.http.post<boolean>(environment.url + 'Doctor/DeleteDoctor',data)
 
   }
+
+  
 }
