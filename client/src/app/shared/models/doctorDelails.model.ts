@@ -3,7 +3,7 @@ import { CasesToDoctor } from './caseToDoctor.model';
 
 export class DoctorDetails
 {
-     Doctor:Doctor;
+  Doctor:Doctor;
   Cases  :CasesToDoctor[];
   constructor()
   {
@@ -11,3 +11,4 @@ export class DoctorDetails
       this.Cases=[];
   }
 }
+

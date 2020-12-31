@@ -1,6 +1,7 @@
 import { Address } from 'ngx-google-places-autocomplete/objects/address'
 
-export class Doctor {
+export class Doctor 
+{
     doctorId:string
     firstName:string
     lastName: string
