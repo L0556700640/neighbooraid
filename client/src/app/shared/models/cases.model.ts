@@ -1,6 +1,8 @@
 
-export class Cases {
+export class Cases 
+{
     caseId: number
     caseName: string
 
 }
+

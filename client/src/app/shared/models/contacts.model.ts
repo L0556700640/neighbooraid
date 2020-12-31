@@ -5,3 +5,4 @@ export class Contact
     contactPhone:string
     contactName :string
 }
+
