@@ -17,6 +17,6 @@ export class CaseToDoctorService {
     }
 
   getDoctorsToCase(selectedCase:Cases) : Observable<Doctor[]> {
- return this.http.get<Doctor[]>(environment.url + 'CaseToDoctor/getDoctorToCases/'+selectedCase);
+ return this.http.get<Doctor[]>(environment.url + 'Doctor/getDoctorToCases/'+selectedCase);
     }
 }

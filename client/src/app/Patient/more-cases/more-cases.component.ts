@@ -17,7 +17,7 @@ export class MoreCasesComponent implements OnInit {
   len=0;
   i = 0;
 
-  constructor(private casesService: CasesService, private router: Router) {
+  constructor(private casesService: CasesService, private router: Router, private) {
     this.casesService.getAllCases().subscribe(res => { this.allCases = res;
     this.len=Math.round(res.length/3) ;
     if(res.length%3!=0)
