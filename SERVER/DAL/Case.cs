@@ -14,8 +14,6 @@ namespace DAL
     
     public partial class Case
     {
-        public object keyWord1;
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Case()
         {

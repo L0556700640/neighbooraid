@@ -9,6 +9,6 @@ namespace DTO
     public class DoctorsDetailsDTO
     {
         public Doctor Doctor { get; set; }
-        public List<CasesToDoctor> Cases  { get; set; }
+        public Cases[] Cases  { get; set; }
     }
 }

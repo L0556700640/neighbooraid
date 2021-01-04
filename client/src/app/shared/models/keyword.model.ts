@@ -1,5 +1,6 @@
 export class Keyword
-    {
-        keywordId:number 
-        keyWord1 :string
-    }
+{
+    keywordId:number 
+    keyWord1 :string
+}
+
