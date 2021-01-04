@@ -62,7 +62,7 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   next() {
-    this.doctorService.addDoctor(this.doctor)
+    this.doctorService.addDoctor(this.doctor.Doctor)
     this.router.navigateByUrl('cases')
   }
 }

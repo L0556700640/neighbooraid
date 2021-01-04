@@ -22,7 +22,7 @@ namespace API.Controllers
            HttpPostedFile file = HttpContext.Current.Request.Files[0];
             //JavaScriptSerializer serializer = new JavaScriptSerializer();
             DTO.DoctorsDetailsDTO doctor = JsonConvert.DeserializeObject<DTO.DoctorsDetailsDTO>(HttpContext.Current.Request["doctor"]);
-
+            
 
             string doctorId = BL.DoctorBL.AddDoctor(doctor,file);
             return Ok(doctorId);

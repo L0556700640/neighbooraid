@@ -75,19 +75,19 @@
 
       <table>
         <tbody id="form" class="scrollbar scrollbar-primary" >
-          <tr *ngFor="let case of [].constructor(len);let j=index" >
-              <td  class="Rectangle_76" (click)="clickCases()">
-                <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75">
-                  <div id="firstLetter">
-                    <span>{{allCases[i].caseName[0]}} </span>
+          <tr *ngFor="let list of splitedCases ; let i=index" >
+              <td  *ngFor="let case of list; let j=index"  class="Rectangle_76" (click)="clickCases(i,j)">
+                <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75" [class.choose]="isChoosen(i,j)" >
+                  <div id="firstLetter" >
+                    <span>{{case.caseName[0]}} </span>
                   </div>
                   <div id="__">
-                    <span>{{allCases[add()].caseName}} </span>
+                    <span>{{case.caseName}} </span>
                   </div>
                 </ion-card>
               </td>
            
-           
+<!--            
               <td  class="Rectangle_76" (click)="clickCases()" >
                 <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75">
                   <div id="firstLetter">
@@ -101,7 +101,7 @@
               </td>
             
             
-              <td  class="Rectangle_76" (click)="clickCases()">
+              <td    class="Rectangle_76" (click)="clickCases()">
                 <ion-card  id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75" [ngClass]="'{choose:isChoose}'">
                   <div id="firstLetter" >
                     <span>{{allCases[i].caseName[0]}} </span>
@@ -110,7 +110,7 @@
                     <span>{{allCases[add()].caseName}} </span>
                   </div>
                 </ion-card>
-              </td>
+              </td> -->
            
           </tr>
         </tbody>
@@ -451,7 +451,7 @@
           </path>
         </svg>
       </div> -->
-      <button routerLink="/diploma" routerLinkActive="activelink">
+      <button (click)="addCases()" routerLinkActive="activelink" >
         <div id="Component_1__8" class="Component_1___8">
           <svg class="Rectangle_8">
             <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="307" height="41">

@@ -20,4 +20,5 @@ export class CasesService {
     return this.http.get<Cases[]>(environment.url + "Cases/GetRelatedCases/" + searchSentence);
   }
 
+  
 }

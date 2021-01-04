@@ -111,3 +111,8 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.pdb
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\NLP.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\NLP.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\Google.Apis.Plus.v1.xml

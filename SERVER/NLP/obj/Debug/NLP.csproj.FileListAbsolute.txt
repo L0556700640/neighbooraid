@@ -7,3 +7,12 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\obj\Debug\NLP.csproj.CopyComplete
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\obj\Debug\NLP.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\NLP\obj\Debug\NLP.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\bin\Debug\NLP.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\bin\Debug\NLP.pdb
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\bin\Debug\Newtonsoft.Json.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\bin\Debug\Newtonsoft.Json.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\obj\Debug\NLP.csprojAssemblyReference.cache
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\obj\Debug\NLP.csproj.CoreCompileInputs.cache
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\obj\Debug\NLP.csproj.CopyComplete
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\obj\Debug\NLP.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\NLP\obj\Debug\NLP.pdb
