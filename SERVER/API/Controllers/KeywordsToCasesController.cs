@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,9 +15,14 @@ namespace API.Controllers
     {
         [Route("saveKeywordsToCase/{selectedCase}")]
         [HttpGet]
-        public IHttpActionResult SaveKeywordsToCase()
+        public IHttpActionResult SaveKeywordsToCase(DTO.Cases selectedCase)
         {
-            return Ok();
+            return Ok(BL.KeywordBL.AddCaseToKeywords(selectedCase));
+        }
+
+        private object AddCaseToKeywords(Cases selectedCase)
+        {
+            throw new NotImplementedException();
         }
     }
 }

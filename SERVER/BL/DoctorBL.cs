@@ -137,6 +137,7 @@ namespace BL
 
 
         }
+        //todo: to end the func
         public static List<DTO.Doctor> GetDoctorsToCase(DTO.Cases correntCase)
         {
             List<DTO.Doctor> doctorsToCorrentCase = new List<DTO.Doctor>();
@@ -145,6 +146,7 @@ namespace BL
             {
             using(neighboorAidDBEntities db=new neighboorAidDBEntities())
             {
+                    doctorsOfCorrentCaseFromDB = db.Cases.FirstOrDefault(c => c.caseId == correntCase.caseId).CasesToDoctors.Select(c => c.Doctor).ToList();
             }
             }
             catch (Exception ex)

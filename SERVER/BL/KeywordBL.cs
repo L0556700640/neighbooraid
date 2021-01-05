@@ -36,8 +36,8 @@ namespace BL
                 return (null);
             }
         }
-
-        public static bool AddCasesToKeyword(DTO.Cases theChoosedCase)
+        //todo: end the func
+        public static bool AddCaseToKeywords(DTO.Cases theChoosedCase)
         {
             try
             {
@@ -51,7 +51,8 @@ namespace BL
                         {
                             if (k.keyWord1 == item.keyWord1)
                             {
-                          //     if(item.KeywordsToCases);
+                          //todo: add relate cases to this keyword, or add relation to execute keyword to case
+                                //if(db.);
                             }
                         }
                         //{
@@ -127,29 +128,38 @@ namespace BL
             {
               BL.KeywordBL.keywordsInThisSearch.Add(AddKeyword(newKeyword));
             }
-            //todo: save the searchWords- in the db: now or after the patient choose?
+            //todo: keyword to case- save the searchWords- in the db: now or after the patient choose?
             return relatedCases;
         }
 
 
-        public static bool SaveTheCorrentCaseToKeywords(Cases correntCase)
+        public static bool SaveTheCorrentCaseToKeywords(Cases correntCase, List<DTO.Keyword> keywordsInThisSearchFromXMLFile)
         {
             try
             {
                 DAL.KeywordsToCase ktc = null;
                 DAL.KeywordsToCase c = null;
-                ktc = new DAL.KeywordsToCase();
-                ktc.caseId = correntCase.caseId;
+
 
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
                     foreach (var keywordToCase in keywordsInThisSearch)
                     {
-                        ktc.keywordId = keywordToCase.keywordId;
-                        if (db.KeywordsToCases.Contains(ktc))
+                        DAL.KeywordsToCase kwc  = db.KeywordsToCases.FirstOrDefault(w => w.Keyword.keyWord1 == keywordToCase.keyWord1 && w.caseId == correntCase.caseId);
+                        if (kwc!=null)
                         {
-                            c = (DAL.KeywordsToCase)db.KeywordsToCases.Select(k => k.keywordId == ktc.keywordId && k.caseId == ktc.caseId);
-                            c.numOfUsingThisRelation++;
+                            //c = (DAL.KeywordsToCase)db.KeywordsToCases.Select(k => k.keywordId == ktc.keywordId && k.caseId == ktc.caseId);
+                            kwc.numOfUsingThisRelation++;
+                        }
+
+                        else
+                        {
+                            db.KeywordsToCases.Add(new DAL.KeywordsToCase {
+                                caseId=correntCase.caseId,
+                                keywordId=keywordToCase.keywordId,
+                                numOfUsingThisRelation=1
+
+                            });
                         }
                     }
                     db.SaveChanges();

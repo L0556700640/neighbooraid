@@ -11,7 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace API.Controllers
 {
-    [EnableCors("*","*","*")]
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("API/Doctor")]
     public class DoctorController : ApiController
     {
@@ -19,21 +19,21 @@ namespace API.Controllers
         [HttpPost]
         public IHttpActionResult AddDoctor()
         {
-           HttpPostedFile file = HttpContext.Current.Request.Files[0];
+            HttpPostedFile file = HttpContext.Current.Request.Files[0];
             //JavaScriptSerializer serializer = new JavaScriptSerializer();
             var c = HttpContext.Current.Request["doctor"];
             DTO.DoctorsDetailsDTO doctor = JsonConvert.DeserializeObject<DTO.DoctorsDetailsDTO>(HttpContext.Current.Request["doctor"]);
             
 
-            string doctorId = BL.DoctorBL.AddDoctor(doctor,file);
+            string doctorId = BL.DoctorBL.AddDoctor(doctor, file);
             return Ok(doctorId);
         }
 
         [Route("ConfirmDoctor/{doctorId}/{isConfirmed}")]
         [HttpPost]
-        public IHttpActionResult ConfirmDoctor(int doctorId,bool isConfirmed)//todo להצפין קוד רופא
+        public IHttpActionResult ConfirmDoctor(int doctorId, bool isConfirmed)//todo להצפין קוד רופא
         {
-           BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
+            BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
             return Ok("הפעולה בוצעה בהצלחה");
         }
 
@@ -42,7 +42,7 @@ namespace API.Controllers
         public IHttpActionResult CheckDoctor()//todo להצפין קוד רופא
         {
             string doctorName = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["firstName"]);
-            string doctorId= JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["id"]);
+            string doctorId = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["id"]);
 
             //BL.DoctorBL.CheckUser(doctorName, doctorId);
             return Ok(BL.DoctorBL.CheckUser(doctorName, doctorId));
@@ -54,8 +54,8 @@ namespace API.Controllers
         {
 
 
-           // BL.DoctorBL.CheckUser(doctorName, doctorId);
-            return  Ok(BL.DoctorBL.User(doctorId));
+            // BL.DoctorBL.CheckUser(doctorName, doctorId);
+            return Ok(BL.DoctorBL.User(doctorId));
         }
 
         [Route("casesToDoctor/{doctorId}")]
@@ -75,5 +75,14 @@ namespace API.Controllers
             //BL.DoctorBL.CheckUser(doctorName, doctorId);
             return Ok(BL.DoctorBL.DeleteDoctor(doctorId));
         }
+
+
+        [Route("getDoctorToCases/{selectedCase}")]
+        [HttpGet]
+        public IHttpActionResult GetDoctorToCases(DTO.Cases selectedCase)//todo להצפין קוד רופא
+        {
+            return Ok(BL.DoctorBL.GetDoctorsToCase(selectedCase));
+        }
     }
+
 }
