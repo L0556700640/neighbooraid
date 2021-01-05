@@ -9,8 +9,18 @@ import { Cases } from '../models/cases.model';
   providedIn: 'root'
 })
 export class CasesService {
-
+  private currentCase=undefined; 
   constructor(private http: HttpClient) {
+  }
+
+  get CurrnetCase()
+  {     
+    return this.currentCase;   
+  } 
+ 
+  setCurrentCase(caseId)
+  {     
+    this.currentCase = caseId;   
   }
 
   getAllCases(): Observable<Cases[]> {
@@ -20,5 +30,8 @@ export class CasesService {
     return this.http.get<Cases[]>(environment.url + "Cases/GetRelatedCases/" + searchSentence);
   }
 
-  
+  getCurrentCase(id: String): Observable<String> {
+    return this.http.get<String>(environment.url + "Cases/getCaseName/" + id);
+
+  }
 }

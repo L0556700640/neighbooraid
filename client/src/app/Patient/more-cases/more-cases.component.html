@@ -8,52 +8,56 @@
   </head>
 
   <body>
-    <div id="_2__2">
+    <div >
       <div id="___">
         <span>לחץ על פציעות נוספות</span>
       </div>
       <table>
         <tbody id="form" class="scrollbar scrollbar-primary" >
-          <tr *ngFor="let case of [].constructor(len);let j=index" >
-              <td  class="Rectangle_76" (click)="clickCorrectCase()">
+          <tr *ngFor="let list of splitedCases ; let i=index" >
+              <td  *ngFor="let case of list; let j=index"  class="Rectangle_76" (click)="clickCases(i,j)">
                 <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75">
-                  <div id="firstLetter">
-                    <span>{{allCases[i].caseName[0]}} </span>
-                  </div>
-                  <div id="__">
-                    <span>{{allCases[add()].caseName}} </span>
-                  </div>
-                </ion-card>
-              </td>
-           
-           
-              <td  class="Rectangle_76" (click)="clickCorrectCase()" >
-                <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75">
-                  <div id="firstLetter">
-                    <span>{{allCases[i].caseName[0]}} </span>
-                  </div>
-                  <div id="__">
-                    <span>{{allCases[add()].caseName}} </span>
-                  </div>
-                </ion-card>
-
-              </td>
-            
-            
-              <td  class="Rectangle_76" (click)="clickCorrectCase()">
-                <ion-card  id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75" [ngClass]="'{choose:isChoose}'">
                   <div id="firstLetter" >
-                    <span>{{allCases[i].caseName[0]}} </span>
+                    <span>{{case.caseName[0]}} </span>
                   </div>
                   <div id="__">
-                    <span>{{allCases[add()].caseName}} </span>
+                    <span>{{case.caseName}} </span>
                   </div>
                 </ion-card>
               </td>
-           
           </tr>
         </tbody>
       </table>
+      <!-- <button (click)="addCases()" routerLinkActive="activelink" >
+        <div id="Component_1__8" class="Component_1___8">
+          <svg class="Rectangle_8">
+            <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="307" height="41">
+            </rect>
+          </svg>
+          <div id="_dr" >
+            <span>
+              <הבא</span>
+          </div>
+        </div>
+      </button> -->
+      <button routerLink="/login" routerLinkActive="activelink">
+        <div id="___ds">
+          <span>מגיש עזרה ראשונה</span>
+        </div>
+      </button>
+      <button routerLink="/microphone" routerLinkActive="activelink">
+        <div id="_dt">
+          <span>מטופל/פצוע</span>
+        </div>
+      </button>
+      <svg class="Line_2" viewBox="0 0 133.319 2">
+        <path id="Line_2" d="M 0 0 L 133.3186798095703 0">
+        </path>
+      </svg>
+      <svg class="Line_3" viewBox="0 0 130.389 3">
+        <path id="Line_3" d="M 0 0 L 130.3885955810547 0">
+        </path>
+      </svg>
     </div>
   </body>
 </ion-content>

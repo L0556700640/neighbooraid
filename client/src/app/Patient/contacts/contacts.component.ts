@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CasesService } from 'src/app/shared/services/cases.service';
 
 @Component({
   selector: 'app-contacts',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacts.component.scss'],
 })
 export class ContactsComponent implements OnInit {
+ case;
+  constructor(private casesService:CasesService) { }
 
-  constructor() { }
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.case=this.casesService.CurrnetCase
+  }
 
 }
