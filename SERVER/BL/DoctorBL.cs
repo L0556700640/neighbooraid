@@ -13,16 +13,16 @@ namespace BL
 {
     public class DoctorBL
     {
-        public static string AddDoctor(DTO.DoctorsDetailsDTO doctor,HttpPostedFile file)
+        public static string AddDoctor(DTO.DoctorsDetailsDTO doctor, HttpPostedFile file)
         {
             try
             {
-                using (neighboorAidDBEntities db=new neighboorAidDBEntities())
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
                     using (var binaryReader = new BinaryReader(file.InputStream))
                     {
-                     newDoctor.pictureDiploma= binaryReader.ReadBytes(file.ContentLength);
+                        newDoctor.pictureDiploma = binaryReader.ReadBytes(file.ContentLength);
                     }
                     db.Doctors.Add(newDoctor);
                     db.SaveChanges();
@@ -36,14 +36,15 @@ namespace BL
                             caseId = c.caseId,
                             satisfaction = 0
                         }
-                        ) ;
+                        );
                     }
                     db.SaveChanges();
                     ManagerBL.SendMailToConfirmDoctor(newDoctor);
 
-                    return newDoctor.doctorId;}
+                    return newDoctor.doctorId;
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return (-1).ToString();
@@ -59,15 +60,16 @@ namespace BL
                 db.SaveChanges();
             }
 
-         }
-        public static bool CheckUser(string firstName,string id)
+        }
+        public static bool CheckUser(string firstName, string id)
         {
             List<DAL.Doctor> dd;
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
                 dd = (from d in db.Doctors
-                        where d.doctorId.Equals(id) && d.firstName.Equals(firstName)&& d.isConfirmed==true select d).ToList();
-               // db.SaveChanges();
+                      where d.doctorId.Equals(id) && d.firstName.Equals(firstName) && d.isConfirmed == true
+                      select d).ToList();
+                // db.SaveChanges();
             }
             if (dd.Count > 0)
                 return true;
@@ -78,10 +80,10 @@ namespace BL
 
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
-                var doctors =(from d in db.Doctors
-                             where d.doctorId.Equals(id)
-                             select d).ToList();
-               return doctors.Select(d=> Convertors.DoctorConvertor.ConvertDoctorToDTO(d)).FirstOrDefault();
+                var doctors = (from d in db.Doctors
+                               where d.doctorId.Equals(id)
+                               select d).ToList();
+                return doctors.Select(d => Convertors.DoctorConvertor.ConvertDoctorToDTO(d)).FirstOrDefault();
                 // db.SaveChanges();
             }
 
@@ -116,10 +118,10 @@ namespace BL
             List<DAL.Doctor> doctorsOfCorrentCaseFromDB = new List<DAL.Doctor>();
             try
             {
-            using(neighboorAidDBEntities db=new neighboorAidDBEntities())
-            {
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                {
                     doctorsOfCorrentCaseFromDB = db.Cases.FirstOrDefault(c => c.caseId == correntCase.caseId).CasesToDoctors.Select(c => c.Doctor).ToList();
-            }
+                }
             }
             catch (Exception ex)
             {

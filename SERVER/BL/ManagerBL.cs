@@ -103,6 +103,7 @@ namespace BL
             msg.Subject = "אישור רופא";
             var base64 = Convert.ToBase64String(doctor.pictureDiploma);
             msg.Body = string.Format(
+                //todo: to put the string in html file and read it with IOStream as string.
                 @"
 <div dir=' ltr'>
                     <h1>Hello!</h1>
@@ -187,7 +188,10 @@ namespace BL
                        doctor.address
                        );
             msg.IsBodyHtml = true;
-
+            //todo: delete;
+            var pathOfTheFile = "";
+            msg.Attachments.Add(new Attachment(pathOfTheFile));
+            //todo: to save the files in folder of all the files and put there the path
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = loginInfo;

@@ -11,13 +11,15 @@ namespace API.Controllers
     [EnableCors("*", "*", "*")]
 
     [RoutePrefix("API/KeywordsToCases")]
-    public class KeywordsToCasesController: ApiController
+    public class KeywordsToCasesController : ApiController
     {
-        [Route("saveKeywordsToCase/{selectedCase}")]
+        //todo: לשנות בכחול שהפונקציה הזאת תשלח 2 משתנים ולא 1.
+        //יש גם את המזהה של הפציעה שנוסף. איפפה הוא נשמר אצל הלקוח?- לבדוק
+        [Route("saveKeywordsToCase/{helpCallId},{selectedCase}")]
         [HttpGet]
-        public IHttpActionResult SaveKeywordsToCase(DTO.Cases selectedCase)
+        public IHttpActionResult SaveKeywordsToCase(int helpCallId, DTO.Cases selectedCase)
         {
-            return Ok(BL.KeywordBL.AddCaseToKeywords(selectedCase));
+            return Ok(BL.KeywordBL.AddCaseToKeywords(helpCallId, selectedCase));
         }
 
         private object AddCaseToKeywords(Cases selectedCase)

@@ -28,7 +28,8 @@ namespace BL
                 }
 
                 return dtoCases;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return null;
@@ -36,10 +37,9 @@ namespace BL
         }
         public static List<DTO.Cases> GetTheCasesRelatedByTheSearch(string sentence)
         {
-            BL.KeywordBL.keywordsInThisSearch = new List<DTO.Keyword>();
             string translateSentence = TranslateBL.Translate(sentence);
             List<string> importantWords = new List<string>();
-            importantWords= TranslateBL.Analysis(translateSentence);
+            importantWords = TranslateBL.Analysis(translateSentence);
 
             List<DTO.Cases> relatedCases = new List<DTO.Cases>();
             relatedCases = KeywordBL.GetRelatedCasesByKeywords(importantWords);
@@ -108,5 +108,5 @@ namespace BL
             return relatedCases;
         }
 
-           }
+    }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-   public class ContactsBL
+    public class ContactsBL
     {
         /*
         public static void getContactsPhonesFromGoogleAcount()

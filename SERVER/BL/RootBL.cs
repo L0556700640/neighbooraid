@@ -137,7 +137,7 @@ namespace BL
         }
 
         public static void translateSearchSentenceByMicrosoft()
-         {
+        {
             var client = new RestClient("https://microsoft-translator-text.p.rapidapi.com/translate?to=undefined&api-version=3.0&profanityAction=NoAction&textType=plain");
             var request = new RestRequest(Method.POST);
             request.AddHeader("content-type", "application/json");
@@ -178,9 +178,9 @@ namespace BL
             //}
             //]
 
-            JsonParameter Subscription=  new JsonParameter
+            JsonParameter Subscription = new JsonParameter
                 (
-                "Subscription ID" , "91d93a27 - 0dcf - 4c58 - a41f - c2efb380fbb9"
+                "Subscription ID", "91d93a27 - 0dcf - 4c58 - a41f - c2efb380fbb9"
                 );
         }
     }

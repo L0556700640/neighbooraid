@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace BL
 {
-  public  class DistanceCalc
+    public class DistanceCalc
     {
         public static int GooglePlaces(string startPoint, string destination)
         {

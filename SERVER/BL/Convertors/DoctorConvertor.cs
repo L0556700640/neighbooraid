@@ -14,10 +14,10 @@ namespace BL.Convertors
             {
                 doctorId = myDoctor.doctorId,
                 address = myDoctor.address,
-                doctorPhone=myDoctor.doctorPhone,
-                firstName=myDoctor.firstName,
-                isConfirmed=myDoctor.isConfirmed,
-                lastName=myDoctor.lastName,
+                doctorPhone = myDoctor.doctorPhone,
+                firstName = myDoctor.firstName,
+                isConfirmed = myDoctor.isConfirmed,
+                lastName = myDoctor.lastName,
                 mail = myDoctor.mail,
                 certificateNumber = myDoctor.certificateNumber,
                 certificateValidity = myDoctor.certificateValidity
@@ -35,7 +35,7 @@ namespace BL.Convertors
                 lastName = myDoctor.lastName,
                 mail = myDoctor.mail,
                 certificateNumber = myDoctor.certificateNumber,
-                certificateValidity=myDoctor.certificateValidity
+                certificateValidity = myDoctor.certificateValidity
             };
         }
     }
