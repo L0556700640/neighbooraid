@@ -64,7 +64,6 @@ namespace API.Controllers
         {
             return Ok(BL.DoctorBL.casesToDoctor(doctorId));
         }
-
         [Route("DeleteDoctor")]
         [HttpPost]
         public IHttpActionResult DeleteDoctor()

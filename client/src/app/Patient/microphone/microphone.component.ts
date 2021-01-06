@@ -28,9 +28,10 @@ export class MicrophoneComponent implements OnInit {
     this.fullCasesList=true;
     }
   searchVoice() {
+    let helpCallID=1;
     let sentence=this.microphoneService.text;
     sentence=sentence.split('.').join('');
-    this.casesService.GetRelatedCases(sentence).subscribe(res => { this.relatedCases = res; });
+    this.casesService.GetRelatedCases(helpCallID, sentence).subscribe(res => { this.relatedCases = res; });
     this.fullCasesList = false;
   }
   startMicrophoneService() {

@@ -61,6 +61,7 @@
     <Compile Include="KeywordsToCase.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelatedCase.cs" />
     <Compile Include="SearchWord.cs" />
   </ItemGroup>
   <ItemGroup>

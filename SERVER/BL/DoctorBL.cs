@@ -101,10 +101,10 @@ namespace BL
                 List<DTO.CasesToDoctor> dtoCases = new List<DTO.CasesToDoctor>();
                 foreach (var c in dalCases)
                 {
-                    if(c.doctorId==id)
-                    dtoCases.Add(
-                        Convertors.CaseToDoctorConvertor.ConvertCasesToDoctorToDTO(c)
-                        );
+                    if (c.doctorId == id)
+                        dtoCases.Add(
+                            Convertors.CaseToDoctorConvertor.ConvertCasesToDoctorToDTO(c)
+                            );
                 }
 
                 return dtoCases;

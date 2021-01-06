@@ -31,7 +31,6 @@ namespace API.Controllers
             // string s=  BL.TranslateBL.Translate("שלום עולם");
             return Ok(CasesBL.getAllCases());
         }
-
         [Route("getCaseName/{caseId}")]
         [HttpGet]
         public IHttpActionResult getCaseName(string caseId)
@@ -39,12 +38,19 @@ namespace API.Controllers
             return Ok(CasesBL.getCaseName(caseId));
         }
 
-        [Route("GetRelatedCases/{searchSentence}")]
+        [Route("GetRelatedCases/{helpCallID}/{searchSentence}")]
         [HttpGet]
-        public IHttpActionResult GetRelatedCases(string searchSentence)
+        public IHttpActionResult GetRelatedCases(int helpCallID, string searchSentence)
         {
-            return Ok(CasesBL.GetTheCasesRelatedByTheSearch(searchSentence));
+            return Ok(CasesBL.GetTheCasesRelatedByTheSearch(helpCallID,searchSentence));
         }
 
+        [Route("CaseChose/{helpCallID}/{choosedCase}")]
+        [HttpPost]
+        public IHttpActionResult CaseChose(int helpCallID,  DTO.Cases choosedCase)
+        {
+            return Ok(CasesBL.CaseChose(helpCallID, choosedCase));
+
+        }
     }
 }

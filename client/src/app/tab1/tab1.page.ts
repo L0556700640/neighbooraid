@@ -37,9 +37,9 @@ export class Tab1Page {
      {
        this.page2 = false;
        this.finish = true; 
-       this.doctorService.addDoctor(this.doctor,this.imagePath).subscribe(
-         (res)=>{alert(res)}
-       )
+       //this.doctorService.addDoctor(this.doctor,this.imagePath).subscribe(
+       //  (res)=>{alert(res)}
+      // )
      }
   
 

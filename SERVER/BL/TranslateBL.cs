@@ -71,12 +71,7 @@ namespace BL
             request.AddHeader("x-textrazor-key", "cdb11bdc9d8349e443743989ee597ac296cb58438a6423bae48f9bd5");
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             request.AddParameter("extractors", "entities");
-            //request.AddParameter("extractors", "topics");
-            //request.AddParameter("extractors", "relations");
-            //request.AddParameter("extractors", "dependency-trees");
             request.AddParameter("extractors", "entailments");
-            //request.AddParameter("extractors", "senses");
-            //request.AddParameter("extractors", "spelling");
             request.AddParameter("text", text);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
@@ -86,7 +81,6 @@ namespace BL
             {
                 if (item.score > 0.985)
                 {
-                    //Type t = (item.entailedWords).getType();
                     importantWordFromTheString.Add(item.entailedWords);
                 }
             }
