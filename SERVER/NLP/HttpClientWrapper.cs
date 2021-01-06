@@ -11,10 +11,10 @@
         private Uri Uri { get; }
         internal HttpClientWrapper(Uri uri, string apiKey)
         {
-            if(string.IsNullOrWhiteSpace(apiKey))
+            if (string.IsNullOrWhiteSpace(apiKey))
                 throw new ArgumentException("ApiKey cannot be null, empty or whitespace.", nameof(apiKey));
 
-            if(uri == null)
+            if (uri == null)
                 throw new ArgumentNullException(nameof(uri), "Uri needs to be supplied.");
 
             ApiKey = apiKey;
@@ -35,7 +35,7 @@
 
         public Task<HttpResponseMessage> Send(FormUrlEncodedContent content)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, Uri) {Content = content};
+            var request = new HttpRequestMessage(HttpMethod.Post, Uri) { Content = content };
             return Send(request);
         }
     }

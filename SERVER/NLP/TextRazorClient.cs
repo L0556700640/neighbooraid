@@ -10,7 +10,7 @@
     {
         private readonly IHttpClient _httpClient;
         public TextRazorClient(Uri textRazorUri, string apiKey) : this(new HttpClientWrapper(textRazorUri, apiKey))
-        {}
+        { }
 
         public TextRazorClient(IHttpClient client)
         {
@@ -19,9 +19,9 @@
 
         public TextRazorClient(string textRazorUri, string apiKey)
             : this(new Uri(textRazorUri), apiKey)
-        {}
+        { }
 
-        public async Task<ApiResponse> Analyze(string words, ExtratorsType extrators,string rules = null)
+        public async Task<ApiResponse> Analyze(string words, ExtratorsType extrators, string rules = null)
         {
             if ((extrators == ExtratorsType.DependencyTrees && extrators != ExtratorsType.Words) ||
                 (extrators == ExtratorsType.Senses && extrators != ExtratorsType.Words))

@@ -23,14 +23,14 @@ namespace API.Controllers
             //JavaScriptSerializer serializer = new JavaScriptSerializer();
             var c = HttpContext.Current.Request["doctor"];
             DTO.DoctorsDetailsDTO doctor = JsonConvert.DeserializeObject<DTO.DoctorsDetailsDTO>(HttpContext.Current.Request["doctor"]);
-            
+
 
             string doctorId = BL.DoctorBL.AddDoctor(doctor, file);
             return Ok(doctorId);
         }
 
         [Route("ConfirmDoctor/{doctorId}/{isConfirmed}")]
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult ConfirmDoctor(int doctorId, bool isConfirmed)//todo להצפין קוד רופא
         {
             BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
@@ -64,7 +64,6 @@ namespace API.Controllers
         {
             return Ok(BL.DoctorBL.casesToDoctor(doctorId));
         }
-
         [Route("DeleteDoctor")]
         [HttpPost]
         public IHttpActionResult DeleteDoctor()

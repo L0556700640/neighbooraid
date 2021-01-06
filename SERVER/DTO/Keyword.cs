@@ -14,7 +14,7 @@ namespace DTO
 
         public Keyword(string keyWord1)
         {
-            this.keywordId = keywordsCounter++;
+            this.keywordId = ++keywordsCounter;
             this.keyWord1 = keyWord1;
         }
 

@@ -30,7 +30,7 @@ namespace BL
             string path = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\API\\card.json";
 
 
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS",path);
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             // Input and output languages are defined as parameters.
             TranslationClient client = TranslationClient.Create();
@@ -39,7 +39,7 @@ namespace BL
                 targetLanguage: "en",
                 sourceLanguage: "he",
                 model: TranslationModel.NeuralMachineTranslation);
-           return result.TranslatedText;
+            return result.TranslatedText;
         }
 
         public static List<string> Analysis(string text)
@@ -71,12 +71,7 @@ namespace BL
             request.AddHeader("x-textrazor-key", "cdb11bdc9d8349e443743989ee597ac296cb58438a6423bae48f9bd5");
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             request.AddParameter("extractors", "entities");
-            //request.AddParameter("extractors", "topics");
-            //request.AddParameter("extractors", "relations");
-            //request.AddParameter("extractors", "dependency-trees");
             request.AddParameter("extractors", "entailments");
-            //request.AddParameter("extractors", "senses");
-            //request.AddParameter("extractors", "spelling");
             request.AddParameter("text", text);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
@@ -86,14 +81,13 @@ namespace BL
             {
                 if (item.score > 0.985)
                 {
-                    //Type t = (item.entailedWords).getType();
                     importantWordFromTheString.Add(item.entailedWords);
                 }
             }
-            List<object> words= importantWordFromTheString.Distinct().ToList<object>();
+            List<object> words = importantWordFromTheString.Distinct().ToList<object>();
             List<string> returnedWords = new List<string>();
             string w;
-            var charsToRemove = new string[] { "\n", "\r", " ", "\"","[","]" };
+            var charsToRemove = new string[] { "\n", "\r", " ", "\"", "[", "]" };
             foreach (var item in words)
             {
                 w = item.ToString();
@@ -105,9 +99,9 @@ namespace BL
             }
 
             //delete deplicute
-            returnedWords = returnedWords.GroupBy(k=>k).Select(y => y.First()).ToList();
+            returnedWords = returnedWords.GroupBy(k => k).Select(y => y.First()).ToList();
 
-            return returnedWords ;
+            return returnedWords;
         }
 
     }

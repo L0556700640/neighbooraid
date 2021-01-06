@@ -26,24 +26,24 @@ export class Tab1Page {
    this.casesService.getAllCases().subscribe(res=>{this.allCases=res;});
   }
 
-  // next() {
-  //   if(this.page1==true)
-  //   {
-  //     this.page1 = false;
-  //     this.page2 = true;
-  //     this.doctor.Doctor.isConfirmed = false;
-  //   }
-  //   else
-  //   {
-  //     this.page2 = false;
-  //     this.finish = true; 
-  //     this.doctorService.addDoctor(this.doctor,this.imagePath).subscribe(
-  //       (res)=>{alert(res)}
-  //     )
-  //   }
-    
+   next() {
+     if(this.page1==true)
+     {
+       this.page1 = false;
+       this.page2 = true;
+       this.doctor.Doctor.isConfirmed = false;
+     }
+     else
+     {
+       this.page2 = false;
+       this.finish = true; 
+       //this.doctorService.addDoctor(this.doctor,this.imagePath).subscribe(
+       //  (res)=>{alert(res)}
+      // )
+     }
   
-  // }
+
+   }
 
   previous() {
     this.page1 = true;

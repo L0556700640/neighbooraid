@@ -6,28 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using DTO;
+using System.Xml.Linq;
 
 namespace BL
 {
     public class KeywordBL
     {
-        public static List<DTO.Keyword> keywordsInThisSearch=null;
-
-
         public static DTO.Keyword AddKeyword(DTO.Keyword keyword)
+
         {
             try
             {
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
-                    DAL.Keyword newKeyword = new DAL.Keyword();
-                    newKeyword= Convertors.KeywordConvertors.ConvertKeywordsToDAL(keyword);
 
-                    db.Keywords.Add(newKeyword);
+                    db.Keywords.Add(Convertors.KeywordConvertors.ConvertKeywordsToDAL(keyword));
                     db.SaveChanges();
 
 
-                    return Convertors.KeywordConvertors.ConvertKeywordsToDTO(newKeyword);
+                    return Convertors.KeywordConvertors.ConvertKeywordsToDTO(db.Keywords.First(k => k.keyWord1.Equals(keyword.keyWord1)));
                 }
             }
             catch (Exception ex)
@@ -36,33 +33,32 @@ namespace BL
                 return (null);
             }
         }
-        //todo: end the func
-        public static bool AddCaseToKeywords(DTO.Cases theChoosedCase)
+
+        public static bool SaveTheCorrentCaseToKeywords( int helpCallID, Cases correntCase)
+
         {
             try
             {
+                List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
+                keywordsInThisSearch = readHelpCallTpXML(helpCallID);
                 DAL.Case choosedCase = new Case();
-                choosedCase = Convertors.CaseConvertor.ConvertCaseToDAL(theChoosedCase);
+                choosedCase = Convertors.CaseConvertor.ConvertCaseToDAL(correntCase);
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
-                    foreach (var k in keywordsInThisSearch)
+                    foreach (var keyword in keywordsInThisSearch)
                     {
-                        foreach (var item in db.Keywords)
-                        {
-                            if (k.keyWord1 == item.keyWord1)
-                            {
-                          //todo: add relate cases to this keyword, or add relation to execute keyword to case
-                                //if(db.);
-                            }
-                        }
-                        //{
-                        //    if(k.Cases.Contains(choosedCase))
-                        //}
-
+                        if (db.KeywordsToCases.Any(
+                            ktc => ktc.Keyword.keyWord1.Equals(keyword.keyWord1)
+                            && ktc.caseId == correntCase.caseId
+                            ))
+                            db.KeywordsToCases.First(ktc => ktc.Keyword.keyWord1.Equals(keyword.keyWord1)
+                       && ktc.caseId == correntCase.caseId).numOfUsingThisRelation++;
+                        else
+                            db.KeywordsToCases.Add(
+                                Convertors.KeywordToCaseConvertor.ConvertKeywordsToCaseToDAL
+                                (new DTO.KeywordsToCase(correntCase.caseId, keyword.keywordId)));
                     }
                     db.SaveChanges();
-
-
                     return true;
                 }
             }
@@ -73,104 +69,128 @@ namespace BL
             }
         }
 
-
-        public static List<Cases> GetRelatedCasesByKeywords(List<string> words)
+        //todo: לצלם את הפונקציה הזו לספר פרוייקט
+        public static List<Cases> GetRelatedCasesByKeywords(int helpCallID, List<string> words)
         {
-            List<DAL.Keyword> dalKeyWords = new List<DAL.Keyword>();
+            //this function get the keywords and "understand" by last searchs which cases can be suitable to this help call
+            //all the keywords saved: we want to know them and the case it related to
+            // in order to use them in the next searchs.
+            List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
+            //take all the old related information from the database about relationship between the words
             List<DAL.KeywordsToCase> dalKeywordsToCases = new List<DAL.KeywordsToCase>();
-            List<DAL.Case> dalCases = new List<DAL.Case>();
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
-                dalKeyWords = db.Keywords.ToList();
                 dalKeywordsToCases = db.KeywordsToCases.ToList();
-                dalCases = db.Cases.ToList();
             }
-            List<DTO.Keyword> dtoKeyWords = new List<DTO.Keyword>();
-            foreach (var w in dalKeyWords)
-            {
-                dtoKeyWords.Add(
-                    Convertors.KeywordConvertors.ConvertKeywordsToDTO(w)
-                    );
-            }
+            //check the keywords:
+            //if it new keyword- we have to save it in the database.
+            //if this keyword used in the past- we have to see in which cases it used.
+            //in short- to see if this keyword tell us somthing about the case
             List<DTO.Keyword> keywordsToAdd = new List<DTO.Keyword>();
-            List<DTO.Cases> relatedCases = new List<DTO.Cases>();
-            //todo: find way to get the relatedCases orderby keywordToCase.numberOfUseThisRelation
-            bool flag = false;
+            List<DTO.RelatedCase> relatedCases = new List<DTO.RelatedCase>();
+            bool isUsed = false;
             foreach (var word in words)
             {
-                foreach (var keyword in dtoKeyWords)
+                foreach (var keyword in dalKeywordsToCases)
                 {
-               if (word.Equals(keyword.keyWord1))
+                    if (word.Equals(keyword.Keyword.keyWord1))
                     {
-                        flag = true;
-                        keywordsInThisSearch.Add(keyword);
-                        foreach (var kc in dalKeywordsToCases)
-                        {
-                            if(kc.keywordId==keyword.keywordId)
-                            {
-                              relatedCases.Add(
-                                  Convertors.CaseConvertor.ConvertCaseToDTO(
-                                  (Case)
-                                  dalCases.Select(c => c)
-                                  .Where(c => c.caseId == kc.caseId))
-                                  );
-                            }
-                        }
-                        break;
+                        isUsed = true;
+                        keywordsInThisSearch.Add(
+                            Convertors.KeywordConvertors.ConvertKeywordsToDTO
+                            (keyword.Keyword));
+                        if (relatedCases.Any(someCase => someCase.relatedCase.caseId == keyword.caseId))
+                            relatedCases.First(someCase => someCase.relatedCase.caseId == keyword.caseId).sumOfNumOfUsingThisSearch +=
+                                keyword.numOfUsingThisRelation;
+                        else
+                            relatedCases.Add(new RelatedCase
+                                (
+                                Convertors.CaseConvertor.ConvertCaseToDTO(keyword.Case),
+                                keyword.numOfUsingThisRelation
+                                ));
                     }
                 }
-                if (!flag)
+                if (!isUsed)
                 {
-                    keywordsToAdd.Add(new DTO.Keyword(word));
+                    //there is few actions in one sentence:
+                    //1. create new DTO.keyword();
+                    //2. add the keyword to the db
+                    //3. get the keyword+keywordID from the db
+                    //4. save the keyword as one of the keyword in this search, in order to add the related case.
+                    keywordsInThisSearch.Add(AddKeyword(new DTO.Keyword(word)));
                 }
             }
-            foreach (var newKeyword in keywordsToAdd)
-            {
-              BL.KeywordBL.keywordsInThisSearch.Add(AddKeyword(newKeyword));
-            }
-            //todo: keyword to case- save the searchWords- in the db: now or after the patient choose?
-            return relatedCases;
+            bool saveTheKeywordsInXML= writeHelpCallTpXML(helpCallID, keywordsInThisSearch);
+            //now we have the keywords of this search save
+            //until the patient choose which case from the related cases
+            //or all the cases is the correct case for this keywords.
+            //when he choose the correct case we save in the db
+            //that the keywords related to the choosed case
+
+            return relatedCases
+                .OrderBy(someCase => someCase.sumOfNumOfUsingThisSearch)
+                .Select(someCase => someCase.relatedCase)
+                .ToList(); ;
         }
 
-
-        public static bool SaveTheCorrentCaseToKeywords(Cases correntCase, List<DTO.Keyword> keywordsInThisSearchFromXMLFile)
+        public static bool writeHelpCallTpXML(int helpCallID, List<DTO.Keyword> keywordsList)
         {
             try
             {
-                DAL.KeywordsToCase ktc = null;
-                DAL.KeywordsToCase c = null;
+                string xmlFileFullPath = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
-
-                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                XElement newHelpCall = new XElement("helpCall");
+                newHelpCall.Add(new XAttribute("id", helpCallID));
+                XElement keywordsRoot = new XElement("keywords");
+                XElement keyword = null;
+                foreach (var word in keywordsList)
                 {
-                    foreach (var keywordToCase in keywordsInThisSearch)
-                    {
-                        DAL.KeywordsToCase kwc  = db.KeywordsToCases.FirstOrDefault(w => w.Keyword.keyWord1 == keywordToCase.keyWord1 && w.caseId == correntCase.caseId);
-                        if (kwc!=null)
-                        {
-                            //c = (DAL.KeywordsToCase)db.KeywordsToCases.Select(k => k.keywordId == ktc.keywordId && k.caseId == ktc.caseId);
-                            kwc.numOfUsingThisRelation++;
-                        }
-
-                        else
-                        {
-                            db.KeywordsToCases.Add(new DAL.KeywordsToCase {
-                                caseId=correntCase.caseId,
-                                keywordId=keywordToCase.keywordId,
-                                numOfUsingThisRelation=1
-
-                            });
-                        }
-                    }
-                    db.SaveChanges();
+                    keyword = new XElement("keyword", word.keyWord1);
+                    keyword.Add(new XAttribute("id", word.keywordId));
+                    keywordsRoot.Add(keyword);
                 }
-                    return true;
+                newHelpCall.Add(keywordsRoot);
+                helpCallDocument.Root.Add(newHelpCall);
+
+                helpCallDocument.Save(xmlFileFullPath);
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
                 return false;
             }
         }
+        public static List<DTO.Keyword> readHelpCallTpXML(int helpCallID)
+        {
+            try
+            {
+                XDocument helpCallDocument = XDocument.Load("HelpCallXMLS/CorrentHelpCall.xml");
+                var helpCalls = helpCallDocument.Descendants("helpCall");
+                //todo: check- this is problem (cast)?
+                List<XElement> keywordsInCorrentCall = (List<XElement>)
+                                            (from hc in helpCalls.Elements()
+                                            where hc.Name == "helpCall" &&
+                                            int.Parse(hc.Attribute("id").Value) == helpCallID
+                                            select hc.Element("keywords").Elements("keyword").ToList());
+                List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
+                foreach (var keywordElement in keywordsInCorrentCall)
+                {
+                    keywordsInThisSearch.Add(
+                        new DTO.Keyword
+                    {
+                        keywordId = int.Parse(keywordElement.Attribute("id").Value),
+                        keyWord1 = keywordElement.Value
+                    });
+                }
+                return keywordsInThisSearch;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
     }
 }

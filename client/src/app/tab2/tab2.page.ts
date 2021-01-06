@@ -44,7 +44,7 @@ export class Tab2Page {
   searchVoice() {
     let sentence=this.microphoneService.text;
     sentence=sentence.split('.').join('');
-    this.casesService.GetRelatedCases(sentence).subscribe(res => { this.allCases = res; });
+   // this.casesService.GetRelatedCases(sentence).subscribe(res => { this.allCases = res; });
     this.fullCasesList = false;
   }
   startMicrophoneService() {
