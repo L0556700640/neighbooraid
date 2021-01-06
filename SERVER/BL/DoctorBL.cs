@@ -88,6 +88,34 @@ namespace BL
             }
 
         }
+        public static List<DTO.CasesToDoctor> casesToDoctor(string id)
+        {
+
+            try
+            {
+                List<DAL.CasesToDoctor> dalCases = new List<DAL.CasesToDoctor>();
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                {
+                    dalCases = db.CasesToDoctors.ToList();
+                }
+                List<DTO.CasesToDoctor> dtoCases = new List<DTO.CasesToDoctor>();
+                foreach (var c in dalCases)
+                {
+                    if(c.doctorId==id)
+                    dtoCases.Add(
+                        Convertors.CaseToDoctorConvertor.ConvertCasesToDoctorToDTO(c)
+                        );
+                }
+
+                return dtoCases;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+
+        }
 
         public static bool DeleteDoctor(string id)
         {

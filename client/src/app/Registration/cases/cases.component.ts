@@ -22,11 +22,7 @@ export class CasesComponent implements OnInit {
   constructor(private casesService: CasesService, private router: Router, private doctorService: DoctorService) {
     this.casesService.getAllCases().subscribe(res => {
       this.allCases = res;
-      //     this.len=Math.round(res.length/3) ;
-      //     if(res.length%3!=0)
-      //     this.len++;
-      //   console.log(res)
-      // console.log(res.length) ;
+     
       let i = 0;
       for (; i < res.length - 2; i += 3) {
         this.splitedCases.push([res[i], res[i + 1], res[i + 2]]);

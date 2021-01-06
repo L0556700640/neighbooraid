@@ -35,6 +35,20 @@ namespace BL
                 return null;
             }
         }
+
+        public static string getCaseName(string id)
+        {
+
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                var case1=(from c in db.Cases
+                               where c.caseId.Equals(id)
+                               select c).ToList();
+                return case1.Select(c => Convertors.CaseConvertor.ConvertCaseToDTO(c).caseName).FirstOrDefault();
+                // db.SaveChanges();
+            }
+
+        }
         public static List<DTO.Cases> GetTheCasesRelatedByTheSearch(string sentence)
         {
             string translateSentence = TranslateBL.Translate(sentence);

@@ -32,7 +32,12 @@ namespace API.Controllers
             return Ok(CasesBL.getAllCases());
         }
 
-
+        [Route("getCaseName/{caseId}")]
+        [HttpGet]
+        public IHttpActionResult getCaseName(string caseId)
+        {
+            return Ok(CasesBL.getCaseName(caseId));
+        }
 
         [Route("GetRelatedCases/{searchSentence}")]
         [HttpGet]
