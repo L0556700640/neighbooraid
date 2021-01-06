@@ -53,7 +53,8 @@
   <ItemGroup>
     <Compile Include="Cases.cs" />
     <Compile Include="CasesToDoctor.cs" />
-    <Compile Include="Contacts.cs" />
+    <Compile Include="CloseDoctor.cs" />
+    <Compile Include="ContactsDoctor.cs" />
     <Compile Include="Doctor.cs" />
     <Compile Include="DoctorsDetails.cs" />
     <Compile Include="HelpCall.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelatedCase.cs" />
+    <Compile Include="ReturnedDoctorsToCase.cs" />
     <Compile Include="SearchWord.cs" />
   </ItemGroup>
   <ItemGroup>

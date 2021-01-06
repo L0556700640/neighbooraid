@@ -34,8 +34,7 @@ namespace BL
             }
         }
 
-        //todo: end the func
-        public static bool SaveTheCorrentCaseToKeywords(Cases correntCase, int helpCallID)
+        public static bool SaveTheCorrentCaseToKeywords( int helpCallID, Cases correntCase)
 
         {
             try
@@ -46,24 +45,20 @@ namespace BL
                 choosedCase = Convertors.CaseConvertor.ConvertCaseToDAL(correntCase);
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
-                    foreach (var k in keywordsInThisSearch)
+                    foreach (var keyword in keywordsInThisSearch)
                     {
-                        foreach (var item in db.Keywords)
-                        {
-                            if (k.keyWord1 == item.keyWord1)
-                            {
-                                //todo: add relate cases to this keyword, or add relation to execute keyword to case
-                                //if(db.);
-                            }
-                        }
-                        //{
-                        //    if(k.Cases.Contains(choosedCase))
-                        //}
-
+                        if (db.KeywordsToCases.Any(
+                            ktc => ktc.Keyword.keyWord1.Equals(keyword.keyWord1)
+                            && ktc.caseId == correntCase.caseId
+                            ))
+                            db.KeywordsToCases.First(ktc => ktc.Keyword.keyWord1.Equals(keyword.keyWord1)
+                       && ktc.caseId == correntCase.caseId).numOfUsingThisRelation++;
+                        else
+                            db.KeywordsToCases.Add(
+                                Convertors.KeywordToCaseConvertor.ConvertKeywordsToCaseToDAL
+                                (new DTO.KeywordsToCase(correntCase.caseId, keyword.keywordId)));
                     }
                     db.SaveChanges();
-
-
                     return true;
                 }
             }
@@ -71,51 +66,6 @@ namespace BL
             {
                 Console.WriteLine(ex);
                 return (false);
-            }
-        }
-        //todo: check- diplicute function!!!!!!!!
-        public static bool AddCaseToKeywords(int helpCallId, DTO.Cases theChoosedCase)
-        {
-            List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
-            keywordsInThisSearch = readHelpCallTpXML(helpCallId);
-            try
-            {
-                //todo: read the keywords from the XML
-                DAL.KeywordsToCase ktc = null;
-                DAL.KeywordsToCase c = null;
-
-
-                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
-                {
-                    //todo: delete
-                    foreach (var keywordToCase in keywordsInThisSearch)
-                    {
-                        DAL.KeywordsToCase kwc = db.KeywordsToCases.FirstOrDefault(w => w.Keyword.keyWord1 == keywordToCase.keyWord1 && w.caseId == theChoosedCase.caseId);
-                        if (kwc != null)
-                        {
-                            //c = (DAL.KeywordsToCase)db.KeywordsToCases.Select(k => k.keywordId == ktc.keywordId && k.caseId == ktc.caseId);
-                            kwc.numOfUsingThisRelation++;
-                        }
-
-                        else
-                        {
-                            db.KeywordsToCases.Add(new DAL.KeywordsToCase
-                            {
-                                caseId = theChoosedCase.caseId,
-                                keywordId = keywordToCase.keywordId,
-                                numOfUsingThisRelation = 1
-
-                            });
-                        }
-                    }
-                    db.SaveChanges();
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return false;
             }
         }
 

@@ -59,13 +59,35 @@ namespace BL
             List<DTO.Cases> relatedCases = new List<DTO.Cases>();
             relatedCases = KeywordBL.GetRelatedCasesByKeywords(helpCallID, importantWords);
 
-            //todo: extra- to return the corrected list
             return relatedCases;
         }
 
-        public static object CaseChose(int helpCallID, Cases choosedCase)
+        public static List<DTO.ReturnedDoctorsToCase> CaseChose(int helpCallID, Cases choosedCase)
         {
-            throw new NotImplementedException();
+            try
+            {
+                KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
+                return DoctorBL.GetDoctorsToCase(choosedCase);
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
+
+        private static bool SaveSearchKeywordsToTheChoosedCase(int helpCallID, Cases choosedCase)
+        {
+            try
+            {
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+        }
+
     }
 }
