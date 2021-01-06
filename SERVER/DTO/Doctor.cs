@@ -17,5 +17,6 @@ namespace DTO
         public string mail { get; set; }
         public string certificateNumber { get; set; }
         public DateTime certificateValidity { get; set; }
+        public string pictureDiploma { get; set; }
     }
 }

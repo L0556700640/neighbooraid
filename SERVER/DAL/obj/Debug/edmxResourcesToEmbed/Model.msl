@@ -18,16 +18,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Contacts">
-      <EntityTypeMapping TypeName="neighboorAidDBModel.Contact">
-        <MappingFragment StoreEntitySet="Contacts">
-          <ScalarProperty Name="contactId" ColumnName="contactId" />
-          <ScalarProperty Name="patientId" ColumnName="patientId" />
-          <ScalarProperty Name="contactPhone" ColumnName="contactPhone" />
-          <ScalarProperty Name="contactName" ColumnName="contactName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Doctors">
       <EntityTypeMapping TypeName="neighboorAidDBModel.Doctor">
         <MappingFragment StoreEntitySet="Doctors">
@@ -70,24 +60,6 @@
           <ScalarProperty Name="caseId" ColumnName="caseId" />
           <ScalarProperty Name="keywordId" ColumnName="keywordId" />
           <ScalarProperty Name="numOfUsingThisRelation" ColumnName="numOfUsingThisRelation" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Patients">
-      <EntityTypeMapping TypeName="neighboorAidDBModel.Patient">
-        <MappingFragment StoreEntitySet="Patients">
-          <ScalarProperty Name="patientId" ColumnName="patientId" />
-          <ScalarProperty Name="patientPhone" ColumnName="patientPhone" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SearchWords">
-      <EntityTypeMapping TypeName="neighboorAidDBModel.SearchWord">
-        <MappingFragment StoreEntitySet="SearchWords">
-          <ScalarProperty Name="wordId" ColumnName="wordId" />
-          <ScalarProperty Name="word" ColumnName="word" />
-          <ScalarProperty Name="caseId" ColumnName="caseId" />
-          <ScalarProperty Name="numberSearchWord" ColumnName="numberSearchWord" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -23,6 +23,7 @@ namespace BL
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
+                    string diplomaDocumentPath = "//";//todo: send the file path and save in db
                     using (var binaryReader = new BinaryReader(file.InputStream))
                     {
                         newDoctor.pictureDiploma = binaryReader.ReadBytes(file.ContentLength);

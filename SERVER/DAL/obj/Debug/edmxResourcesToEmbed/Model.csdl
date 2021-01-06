@@ -88,7 +88,7 @@
       <PropertyRef Name="patientId" />
     </Key>
     <Property Name="patientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="patientPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="patientPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Contacts" Relationship="Self.FK__Contacts__patien__403A8C7D" FromRole="Patients" ToRole="Contacts" />
   </EntityType>
   <EntityType Name="SearchWord">
