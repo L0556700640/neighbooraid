@@ -72,6 +72,7 @@ namespace BL
         //todo: לצלם את הפונקציה הזו לספר פרוייקט
         public static List<Cases> GetRelatedCasesByKeywords(int helpCallID, List<string> words)
         {
+            //this function get the keywords and "understand" by last searchs which cases can be suitable to this help call
             //all the keywords saved: we want to know them and the case it related to
             // in order to use them in the next searchs.
             List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();

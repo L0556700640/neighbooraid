@@ -11,6 +11,11 @@ namespace BL
 {
     public class CasesBL
     {
+        public static bool AddCase(DTO.Cases newCase)
+        {
+            //todo: fill the function
+            return true;
+        }
         public static List<DTO.Cases> getAllCases()
         {
             try

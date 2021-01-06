@@ -35,5 +35,47 @@ namespace BL
                 return false;
             }
         }
+        public static bool SaveHelpCallInDB(DTO.HelpCall helpCall)
+        {
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //todo: delete the raw
+            helpCall = helpCall;
+            //todo: fill the function
+            return true;
+        }
+        public static DTO.HelpCall GetHelpCallByID(int helpCallID)
+        {
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //todo: delete the raw
+            helpCallID = helpCallID++;
+            //todo: fill the function
+            return new DTO.HelpCall();
+        }
+
+
     }
 }
