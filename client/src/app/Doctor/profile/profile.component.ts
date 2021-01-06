@@ -66,14 +66,14 @@ export class ProfileComponent implements OnInit {
     //   res => alert(res)
     // )
     const alert = await this.alertController.create({
-      //cssClass: 'my-custom-class',
+      cssClass: 'my-custom-class',
       header: 'Confirm!',
       message: 'Message <strong>text</strong>!!!',
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
-          // cssClass: 'secondary',
+          cssClass: 'secondary',
           handler: () => {
             console.log('Confirm Cancel: blah');
           }

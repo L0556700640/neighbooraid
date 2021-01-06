@@ -168,7 +168,8 @@
   </head>
 
   <body>
-    <div id="_2__5">
+    <div>
+     
       <svg class="Rectangle_71">
         <rect id="Rectangle_71" rx="0" ry="0" x="0" y="0" width="275" height="129">
         </rect>
@@ -320,7 +321,10 @@
           <p id="Rectangle_130">{{microphoneService.text}}</p>
         </ion-infinite-scroll>
       </ion-card>
-
+      <ion-item *ngFor="let case of allCases" id="form">
+        <ion-label>{{case.caseName}}</ion-label>
+        <ion-radio slot="start" value="case.caseId"></ion-radio>
+      </ion-item>
       <!-- <svg >       
         <rect >
         </rect>
