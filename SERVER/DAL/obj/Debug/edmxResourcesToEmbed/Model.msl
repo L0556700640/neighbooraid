@@ -63,13 +63,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="DoctorsFromContacts" TypeName="neighboorAidDBModel.DoctorsFromContacts" StoreEntitySet="DoctorsFromContacts">
-      <EndProperty Name="Contacts">
-        <ScalarProperty Name="contactId" ColumnName="contactId" />
-      </EndProperty>
-      <EndProperty Name="Doctors">
-        <ScalarProperty Name="doctorId" ColumnName="doctorId" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

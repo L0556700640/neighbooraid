@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{93F695FA-6479-4C8B-B667-D4E7ED902AD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLP", "NLP\NLP.csproj", "{C09B826B-3042-47D6-86B1-4242503F1033}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{93F695FA-6479-4C8B-B667-D4E7ED902AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93F695FA-6479-4C8B-B667-D4E7ED902AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93F695FA-6479-4C8B-B667-D4E7ED902AD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C09B826B-3042-47D6-86B1-4242503F1033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C09B826B-3042-47D6-86B1-4242503F1033}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C09B826B-3042-47D6-86B1-4242503F1033}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C09B826B-3042-47D6-86B1-4242503F1033}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

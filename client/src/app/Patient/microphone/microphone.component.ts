@@ -14,6 +14,7 @@ export class MicrophoneComponent implements OnInit {
   allCases: Cases[] = [];
   relatedCases: Cases[] = [];
   fullCasesList = true;
+  myHelpCallID;
 
   matches: String[];
   isRecording = false;
@@ -28,7 +29,7 @@ export class MicrophoneComponent implements OnInit {
     this.fullCasesList=true;
     }
   searchVoice() {
-    let helpCallID=1;
+    let helpCallID=this.myHelpCallID;
     let sentence=this.microphoneService.text;
     sentence=sentence.split('.').join('');
     this.casesService.GetRelatedCases(helpCallID, sentence).subscribe(res => { this.relatedCases = res; });
