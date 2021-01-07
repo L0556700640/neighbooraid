@@ -63,6 +63,7 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Files\Class1.cs" />
     <Compile Include="HelpCall.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -95,6 +96,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>

@@ -69,7 +69,6 @@ namespace BL
             }
         }
 
-        //todo: לצלם את הפונקציה הזו לספר פרוייקט
         public static List<Cases> GetRelatedCasesByKeywords(int helpCallID, List<string> words)
         {
             //this function get the keywords and "understand" by last searchs which cases can be suitable to this help call
@@ -159,6 +158,8 @@ namespace BL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
+
                 return false;
             }
         }
@@ -188,6 +189,7 @@ namespace BL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
         }

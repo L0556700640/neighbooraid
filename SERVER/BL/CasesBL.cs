@@ -76,6 +76,7 @@ namespace BL
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
         }

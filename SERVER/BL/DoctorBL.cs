@@ -23,7 +23,7 @@ namespace BL
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
-                    string diplomaDocumentPath = "//";//todo: send the file path and save in db
+                    //string diplomaDocumentPath = "//";//todo: send the file path and save in db
                     using (var binaryReader = new BinaryReader(file.InputStream))
                     {
                         newDoctor.pictureDiploma = binaryReader.ReadBytes(file.ContentLength);
@@ -188,6 +188,7 @@ namespace BL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
         }
@@ -258,6 +259,7 @@ namespace BL
             msg.Subject = "אישור רופא";
             var base64 = Convert.ToBase64String(doctor.pictureDiploma);
             msg.Body = string.Format(
+            #region htmlMessageBody
                 //todo: to put the string in html file and read it with IOStream as string.
                 @"
 <div dir=' ltr'>
@@ -341,6 +343,7 @@ namespace BL
                        doctor.lastName,
                        doctor.doctorPhone,
                        doctor.address
+#endregion
                        );
             msg.IsBodyHtml = true;
             //todo: delete;

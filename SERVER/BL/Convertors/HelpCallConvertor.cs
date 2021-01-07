@@ -15,7 +15,6 @@ namespace BL.Convertors
                 addressX = helpCall.addressX,
                 addressY = helpCall.addressY,
                 callId = helpCall.callId,
-                caseId = helpCall.caseId,
                 date = helpCall.date,
                 doctorId = helpCall.doctorId
             };
@@ -27,7 +26,6 @@ namespace BL.Convertors
                 addressX = helpCall.addressX,
                 addressY = helpCall.addressY,
                 callId = helpCall.callId,
-                caseId = helpCall.caseId,
                 date = helpCall.date,
                 doctorId = helpCall.doctorId
             };

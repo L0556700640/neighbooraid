@@ -71,7 +71,6 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\HtmlAgilityPack.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\NLP.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\RestSharp.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\System.Threading.Tasks.Extensions.dll
@@ -79,7 +78,6 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\DAL.dll.config
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\DTO.pdb
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\DTO.dll.config
-C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\NLP.pdb
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\EntityFramework.xml
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\Google.Api.Gax.pdb

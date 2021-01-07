@@ -32,6 +32,7 @@ namespace BL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
         }
@@ -51,7 +52,7 @@ namespace BL
 
 
             //todo: delete the raw
-            helpCall = helpCall;
+          //  helpCall = helpCall;
             //todo: fill the function
             return true;
         }

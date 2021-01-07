@@ -31,23 +31,25 @@ namespace API.Controllers
 
         [Route("ConfirmDoctor/{doctorId}/{isConfirmed}")]
         [HttpGet]
-        public IHttpActionResult ConfirmDoctor(int doctorId, bool isConfirmed)//todo להצפין קוד רופא
+        public IHttpActionResult ConfirmDoctor(int doctorId, bool isConfirmed)
         {
+            //todo להצפין קוד רופא
             BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
             return Ok("הפעולה בוצעה בהצלחה");
         }
 
         [Route("CheckUser")]
         [HttpPost]
-        public IHttpActionResult CheckDoctor()//todo להצפין קוד רופא
+        public IHttpActionResult CheckDoctor()
         {
+            //todo להצפין קוד רופא
             string doctorName = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["firstName"]);
             string doctorId = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["id"]);
 
             //BL.DoctorBL.CheckUser(doctorName, doctorId);
             return Ok(BL.DoctorBL.CheckUser(doctorName, doctorId));
         }
-
+        /*
         [Route("User/{doctorId}")]
         [HttpGet]
         public IHttpActionResult User(string doctorId)//todo להצפין קוד רופא
@@ -57,7 +59,7 @@ namespace API.Controllers
             // BL.DoctorBL.CheckUser(doctorName, doctorId);
             return Ok(BL.DoctorBL.User(doctorId));
         }
-
+        */
         [Route("casesToDoctor/{doctorId}")]
         [HttpGet]
         public IHttpActionResult casesToDoctor(string doctorId)
@@ -78,10 +80,12 @@ namespace API.Controllers
 
         [Route("getDoctorToCases/{selectedCase}")]
         [HttpGet]
-        public IHttpActionResult GetDoctorToCases(DTO.Cases selectedCase)//todo להצפין קוד רופא
+        public IHttpActionResult GetDoctorToCases(DTO.Cases selectedCase)
         {
+            //todo להצפין קוד רופא
             return Ok(BL.DoctorBL.GetDoctorsToCase(selectedCase));
         }
+
     }
 
 }

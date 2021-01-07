@@ -115,7 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagramBL.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -127,14 +127,12 @@
       <Project>{6cbdf019-c364-43cd-aff9-fa913dd13de7}</Project>
       <Name>DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NLP\NLP.csproj">
-      <Project>{c09b826b-3042-47d6-86b1-4242503f1033}</Project>
-      <Name>NLP</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="HelpCallXMLS\CorrentHelpCall.xml" />
-    <Content Include="HtmlMail\MailToConfirmDoctor.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HtmlMail\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
