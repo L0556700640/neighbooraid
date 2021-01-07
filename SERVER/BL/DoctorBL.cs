@@ -73,7 +73,7 @@ namespace BL
                 dd = (from d in db.Doctors
                       where d.doctorId.Equals(id) && d.firstName.Equals(firstName) && d.isConfirmed == true
                       select d).ToList();
-                // db.SaveChanges();
+            
             }
             if (dd.Count > 0)
                 return true;

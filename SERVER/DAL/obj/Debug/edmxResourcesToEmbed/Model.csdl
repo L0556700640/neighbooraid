@@ -9,7 +9,6 @@
     <NavigationProperty Name="CasesToDoctors" Relationship="Self.FK__CasesToDo__caseI__7B5B524B" FromRole="Cases" ToRole="CasesToDoctor" />
     <NavigationProperty Name="HelpCalls" Relationship="Self.FK__HelpCalls__caseI__4316F928" FromRole="Cases" ToRole="HelpCalls" />
     <NavigationProperty Name="KeywordsToCases" Relationship="Self.FK__KeywordsT__caseI__44FF419A" FromRole="Cases" ToRole="KeywordsToCase" />
-    <NavigationProperty Name="SearchWords" Relationship="Self.FK__SearchWor__caseI__46E78A0C" FromRole="Cases" ToRole="SearchWords" />
   </EntityType>
   <EntityType Name="CasesToDoctor">
     <Key>
@@ -21,17 +20,6 @@
     <Property Name="satisfaction" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Case" Relationship="Self.FK__CasesToDo__caseI__7B5B524B" FromRole="CasesToDoctor" ToRole="Cases" />
     <NavigationProperty Name="Doctor" Relationship="Self.FK__CasesToDo__docto__7C4F7684" FromRole="CasesToDoctor" ToRole="Doctors" />
-  </EntityType>
-  <EntityType Name="Contact">
-    <Key>
-      <PropertyRef Name="contactId" />
-    </Key>
-    <Property Name="contactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="patientId" Type="Int32" Nullable="false" />
-    <Property Name="contactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="contactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Patient" Relationship="Self.FK__Contacts__patien__403A8C7D" FromRole="Contacts" ToRole="Patients" />
-    <NavigationProperty Name="Doctors" Relationship="Self.DoctorsFromContacts" FromRole="Contacts" ToRole="Doctors" />
   </EntityType>
   <EntityType Name="Doctor">
     <Key>
@@ -49,7 +37,6 @@
     <Property Name="certificateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CasesToDoctors" Relationship="Self.FK__CasesToDo__docto__7C4F7684" FromRole="Doctors" ToRole="CasesToDoctor" />
     <NavigationProperty Name="HelpCalls" Relationship="Self.FK__HelpCalls__docto__7E37BEF6" FromRole="Doctors" ToRole="HelpCalls" />
-    <NavigationProperty Name="Contacts" Relationship="Self.DoctorsFromContacts" FromRole="Doctors" ToRole="Contacts" />
   </EntityType>
   <EntityType Name="HelpCall">
     <Key>
@@ -82,24 +69,6 @@
     <Property Name="numOfUsingThisRelation" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Case" Relationship="Self.FK__KeywordsT__caseI__44FF419A" FromRole="KeywordsToCase" ToRole="Cases" />
     <NavigationProperty Name="Keyword" Relationship="Self.FK__KeywordsT__keywo__49C3F6B7" FromRole="KeywordsToCase" ToRole="Keywords" />
-  </EntityType>
-  <EntityType Name="Patient">
-    <Key>
-      <PropertyRef Name="patientId" />
-    </Key>
-    <Property Name="patientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="patientPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Contacts" Relationship="Self.FK__Contacts__patien__403A8C7D" FromRole="Patients" ToRole="Contacts" />
-  </EntityType>
-  <EntityType Name="SearchWord">
-    <Key>
-      <PropertyRef Name="wordId" />
-    </Key>
-    <Property Name="wordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="word" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="caseId" Type="Int32" Nullable="false" />
-    <Property Name="numberSearchWord" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Case" Relationship="Self.FK__SearchWor__caseI__46E78A0C" FromRole="SearchWords" ToRole="Cases" />
   </EntityType>
   <Association Name="FK__CasesToDo__caseI__7B5B524B">
     <End Role="Cases" Type="Self.Case" Multiplicity="1" />
@@ -137,18 +106,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SearchWor__caseI__46E78A0C">
-    <End Role="Cases" Type="Self.Case" Multiplicity="1" />
-    <End Role="SearchWords" Type="Self.SearchWord" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cases">
-        <PropertyRef Name="caseId" />
-      </Principal>
-      <Dependent Role="SearchWords">
-        <PropertyRef Name="caseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__CasesToDo__docto__7C4F7684">
     <End Role="Doctors" Type="Self.Doctor" Multiplicity="1" />
     <End Role="CasesToDoctor" Type="Self.CasesToDoctor" Multiplicity="*" />
@@ -158,18 +115,6 @@
       </Principal>
       <Dependent Role="CasesToDoctor">
         <PropertyRef Name="doctorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Contacts__patien__403A8C7D">
-    <End Role="Patients" Type="Self.Patient" Multiplicity="1" />
-    <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Patients">
-        <PropertyRef Name="patientId" />
-      </Principal>
-      <Dependent Role="Contacts">
-        <PropertyRef Name="patientId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -197,20 +142,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="DoctorsFromContacts">
-    <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
-    <End Role="Doctors" Type="Self.Doctor" Multiplicity="*" />
-  </Association>
   <EntityContainer Name="neighboorAidDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cases" EntityType="Self.Case" />
     <EntitySet Name="CasesToDoctors" EntityType="Self.CasesToDoctor" />
-    <EntitySet Name="Contacts" EntityType="Self.Contact" />
     <EntitySet Name="Doctors" EntityType="Self.Doctor" />
     <EntitySet Name="HelpCalls" EntityType="Self.HelpCall" />
     <EntitySet Name="Keywords" EntityType="Self.Keyword" />
     <EntitySet Name="KeywordsToCases" EntityType="Self.KeywordsToCase" />
-    <EntitySet Name="Patients" EntityType="Self.Patient" />
-    <EntitySet Name="SearchWords" EntityType="Self.SearchWord" />
     <AssociationSet Name="FK__CasesToDo__caseI__7B5B524B" Association="Self.FK__CasesToDo__caseI__7B5B524B">
       <End Role="Cases" EntitySet="Cases" />
       <End Role="CasesToDoctor" EntitySet="CasesToDoctors" />
@@ -223,17 +161,9 @@
       <End Role="Cases" EntitySet="Cases" />
       <End Role="KeywordsToCase" EntitySet="KeywordsToCases" />
     </AssociationSet>
-    <AssociationSet Name="FK__SearchWor__caseI__46E78A0C" Association="Self.FK__SearchWor__caseI__46E78A0C">
-      <End Role="Cases" EntitySet="Cases" />
-      <End Role="SearchWords" EntitySet="SearchWords" />
-    </AssociationSet>
     <AssociationSet Name="FK__CasesToDo__docto__7C4F7684" Association="Self.FK__CasesToDo__docto__7C4F7684">
       <End Role="Doctors" EntitySet="Doctors" />
       <End Role="CasesToDoctor" EntitySet="CasesToDoctors" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Contacts__patien__403A8C7D" Association="Self.FK__Contacts__patien__403A8C7D">
-      <End Role="Patients" EntitySet="Patients" />
-      <End Role="Contacts" EntitySet="Contacts" />
     </AssociationSet>
     <AssociationSet Name="FK__HelpCalls__docto__7E37BEF6" Association="Self.FK__HelpCalls__docto__7E37BEF6">
       <End Role="Doctors" EntitySet="Doctors" />
@@ -242,10 +172,6 @@
     <AssociationSet Name="FK__KeywordsT__keywo__49C3F6B7" Association="Self.FK__KeywordsT__keywo__49C3F6B7">
       <End Role="Keywords" EntitySet="Keywords" />
       <End Role="KeywordsToCase" EntitySet="KeywordsToCases" />
-    </AssociationSet>
-    <AssociationSet Name="DoctorsFromContacts" Association="Self.DoctorsFromContacts">
-      <End Role="Contacts" EntitySet="Contacts" />
-      <End Role="Doctors" EntitySet="Doctors" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

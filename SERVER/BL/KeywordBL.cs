@@ -137,7 +137,8 @@ namespace BL
         {
             try
             {
-                string xmlFileFullPath = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                string xmlFileFullPath = "C:\\Users\\hadar\\Desktop\\למידה מרחוק\\פרויקט\\neighbooraid\\SERVER\\API\\card.json";
+                //string xmlFileFullPath = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
                 XElement newHelpCall = new XElement("helpCall");

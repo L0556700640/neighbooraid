@@ -17,7 +17,7 @@ export class GpsComponent implements OnInit {
         console.log(position)
         // this.currLat = position.coords.latitude;
         // this.currLng = position.coords.longitude;
-
+        
 
       });
     }

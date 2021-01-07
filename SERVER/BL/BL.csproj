@@ -107,8 +107,6 @@
     <Compile Include="Convertors\HelpCallConvertor.cs" />
     <Compile Include="Convertors\KeywordConvertors.cs" />
     <Compile Include="Convertors\KeywordToCaseConvertor.cs" />
-    <Compile Include="Convertors\PatientConvertor.cs" />
-    <Compile Include="Convertors\SearchWordConvertor.cs" />
     <Compile Include="DoctorBL.cs" />
     <Compile Include="HelpCallBL.cs" />
     <Compile Include="KeywordBL.cs" />
