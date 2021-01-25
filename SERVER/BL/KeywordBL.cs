@@ -129,7 +129,7 @@ namespace BL
             return relatedCases
                 .OrderBy(someCase => someCase.sumOfNumOfUsingThisSearch)
                 .Select(someCase => someCase.relatedCase)
-                .ToList(); ;
+                .ToList(); 
         }
 
         public static bool writeHelpCallTpXML(int helpCallID, List<DTO.Keyword> keywordsList)
