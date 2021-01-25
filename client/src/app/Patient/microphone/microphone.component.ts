@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cases } from 'src/app/shared/models/cases.model';
 import { CasesService } from 'src/app/shared/services/cases.service';
 import { VoiceRecognitionService } from 'src/app/shared/services/voice-recognition.service';
@@ -14,22 +15,44 @@ export class MicrophoneComponent implements OnInit {
   allCases: Cases[] = [];
   relatedCases: Cases[] = [];
   fullCasesList = true;
-  myHelpCallID;
+  isChoose: boolean[] = [];
+  len = 0;
+  i = 0;
+  splitedCases: [Cases[]] = [[]]
+  casesToDoctor: Cases[] = []
+
 
   matches: String[];
   isRecording = false;
-  constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService) { 
+  constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router) { 
     this.showFullCasesList();
     this.microphoneService.init() 
   }
 
   ngOnInit() {}
   showFullCasesList() {
-    this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
+    this.casesService.getAllCases().subscribe(
+      res => { 
+      this.allCases = res; 
+      let i = 0;
+      for (; i < res.length - 2; i += 3) {
+        this.splitedCases.push([res[i], res[i + 1], res[i + 2]]);
+        this.isChoose.push(false)
+      }
+      if (i < this.allCases.length) {
+        this.splitedCases.push([]);
+        for (; i < res.length; i++) {
+          this.splitedCases[this.splitedCases.length - 1].push(this.allCases[i]);
+        }
+        console.log(this.splitedCases)
+
+
+      }
+    });
     this.fullCasesList=true;
     }
   searchVoice() {
-    let helpCallID=this.myHelpCallID;
+    let helpCallID=1;
     let sentence=this.microphoneService.text;
     sentence=sentence.split('.').join('');
     this.casesService.GetRelatedCases(helpCallID, sentence).subscribe(res => { this.relatedCases = res; });
@@ -51,5 +74,11 @@ export class MicrophoneComponent implements OnInit {
   }
   getTheProfessionalDoctors(){
     
+  }
+
+  clickCases(i) 
+  {
+    this.casesService.setCurrentCase(this.allCases[i])
+    this.router.navigateByUrl('contacts')
   }
 }

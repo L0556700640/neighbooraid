@@ -170,10 +170,10 @@
   <body>
     <div>
      
-      <svg class="Rectangle_71">
+      <!-- <svg class="Rectangle_71">
         <rect id="Rectangle_71" rx="0" ry="0" x="0" y="0" width="275" height="129">
         </rect>
-      </svg>
+      </svg> -->
       <svg class="Ellipse_7">
         <ellipse id="Ellipse_7" rx="68" ry="68" cx="68" cy="68">
         </ellipse>
@@ -316,15 +316,16 @@
         <path id="Line_35" d="M 114 0 L 0 0">
         </path>
       </svg>
-      <ion-card class="Rectangle_130">
-        <ion-infinite-scroll>
-          <p id="Rectangle_130">{{microphoneService.text}}</p>
-        </ion-infinite-scroll>
+      <ion-card  class="Rectangle_130 scrollbar scrollbar-primary">
+          <p   id="Rectangle_130">{{microphoneService.text}}</p>
       </ion-card>
-      <ion-item *ngFor="let case of allCases" id="form">
-        <ion-label>{{case.caseName}}</ion-label>
-        <ion-radio slot="start" value="case.caseId"></ion-radio>
-      </ion-item>
+      <ion-list id="form">
+         <ion-item *ngFor="let case of allCases,let i=index" >
+        <ion-label (click)="clickCases(i)">{{case.caseName}}</ion-label>
+        <ion-radio slot="start" value="case.caseId" hidden ></ion-radio>
+         </ion-item>
+      </ion-list>
+     
       <!-- <svg >       
         <rect >
         </rect>
