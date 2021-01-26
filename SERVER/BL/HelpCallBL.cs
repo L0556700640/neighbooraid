@@ -40,17 +40,24 @@ namespace BL
         public static bool SaveHelpCallInDB(DTO.HelpCall helpCall)
         {
 
-
-
-
-
-
-
-
-
-
-
-
+            try
+            {
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                {
+                    DAL.HelpCall newhelpcall = Convertors.HelpCallConvertor.ConvertHelpCallToDAL(helpCall);
+                    //string diplomaDocumentPath = "//";//todo: send the file path and save in db
+                  
+                    db.HelpCalls.Add(newhelpcall);
+                    db.SaveChanges();
+                  
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
 
             //todo: delete the raw
             //  helpCall = helpCall;
