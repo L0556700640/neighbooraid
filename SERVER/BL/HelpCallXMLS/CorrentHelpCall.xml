@@ -54,4 +54,47 @@
       <keyword id="0">swollen</keyword>
     </keywords>
   </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword id="0">undefined</keyword>
+      <keyword id="0">fall</keyword>
+      <keyword id="0">come</keyword>
+      <keyword id="0">receive</keyword>
+      <keyword id="0">take</keyword>
+      <keyword id="0">make</keyword>
+      <keyword id="0">hold</keyword>
+      <keyword id="0">give</keyword>
+      <keyword id="0">strong</keyword>
+      <keyword id="0">weak</keyword>
+      <keyword id="0">blow</keyword>
+      <keyword id="0">examiner</keyword>
+      <keyword id="0">hand</keyword>
+      <keyword id="0">hemorrhagic</keyword>
+      <keyword id="0">popsicle</keyword>
+      <keyword id="0">break</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword id="0">boy</keyword>
+      <keyword id="0">fall</keyword>
+      <keyword id="0">pour</keyword>
+      <keyword id="0">boil</keyword>
+      <keyword id="0">water</keyword>
+      <keyword id="0">similar</keyword>
+      <keyword id="0">burn</keyword>
+      <keyword id="0">tomorrow</keyword>
+      <keyword id="0">season</keyword>
+      <keyword id="0">series</keyword>
+      <keyword id="0">time</keyword>
+      <keyword id="0">hot</keyword>
+      <keyword id="0">warm</keyword>
+      <keyword id="0">red</keyword>
+      <keyword id="0">yellow</keyword>
+      <keyword id="0">white</keyword>
+      <keyword id="0">green</keyword>
+      <keyword id="0">black</keyword>
+      <keyword id="0">blue</keyword>
+    </keywords>
+  </helpCall>
 </helpCalls>
