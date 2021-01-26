@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import { Observable } from 'rxjs';
+import { HelpCall } from '../models/helpCall.model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -7,5 +10,13 @@ import {HttpClient} from '@angular/common/http'
 })
 export class HelpCallService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
+  AddHelpCall(helpcall:HelpCall): Observable<boolean> {
+    const data = new FormData();
+    console.log(helpcall)
+    data.append('helpcall', JSON.stringify(helpcall)); 
+
+    return this.http.post<boolean>(environment.url + 'Doctor/AddHelpCall', data)
+  }
 }

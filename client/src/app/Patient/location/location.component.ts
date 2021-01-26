@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CasesService } from 'src/app/shared/services/cases.service';
 
 @Component({
   selector: 'app-location',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location.component.scss'],
 })
 export class LocationComponent implements OnInit {
+  case;
+  constructor(private casesService:CasesService) { }
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.case=this.casesService.CurrnetCase
+  }
 }

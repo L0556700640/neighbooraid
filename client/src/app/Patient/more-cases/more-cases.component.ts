@@ -55,6 +55,7 @@ export class MoreCasesComponent implements OnInit {
   {
     i--;
     this.casesService.setCurrentCase(this.allCases[i * 3 + j])
+    
     this.router.navigateByUrl('contacts')
   }
     

@@ -17,39 +17,41 @@ export class ProfileComponent implements OnInit {
   user: DoctorDetails = new DoctorDetails()
   casesToDoctor: CasesToDoctor[];
   cases: Cases[];
-  nameCases:string[]=[];
-  constructor(private loginService: LoginService, private router: Router, private doctorService: DoctorService, private casesService: CasesService, private alertController: AlertController) { }
-
-  ngOnInit() {
-
+  nameCases: string[] = [];
+  constructor(private loginService: LoginService, private router: Router, private doctorService: DoctorService, private casesService: CasesService, private alertController: AlertController) {
     this.doctorService.getCurrentDoctor(this.loginService.CurrnetUser).subscribe(
       res => this.user.Doctor = res
     )
-
     this.doctorService.getCurrentCasesToDoctor(this.loginService.CurrnetUser).subscribe(
 
-      res => {this.casesToDoctor = res; }
+      res => { this.casesToDoctor = res; }
 
     )
     this.casesService.getAllCases().subscribe(
-      res=>
+      res => 
       {
-        
-        this.cases=res;
+        this.cases = res;
         this.casesToDoctor.forEach(ctd => 
         {
-          this.cases.forEach(c => 
+          this.cases.forEach(c =>
           {
-            if(ctd.caseId==c.caseId)
+            if (ctd.caseId == c.caseId) 
             {
               this.nameCases.push(c.caseName)
-              let s=ctd.satisfaction.toString()+"%"
-              document.getElementById(c.caseId.toString()).style.width=s
+              let s = ctd.satisfaction.toString() + "%"
+              document.getElementById(c.caseId.toString()).style.width = s
             }
           });
         });
-      }
-    )
+      })
+  }
+
+  ngOnInit() {
+
+
+
+
+
 
 
     // console.log(this.user)

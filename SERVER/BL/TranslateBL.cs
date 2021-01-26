@@ -9,7 +9,6 @@ using Google.Cloud.Translation.V2;
 using Newtonsoft.Json; // Install Newtonsoft.Json with NuGet
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using TextRazor.Net;
 
 namespace BL
 {

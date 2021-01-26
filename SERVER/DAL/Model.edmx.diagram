@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="neighboorAidDBModel.CasesToDoctor" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="neighboorAidDBModel.Doctor" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="neighboorAidDBModel.HelpCall" Width="1.5" PointX="5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="neighboorAidDBModel.Keyword" Width="1.5" PointX="4.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="neighboorAidDBModel.Keyword" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="neighboorAidDBModel.KeywordsToCase" Width="1.5" PointX="2.875" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="neighboorAidDBModel.FK__CasesToDo__caseI__7B5B524B" ManuallyRouted="false" />
         <AssociationConnector Association="neighboorAidDBModel.FK__HelpCalls__caseI__01142BA1" ManuallyRouted="false" />

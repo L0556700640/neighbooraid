@@ -43,6 +43,11 @@ export class DoctorService {
 
   }
 
+  GetDoctorsToCase(c: Cases): Observable<Doctor[]> {
+    return this.http.get<Doctor[]>(environment.url + 'Doctor/DoctorsToCase/' + c)
+
+  }
+
   delete(id: string): Observable<boolean> {
     const data = new FormData();
     data.append('id', JSON.stringify(id));

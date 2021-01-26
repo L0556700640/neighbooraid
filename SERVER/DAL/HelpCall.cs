@@ -15,7 +15,7 @@ namespace DAL
     public partial class HelpCall
     {
         public int callId { get; set; }
-        public Nullable<int> caseId { get; set; }
+        public int caseId { get; set; }
         public string doctorId { get; set; }
         public double addressX { get; set; }
         public double addressY { get; set; }
