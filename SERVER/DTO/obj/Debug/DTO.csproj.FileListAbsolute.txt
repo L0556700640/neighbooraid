@@ -21,3 +21,4 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\DTO\obj\Debug\DTO.csproj.CopyComplete
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\DTO\obj\Debug\DTO.dll
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\DTO\obj\Debug\DTO.pdb
+C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
