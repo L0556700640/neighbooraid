@@ -9,7 +9,6 @@ using Google.Cloud.Translation.V2;
 using Newtonsoft.Json; // Install Newtonsoft.Json with NuGet
 using Newtonsoft.Json.Linq;
 using RestSharp;
-//using TextRazor.Net;
 
 namespace BL
 {
@@ -26,8 +25,8 @@ namespace BL
         //public static void translateByMicrosoft(string sentenceToTranslate)
         {
 
-            //string path = "C:\\Users\\hadar\\Desktop\\למידה מרחוק\\פרויקט\\neighbooraid\\SERVER\\API\\card.json";
-            string path = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\API\\card.json";
+            string path = "C:\\Users\\hadar\\Desktop\\למידה מרחוק\\פרויקט\\neighbooraid\\SERVER\\API\\card.json";
+            //string path = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\API\\card.json";
 
 
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);

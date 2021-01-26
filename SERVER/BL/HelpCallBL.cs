@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,10 +39,29 @@ namespace BL
         }
         public static bool SaveHelpCallInDB(DTO.HelpCall helpCall)
         {
+
+            try
+            {
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                {
+                    DAL.HelpCall newhelpcall = Convertors.HelpCallConvertor.ConvertHelpCallToDAL(helpCall);
+                    //string diplomaDocumentPath = "//";//todo: send the file path and save in db
+                  
+                    db.HelpCalls.Add(newhelpcall);
+                    db.SaveChanges();
+                  
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+
             //todo: delete the raw
-          //  helpCall = helpCall;
+            //  helpCall = helpCall;
             //todo: fill the function
-            return true;
         }
         public static DTO.HelpCall GetHelpCallByID(int helpCallID)
         {

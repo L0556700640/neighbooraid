@@ -73,7 +73,7 @@ namespace BL
                 dd = (from d in db.Doctors
                       where d.doctorId.Equals(id) && d.firstName.Equals(firstName) && d.isConfirmed == true
                       select d).ToList();
-            
+
             }
             if (dd.Count > 0)
                 return true;
@@ -159,8 +159,8 @@ namespace BL
                     doctorsOfCorrentCaseFromDB =
                         db.Cases.FirstOrDefault(c => c.caseId == correntCase.caseId)
                         .CasesToDoctors
-                        .Where(c=>c.Doctor.isConfirmed==true
-                        && c.satisfaction>= satisfactorySatisfaction)
+                        .Where(c => c.Doctor.isConfirmed == true
+                        && c.satisfaction >= satisfactorySatisfaction)
                         .Select(c => c.Doctor)
                         .ToList();
                 }
@@ -180,7 +180,7 @@ namespace BL
                 }
                 string doctorPoint = "";
                 string helpCallPoint = "";
-                int a = DistanceFromPatientAndDoctorInMinutes(helpCallPoint,doctorPoint);
+                int a = DistanceFromPatientAndDoctorInMinutes(helpCallPoint, doctorPoint);
 
 
 
@@ -239,7 +239,7 @@ namespace BL
         }
         public static bool AddStatisficationRateToDoctorByCase(int helpCallID)
         {
-          //todo: fill the function
+            //todo: fill the function
             return true;
         }
         public static void SendMailToConfirmDoctor(DAL.Doctor doctor)
@@ -343,7 +343,7 @@ namespace BL
                        doctor.lastName,
                        doctor.doctorPhone,
                        doctor.address
-#endregion
+            #endregion
                        );
             msg.IsBodyHtml = true;
             //todo: delete;
@@ -358,6 +358,37 @@ namespace BL
         public static void CallToTheDoctor(int doctorId)
         {
             //todo: endTheFunc
+        }
+
+        public static List<DTO.Doctor> DoctorsToCase(DTO.Cases correntCase)
+        {
+            //this function get the doctors to the corrent case from the db:
+            //it find the doctors who note that them specializes in this case,
+            //check that them confirm, and that the patient who get from them help
+            //in the past, doesn't report that the treatment was bad
+            List<DTO.Doctor> doctorsToCorrentCase = new List<DTO.Doctor>();
+            List<DAL.Doctor> doctorsOfCorrentCaseFromDB = new List<DAL.Doctor>();
+            int satisfactorySatisfaction = 50;
+            try
+            {
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                {
+                    doctorsOfCorrentCaseFromDB =
+                        db.Cases.FirstOrDefault(c => c.caseId == correntCase.caseId)
+                        .CasesToDoctors
+                        .Where(c => c.Doctor.isConfirmed == true
+                        && c.satisfaction >= satisfactorySatisfaction)
+                        .Select(c => c.Doctor)
+                        .ToList();
+                }
+                foreach (var doctor in doctorsOfCorrentCaseFromDB)
+                {
+                    doctorsToCorrentCase.Add(
+                        Convertors.DoctorConvertor.ConvertDoctorToDTO(doctor));
+                }
+            }
+            catch { }
+            return doctorsToCorrentCase;
         }
     }
 }

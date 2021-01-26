@@ -1,7 +1,8 @@
 <ion-content [fullscreen]="true" class="background">
 
   <script type="text/javascript"
-    src="https://maps.googleapis.commaps/api/js?key=AIzaSyD7Wui1ikC-x4CMLYBpPz-8Yutf2l3glNo&sensor=true&libraries=places,geometry,drawing&sensor=true&language=he"></script>
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0&callback=initMap&libraries=&v=weekly"
+  ></script>
 
   <head>
     <meta charset="utf-8" />
@@ -24,7 +25,7 @@
         style="font-style:normal;font-weight:bold;font-size:16px;">GPS </span><span
         style="font-style:normal;font-weight:normal;font-size:16px;">מבקשת להפעיל<br />על מנת לאתר את מיקומך</span>
     </div>
-    <button (click)="getCurrentLocation()"  routerLinkActive="activelink"><svg class="Rectangle_3">
+    <button (click)="getCurrentLocation()"  id="map" routerLinkActive="activelink"><svg class="Rectangle_3">
         <rect id="Rectangle_3" rx="15" ry="15" x="0" y="0" width="111" height="30">
         </rect>
       </svg>
@@ -83,5 +84,6 @@
         </svg>
       </div>
     </div>
+    
   </body>
 </ion-content>

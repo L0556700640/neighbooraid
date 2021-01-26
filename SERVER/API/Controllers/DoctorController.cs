@@ -49,7 +49,7 @@ namespace API.Controllers
             //BL.DoctorBL.CheckUser(doctorName, doctorId);
             return Ok(BL.DoctorBL.CheckUser(doctorName, doctorId));
         }
-        /*
+
         [Route("User/{doctorId}")]
         [HttpGet]
         public IHttpActionResult User(string doctorId)//todo להצפין קוד רופא
@@ -59,7 +59,7 @@ namespace API.Controllers
             // BL.DoctorBL.CheckUser(doctorName, doctorId);
             return Ok(BL.DoctorBL.User(doctorId));
         }
-        */
+
         [Route("casesToDoctor/{doctorId}")]
         [HttpGet]
         public IHttpActionResult casesToDoctor(string doctorId)
@@ -85,6 +85,26 @@ namespace API.Controllers
             //todo להצפין קוד רופא
             return Ok(BL.DoctorBL.GetDoctorsToCase(selectedCase));
         }
+
+        [Route("DoctorToCases/{selectedCase}")]
+        [HttpGet]
+        public IHttpActionResult DoctorToCases(DTO.Cases selectedCase)
+        {
+            //todo להצפין קוד רופא
+            return Ok(BL.DoctorBL.DoctorsToCase(selectedCase));
+        }
+
+        [Route("AddHelpCall")]
+        [HttpPost]
+        public IHttpActionResult AddHelpCall()
+        {
+            //HttpPostedFile file = HttpContext.Current.Request.Files[0];
+            //JavaScriptSerializer serializer = new JavaScriptSerializer();
+            // var c = HttpContext.Current.Request["helpcall"];
+            DTO.HelpCall helpcall = JsonConvert.DeserializeObject<DTO.HelpCall>(HttpContext.Current.Request["helpcall"]);
+            return Ok(BL.HelpCallBL.SaveHelpCallInDB(helpcall));
+        }
+
 
     }
 
