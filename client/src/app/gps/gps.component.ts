@@ -33,9 +33,15 @@ var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
         this.hc.date=new Date(Date.now())
         this.hc.addressX=pos.lat;
-        this.hc.addressY=pos.lng
-        this.helpCallService.AddHelpCall(this.hc)
+        this.hc.addressY=pos.lng;
+       
+      this.helpCallService.AddHelpCall(this.hc).subscribe(res=>{
+console.log(res);
       });
+    
+    }
+      
+      );
     }
     else {
       alert("Geolocation is not supported by this browser.");

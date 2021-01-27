@@ -129,15 +129,15 @@ namespace BL
             return relatedCases
                 .OrderBy(someCase => someCase.sumOfNumOfUsingThisSearch)
                 .Select(someCase => someCase.relatedCase)
-                .ToList(); 
+                .ToList();
         }
 
         public static bool writeHelpCallTpXML(int helpCallID, List<DTO.Keyword> keywordsList)
         {
             try
             {
-                //string xmlFileFullPath = "C:\\Users\\hadar\\Desktop\\למידה מרחוק\\פרויקט\\neighbooraid\\SERVER\\API\\card.json";
-                string xmlFileFullPath = "C:\\Users\\Owner\\Documents\\לימודים מחשבים אופקים\\PROJECT\\fullProject\\neighbooraid\\SERVER\\BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                //  string xmlFileFullPath = DTO.StartPoint.HadarHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                string xmlFileFullPath = DTO.StartPoint.Liraz + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
                 XElement newHelpCall = new XElement("helpCall");

@@ -22,7 +22,9 @@ namespace API.Controllers
             HttpPostedFile file = HttpContext.Current.Request.Files[0];
             //JavaScriptSerializer serializer = new JavaScriptSerializer();
             var c = HttpContext.Current.Request["doctor"];
-            DTO.DoctorsDetailsDTO doctor = JsonConvert.DeserializeObject<DTO.DoctorsDetailsDTO>(HttpContext.Current.Request["doctor"]);
+            DTO.DoctorsDetailsDTO doctor =
+                JsonConvert.DeserializeObject<DTO.DoctorsDetailsDTO>
+                (HttpContext.Current.Request["doctor"]);
 
 
             string doctorId = BL.DoctorBL.AddDoctor(doctor, file);
@@ -30,8 +32,8 @@ namespace API.Controllers
         }
 
         [Route("ConfirmDoctor/{doctorId}/{isConfirmed}")]
-        [HttpGet]
-        public IHttpActionResult ConfirmDoctor(int doctorId, bool isConfirmed)
+        [HttpPost]
+        public IHttpActionResult ConfirmDoctor(string doctorId, bool isConfirmed)
         {
             //todo להצפין קוד רופא
             BL.DoctorBL.ConfirmDoctor(doctorId, isConfirmed);
@@ -54,8 +56,6 @@ namespace API.Controllers
         [HttpGet]
         public IHttpActionResult User(string doctorId)//todo להצפין קוד רופא
         {
-
-
             // BL.DoctorBL.CheckUser(doctorName, doctorId);
             return Ok(BL.DoctorBL.User(doctorId));
         }

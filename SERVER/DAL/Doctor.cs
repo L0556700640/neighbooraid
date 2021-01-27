@@ -26,7 +26,7 @@ namespace DAL
         public string lastName { get; set; }
         public string doctorPhone { get; set; }
         public string address { get; set; }
-        public byte[] pictureDiploma { get; set; }
+        public string pictureDiploma { get; set; }
         public bool isConfirmed { get; set; }
         public string mail { get; set; }
         public System.DateTime certificateValidity { get; set; }

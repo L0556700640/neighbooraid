@@ -18,5 +18,10 @@ namespace DTO
         public string certificateNumber { get; set; }
         public DateTime certificateValidity { get; set; }
         public string pictureDiploma { get; set; }
+
+        public override string ToString()
+        {
+            return this.doctorId + "_" + this.lastName + "_" + this.firstName;
+        }
     }
 }

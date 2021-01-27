@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+</head>
+<body>
+    <div style='  direction: rtl;
+                  background-color: #EE8989;
+                  font-family: Amerald;
+                  font-size:medium; '>
+        <div style='text-align:center'>
+            <img src='icon.png' alt='Alternate Text' style='height: 100px;' />
+            <h1>שלום!</h1>
+            <h3>נרשם לאפליקציה רופא שמחכה לאישור שלך</h3>
+        </div>
+        <div style='        position: relative;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        margin-left: 7%;
+        margin-right: 7%;
+        border: 1px solid #5c060e;
+        border-radius: 0.25rem;
+        color: #5c060e;
+        width: 75%;
+        background-color: #f5c9c9;
+        border-radius: 5px; '>
+            <label> תעודת זהות: {0}</label>
+            <br />
+            <label> שם פרטי: {1}</label>
+            <br />
+            <label> שם משפחה: {2}</label>
+            <br />
+            <label> מספר טלפון: {3}</label>
+            <br />
+            <label> כתובת: {4}</label>
+            <br />
+            <br />
+        </div>
+        <!--', doctor.doctorId,
+         doctor.firstName,
+         doctor.lastName,
+         doctor.doctorPhone,
+         doctor.address);
+    htmlBodyString += string.Format(@"
+        -->
+        <div style='position: relative;
+             padding: 0.75rem 1.25rem;
+             margin-bottom: 1rem;
+             margin-left: 7%;
+             margin-right: 7%;
+             border: 1px solid #5c060e;
+             border-radius: 0.25rem;
+             color: #5c060e;
+             width: 75%;
+             background-color: #f5c9c9;
+             border-radius: 5px; '>
+            רשימת ההתמחויות: <br />
+            <!--");-->
+
+
+            <label> {0} </label> <br /><!-- ', item.caseName); -->
+            <label> {0} </label> <br /><!-- ', item.caseName); -->
+            <label> {0} </label> <br /><!-- ', item.caseName); -->
+            <label> {0} </label> <br /><!-- ', item.caseName); -->
+            <label> {0} </label> <br /><!-- ', item.caseName); -->
+            <label> {0} </label> <br /><!-- ', item.caseName); -->
+            <label> {0} </label> <br /><!-- ', item.caseName); -->
+            <label> {0} </label> <br /><!-- ', item.caseName); -->
+
+        </div>
+        <div style='position: relative;
+                    padding: 0.75rem 1.25rem;
+                    margin-bottom: 1rem;
+                    margin-left: 7%;
+                    margin-right: 7%;
+                    border: 1px solid #5c060e;
+                    border-radius: 0.25rem;
+                    color: #5c060e;
+                    width: 75%;
+                    background-color: #f5c9c9;
+                    border-radius: 5px;
+                    text-align:center;'>
+            <h5>
+                לתשומת לבך, מצורף מסמך המעיד על התמחויות המתמחה <br />
+                יש לעיין בו לפני אישור הרופא
+            </h5>
+            <!--");-->
+
+        </div>
+        <div style='margin-right:25%;'>
+
+            <form action='https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/true' method='post' style='display:inline-block'>
+
+                <button type='submit'
+                        style='display: inline-block; text-align: center; border: 1px solid transparent; border-radius: 5px; padding: 10px; margin: 5 %; color: #fff; background-color: #28a745; border-color: #28a745; margin-bottom: 5px; font-family: Amerald; font-size: medium; '>
+                    מאשר את התווספות המתמחה למערכת
+
+                </button>
+            </form>
+
+            <form action='https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/true' method='post' style='display:inline-block'>
+
+                <button type='submit'
+                        style='display: inline-block !important; text-align: center !important; border: 1px solid transparent !important; border-radius: 5px !important; padding: 10px !important; margin: 5% !important; color: #fff !important; background-color: #dc3545 !important; border-color: #dc3545 !important; margin-bottom: 5px !important; font-family: Amerald !important; font-size: medium !important;
+    '>
+                    איני מאשר את התווספות המתמחה למערכת
+                </button>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
