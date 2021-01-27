@@ -34,7 +34,7 @@ var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         this.hc.date=new Date(Date.now())
         this.hc.addressX=pos.lat;
         this.hc.addressY=pos.lng
-        this.helpCallService.AddHelpCall(this.hc)
+        this.helpCallService.AddHelpCall(this.hc).subscribe()
       });
     }
     else {
