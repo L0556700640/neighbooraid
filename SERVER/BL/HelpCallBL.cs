@@ -10,6 +10,7 @@ namespace BL
 {
     public class HelpCallBL
     {
+        public static int helpCallId = 1;
         public static bool writeHelpCallTpXML(int helpCallID, List<DTO.Keyword> keywordsList)
         {
             try
@@ -46,7 +47,9 @@ namespace BL
                 {
                     DAL.HelpCall newhelpcall = Convertors.HelpCallConvertor.ConvertHelpCallToDAL(helpCall);
                     //string diplomaDocumentPath = "//";//todo: send the file path and save in db
-                  
+                    newhelpcall.caseId = 0;
+                    newhelpcall.doctorId = "";
+                    newhelpcall.callId = db.HelpCalls.Count()+1;
                     db.HelpCalls.Add(newhelpcall);
                     db.SaveChanges();
                   
