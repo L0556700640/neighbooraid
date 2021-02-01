@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DTO;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -173,8 +174,8 @@ namespace BL
                 //now the func check which doctor from the list live close to the help call
                 //and also find the doctors from google contacts.
                 List<ReturnedDoctorsToCase> theMostSuitableDoctors = new List<ReturnedDoctorsToCase>();
-                //from google people
-                //by calc the distance
+                //todo: from google people
+                //todo: by calc the distance
                 foreach (var doctor1 in doctorsToCorrentCase)
                 {
 
@@ -192,6 +193,11 @@ namespace BL
                 Console.WriteLine(ex);
                 return null;
             }
+        }
+        public static void GetDoctorCoordinates(string doctorAddress)
+        {
+            string uri = "https://maps.googleapis.com/maps/api/geocode/json?address="+doctorAddress + "&key=AIzaSyA5L81_-5d2Hy7hHsNVhodk1zS90Qu-aP8";
+            WebClient wc = new WebClient();
         }
         public static int DistanceFromPatientAndDoctorInMinutes(string patientPoint, string doctorPoint)
         {
@@ -263,7 +269,7 @@ namespace BL
                 msg.To.Add(new MailAddress("l0556700640@gmail.com"));
                 msg.To.Add(new MailAddress("hadarotmi123@gmail.com"));
 
-                msg.Subject = "אישור רופא";
+                msg.Subject = "אישור רופא "+doctor.doctorId;
 
                 LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
@@ -368,7 +374,7 @@ namespace BL
                            </button>
                           </form>
 
-                <form action = 'https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/true' method = 'post' style = 'display:inline-block' >
+                <form action = 'https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/false' method = 'post' style = 'display:inline-block' >
                              <button type='submit'
                                    style='display: inline-block !important; text-align: center !important; border: 1px solid transparent !important; border-radius: 5px !important; padding: 10px !important; margin: 5% !important; color: #fff !important; background-color: #dc3545 !important; border-color: #dc3545 !important; margin-bottom: 5px !important; font-family: Amerald !important; font-size: medium !important;'>
                                 איני מאשר את התווספות המתמחה למערכת

@@ -12,8 +12,11 @@ import { VoiceRecognitionService } from 'src/app/shared/services/voice-recogniti
 export class MicrophoneComponent implements OnInit {
   doctorsPage = false;
   responsePage = false;
+  
   allCases: Cases[] = [];
   relatedCases: Cases[] = [];
+  myList=this.allCases;
+
   fullCasesList = true;
   isChoose: boolean[] = [];
   len = 0;
@@ -26,7 +29,8 @@ export class MicrophoneComponent implements OnInit {
   isRecording = false;
   constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router) { 
     this.showFullCasesList();
-    this.microphoneService.init() 
+    this.microphoneService.init();
+    this.myList=this.allCases;
   }
 
   ngOnInit() {}
@@ -57,6 +61,7 @@ export class MicrophoneComponent implements OnInit {
     sentence=sentence.split('.').join('');
     this.casesService.GetRelatedCases(helpCallID, sentence).subscribe(res => { this.relatedCases = res; });
     this.fullCasesList = false;
+  this.myList=this.relatedCases;
   }
   startMicrophoneService() {
     if(this.isRecording==false)
@@ -78,7 +83,8 @@ export class MicrophoneComponent implements OnInit {
 
   clickCases(i) 
   {
-    this.casesService.setCurrentCase(this.allCases[i])
+    this.casesService.choseCaseAction(1,this.myList[i])
+    this.casesService.setCurrentCase(this.myList[i])
     this.router.navigateByUrl('contacts')
   }
 }

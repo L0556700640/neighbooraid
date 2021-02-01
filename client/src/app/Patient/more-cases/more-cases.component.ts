@@ -53,6 +53,7 @@ export class MoreCasesComponent implements OnInit {
   }
   clickCases(i,j) 
   {
+    this.casesService.choseCaseAction(1,this.allCases[i * 3 + j])
     i--;
     this.casesService.setCurrentCase(this.allCases[i * 3 + j])
     

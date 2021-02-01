@@ -77,8 +77,10 @@ namespace BL
             List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
             //take all the old related information from the database about relationship between the words
             List<DAL.KeywordsToCase> dalKeywordsToCases = new List<DAL.KeywordsToCase>();
+            List<DAL.Keyword> dalKeywords = new List<DAL.Keyword>();
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
+                dalKeywords=db.Keywords.ToList();
                 dalKeywordsToCases = db.KeywordsToCases.ToList();
             }
             //check the keywords:

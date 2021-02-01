@@ -320,7 +320,7 @@
           <p   id="Rectangle_130">{{microphoneService.text}}</p>
       </ion-card>
       <ion-list id="form">
-         <ion-item *ngFor="let case of allCases,let i=index" >
+         <ion-item *ngFor="let case of myList,let i=index" >
         <ion-label (click)="clickCases(i)">{{case.caseName}}</ion-label>
         <ion-radio slot="start" value="case.caseId" hidden ></ion-radio>
          </ion-item>
