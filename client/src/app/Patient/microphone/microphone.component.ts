@@ -31,6 +31,8 @@ export class MicrophoneComponent implements OnInit {
     this.showFullCasesList();
     this.microphoneService.init();
     this.myList=this.allCases;
+    console.log(typeof this.myList);
+    console.log(this.myList);
   }
 
   ngOnInit() {}

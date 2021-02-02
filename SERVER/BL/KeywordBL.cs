@@ -17,9 +17,16 @@ namespace BL
         {
             try
             {
+                bool keywordFound = false;
+
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
-
+                    foreach (var word in db.Keywords)
+                    {
+                        if (keyword.keyWord1.Equals(word.keyWord1) == true)
+                            keywordFound = true;
+                    }
+                    if(keywordFound==false)
                     db.Keywords.Add(Convertors.KeywordConvertors.ConvertKeywordsToDAL(keyword));
                     db.SaveChanges();
 
@@ -78,9 +85,12 @@ namespace BL
             //take all the old related information from the database about relationship between the words
             List<DAL.KeywordsToCase> dalKeywordsToCases = new List<DAL.KeywordsToCase>();
             List<DAL.Keyword> dalKeywords = new List<DAL.Keyword>();
+            List<DAL.Case> dalCases = new List<DAL.Case>();
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
+
                 dalKeywords=db.Keywords.ToList();
+                dalCases=db.Cases.ToList();
                 dalKeywordsToCases = db.KeywordsToCases.ToList();
             }
             //check the keywords:
@@ -104,11 +114,14 @@ namespace BL
                             relatedCases.First(someCase => someCase.relatedCase.caseId == keyword.caseId).sumOfNumOfUsingThisSearch +=
                                 keyword.numOfUsingThisRelation;
                         else
+                        {
                             relatedCases.Add(new RelatedCase
                                 (
-                                Convertors.CaseConvertor.ConvertCaseToDTO(keyword.Case),
+                                Convertors.CaseConvertor.ConvertCaseToDTO(
+                                    dalCases.Find(c => c.caseId == keyword.caseId)),
                                 keyword.numOfUsingThisRelation
                                 ));
+                        }
                     }
                 }
                 if (!isUsed)
@@ -129,7 +142,7 @@ namespace BL
             //that the keywords related to the choosed case
 
             return relatedCases
-                .OrderBy(someCase => someCase.sumOfNumOfUsingThisSearch)
+                .OrderByDescending(someCase => someCase.sumOfNumOfUsingThisSearch)
                 .Select(someCase => someCase.relatedCase)
                 .ToList();
         }
