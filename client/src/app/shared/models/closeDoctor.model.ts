@@ -1,9 +1,9 @@
 import { Doctor } from "./doctor.model";
 
-export class Contact
+export class closeDoctor 
 {
     Doctor:Doctor;
-    Name:string
+    DistanceInMinutesFromPatient:number
     Satisfaction:number
     constructor()
     {
