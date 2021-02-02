@@ -25,6 +25,7 @@ import { CriticismComponent } from './Patient/criticism/criticism.component';
 import { ProfileComponent } from './Doctor/profile/profile.component';
 import { DiplomaComponent } from './Registration/diploma/diploma.component';
 import { FinishComponent } from './Registration/finish/finish.component';
+//import {Contacts} from '@ionic-native/contacts/ngx';
 @NgModule({
   declarations: 
   [
@@ -69,7 +70,8 @@ import { FinishComponent } from './Registration/finish/finish.component';
     StatusBar,
     SplashScreen,
     SpeechRecognition,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    //Contacts
   ],
   bootstrap: [AppComponent]
 })
