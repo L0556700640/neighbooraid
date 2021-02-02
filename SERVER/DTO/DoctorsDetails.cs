@@ -10,5 +10,10 @@ namespace DTO
     {
         public Doctor Doctor { get; set; }
         public Cases[] Cases { get; set; }
+
+        public override string ToString()
+        {
+            return Doctor.ToString();
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using DAL;
 using DTO;
-using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -56,12 +54,12 @@ namespace BL
                 return (-1).ToString();
             }
         }
-        public static void ConfirmDoctor(string doctorId, bool isConfirmed)
+        public static void ConfirmDoctor(int doctorId, bool isConfirmed)
         {
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
                 (from d in db.Doctors
-                 where d.doctorId.Equals(doctorId)==true
+                 where d.doctorId.Equals(doctorId)
                  select d).ToList().ForEach(d => d.isConfirmed = isConfirmed);
                 db.SaveChanges();
             }
@@ -174,8 +172,8 @@ namespace BL
                 //now the func check which doctor from the list live close to the help call
                 //and also find the doctors from google contacts.
                 List<ReturnedDoctorsToCase> theMostSuitableDoctors = new List<ReturnedDoctorsToCase>();
-                //todo: from google people
-                //todo: by calc the distance
+                //from google people
+                //by calc the distance
                 foreach (var doctor1 in doctorsToCorrentCase)
                 {
 
@@ -193,11 +191,6 @@ namespace BL
                 Console.WriteLine(ex);
                 return null;
             }
-        }
-        public static void GetDoctorCoordinates(string doctorAddress)
-        {
-            string uri = "https://maps.googleapis.com/maps/api/geocode/json?address="+doctorAddress + "&key=AIzaSyA5L81_-5d2Hy7hHsNVhodk1zS90Qu-aP8";
-            WebClient wc = new WebClient();
         }
         public static int DistanceFromPatientAndDoctorInMinutes(string patientPoint, string doctorPoint)
         {
@@ -256,11 +249,7 @@ namespace BL
             {
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
-                /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
-                inline.ContentId = Guid.NewGuid().ToString();
-                avHtml.LinkedResources.Add(inline);
-                */
+
                 var loginInfo = new NetworkCredential(email, password);
                 var msg = new MailMessage();
                 var smtpClient = new SmtpClient("smtp.gmail.com", 587);
@@ -269,71 +258,51 @@ namespace BL
                 msg.To.Add(new MailAddress("l0556700640@gmail.com"));
                 msg.To.Add(new MailAddress("hadarotmi123@gmail.com"));
 
-                msg.Subject = "אישור רופא "+doctor.doctorId;
-
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
-                res.ContentId = Guid.NewGuid().ToString();
-
-
-
+                //msg.To.Add(new MailAddress("hadarotmi123@gmail.com"));
+                msg.Subject = "אישור רופא";
                 #region buildHtmlMessageBody
                 string htmlBodyString = string.Format(
                       @"
-                       <div style='  direction: rtl;
-                                     background-color: #EE8989;
-                                     font-family: Amerald;
-                                     font-size:medium; '>
-                           <div style='text-align:center'>
-                               <img src='cid:{5}' alt='Alternate Text' style='height: 100px;' />
-                               <h1>שלום!</h1>
-                               <h3>נרשם לאפליקציה רופא שמחכה לאישור שלך</h3>
-                           </div>
-                           <div style='  position: relative;
-                                         padding: 0.75rem 1.25rem;
-                                         margin-bottom: 1rem;
-                                         margin-left: 7%;
-                                         margin-right: 7%;
-                                         border: 1px solid #5c060e;
-                                         border-radius: 0.25rem;
-                                         color: #5c060e;
-                                         width: 75%;
-                                         background-color: #f5c9c9;
-                                         border-radius: 5px; '>
-                               <label> תעודת זהות: {0}</label>
-                               <br />
-                               <label> שם פרטי: {1}</label>
-                               <br />
-                               <label> שם משפחה: {2}</label>
-                               <br />
-                               <label> מספר טלפון: {3}</label>
-                               <br />
-                               <label> כתובת: {4}</label>
-                               <br />
-                               <br />
-                           </div>"
-
-                           , doctor.doctorId,
+<div dir=' ltr'>
+                    <h1>Hello!</h1>
+                    <h3>There is a doctor who need your confirm:</h3>
+                    <div style='
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #0c5460;
+    width: 50%;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;'
+>
+<label> Id: {0}</label>
+                    <br />
+                    <label> First Name: {1}</ label>
+                    <br />
+                    <label> Last Name: {2}</label>
+                    <br />
+                    <label> Phone Number: {3}</label>
+                    <br />
+                    <label> Address: {4}</label>
+                    <br />
+                    <br />
+</div>", doctor.doctorId,
                              doctor.firstName,
                              doctor.lastName,
                              doctor.doctorPhone,
-                             doctor.address,
-                             res.ContentId);
-                htmlBodyString += string.Format(@"
-                              <div style='position: relative;
-                                           padding: 0.75rem 1.25rem;
-                                           margin-bottom: 1rem;
-                                           margin-left: 7%;
-                                           margin-right: 7%;
-                                           border: 1px solid #5c060e;
-                                           border-radius: 0.25rem;
-                                           color: #5c060e;
-                                           width: 75%;
-                                           background-color: #f5c9c9;
-                                           border-radius: 5px; '>
-                                         <b>
-                                          רשימת ההתמחויות: </b > <br />
-
-                ");
+                             doctor.address);
+                htmlBodyString += string.Format(@"<div style='
+   position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #0c5460;
+    width: 50%;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;'> Cases List: <br />");
 
                 List<DAL.Case> casesToThisDoctor = new List<Case>();
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
@@ -347,48 +316,62 @@ namespace BL
                 {
                     htmlBodyString += string.Format(@"<label> {0} </ label> <br />", item.caseName);
                 }
-                htmlBodyString += string.Format(@"
-         </div >
-         <div style='position: relative;
-                        padding: 0.75rem 1.25rem;
-                        margin-bottom: 1rem;
-                        margin-left: 7%;
-                        margin-right: 7%;
-                        border: 1px solid #5c060e;
-                        border-radius: 0.25rem;
-                        color: #5c060e;
-                        width: 75%;
-                        background-color: #f5c9c9;
-                        border-radius: 5px;
-                        text-align:center;'>
-                <h5>
-                    לתשומת לבך, מצורף מסמך המעיד על התמחויות המתמחה <br />
-                    יש לעיין בו לפני אישור הרופא
-                </h5>
-         </div>
-         <div style ='margin-right:25%;'>
-                  <form action ='https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/true' method='post' style='display:inline-block'>
-                                 <button type='submit'
-                                       style='display: inline-block !important; text-align: center !important; border: 1px solid transparent !important; border-radius: 5px !important; padding: 10px !important; margin: 5% !important; color: #fff !important; background-color: #28a745 !important; border-color: #28a745 !important; margin-bottom: 5px !important; font-family: Amerald !important; font-size: medium !important;'>
-                                                  מאשר את התווספות המתמחה למערכת
-                           </button>
-                          </form>
-
-                <form action = 'https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/false' method = 'post' style = 'display:inline-block' >
-                             <button type='submit'
-                                   style='display: inline-block !important; text-align: center !important; border: 1px solid transparent !important; border-radius: 5px !important; padding: 10px !important; margin: 5% !important; color: #fff !important; background-color: #dc3545 !important; border-color: #dc3545 !important; margin-bottom: 5px !important; font-family: Amerald !important; font-size: medium !important;'>
-                                איני מאשר את התווספות המתמחה למערכת
-                        </button>
-
-                </form>
-        </div>
-    </div>
+                htmlBodyString += string.Format(
+    @"</div>
+<div>
+<div style='display: inline-block;'>
+ <form action='https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/true' method='post' >
+                        <button type='submit'
+                           style='display: inline-block;
+                           font-weight: 400;
+                           text-align: center;
+                           vertical-align: middle;
+                           -webkit-user-select: none;
+                           -moz-user-select: none;
+                           -ms-user-select: none;
+                           user-select: none;
+                           border: 1px solid transparent;
+                           padding: 0.375rem 0.75rem;
+                           font-size: 1rem;
+                           line-height: 1.5;
+                           border-radius: 0.25rem;
+                           transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                           color: #fff;
+                           background-color: #28a745;
+                           border-color: #28a745;'>
+                        Confirm
+                          </button>
+                        </form>
+</div>
+                     <form action='https://localhost:44314/API/Doctor/ConfirmDoctor/{0}/false' method='post'>
+                        <button type='submit'
+                           style='display: inline-block;
+                           font-weight: 400;
+                           text-align: center;
+                           vertical-align: middle;
+                           -webkit-user-select: none;
+                           -moz-user-select: none;
+                           -ms-user-select: none;
+                           user-select: none;
+                           border: 1px solid transparent;
+                           padding: 0.375rem 0.75rem;
+                           font-size: 1rem;
+                           line-height: 1.5;
+                           border-radius: 0.25rem;
+                           transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                           color: #fff;
+                           background-color: #dc3545;
+                           border-color: #dc3545;'>
+                        UnConfirm
+                    </button>
+                 </form>
+                 </div>
+</div>
 "
  , doctor.doctorId);
                 #endregion
-                AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBodyString, null, MediaTypeNames.Text.Html);
-                alternateView.LinkedResources.Add(res);
-                msg.AlternateViews.Add(alternateView);
+
+                msg.Body = htmlBodyString;
                 msg.IsBodyHtml = true;
                 msg.Attachments.Add(new Attachment(doctor.pictureDiploma));
                 smtpClient.EnableSsl = true;

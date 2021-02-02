@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Cases } from '../models/cases.model';
+import { RelatedDoctors } from '../models/relatedDoctors.model';
 
 
 @Injectable({
@@ -26,6 +27,7 @@ export class CasesService {
   getAllCases(): Observable<Cases[]> {
     return this.http.get<Cases[]>(environment.url + "Cases/GetAllCases");
   }
+  
   GetRelatedCases(helpCallID, searchSentence) : Observable<Cases[]> {
     return this.http.get<Cases[]>(environment.url + "Cases/GetRelatedCases/" +helpCallID+"/"+ searchSentence);
   }
@@ -33,5 +35,8 @@ export class CasesService {
   getCurrentCase(id: String): Observable<String> {
     return this.http.get<String>(environment.url + "Cases/getCaseName/" + id);
 
+  }
+  choseCaseAction(helpCallID,choosedCase):Observable<RelatedDoctors[]>{
+  return this.http.get<RelatedDoctors[]>(environment.url +" Cases/CaseChose/"+helpCallID+"/"+choosedCase);
   }
 }
