@@ -454,5 +454,23 @@ namespace BL
             catch { }
             return doctorsToCorrentCase;
         }
+        public static List<ContactsDoctor> GetContactsFromDoctors(DTO.Cases choosedCase, List<DTO.ContactsDoctor> contacts)
+        {
+            List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
+            List<DTO.Doctor> doctorToCorrentCase = DoctorsToCase(choosedCase);
+
+            foreach (var c in contacts)
+            {
+                foreach (var doctor in doctorToCorrentCase)
+                {
+                    if (c.Doctor.doctorPhone.Equals(doctor.doctorPhone))
+                    {
+                        contactsDoctorsToThisCase.Add(c);
+                    }
+                }
+            }
+
+            return contactsDoctorsToThisCase;
+        }
     }
 }

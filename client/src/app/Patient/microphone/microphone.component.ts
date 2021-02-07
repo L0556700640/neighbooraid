@@ -85,8 +85,13 @@ export class MicrophoneComponent implements OnInit {
 
   clickCases(i) 
   {
-    this.casesService.choseCaseAction(1,this.myList[i])
-    this.casesService.setCurrentCase(this.myList[i])
+  if(this.fullCasesList==true){
+    this.casesService.choseCaseAction(1,this.allCases[i])
+    this.casesService.setCurrentCase(this.allCases[i])
+  }else{
+    this.casesService.choseCaseAction(1,this.relatedCases[i])
+    this.casesService.setCurrentCase(this.relatedCases[i])
+  }
     this.router.navigateByUrl('contacts')
   }
 }
