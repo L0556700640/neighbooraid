@@ -64,7 +64,7 @@ namespace API.Controllers
         [HttpGet]
         public IHttpActionResult casesToDoctor(string doctorId)
         {
-            return Ok(BL.DoctorBL.casesToDoctor(doctorId));
+            return Ok(BL.DoctorBL.GetCasesToDoctor(doctorId));
         }
         [Route("DeleteDoctor")]
         [HttpPost]
@@ -83,7 +83,8 @@ namespace API.Controllers
         public IHttpActionResult GetDoctorToCases(DTO.Cases selectedCase)
         {
             //todo להצפין קוד רופא
-            return Ok(BL.DoctorBL.GetDoctorsToCase(selectedCase));
+        //todo add help call id from session
+            return Ok(BL.DoctorBL.GetDoctorsToCase(1, selectedCase));
         }
 
         [Route("DoctorToCases/{selectedCase}")]

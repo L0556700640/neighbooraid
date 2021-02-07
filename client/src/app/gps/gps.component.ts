@@ -43,24 +43,24 @@ export class GpsComponent implements OnInit {
       client_id: '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com',
       scope: 'https://www.googleapis.com/auth/contacts.readonly'
     };
-    this.googleContacts() ;
+ //   this.googleContacts() ;
   }
 
-   googleContacts(){
+  //  googleContacts(){
 
-     gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
-     gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
-   }
+  //    gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
+  //    gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
+  //  }
 
-   handleAuthorization = (authorizationResult) => {
-     if (authorizationResult && !authorizationResult.error) {
-       let url: string = "https://www.google.com/m8/feeds/contacts/default/thin?" +
-          "alt=json&max-results=500&v=3.0&access_token=" +
-          authorizationResult.access_token;
-       console.log("Authorization success, URL: ", url);
+  //  handleAuthorization = (authorizationResult) => {
+  //    if (authorizationResult && !authorizationResult.error) {
+  //      let url: string = "https://www.google.com/m8/feeds/contacts/default/thin?" +
+  //         "alt=json&max-results=500&v=3.0&access_token=" +
+  //         authorizationResult.access_token;
+  //      console.log("Authorization success, URL: ", url);
 
-     }
-   }
+  //    }
+  //  }
   getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {

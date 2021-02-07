@@ -47,7 +47,7 @@ namespace BL
             try
             {
                 List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
-                keywordsInThisSearch = readHelpCallTpXML(helpCallID);
+                keywordsInThisSearch = ReadHelpCallTpXML(helpCallID);
                 DAL.Case choosedCase = new Case();
                 choosedCase = Convertors.CaseConvertor.ConvertCaseToDAL(correntCase);
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
@@ -134,7 +134,7 @@ namespace BL
                     keywordsInThisSearch.Add(AddKeyword(new DTO.Keyword(word)));
                 }
             }
-            bool saveTheKeywordsInXML= writeHelpCallTpXML(helpCallID, keywordsInThisSearch);
+            bool saveTheKeywordsInXML= WriteHelpCallTpXML(helpCallID, keywordsInThisSearch);
             //now we have the keywords of this search save
             //until the patient choose which case from the related cases
             //or all the cases is the correct case for this keywords.
@@ -147,7 +147,7 @@ namespace BL
                 .ToList();
         }
 
-        public static bool writeHelpCallTpXML(int helpCallID, List<DTO.Keyword> keywordsList)
+        public static bool WriteHelpCallTpXML(int helpCallID, List<DTO.Keyword> keywordsList)
         {
             try
             {
@@ -162,7 +162,7 @@ namespace BL
                 foreach (var word in keywordsList)
                 {
                     keyword = new XElement("keyword", word.keyWord1);
-                    keyword.Add(new XAttribute("id", word.keywordId));
+                    keyword.Add(new XAttribute("keywordId", word.keywordId));
                     keywordsRoot.Add(keyword);
                 }
                 newHelpCall.Add(keywordsRoot);
@@ -178,7 +178,7 @@ namespace BL
                 return false;
             }
         }
-        public static List<DTO.Keyword> readHelpCallTpXML(int helpCallID)
+        public static List<DTO.Keyword> ReadHelpCallTpXML(int helpCallID)
         {
             try
             {
@@ -196,7 +196,7 @@ namespace BL
                     keywordsInThisSearch.Add(
                         new DTO.Keyword
                     {
-                        keywordId = int.Parse(keywordElement.Attribute("id").Value),
+                        keywordId = int.Parse(keywordElement.Attribute("keywordId").Value),
                         keyWord1 = keywordElement.Value
                     });
                 }

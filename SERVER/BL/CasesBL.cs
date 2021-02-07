@@ -67,12 +67,12 @@ namespace BL
             return relatedCases;
         }
 
-        public static List<DTO.ReturnedDoctorsToCase> CaseChose(int helpCallID, Cases choosedCase)
+        public static ReturnedDoctorsToCase CaseChose(int helpCallID, Cases choosedCase)
         {
             try
             {
                 KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
-                return DoctorBL.GetDoctorsToCase(choosedCase);
+                return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase);
             }
             catch(Exception ex)
             {

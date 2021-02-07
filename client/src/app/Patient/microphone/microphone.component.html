@@ -319,12 +319,19 @@
       <ion-card  class="Rectangle_130 scrollbar scrollbar-primary">
           <p   id="Rectangle_130">{{microphoneService.text}}</p>
       </ion-card>
-      <ion-list id="form">
-         <ion-item *ngFor="let case of myList,let i=index" >
+      <ion-list id="form" *ngIf="fullCasesList==true">
+         <ion-item  *ngFor="let case of allCases,let i=index" >
         <ion-label (click)="clickCases(i)">{{case.caseName}}</ion-label>
         <ion-radio slot="start" value="case.caseId" hidden ></ion-radio>
          </ion-item>
       </ion-list>
+   
+      <ion-list id="form" *ngIf="fullCasesList==false">
+        <ion-item *ngFor="let case of relatedCases,let i=index" >
+       <ion-label (click)="clickCases(i)">{{case.caseName}}</ion-label>
+       <ion-radio slot="start" value="case.caseId" hidden ></ion-radio>
+        </ion-item>
+     </ion-list>
      
       <!-- <svg >       
         <rect >
