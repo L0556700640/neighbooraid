@@ -223,11 +223,11 @@
       <div id="_ba">
         <span>:אבחנה</span>
       </div>
-      <div id="______" *ngFor="let c of relatedCases">
+      <!-- <div id="______" *ngFor="let c of relatedCases">
         <ion-button (click)="getTheProfessionalDoctors()">{{c.caseName}}</ion-button>
         <br>
-        <!-- <span>דימום רב מקומי<br/>הקאות<br/>מחוסר הכרה חלקי</span> -->
-      </div>
+        <span>דימום רב מקומי<br/>הקאות<br/>מחוסר הכרה חלקי</span>
+      </div> -->
       <button (click)="startMicrophoneService()">
         <div id="Group_17">
           <svg class="Rectangle_23">
@@ -319,19 +319,12 @@
       <ion-card  class="Rectangle_130 scrollbar scrollbar-primary">
           <p   id="Rectangle_130">{{microphoneService.text}}</p>
       </ion-card>
-      <ion-list id="form" *ngIf="fullCasesList==true">
-         <ion-item  *ngFor="let case of allCases,let i=index" >
+      <ion-list id="form">
+         <ion-item *ngFor="let case of allCases,let i=index" >
         <ion-label (click)="clickCases(i)">{{case.caseName}}</ion-label>
         <ion-radio slot="start" value="case.caseId" hidden ></ion-radio>
          </ion-item>
       </ion-list>
-   
-      <ion-list id="form" *ngIf="fullCasesList==false">
-        <ion-item *ngFor="let case of relatedCases,let i=index" >
-       <ion-label (click)="clickCases(i)">{{case.caseName}}</ion-label>
-       <ion-radio slot="start" value="case.caseId" hidden ></ion-radio>
-        </ion-item>
-     </ion-list>
      
       <!-- <svg >       
         <rect >
