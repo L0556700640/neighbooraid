@@ -58,13 +58,15 @@ namespace BL
         }
         public static void ConfirmDoctor(string doctorId, bool isConfirmed)
         {
+            DAL.Doctor doctor;
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
-                (from d in db.Doctors
-                 where d.doctorId.Equals(doctorId)==true
-                 select d).ToList().ForEach(d => d.isConfirmed = isConfirmed);
-                db.SaveChanges();
+                    doctor = db.Doctors.FirstOrDefault(d => d.doctorId.Equals(doctorId));
+                    db.Doctors.FirstOrDefault(d => d.doctorId.Equals(doctorId))
+                        .isConfirmed = isConfirmed;
+                    db.SaveChanges();
             }
+            SendMailToDoctorAfterConfirm(doctor);
 
         }
         public static bool CheckUser(string firstName, string id)
@@ -123,6 +125,37 @@ namespace BL
 
         }
 
+        public static bool UpdateDoctorDetailsBL(DTO.Doctor doctorDetails)
+        {
+
+                try
+                {
+                    using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                    {
+                        DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctorDetails);
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).address=newDoctor.address;
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).certificateNumber=newDoctor.certificateNumber;
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).certificateValidity=newDoctor.certificateValidity;
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).doctorPhone=newDoctor.doctorPhone;
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).firstName=newDoctor.firstName;
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).isConfirmed=newDoctor.isConfirmed;
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).lastName=newDoctor.lastName;
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).mail=newDoctor.mail;
+                        db.Doctors.FirstOrDefault(d=>d.doctorId==newDoctor.doctorId).pictureDiploma=newDoctor.pictureDiploma;
+                        db.SaveChanges();
+                        SendMailToDoctorAfterConfirm(newDoctor);
+
+                    return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                return false;
+                }
+
+        }
+
         public static bool DeleteDoctor(string id)
         {
             try
@@ -174,8 +207,8 @@ namespace BL
                 //now the func check which doctor from the list live close to the help call
                 //and also find the doctors from google contacts.
                 return new ReturnedDoctorsToCase(
-                        GetContactsDoctorsFromGoogleAccount(doctorsToCorrentCase),
-                        GetContactsDoctorsByDistance(helpCallId, doctorsToCorrentCase)
+                        GetContactsDoctorsFromGoogleAccount(helpCallId, doctorsToCorrentCase),
+                        GetDoctorsByDistance(helpCallId, doctorsToCorrentCase)
                         );
 
                 //todo: from google people
@@ -214,7 +247,7 @@ namespace BL
             }
             //return TravelingTime
         }
-        public static List<DTO.CloseDoctor> GetContactsDoctorsByDistance(int helpCallId, List<DTO.Doctor> relatedDoctors)
+        public static List<DTO.CloseDoctor> GetDoctorsByDistance(int helpCallId, List<DTO.Doctor> relatedDoctors)
         {
             List<CloseDoctor> closeDoctor = new List<CloseDoctor>();
             string patientPoint = HelpCallBL.ConvertPointsToAddress(helpCallId);
@@ -237,8 +270,10 @@ namespace BL
             return closeDoctor.OrderBy(doctor => doctor.Satisfaction).ToList();
 
         }
-        public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount(List<DTO.Doctor> relatedDoctors)
+        public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount(int helpCallId, List<DTO.Doctor> relatedDoctors)
         {
+             List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
+            List<DTO.Contact> contacts = new List<DTO.Contact>();
             //todo: fill the function
             //link: https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth
             /*
@@ -251,21 +286,61 @@ namespace BL
             IList<Person> connections = connectionsResponse.Connections;
         }
              */
-            return new List<DTO.ContactsDoctor>();
+            int s;
+            foreach (var c in contacts)
+            {
+                foreach (var doctor in relatedDoctors)
+                {
+                    if (c.Phone.Equals(doctor.doctorPhone))
+                    {
+                        using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                        {
+                            s = db.CasesToDoctors
+                                .FirstOrDefault(ctd => ctd.doctorId == doctor.doctorId
+                            && ctd.Case.caseId ==
+                            (db.HelpCalls
+                            .FirstOrDefault(h => h.callId == helpCallId).caseId))
+                                .satisfaction;
+                        }
+                        contactsDoctorsToThisCase.Add(new ContactsDoctor(doctor,c.Name,s));
+                    }
+                }
+            }
+            return contactsDoctorsToThisCase;
         }
         public static List<DTO.Doctor> GetAllDoctors()
         {
-            //todo: end! fast!
+            List<DTO.Doctor> doctors= new List<DTO.Doctor>();
+
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
-
+                foreach (var d in db.Doctors)
+                {
+                    doctors.Add(Convertors.DoctorConvertor.ConvertDoctorToDTO(d));
+                }
             }
-            return new List<DTO.Doctor>();
+            return doctors;
         }
-        public static bool AddStatisficationRateToDoctorByCase(int helpCallID)
+        public static bool AddStatisficationRateToDoctorByCase(int helpCallID, int statisfication)
         {
-            //todo: fill the function
-            return true;
+            string correntDoctor;
+            int correntCase, correntStatisfication, amountOfCallsToThisCase;
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                correntDoctor = db.HelpCalls.FirstOrDefault(h => h.callId == helpCallID).doctorId;
+                correntCase = (int)db.HelpCalls.FirstOrDefault(h => h.callId == helpCallID).caseId;
+                correntStatisfication = db.CasesToDoctors
+                   .FirstOrDefault(ctd => ctd.doctorId == correntDoctor
+               && ctd.Case.caseId == correntCase).satisfaction;
+                amountOfCallsToThisCase = db.HelpCalls.Where((h => h.caseId == correntCase && h.doctorId.Equals(correntDoctor))).Count();
+
+                db.CasesToDoctors
+                        .FirstOrDefault(ctd => ctd.doctorId == correntDoctor
+                    && ctd.Case.caseId == correntCase).satisfaction =
+                    (correntStatisfication * (amountOfCallsToThisCase - 1) + statisfication) / amountOfCallsToThisCase;
+            }
+                return true;
+
         }
         public static void SendMailToConfirmDoctor(DAL.Doctor doctor)
         {
@@ -472,5 +547,82 @@ namespace BL
 
             return contactsDoctorsToThisCase;
         }
+        public static void SendMailToDoctorAfterConfirm(DAL.Doctor doctor)
+        {
+            try
+            {
+                string email = "neighbooraid@gmail.com";
+                string password = "VSRkhrz123";
+                /*
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                inline.ContentId = Guid.NewGuid().ToString();
+                avHtml.LinkedResources.Add(inline);
+                */
+                var loginInfo = new NetworkCredential(email, password);
+                var msg = new MailMessage();
+                var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+
+                msg.From = new MailAddress(email);
+                msg.To.Add(new MailAddress(doctor.mail));
+                msg.Subject = "אישור הרשמה לNeighborAid עבור דר'  " + doctor.lastName;
+
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
+                res.ContentId = Guid.NewGuid().ToString();
+
+
+
+                #region buildHtmlMessageBody
+                string htmlBodyString = string.Format(
+                      @"
+                       <div style='  direction: rtl;
+                                     background-color: #EE8989;
+                                     font-family: Amerald;
+                                     font-size:medium; '>
+                           <div style='text-align:center'>
+                               <img src='cid:{2}' alt='Alternate Text' style='height: 100px;' />
+                               <h1>שלום!</h1>
+                               <h3>הרשמתך לNeighborAid הסתימה בהצלחה.</h3>
+                               <h3> הידע שברשותך מועיל לאנשים רבים הזקוקים לו</h3>
+                           </div>
+                           <div style='  position: relative;
+                                         padding: 0.75rem 1.25rem;
+                                         margin-bottom: 1rem;
+                                         margin-left: 7%;
+                                         margin-right: 7%;
+                                         border: 1px solid #5c060e;
+                                         border-radius: 0.25rem;
+                                         color: #5c060e;
+                                         width: 75%;
+                                         background-color: #f5c9c9;
+                                         border-radius: 5px; '>
+                               <h6>כדי להתחבר לאפליקציה עליך להזין את הפרטים הבאים</h6>
+                               <label> שם פרטי: {0}</label>
+                               <br />
+                               <label> תעודת זהות: {1}</label>
+                               <br />
+                           </div>
+                  <h3>אנחנו מודים לך על נכונותך להציל חיים!</h3>
+                 </div>"
+                             , doctor.firstName,
+                            doctor.doctorId,
+                             res.ContentId);
+                #endregion
+                AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBodyString, null, MediaTypeNames.Text.Html);
+                alternateView.LinkedResources.Add(res);
+                msg.AlternateViews.Add(alternateView);
+                msg.IsBodyHtml = true;
+                msg.Attachments.Add(new Attachment(doctor.pictureDiploma));
+                smtpClient.EnableSsl = true;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = loginInfo;
+                smtpClient.Send(msg);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

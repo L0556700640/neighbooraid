@@ -52,6 +52,22 @@ namespace API.Controllers
             return Ok(CasesBL.CaseChose(helpCallID, choosedCase));
 
         }
+        [Route("UpdateCasesToDoctor/{doctorID}/{newCasesList}")]
+        [HttpPost]
+        public IHttpActionResult UpdateListOfCasesToDoctor(string doctorID, List<DTO.Cases> newCasesList)
+        {
+            //todo: get the file, save and add to the mail.
+            return Ok(CasesBL.UpdateCasesToDoctorBL(doctorID, newCasesList));
+
+        }
+
+        [Route("ConfirmCase/{caseId}/{doctorID}/{satisfaction}")]
+        [HttpPost]
+        public IHttpActionResult ConfirmCase(int caseId, string doctorID, int satisfaction)
+        {
+            return Ok(CasesBL.UpdateCaseToDoctor( doctorID, caseId, satisfaction));
+
+        }
 
     }
 }
