@@ -30,7 +30,7 @@ export class MicrophoneComponent implements OnInit {
   constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router) { 
     this.showFullCasesList();
     this.microphoneService.init();
-    this.myList=this.allCases;
+    // this.myList=this.allCases;
   }
 
   ngOnInit() {}
@@ -61,7 +61,7 @@ export class MicrophoneComponent implements OnInit {
     sentence=sentence.split('.').join('');
     this.casesService.GetRelatedCases(helpCallID, sentence).subscribe(res => { this.relatedCases = res; });
     this.fullCasesList = false;
-  this.myList=this.relatedCases;
+  this.allCases=this.relatedCases;
   }
   startMicrophoneService() {
     if(this.isRecording==false)
@@ -74,6 +74,7 @@ export class MicrophoneComponent implements OnInit {
     this.microphoneService.stop()
     this.searchVoice();
     console.log('this.sen'+this.microphoneService.text)
+
     
   }
   }

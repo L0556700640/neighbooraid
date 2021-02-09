@@ -28,8 +28,7 @@ export class GpsComponent implements OnInit {
   //     this.contactsFound=conts
   //   })
   // }
-  map: google.maps.Map
-  infoWindow: google.maps.InfoWindow;
+  
   hc: HelpCall = new HelpCall()
 
   clientId = '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com';
@@ -48,7 +47,7 @@ export class GpsComponent implements OnInit {
 
    googleContacts(){
 
-     gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
+     window.gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
      gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
    }
 
