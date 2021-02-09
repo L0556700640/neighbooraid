@@ -1,3 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <helpCalls>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="0">boy</keyword>
+      <keyword keywordId="0">fall</keyword>
+      <keyword keywordId="0">fall</keyword>
+      <keyword keywordId="0">fall</keyword>
+      <keyword keywordId="0">water</keyword>
+      <keyword keywordId="0">red</keyword>
+      <keyword keywordId="0">red</keyword>
+    </keywords>
+  </helpCall>
 </helpCalls>
