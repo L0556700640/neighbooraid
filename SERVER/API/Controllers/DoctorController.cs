@@ -105,6 +105,13 @@ namespace API.Controllers
             DTO.HelpCall helpcall = JsonConvert.DeserializeObject<DTO.HelpCall>(HttpContext.Current.Request["helpcall"]);
             return Ok(BL.HelpCallBL.SaveHelpCallInDB(helpcall));
         }
+        [Route("UpdateDoctorDetails/{doctorDetails}")]
+        [HttpPost]
+        public IHttpActionResult UpdateDoctorDetails(DTO.Doctor doctorDetails)
+        {
+            //todo להצפין קוד רופא
+            return Ok(BL.DoctorBL.UpdateDoctorDetailsBL(doctorDetails));
+        }
 
 
     }
