@@ -1,7 +1,7 @@
 import { closeDoctor } from "./closeDoctor.model";
 import { Contact } from "./contacts.model";
 
-export class Cases 
+export class RelatedDoctorToCases 
 {
     contacts  :Contact[];
     closeDoctors:closeDoctor[];

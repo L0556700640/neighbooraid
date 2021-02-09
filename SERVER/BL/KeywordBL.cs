@@ -17,9 +17,16 @@ namespace BL
         {
             try
             {
+                bool keywordFound = false;
+
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
-
+                    foreach (var word in db.Keywords)
+                    {
+                        if (keyword.keyWord1.Equals(word.keyWord1) == true)
+                            keywordFound = true;
+                    }
+                    if(keywordFound==false)
                     db.Keywords.Add(Convertors.KeywordConvertors.ConvertKeywordsToDAL(keyword));
                     db.SaveChanges();
 
@@ -40,7 +47,7 @@ namespace BL
             try
             {
                 List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
-                keywordsInThisSearch = readHelpCallTpXML(helpCallID);
+                keywordsInThisSearch = ReadHelpCallTpXML(helpCallID);
                 DAL.Case choosedCase = new Case();
                 choosedCase = Convertors.CaseConvertor.ConvertCaseToDAL(correntCase);
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
@@ -78,9 +85,12 @@ namespace BL
             //take all the old related information from the database about relationship between the words
             List<DAL.KeywordsToCase> dalKeywordsToCases = new List<DAL.KeywordsToCase>();
             List<DAL.Keyword> dalKeywords = new List<DAL.Keyword>();
+            List<DAL.Case> dalCases = new List<DAL.Case>();
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
+
                 dalKeywords=db.Keywords.ToList();
+                dalCases=db.Cases.ToList();
                 dalKeywordsToCases = db.KeywordsToCases.ToList();
             }
             //check the keywords:
@@ -104,11 +114,14 @@ namespace BL
                             relatedCases.First(someCase => someCase.relatedCase.caseId == keyword.caseId).sumOfNumOfUsingThisSearch +=
                                 keyword.numOfUsingThisRelation;
                         else
+                        {
                             relatedCases.Add(new RelatedCase
                                 (
-                                Convertors.CaseConvertor.ConvertCaseToDTO(keyword.Case),
+                                Convertors.CaseConvertor.ConvertCaseToDTO(
+                                    dalCases.Find(c => c.caseId == keyword.caseId)),
                                 keyword.numOfUsingThisRelation
                                 ));
+                        }
                     }
                 }
                 if (!isUsed)
@@ -121,7 +134,7 @@ namespace BL
                     keywordsInThisSearch.Add(AddKeyword(new DTO.Keyword(word)));
                 }
             }
-            bool saveTheKeywordsInXML= writeHelpCallTpXML(helpCallID, keywordsInThisSearch);
+            bool saveTheKeywordsInXML= WriteHelpCallTpXML(helpCallID, keywordsInThisSearch);
             //now we have the keywords of this search save
             //until the patient choose which case from the related cases
             //or all the cases is the correct case for this keywords.
@@ -129,12 +142,12 @@ namespace BL
             //that the keywords related to the choosed case
 
             return relatedCases
-                .OrderBy(someCase => someCase.sumOfNumOfUsingThisSearch)
+                .OrderByDescending(someCase => someCase.sumOfNumOfUsingThisSearch)
                 .Select(someCase => someCase.relatedCase)
                 .ToList();
         }
 
-        public static bool writeHelpCallTpXML(int helpCallID, List<DTO.Keyword> keywordsList)
+        public static bool WriteHelpCallTpXML(int helpCallID, List<DTO.Keyword> keywordsList)
         {
             try
             {
@@ -149,7 +162,7 @@ namespace BL
                 foreach (var word in keywordsList)
                 {
                     keyword = new XElement("keyword", word.keyWord1);
-                    keyword.Add(new XAttribute("id", word.keywordId));
+                    keyword.Add(new XAttribute("keywordId", word.keywordId));
                     keywordsRoot.Add(keyword);
                 }
                 newHelpCall.Add(keywordsRoot);
@@ -165,7 +178,7 @@ namespace BL
                 return false;
             }
         }
-        public static List<DTO.Keyword> readHelpCallTpXML(int helpCallID)
+        public static List<DTO.Keyword> ReadHelpCallTpXML(int helpCallID)
         {
             try
             {
@@ -183,7 +196,7 @@ namespace BL
                     keywordsInThisSearch.Add(
                         new DTO.Keyword
                     {
-                        keywordId = int.Parse(keywordElement.Attribute("id").Value),
+                        keywordId = int.Parse(keywordElement.Attribute("keywordId").Value),
                         keyWord1 = keywordElement.Value
                     });
                 }

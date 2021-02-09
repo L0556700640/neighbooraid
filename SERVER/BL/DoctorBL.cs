@@ -40,7 +40,7 @@ namespace BL
                         {
                             doctorId = newDoctor.doctorId,
                             caseId = c.caseId,
-                            satisfaction = 0
+                            satisfaction = 75
                         }
                         );
                     }
@@ -94,7 +94,7 @@ namespace BL
             }
 
         }
-        public static List<DTO.CasesToDoctor> casesToDoctor(string id)
+        public static List<DTO.CasesToDoctor> GetCasesToDoctor(string id)
         {
 
             try
@@ -145,7 +145,7 @@ namespace BL
 
 
         }
-        public static List<DTO.ReturnedDoctorsToCase> GetDoctorsToCase(DTO.Cases correntCase)
+        public static ReturnedDoctorsToCase GetDoctorsToCase(int helpCallId, DTO.Cases correntCase)
         {
             //this function get the doctors to the corrent case from the db:
             //it find the doctors who note that them specializes in this case,
@@ -173,20 +173,19 @@ namespace BL
                 }
                 //now the func check which doctor from the list live close to the help call
                 //and also find the doctors from google contacts.
-                List<ReturnedDoctorsToCase> theMostSuitableDoctors = new List<ReturnedDoctorsToCase>();
+                return new ReturnedDoctorsToCase(
+                        GetContactsDoctorsFromGoogleAccount(doctorsToCorrentCase),
+                        GetContactsDoctorsByDistance(helpCallId, doctorsToCorrentCase)
+                        );
+
                 //todo: from google people
                 //todo: by calc the distance
-                foreach (var doctor1 in doctorsToCorrentCase)
-                {
 
-                }
-                string doctorPoint = "";
-                string helpCallPoint = "";
-                int a = DistanceFromPatientAndDoctorInMinutes(helpCallPoint, doctorPoint);
+                //string doctorPoint = "";
+                //string helpCallPoint = "";
+                //int a = DistanceFromPatientAndDoctorInMinutes(helpCallPoint, doctorPoint);
 
-
-
-                return theMostSuitableDoctors;
+                //return theMostSuitableDoctors;
             }
             catch (Exception ex)
             {
@@ -194,11 +193,7 @@ namespace BL
                 return null;
             }
         }
-        public static void GetDoctorCoordinates(string doctorAddress)
-        {
-            string uri = "https://maps.googleapis.com/maps/api/geocode/json?address="+doctorAddress + "&key=AIzaSyA5L81_-5d2Hy7hHsNVhodk1zS90Qu-aP8";
-            WebClient wc = new WebClient();
-        }
+
         public static int DistanceFromPatientAndDoctorInMinutes(string patientPoint, string doctorPoint)
         {
             string uri = "https://maps.googleapis.com/maps/api/distancematrix/xml?key=AIzaSyA5L81_-5d2Hy7hHsNVhodk1zS90Qu-aP8&origins="
@@ -219,8 +214,30 @@ namespace BL
             }
             //return TravelingTime
         }
+        public static List<DTO.CloseDoctor> GetContactsDoctorsByDistance(int helpCallId, List<DTO.Doctor> relatedDoctors)
+        {
+            List<CloseDoctor> closeDoctor = new List<CloseDoctor>();
+            string patientPoint = HelpCallBL.ConvertPointsToAddress(helpCallId);
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                foreach (var doctor in relatedDoctors)
+                {
+                    closeDoctor.Add(
+                        new CloseDoctor(
+                            doctor,
+                    DistanceFromPatientAndDoctorInMinutes(patientPoint, doctor.address),
+                    db.CasesToDoctors
+                    .FirstOrDefault(myCase => myCase.doctorId == doctor.doctorId
+                    &&
+                    myCase.caseId == db.HelpCalls.FirstOrDefault(hc => hc.callId == helpCallId).caseId)
+                    .satisfaction
+                     ));
+                }
+            }
+            return closeDoctor.OrderBy(doctor => doctor.Satisfaction).ToList();
 
-        public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount()
+        }
+        public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount(List<DTO.Doctor> relatedDoctors)
         {
             //todo: fill the function
             //link: https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth
@@ -436,6 +453,24 @@ namespace BL
             }
             catch { }
             return doctorsToCorrentCase;
+        }
+        public static List<ContactsDoctor> GetContactsFromDoctors(DTO.Cases choosedCase, List<DTO.ContactsDoctor> contacts)
+        {
+            List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
+            List<DTO.Doctor> doctorToCorrentCase = DoctorsToCase(choosedCase);
+
+            foreach (var c in contacts)
+            {
+                foreach (var doctor in doctorToCorrentCase)
+                {
+                    if (c.Doctor.doctorPhone.Equals(doctor.doctorPhone))
+                    {
+                        contactsDoctorsToThisCase.Add(c);
+                    }
+                }
+            }
+
+            return contactsDoctorsToThisCase;
         }
     }
 }

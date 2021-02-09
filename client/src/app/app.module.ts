@@ -25,6 +25,7 @@ import { CriticismComponent } from './Patient/criticism/criticism.component';
 import { ProfileComponent } from './Doctor/profile/profile.component';
 import { DiplomaComponent } from './Registration/diploma/diploma.component';
 import { FinishComponent } from './Registration/finish/finish.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //import {Contacts} from '@ionic-native/contacts/ngx';
 @NgModule({
   declarations: 
@@ -63,7 +64,8 @@ import { FinishComponent } from './Registration/finish/finish.component';
     AgmCoreModule.forRoot(  {
       apiKey: 'AIzaSyD7Wui1ikC-x4CMLYBpPz-8Yutf2l3glNo',
      libraries: ["places"]
-    })
+    }),
+    NgbModule
 
   ],
   providers: [
