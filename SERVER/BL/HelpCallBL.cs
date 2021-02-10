@@ -21,15 +21,14 @@ namespace BL
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
                     DAL.HelpCall newhelpcall = Convertors.HelpCallConvertor.ConvertHelpCallToDAL(helpCall);
-                    DAL.HelpCall myhelpcall = new HelpCall();
-                        //string diplomaDocumentPath = "//";//todo: send the file path and save in db
-                    newhelpcall.caseId = 0;
-                    newhelpcall.doctorId = "";
-                    newhelpcall.callId = db.HelpCalls.Count()+1;
-                  myhelpcall=  db.HelpCalls.Add(newhelpcall);
+                    //string diplomaDocumentPath = "//";//todo: send the file path and save in db
+                   // newhelpcall.caseId = null;
+                   // newhelpcall.doctorId = "";
+                   // newhelpcall.callId = db.HelpCalls.Count()+1;
+                    db.HelpCalls.Add(newhelpcall);
                     db.SaveChanges();
 
-                    return myhelpcall.callId;
+                    return newhelpcall.callId;
                 }
             }
             catch (Exception ex)
