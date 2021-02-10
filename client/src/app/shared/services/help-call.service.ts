@@ -9,16 +9,16 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HelpCallService {
-  currentHelpCall: any;
+  private currentHelpCall: number;
 
   constructor(private http:HttpClient) { }
 
-  get CurrnetCase()
+  get CurrnetHelpCall()
   {     
     return this.currentHelpCall;   
   } 
  
-  setCurrentCase(helpCallId)
+  setCurrentHelpCall(helpCallId)
   {     
     this.currentHelpCall = helpCallId;   
   }

@@ -1,7 +1,8 @@
 {
   "compileOnSave": false,
-  "compilerOptions": {
-    "types": ["jest", "lodash","gapi","gapi.auth2","gapi.client"],
+  "compilerOptions":
+  {
+    "types": ["jasmine", "lodash","gapi","gapi.auth2","gapi.client"],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -18,7 +19,8 @@
       "dom"
     ]
   },
-  "angularCompilerOptions": {
+  "angularCompilerOptions": 
+  {
     "fullTemplateTypeCheck": true,
     "allowJs": true,
     "strictInjectionParameters": true

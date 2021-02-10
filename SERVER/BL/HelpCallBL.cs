@@ -13,7 +13,7 @@ namespace BL
     public class HelpCallBL
     {
         public static int helpCallId = 1;
-        public static bool SaveHelpCallInDB(DTO.HelpCall helpCall)
+        public static int SaveHelpCallInDB(DTO.HelpCall helpCall)
         {
 
             try
@@ -22,19 +22,19 @@ namespace BL
                 {
                     DAL.HelpCall newhelpcall = Convertors.HelpCallConvertor.ConvertHelpCallToDAL(helpCall);
                     //string diplomaDocumentPath = "//";//todo: send the file path and save in db
-                    newhelpcall.caseId = 0;
-                    newhelpcall.doctorId = "";
-                    newhelpcall.callId = db.HelpCalls.Count()+1;
+                   // newhelpcall.caseId = null;
+                   // newhelpcall.doctorId = "";
+                   // newhelpcall.callId = db.HelpCalls.Count()+1;
                     db.HelpCalls.Add(newhelpcall);
                     db.SaveChanges();
 
-                    return true;
+                    return newhelpcall.callId;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return false;
+                return -1;
             }
 
             //todo: delete the raw

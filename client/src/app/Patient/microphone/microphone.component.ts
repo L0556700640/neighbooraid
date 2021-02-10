@@ -6,6 +6,7 @@ import { CasesService } from 'src/app/shared/services/cases.service';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
 import { RelatedDoctorToCasesService } from 'src/app/shared/services/related-doctor-to-cases.service';
 import { VoiceRecognitionService } from 'src/app/shared/services/voice-recognition.service';
+import { HelpCallService } from '../../shared/services/help-call.service';
 
 @Component({
   selector: 'app-microphone',
@@ -30,7 +31,7 @@ export class MicrophoneComponent implements OnInit {
 
   matches: String[];
   isRecording = false;
-  constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router,private doctorService:DoctorService,private relatedDoctorService:RelatedDoctorToCasesService) { 
+  constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router,private doctorService:DoctorService,private relatedDoctorService:RelatedDoctorToCasesService, private helpCallService:HelpCallService) { 
     this.showFullCasesList();
     this.microphoneService.init();
     this.myList=this.allCases;
@@ -95,7 +96,7 @@ export class MicrophoneComponent implements OnInit {
   {
     this.casesService.choseCaseAction(1,this.allCases[i])
     this.casesService.setCurrentCase(this.allCases[i])
-    this.doctorService.GetDoctorsToCase(25,this.allCases[i].caseId).subscribe(
+    this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i].caseId).subscribe(
       res=>{
         this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
         console.log(res.closeDoctors)
@@ -106,7 +107,7 @@ export class MicrophoneComponent implements OnInit {
   {
     this.casesService.choseCaseAction(1,this.relatedCases[i])
     this.casesService.setCurrentCase(this.relatedCases[i])
-    this.doctorService.GetDoctorsToCase(25,this.relatedCases[i].caseId).subscribe(
+    this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.relatedCases[i].caseId).subscribe(
       res=>{
         this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
         this.relatedDoctorService.setCurrentcontacts(res.contacts);
