@@ -1,3 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <helpCalls>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="0">child</keyword>
+      <keyword keywordId="0">sick</keyword>
+      <keyword keywordId="0">get</keyword>
+      <keyword keywordId="0">take</keyword>
+      <keyword keywordId="0">give</keyword>
+      <keyword keywordId="0">painful</keyword>
+      <keyword keywordId="0">blow</keyword>
+      <keyword keywordId="0">bleed</keyword>
+      <keyword keywordId="0">come</keyword>
+      <keyword keywordId="0">appear</keyword>
+      <keyword keywordId="0">start</keyword>
+      <keyword keywordId="0">find</keyword>
+      <keyword keywordId="0">see</keyword>
+    </keywords>
+  </helpCall>
 </helpCalls>

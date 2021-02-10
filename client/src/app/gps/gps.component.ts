@@ -47,19 +47,38 @@ export class GpsComponent implements OnInit {
 
    googleContacts(){
 
-     window.gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
-     gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
+   gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
+   gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
+          // gapi.client.setApiKey(this.apiKey);
+           // window.setTimeout(this.authorize);
    }
 
-   handleAuthorization = (authorizationResult) => {
-     if (authorizationResult && !authorizationResult.error) {
-       let url: string = "https://www.google.com/m8/feeds/contacts/default/thin?" +
-          "alt=json&max-results=500&v=3.0&access_token=" +
-          authorizationResult.access_token;
-       console.log("Authorization success, URL: ", url);
+   authorize() {
+    gapi.auth.authorize({client_id: this.clientId, scope: this.scopes, immediate: false}, this.handleAuthorization);
+  }
 
-     }
-   }
+  handleAuthorization(authorizationResult) {
+    if (authorizationResult && !authorizationResult.error) {
+      const url="https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
+       
+          //process the response here
+          console.log(url);
+        
+    }
+  }
+
+  //  handleAuthorization = (authorizationResult) => {
+  //    if (authorizationResult && !authorizationResult.error) {
+  //      let url: string = "https://www.google.com/m8/feeds/contacts/default/thin?" +
+  //         "alt=json&max-results=500&v=3.0&access_token=" +
+  //         authorizationResult.access_token;
+  //      console.log("Authorization success, URL: ", url);
+
+  //    }
+  //  }
+
+
+
   getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {

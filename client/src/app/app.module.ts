@@ -65,7 +65,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       apiKey: 'AIzaSyD7Wui1ikC-x4CMLYBpPz-8Yutf2l3glNo',
      libraries: ["places"]
     }),
-    NgbModule
+   NgbModule
 
   ],
   providers: [

@@ -26,7 +26,7 @@ namespace BL
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
                     string pathToGetExtension = string.Format(@"c:\" + file.FileName);
-                    string diplomaDocumentNewPath = DTO.StartPoint.Liraz+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
+                    string diplomaDocumentNewPath = DTO.StartPoint.Hadar+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
                     file.SaveAs(diplomaDocumentNewPath);
                     newDoctor.pictureDiploma = diplomaDocumentNewPath;
 
@@ -178,7 +178,7 @@ namespace BL
 
 
         }
-        public static ReturnedDoctorsToCase GetDoctorsToCase(int helpCallId, DTO.Cases correntCase)
+        public static ReturnedDoctorsToCase GetDoctorsToCase(int helpCallId, int caseId)
         {
             //this function get the doctors to the corrent case from the db:
             //it find the doctors who note that them specializes in this case,
@@ -192,7 +192,7 @@ namespace BL
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
                     doctorsOfCorrentCaseFromDB =
-                        db.Cases.FirstOrDefault(c => c.caseId == correntCase.caseId)
+                        db.Cases.FirstOrDefault(c => c.caseId == caseId)
                         .CasesToDoctors
                         .Where(c => c.Doctor.isConfirmed == true
                         && c.satisfaction >= satisfactorySatisfaction)
@@ -349,7 +349,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -363,7 +363,7 @@ namespace BL
 
                 msg.Subject = "אישור רופא "+doctor.doctorId;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
@@ -554,7 +554,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -566,7 +566,7 @@ namespace BL
                 msg.To.Add(new MailAddress(doctor.mail));
                 msg.Subject = "אישור הרשמה לNeighborAid עבור דר'  " + doctor.lastName;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
@@ -611,7 +611,7 @@ namespace BL
                 alternateView.LinkedResources.Add(res);
                 msg.AlternateViews.Add(alternateView);
                 msg.IsBodyHtml = true;
-                msg.Attachments.Add(new Attachment(doctor.pictureDiploma));
+           //     msg.Attachments.Add(new Attachment(doctor.pictureDiploma));
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = loginInfo;

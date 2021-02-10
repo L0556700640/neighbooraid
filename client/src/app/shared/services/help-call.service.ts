@@ -9,8 +9,19 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HelpCallService {
+  currentHelpCall: any;
 
   constructor(private http:HttpClient) { }
+
+  get CurrnetCase()
+  {     
+    return this.currentHelpCall;   
+  } 
+ 
+  setCurrentCase(helpCallId)
+  {     
+    this.currentHelpCall = helpCallId;   
+  }
 
   AddHelpCall(helpcall:HelpCall): Observable<boolean> {
     const data = new FormData();

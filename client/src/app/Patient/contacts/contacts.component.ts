@@ -14,7 +14,7 @@ export class ContactsComponent implements OnInit {
 
   ngOnInit() {
     this.case=this.casesService.CurrnetCase
-    this.doctor=this.doctorService.GetDoctorsToCase(this.case);
+   // this.doctor=this.doctorService.GetDoctorsToCase(this.case);
   }
 
 }

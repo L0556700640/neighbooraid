@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { DoctorDetails } from '../models/doctorDelails.model';
 import { CasesToDoctor } from '../models/caseToDoctor.model';
 import { Cases } from '../models/cases.model';
+import { RelatedDoctorToCases } from '../models/RelatedDoctorToCases';
 
 @Injectable({
   providedIn: 'root'
@@ -43,10 +44,12 @@ export class DoctorService {
 
   }
 
-  GetDoctorsToCase(c: Cases): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(environment.url + 'Doctor/DoctorsToCase/' + c)
+  GetDoctorsToCase(helpcallid:number,c: number): Observable<RelatedDoctorToCases> {
+    return this.http.get<RelatedDoctorToCases>(environment.url + "Doctor/GetDoctorToCases/"+helpcallid +"/"+ c)
 
   }
+
+  
 
   delete(id: string): Observable<boolean> {
     const data = new FormData();

@@ -41,6 +41,7 @@
     "express": "^4.17.1",
     "gapi": "0.0.3",
     "gapi-client": "0.0.3",
+    "geolocation": "^0.2.0",
     "marked": "^1.2.9",
     "ngx-google-places-autocomplete": "^2.0.4",
     "ngx-loading": "^8.0.0",

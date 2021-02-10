@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cases } from 'src/app/shared/models/cases.model';
+import { RelatedDoctorToCases } from 'src/app/shared/models/RelatedDoctorToCases';
 import { CasesService } from 'src/app/shared/services/cases.service';
+import { DoctorService } from 'src/app/shared/services/doctor.service';
+import { RelatedDoctorToCasesService } from 'src/app/shared/services/related-doctor-to-cases.service';
 import { VoiceRecognitionService } from 'src/app/shared/services/voice-recognition.service';
 
 @Component({
@@ -27,7 +30,7 @@ export class MicrophoneComponent implements OnInit {
 
   matches: String[];
   isRecording = false;
-  constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router) { 
+  constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router,private doctorService:DoctorService,private relatedDoctorService:RelatedDoctorToCasesService) { 
     this.showFullCasesList();
     this.microphoneService.init();
     this.myList=this.allCases;
@@ -57,7 +60,8 @@ export class MicrophoneComponent implements OnInit {
     });
     this.fullCasesList=true;
     }
-  searchVoice() {
+  searchVoice() 
+  {
     let helpCallID=1;
     let sentence=this.microphoneService.text;
     sentence=sentence.split('.').join('');
@@ -65,19 +69,21 @@ export class MicrophoneComponent implements OnInit {
     this.fullCasesList = false;
   this.myList=this.relatedCases;
   }
-  startMicrophoneService() {
+  startMicrophoneService() 
+  {
     if(this.isRecording==false)
     {
-    this.isRecording = true;
-    this.microphoneService.start()}
-  else
-  {
+      this.isRecording = true;
+      this.microphoneService.start()
+    }
+    else
+    {
     this.isRecording = false;
     this.microphoneService.stop()
     this.searchVoice();
     console.log('this.sen'+this.microphoneService.text)
     
-  }
+    }
   }
   getTheProfessionalDoctors(){
     
@@ -85,13 +91,29 @@ export class MicrophoneComponent implements OnInit {
 
   clickCases(i) 
   {
-  if(this.fullCasesList==true){
+  if(this.fullCasesList==true)
+  {
     this.casesService.choseCaseAction(1,this.allCases[i])
     this.casesService.setCurrentCase(this.allCases[i])
-  }else{
+    this.doctorService.GetDoctorsToCase(25,this.allCases[i].caseId).subscribe(
+      res=>{
+        this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
+        console.log(res.closeDoctors)
+        this.relatedDoctorService.setCurrentcontacts(res.contacts);
+      }
+    )
+  }else
+  {
     this.casesService.choseCaseAction(1,this.relatedCases[i])
     this.casesService.setCurrentCase(this.relatedCases[i])
+    this.doctorService.GetDoctorsToCase(25,this.relatedCases[i].caseId).subscribe(
+      res=>{
+        this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
+        this.relatedDoctorService.setCurrentcontacts(res.contacts);
+      }
+    )
   }
     this.router.navigateByUrl('contacts')
   }
 }
+
