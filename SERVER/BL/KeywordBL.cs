@@ -210,14 +210,18 @@ namespace BL
         }
         public static int GetKeywordIdByKeyword(string keyword)
         {
-            bool keywordFound = false;
             List<DAL.Keyword> keywords = new List<DAL.Keyword>();
 
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
                 keywords = db.Keywords.ToList();
             }
-          return keywords.FirstOrDefault(k => k.keyWord1.Equals(keyword)).keywordId;
+            if (keywords.Where(kw => kw.keyWord1.Equals(keyword)).Count() > 0)
+            {
+                return keywords.FirstOrDefault(k => k.keyWord1.Equals(keyword)).keywordId;
+            }
+            else
+                return -1;
         }
 
 

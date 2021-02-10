@@ -6,6 +6,8 @@ import { NgZone, Injectable, Optional } from '@angular/core';
 import { from } from 'ReportingOnQualityOfCareApp/node_modules/rxjs';
 import { HelpCall } from '../shared/models/helpCall.model';
 import { HelpCallService } from '../shared/services/help-call.service';
+// import { GoogleAuthService } from 'ng-gapi';
+
 declare let gapi:any;
 
  //import { GoogleApiService } from 'googleapis';
@@ -15,8 +17,10 @@ declare let gapi:any;
 //  import {  } from '@types/gapi.client';
 @Component({ 
   selector: 'app-gps',
+
   templateUrl: './gps.component.html',
   styleUrls: ['./gps.component.scss'],
+
 })
 
 export class GpsComponent implements OnInit {
@@ -49,42 +53,41 @@ export class GpsComponent implements OnInit {
   apiKey = 'AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0';
   scopes = 'https://www.googleapis.com/auth/contacts.readonly';
 
-//   loadClient(): Promise<any> {
-//     return new Promise((resolve, reject) => {
-//         this.zone.run(() => {
-//                gapi.load('client', {
-//                    callback: resolve,
-//                    onerror: reject,
-//                    timeout: 1000, // 5 seconds.
-//                    ontimeout: reject
-//                });
-//         });
-//    });
-// }
+   loadClient(): Promise<any> {
+     return new Promise((resolve, reject) => {
+         this.zone.run(() => {
+                gapi.load('client', {
+                    callback: resolve,
+                    onerror: reject,
+                    timeout: 1000, // 5 seconds.
+                    ontimeout: reject
+                });
+         });
+    });
+ }
   ngOnInit() {
 
     this.authConfig = {
       client_id: '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com',
       scope: 'https://www.googleapis.com/auth/contacts.readonly'
     };
-  }
-  //#region 
-  //   this.apiLoaderService.loadClient().then(
-  //     result => {
-  //         this.apiLoaded = true;
-  //         return this.apiLoaderService.initClient()
-  //     },
-  //     err => {
-  //         this.apiFailed = true;
-  //     }
-  // ).then(result => {
-  //     this.apiReady = true;
-  // }, err => {
-  //     this.apiFailed = true;
-  // });
-  //   this.googleContacts() ;
-
- //#endregion
+    
+//   this.apiLoaderService.loadClient().then(
+//     result => {
+//         this.apiLoaded = true;
+//         return this.apiLoaderService.initClient()
+//     },
+//     err => {
+//         this.apiFailed = true;
+//     }
+// ).then(result => {
+//     this.apiReady = true;
+// }, err => {
+//     this.apiFailed = true;
+// });
+  //#endregion
+    this.googleContacts() ;
+}
    initme() {
     console.log("in gapi"+gapi)
 
@@ -95,21 +98,20 @@ export class GpsComponent implements OnInit {
     }
 
     googleContacts(){
-      //#region 
-    //   gapi.load('auth2', () => {
-    //     this.auth2 = gapi.auth2.init({
-    //      client_id: 'xxx.apps.googleusercontent.com',
-        
-    //    });
-    //  });
+      //  gapi.load('auth2', () => {
+      //    this.auth2 = gapi.auth2.init({
+      //     client_id: 'xxx.apps.googleusercontent.com',
+      
+      //   });
+      // });
   
-    //   gapi.auth2.init({
-    //     client_id: 'xxx.apps.googleusercontent.com',
-    //     cookie_policy: 'single_host_origin',
-    //     scope: 'https://www.googleapis.com/auth/plus.login',
-    //     fetch_basic_profile: true
-    //   })
-    //#endregion
+      //  gapi.auth2.init({
+      //    client_id: 'xxx.apps.googleusercontent.com',
+      //    cookie_policy: 'single_host_origin',
+      //    scope: 'https://www.googleapis.com/auth/plus.login',
+      //    fetch_basic_profile: true
+      //  })
+    
     window.gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
     gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
     }
