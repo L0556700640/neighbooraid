@@ -11,4 +11,41 @@
       <keyword keywordId="0">red</keyword>
     </keywords>
   </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="0">hand</keyword>
+      <keyword keywordId="0">hurt</keyword>
+      <keyword keywordId="0">much</keyword>
+      <keyword keywordId="0">many</keyword>
+      <keyword keywordId="0">spill</keyword>
+      <keyword keywordId="0">boil</keyword>
+      <keyword keywordId="0">cook</keyword>
+      <keyword keywordId="0">water</keyword>
+      <keyword keywordId="0">red</keyword>
+      <keyword keywordId="0">red</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="0">boy</keyword>
+      <keyword keywordId="0">spill</keyword>
+      <keyword keywordId="0">hot</keyword>
+      <keyword keywordId="0">warm</keyword>
+      <keyword keywordId="4192">water</keyword>
+      <keyword keywordId="4113">red</keyword>
+      <keyword keywordId="4113">red</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="4083">boy</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4105">break</keyword>
+      <keyword keywordId="4113">red</keyword>
+      <keyword keywordId="4113">red</keyword>
+      <keyword keywordId="4120">purple</keyword>
+    </keywords>
+  </helpCall>
 </helpCalls>

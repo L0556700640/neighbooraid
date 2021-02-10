@@ -26,6 +26,7 @@ import { ProfileComponent } from './Doctor/profile/profile.component';
 import { DiplomaComponent } from './Registration/diploma/diploma.component';
 import { FinishComponent } from './Registration/finish/finish.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 //import {Contacts} from '@ionic-native/contacts/ngx';
 @NgModule({
   declarations: 

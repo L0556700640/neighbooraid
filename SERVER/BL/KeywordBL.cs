@@ -17,22 +17,22 @@ namespace BL
         {
             try
             {
-                bool keywordFound = false;
-
-                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+             int keywordId= GetKeywordIdByKeyword(keyword.keyWord1);
+                if (keywordId < 0)
                 {
-                    foreach (var word in db.Keywords)
+                    using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                     {
-                        if (keyword.keyWord1.Equals(word.keyWord1) == true)
-                            keywordFound = true;
+                        db.Keywords.Add(Convertors.KeywordConvertors.ConvertKeywordsToDAL(new DTO.Keyword(keyword.keyWord1)));
+                        db.SaveChanges();
+
                     }
-                    if(keywordFound==false)
-                    db.Keywords.Add(Convertors.KeywordConvertors.ConvertKeywordsToDAL(keyword));
-                    db.SaveChanges();
-
-
-                    return Convertors.KeywordConvertors.ConvertKeywordsToDTO(db.Keywords.First(k => k.keyWord1.Equals(keyword.keyWord1)));
                 }
+                return new DTO.Keyword
+                {
+                    keywordId = GetKeywordIdByKeyword(keyword.keyWord1),
+                    keyWord1 = keyword.keyWord1
+                };
+
             }
             catch (Exception ex)
             {
@@ -151,7 +151,7 @@ namespace BL
         {
             try
             {
-                //  string xmlFileFullPath = DTO.StartPoint.HadarHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                //  string xmlFileFullPath = DTO.StartPoint.LirazHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 string xmlFileFullPath = DTO.StartPoint.Liraz + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
@@ -207,6 +207,17 @@ namespace BL
                 Console.WriteLine(ex);
                 return null;
             }
+        }
+        public static int GetKeywordIdByKeyword(string keyword)
+        {
+            bool keywordFound = false;
+            List<DAL.Keyword> keywords = new List<DAL.Keyword>();
+
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                keywords = db.Keywords.ToList();
+            }
+          return keywords.FirstOrDefault(k => k.keyWord1.Equals(keyword)).keywordId;
         }
 
 

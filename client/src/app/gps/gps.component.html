@@ -1,23 +1,27 @@
-
 <ion-content [fullscreen]="true" class="background">
-
-  <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0&callback=initMap&libraries=&v=weekly"
-  ></script>
-  <script src="https://apis.google.com/js/platform.js"></script>
-  <script src="https://apis.google.com/js/client.js"></script>
-  <script src="https://apis.google.com/js/client.js?onload=load"></script>    
-  <script src="https://apis.google.com/js/api.js"></script>
-  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-  
   <head>
+  
+
+  
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0&callback=initMap&libraries=&v=weekly"></script>
+  <!-- <script src="https://apis.google.com/js/platform.js"></script> -->
+  
+  <script src="https://apis.google.com/js/client.js"></script>
+  <!-- <script src="https://apis.google.com/js/client.js?onload=load"></script>     -->
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=initme" async defer></script>
+  <script>
+  
+  </script>
   </head>
 
   <body>
-   
+
     <!-- <script type="text/javascript">
       var clientId = '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com';
       var apiKey = 'AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0';
@@ -57,7 +61,7 @@
         style="font-style:normal;font-weight:bold;font-size:16px;">GPS </span><span
         style="font-style:normal;font-weight:normal;font-size:16px;">מבקשת להפעיל<br />על מנת לאתר את מיקומך</span>
     </div>
-    <button (click)="getCurrentLocation()"  id="map" routerLinkActive="activelink"><svg class="Rectangle_3">
+    <button (click)="getCurrentLocation()" id="map" routerLinkActive="activelink"><svg class="Rectangle_3">
         <rect id="Rectangle_3" rx="15" ry="15" x="0" y="0" width="111" height="30">
         </rect>
       </svg>
@@ -126,5 +130,7 @@
         </ion-item>
       </ion-list>
     </ion-card> -->
+
   </body>
+
 </ion-content>
