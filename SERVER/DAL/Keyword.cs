@@ -19,7 +19,12 @@ namespace DAL
         {
             this.KeywordsToCases = new HashSet<KeywordsToCase>();
         }
-    
+
+        public Keyword(string keyWord1)
+        {
+            this.keyWord1 = keyWord1;
+        }
+
         public int keywordId { get; set; }
         public string keyWord1 { get; set; }
     

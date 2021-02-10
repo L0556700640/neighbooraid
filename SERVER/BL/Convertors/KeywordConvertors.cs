@@ -13,6 +13,7 @@ namespace BL.Convertors
             return new DTO.Keyword
             {
                 keyWord1 = keyword.keyWord1,
+                keywordId=keyword.keywordId
             };
         }
         public static DAL.Keyword ConvertKeywordsToDAL(DTO.Keyword keyword)

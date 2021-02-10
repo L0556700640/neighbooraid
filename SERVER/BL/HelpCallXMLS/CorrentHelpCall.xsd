@@ -9,7 +9,15 @@
 							<xs:element name="keywords">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element maxOccurs="unbounded" name="keyword" type="xs:string" />
+										<xs:element maxOccurs="unbounded" name="keyword">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="keywordId" type="xs:unsignedShort" use="required" />
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
