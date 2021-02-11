@@ -12,7 +12,7 @@ namespace BL
 {
     public class HelpCallBL
     {
-        public static int helpCallId = 1;
+        //public static int helpCallId = 1;
         public static int SaveHelpCallInDB(DTO.HelpCall helpCall)
         {
 
@@ -59,8 +59,8 @@ namespace BL
                 string geoCodeInfo = wc.DownloadString(uri);
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(geoCodeInfo);
-
-                string formattedAddress = xmlDoc.DocumentElement.SelectSingleNode("/GeocodeResponse/result/formatted_address").InnerText;
+                
+                string formattedAddress = xmlDoc.DocumentElement.SelectSingleNode("//GeocodeResponse/result/formatted_address").InnerText;
                 return formattedAddress;
             }
             catch (Exception)
