@@ -41,7 +41,7 @@ namespace BL
             }
         }
 
-        public static bool SaveTheCorrentCaseToKeywords( int helpCallID, Cases correntCase)
+        public static bool SaveTheCorrentCaseToKeywords( int helpCallID, int correntCase)
 
         {
             try
@@ -49,21 +49,20 @@ namespace BL
                 List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
                 keywordsInThisSearch = ReadHelpCallTpXML(helpCallID);
                 DAL.Case choosedCase = new Case();
-                choosedCase = Convertors.CaseConvertor.ConvertCaseToDAL(correntCase);
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
                     foreach (var keyword in keywordsInThisSearch)
                     {
                         if (db.KeywordsToCases.Any(
                             ktc => ktc.Keyword.keyWord1.Equals(keyword.keyWord1)
-                            && ktc.caseId == correntCase.caseId
+                            && ktc.caseId == correntCase
                             ))
                             db.KeywordsToCases.First(ktc => ktc.Keyword.keyWord1.Equals(keyword.keyWord1)
-                       && ktc.caseId == correntCase.caseId).numOfUsingThisRelation++;
+                       && ktc.caseId == correntCase).numOfUsingThisRelation++;
                         else
                             db.KeywordsToCases.Add(
                                 Convertors.KeywordToCaseConvertor.ConvertKeywordsToCaseToDAL
-                                (new DTO.KeywordsToCase(correntCase.caseId, keyword.keywordId)));
+                                (new DTO.KeywordsToCase(correntCase, keyword.keywordId)));
                     }
                     db.SaveChanges();
                     return true;
@@ -151,8 +150,8 @@ namespace BL
         {
             try
             {
-                //  string xmlFileFullPath = DTO.StartPoint.LirazHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
-                string xmlFileFullPath = DTO.StartPoint.Liraz + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                //  string xmlFileFullPath = DTO.StartPoint.HadarHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                string xmlFileFullPath = DTO.StartPoint.Hadar + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
                 XElement newHelpCall = new XElement("helpCall");

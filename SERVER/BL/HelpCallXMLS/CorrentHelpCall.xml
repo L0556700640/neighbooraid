@@ -11,4 +11,269 @@
       <keyword keywordId="4113">red</keyword>
     </keywords>
   </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="239">girl</keyword>
+      <keyword keywordId="177">fall</keyword>
+      <keyword keywordId="3">take</keyword>
+      <keyword keywordId="28">come</keyword>
+      <keyword keywordId="10">head</keyword>
+      <keyword keywordId="2">receive</keyword>
+      <keyword keywordId="4">make</keyword>
+      <keyword keywordId="5">hold</keyword>
+      <keyword keywordId="6">give</keyword>
+      <keyword keywordId="7">strong</keyword>
+      <keyword keywordId="9">blow</keyword>
+      <keyword keywordId="240">lot</keyword>
+      <keyword keywordId="241">blood</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="2">receive</keyword>
+      <keyword keywordId="3">take</keyword>
+      <keyword keywordId="4">make</keyword>
+      <keyword keywordId="5">hold</keyword>
+      <keyword keywordId="6">give</keyword>
+      <keyword keywordId="9">blow</keyword>
+      <keyword keywordId="177">fall</keyword>
+      <keyword keywordId="242">drop</keyword>
+      <keyword keywordId="28">come</keyword>
+      <keyword keywordId="10">head</keyword>
+      <keyword keywordId="32">continue</keyword>
+      <keyword keywordId="21">return</keyword>
+      <keyword keywordId="22">appear</keyword>
+      <keyword keywordId="23">start</keyword>
+      <keyword keywordId="64">leave</keyword>
+      <keyword keywordId="243">bring</keyword>
+      <keyword keywordId="24">begin</keyword>
+      <keyword keywordId="244">turn</keyword>
+      <keyword keywordId="26">move</keyword>
+      <keyword keywordId="245">lead</keyword>
+      <keyword keywordId="238">find</keyword>
+      <keyword keywordId="29">see</keyword>
+      <keyword keywordId="246">put</keyword>
+      <keyword keywordId="247">full</keyword>
+      <keyword keywordId="159">first</keyword>
+      <keyword keywordId="79">well</keyword>
+      <keyword keywordId="241">blood</keyword>
+      <keyword keywordId="67">know</keyword>
+      <keyword keywordId="248">include</keyword>
+      <keyword keywordId="249">refer</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="239">girl</keyword>
+      <keyword keywordId="2">receive</keyword>
+      <keyword keywordId="3">take</keyword>
+      <keyword keywordId="4">make</keyword>
+      <keyword keywordId="6">give</keyword>
+      <keyword keywordId="9">blow</keyword>
+      <keyword keywordId="10">head</keyword>
+      <keyword keywordId="250">terrible</keyword>
+      <keyword keywordId="251">severe</keyword>
+      <keyword keywordId="252">bad</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="239">girl</keyword>
+      <keyword keywordId="2">receive</keyword>
+      <keyword keywordId="3">take</keyword>
+      <keyword keywordId="4">make</keyword>
+      <keyword keywordId="5">hold</keyword>
+      <keyword keywordId="6">give</keyword>
+      <keyword keywordId="9">blow</keyword>
+      <keyword keywordId="10">head</keyword>
+      <keyword keywordId="177">fall</keyword>
+      <keyword keywordId="28">come</keyword>
+      <keyword keywordId="11">hurt</keyword>
+      <keyword keywordId="253">convulsions</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="178">child</keyword>
+      <keyword keywordId="224">water</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="239">girl</keyword>
+      <keyword keywordId="254">sleep</keyword>
+      <keyword keywordId="255">lamp</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="59">cut</keyword>
+      <keyword keywordId="256">knife</keyword>
+      <keyword keywordId="247">full</keyword>
+      <keyword keywordId="241">blood</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="2">receive</keyword>
+      <keyword keywordId="3">take</keyword>
+      <keyword keywordId="4">make</keyword>
+      <keyword keywordId="5">hold</keyword>
+      <keyword keywordId="6">give</keyword>
+      <keyword keywordId="7">strong</keyword>
+      <keyword keywordId="9">blow</keyword>
+      <keyword keywordId="10">head</keyword>
+      <keyword keywordId="16">get</keyword>
+      <keyword keywordId="240">lot</keyword>
+      <keyword keywordId="241">blood</keyword>
+      <keyword keywordId="257">bit</keyword>
+      <keyword keywordId="258">fuzzy</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="178">child</keyword>
+      <keyword keywordId="259">cry</keyword>
+      <keyword keywordId="240">lot</keyword>
+      <keyword keywordId="10">head</keyword>
+      <keyword keywordId="11">hurt</keyword>
+      <keyword keywordId="57">feel</keyword>
+      <keyword keywordId="61">realize</keyword>
+      <keyword keywordId="42">think</keyword>
+      <keyword keywordId="47">want</keyword>
+      <keyword keywordId="48">tell</keyword>
+      <keyword keywordId="49">seem</keyword>
+      <keyword keywordId="52">mean</keyword>
+      <keyword keywordId="29">see</keyword>
+      <keyword keywordId="260">dizzy</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="177">fall</keyword>
+      <keyword keywordId="197">floor</keyword>
+      <keyword keywordId="261">faint</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="177">fall</keyword>
+      <keyword keywordId="261">faint</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="262">blue</keyword>
+      <keyword keywordId="263">yellow</keyword>
+      <keyword keywordId="264">white</keyword>
+      <keyword keywordId="265">green</keyword>
+      <keyword keywordId="266">black</keyword>
+      <keyword keywordId="267">red</keyword>
+      <keyword keywordId="268">english</keyword>
+      <keyword keywordId="269">french</keyword>
+      <keyword keywordId="79">well</keyword>
+      <keyword keywordId="270">throughout</keyword>
+      <keyword keywordId="110">typically</keyword>
+      <keyword keywordId="71">therefore</keyword>
+      <keyword keywordId="111">sometimes</keyword>
+      <keyword keywordId="116">generally</keyword>
+      <keyword keywordId="117">currently</keyword>
+      <keyword keywordId="119">probably</keyword>
+      <keyword keywordId="125">although</keyword>
+      <keyword keywordId="126">actually</keyword>
+      <keyword keywordId="127">without</keyword>
+      <keyword keywordId="128">whether</keyword>
+      <keyword keywordId="74">usually</keyword>
+      <keyword keywordId="271">several</keyword>
+      <keyword keywordId="131">perhaps</keyword>
+      <keyword keywordId="132">outside</keyword>
+      <keyword keywordId="135">however</keyword>
+      <keyword keywordId="272">despite</keyword>
+      <keyword keywordId="273">another</keyword>
+      <keyword keywordId="138">already</keyword>
+      <keyword keywordId="139">within</keyword>
+      <keyword keywordId="141">unlike</keyword>
+      <keyword keywordId="143">though</keyword>
+      <keyword keywordId="144">rather</keyword>
+      <keyword keywordId="150">except</keyword>
+      <keyword keywordId="151">either</keyword>
+      <keyword keywordId="154">become</keyword>
+      <keyword keywordId="274">around</keyword>
+      <keyword keywordId="77">always</keyword>
+      <keyword keywordId="155">still</keyword>
+      <keyword keywordId="87">since</keyword>
+      <keyword keywordId="156">often</keyword>
+      <keyword keywordId="157">never</keyword>
+      <keyword keywordId="159">first</keyword>
+      <keyword keywordId="275">early</keyword>
+      <keyword keywordId="276">among</keyword>
+      <keyword keywordId="277">along</keyword>
+      <keyword keywordId="80">thus</keyword>
+      <keyword keywordId="278">late</keyword>
+      <keyword keywordId="81">just</keyword>
+      <keyword keywordId="82">even</keyword>
+      <keyword keywordId="83">also</keyword>
+      <keyword keywordId="161">yet</keyword>
+      <keyword keywordId="279">work</keyword>
+      <keyword keywordId="280">second</keyword>
+      <keyword keywordId="281">fourth</keyword>
+      <keyword keywordId="282">third</keyword>
+      <keyword keywordId="283">fifth</keyword>
+      <keyword keywordId="284">2nd</keyword>
+      <keyword keywordId="285">minute</keyword>
+      <keyword keywordId="286">time</keyword>
+      <keyword keywordId="287">hour</keyword>
+      <keyword keywordId="288">apartment</keyword>
+      <keyword keywordId="289">room</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="239">girl</keyword>
+      <keyword keywordId="261">faint</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="239">girl</keyword>
+      <keyword keywordId="261">faint</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="177">fall</keyword>
+      <keyword keywordId="261">faint</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="239">girl</keyword>
+      <keyword keywordId="177">fall</keyword>
+      <keyword keywordId="290">ignore</keyword>
+      <keyword keywordId="291">reject</keyword>
+      <keyword keywordId="292">accept</keyword>
+      <keyword keywordId="293">die</keyword>
+      <keyword keywordId="294">bear</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="239">girl</keyword>
+      <keyword keywordId="261">faint</keyword>
+    </keywords>
+  </helpCall>
 </helpCalls>

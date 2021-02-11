@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { Cases } from 'src/app/shared/models/cases.model';
 import { CasesService } from 'src/app/shared/services/cases.service';
+import { HelpCallService } from 'src/app/shared/services/help-call.service';
+import { DoctorService } from 'src/app/shared/services/doctor.service';
+import { RelatedDoctorToCasesService } from 'src/app/shared/services/related-doctor-to-cases.service';
 
 @Component({
   selector: 'app-more-cases',
@@ -19,7 +22,7 @@ export class MoreCasesComponent implements OnInit {
   splitedCases: [Cases[]] = [[]]
   casesToDoctor: Cases[] = []
 
-  constructor(private casesService: CasesService, private router: Router) {
+  constructor(private casesService: CasesService, private router: Router, private helpCallService:HelpCallService,private doctorService:DoctorService,private relatedDoctorService:RelatedDoctorToCasesService) {
     this.casesService.getAllCases().subscribe(res => {
       this.allCases = res;
      
@@ -53,9 +56,17 @@ export class MoreCasesComponent implements OnInit {
   }
   clickCases(i,j) 
   {
-    this.casesService.choseCaseAction(1,this.allCases[i * 3 + j])
     i--;
+    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[i * 3 + j].caseId).subscribe()
+    
     this.casesService.setCurrentCase(this.allCases[i * 3 + j])
+    this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i* 3 + j].caseId).subscribe(
+      res=>{
+        this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
+        console.log(res.closeDoctors)
+        this.relatedDoctorService.setCurrentcontacts(res.contacts);
+      }
+    )
     
     this.router.navigateByUrl('contacts')
   }

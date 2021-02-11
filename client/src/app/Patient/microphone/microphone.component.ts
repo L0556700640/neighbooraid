@@ -94,7 +94,7 @@ export class MicrophoneComponent implements OnInit {
   {
   if(this.fullCasesList==true)
   {
-    this.casesService.choseCaseAction(1,this.allCases[i])
+    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[i]).subscribe()
     this.casesService.setCurrentCase(this.allCases[i])
     this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i].caseId).subscribe(
       res=>{
@@ -105,7 +105,7 @@ export class MicrophoneComponent implements OnInit {
     )
   }else
   {
-    this.casesService.choseCaseAction(1,this.relatedCases[i])
+    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.relatedCases[i]).subscribe()
     this.casesService.setCurrentCase(this.relatedCases[i])
     this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.relatedCases[i].caseId).subscribe(
       res=>{

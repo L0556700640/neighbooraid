@@ -37,6 +37,6 @@ export class CasesService {
 
   }
    choseCaseAction(helpCallID,choosedCase):Observable<RelatedDoctorToCases>{
-   return this.http.get<RelatedDoctorToCases>(environment.url +" Cases/CaseChose/"+helpCallID+"/"+choosedCase);
+   return this.http.get<RelatedDoctorToCases>(environment.url +"Cases/CaseChose/"+helpCallID+"/"+choosedCase);
    }
 }

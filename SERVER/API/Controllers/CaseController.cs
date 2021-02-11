@@ -46,8 +46,8 @@ namespace API.Controllers
         }
 
         [Route("CaseChose/{helpCallID}/{choosedCase}")]
-        [HttpPost]
-        public IHttpActionResult CaseChose(int helpCallID,  DTO.Cases choosedCase)
+        [HttpGet]
+        public IHttpActionResult CaseChose(int helpCallID,  int choosedCase)
         {
             return Ok(CasesBL.CaseChose(helpCallID, choosedCase));
 
