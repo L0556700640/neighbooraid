@@ -47,9 +47,9 @@ namespace API.Controllers
 
         [Route("CaseChose/{helpCallID}/{choosedCase}")]
         [HttpPost]
-        public IHttpActionResult CaseChose(int helpCallID,  DTO.Cases choosedCase)
+        public IHttpActionResult CaseChose(int helpCallID,  DTO.Cases choosedCase, string  contactsListUrl)
         {
-            return Ok(CasesBL.CaseChose(helpCallID, choosedCase));
+            return Ok(CasesBL.CaseChose(helpCallID, choosedCase, contactsListUrl));
 
         }
         [Route("UpdateCasesToDoctor/{doctorID}/{newCasesList}")]

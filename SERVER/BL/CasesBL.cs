@@ -236,12 +236,12 @@ namespace BL
                 return false;
             }
         }
-        public static ReturnedDoctorsToCase CaseChose(int helpCallID, Cases choosedCase)
+        public static ReturnedDoctorsToCase CaseChose(int helpCallID, Cases choosedCase,string contactsListUrl)
         {
             try
             {
                 KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
-                return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase.caseId);
+                return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase.caseId, contactsListUrl);
             }
             catch(Exception ex)
             {
