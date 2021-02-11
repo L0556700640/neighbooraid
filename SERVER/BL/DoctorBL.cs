@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
@@ -276,21 +277,24 @@ namespace BL
              List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
             List<DTO.Contact> contacts = new List<DTO.Contact>();
             //todo: fill the function
+            var json="";
             using (WebClient wc = new WebClient())
             {
-                var json = wc.DownloadString(contactsListUrl);
+                 json = wc.DownloadString(contactsListUrl);
             }
-            //link: https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth
-            /*
-                public static void getContactsPhonesFromGoogleAcount()
-        {
-            PeopleResource.ConnectionsResource.ListRequest peopleRequest =
-            peopleService.People.Connections.List("people/me");
-            peopleRequest.PersonFields = "names,emailAddresses";
-            ListConnectionsResponse connectionsResponse = peopleRequest.Execute();
-            IList<Person> connections = connectionsResponse.Connections;
-        }
-             */
+                GoogleContacts googleContacts = new GoogleContacts();
+                googleContacts = JsonSerializer.Deserialize<GoogleContacts>(json);
+                foreach (var contact in googleContacts.feed.entry)
+                {
+                    if (contact.gdphoneNumber.Length > 0) {
+                        contacts.Add(new Contact
+                        {
+                            Name = contact.gdname.gdfullName.t,
+                            Phone = contact.gdphoneNumber[0].t
+                        });
+                     }
+                }
+
             int s;
             foreach (var c in contacts)
             {
