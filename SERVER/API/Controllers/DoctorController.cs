@@ -78,13 +78,13 @@ namespace API.Controllers
         }
 
 
-        [Route("GetDoctorToCases/{helpCallId}/{caseid}")]
+        [Route("GetDoctorToCases/{helpCallId}/{caseid}/{contactsListUrl}")]
         [HttpGet]
-        public IHttpActionResult GetDoctorToCases(int helpCallId,int caseid)
+        public IHttpActionResult GetDoctorToCases(int helpCallId,int caseid, string contactsListUrl)
         {
             //todo להצפין קוד רופא
-        //todo add help call id from session
-            return Ok(BL.DoctorBL.GetDoctorsToCase(helpCallId, caseid));
+            //todo add help call id from session
+            return Ok(BL.DoctorBL.GetDoctorsToCase(helpCallId, caseid, contactsListUrl));
         }
 
         [Route("DoctorToCases/{selectedCase}")]

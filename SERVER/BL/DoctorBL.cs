@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 
+
 namespace BL
 {
     public class DoctorBL
@@ -178,7 +179,7 @@ namespace BL
 
 
         }
-        public static ReturnedDoctorsToCase GetDoctorsToCase(int helpCallId, int caseId)
+        public static ReturnedDoctorsToCase GetDoctorsToCase(int helpCallId, int caseId, string contactsListUrl)
         {
             //this function get the doctors to the corrent case from the db:
             //it find the doctors who note that them specializes in this case,
@@ -207,7 +208,7 @@ namespace BL
                 //now the func check which doctor from the list live close to the help call
                 //and also find the doctors from google contacts.
                 return new ReturnedDoctorsToCase(
-                        GetContactsDoctorsFromGoogleAccount(helpCallId, doctorsToCorrentCase),
+                        GetContactsDoctorsFromGoogleAccount(helpCallId, doctorsToCorrentCase, contactsListUrl),
                         GetDoctorsByDistance(helpCallId, doctorsToCorrentCase)
                         );
 
@@ -270,11 +271,15 @@ namespace BL
             return closeDoctor.OrderBy(doctor => doctor.Satisfaction).ToList();
 
         }
-        public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount(int helpCallId, List<DTO.Doctor> relatedDoctors)
+        public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount(int helpCallId, List<DTO.Doctor> relatedDoctors, string contactsListUrl)
         {
              List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
             List<DTO.Contact> contacts = new List<DTO.Contact>();
             //todo: fill the function
+            using (WebClient wc = new WebClient())
+            {
+                var json = wc.DownloadString(contactsListUrl);
+            }
             //link: https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth
             /*
                 public static void getContactsPhonesFromGoogleAcount()
