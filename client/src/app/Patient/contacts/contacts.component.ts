@@ -24,7 +24,7 @@ export class ContactsComponent implements OnInit {
     client_id: '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com',
     scope: 'https://www.googleapis.com/auth/contacts.readonly'
   };
-  this.googleContacts() ;
+  //this.googleContacts() ;
   }
 
   googleContacts(){

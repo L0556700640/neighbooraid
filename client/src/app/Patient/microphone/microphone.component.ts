@@ -31,15 +31,30 @@ export class MicrophoneComponent implements OnInit {
 
   matches: String[];
   isRecording = false;
+
+  clientId = '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com';
+  apiKey = 'AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0';
+  scopes = 'https://www.googleapis.com/auth/contacts.readonly';
+  authConfig: { client_id: string; scope: string; };
+  contactsUrl:String;
   constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router,private doctorService:DoctorService,private relatedDoctorService:RelatedDoctorToCasesService, private helpCallService:HelpCallService) { 
     this.showFullCasesList();
     this.microphoneService.init();
     this.myList=this.allCases;
     console.log(typeof this.myList);
     console.log(this.myList);
-  }
 
-  ngOnInit() {}
+    
+
+  }
+  
+
+  ngOnInit() {
+    this.authConfig = {
+      client_id: '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com',
+      scope: 'https://www.googleapis.com/auth/contacts.readonly'
+    };
+  }
   showFullCasesList() {
     this.casesService.getAllCases().subscribe(
       res => { 
@@ -61,6 +76,28 @@ export class MicrophoneComponent implements OnInit {
     });
     this.fullCasesList=true;
     }
+    googleContacts(){
+
+      gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
+      gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
+             // gapi.client.setApiKey(this.apiKey);
+              // window.setTimeout(this.authorize);
+      }
+   
+      authorize() {
+       gapi.auth.authorize({client_id: this.clientId, scope: this.scopes, immediate: false}, this.handleAuthorization);
+     }
+   
+     handleAuthorization(authorizationResult) {
+       if (authorizationResult && !authorizationResult.error) {
+          this.contactsUrl="https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
+         // var url="https://www.google.com/m8/feeds/contacts/default/full?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
+   
+          //   //process the response here
+             console.log(this.contactsUrl);
+         
+       }
+      }
   searchVoice() 
   {
     let helpCallID=1;
@@ -92,9 +129,11 @@ export class MicrophoneComponent implements OnInit {
 
   clickCases(i) 
   {
+    this.googleContacts() ;
+
   if(this.fullCasesList==true)
   {
-    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[i]).subscribe()
+    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[i],this.contactsUrl).subscribe()
     this.casesService.setCurrentCase(this.allCases[i])
     this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i].caseId).subscribe(
       res=>{
@@ -105,7 +144,7 @@ export class MicrophoneComponent implements OnInit {
     )
   }else
   {
-    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.relatedCases[i]).subscribe()
+    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.relatedCases[i],this.contactsUrl).subscribe()
     this.casesService.setCurrentCase(this.relatedCases[i])
     this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.relatedCases[i].caseId).subscribe(
       res=>{

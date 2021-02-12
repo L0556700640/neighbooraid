@@ -47,7 +47,7 @@ namespace API.Controllers
 
         [Route("CaseChose/{helpCallID}/{choosedCase}/{contactsListUrl}")]
         [HttpGet]
-        public IHttpActionResult CaseChose(int helpCallID,  int choosedCase, string contactsListUrl)
+        public IHttpActionResult CaseChose(int helpCallID, int choosedCase, string contactsListUrl)
         {
             return Ok(CasesBL.CaseChose(helpCallID, choosedCase, contactsListUrl));
 
