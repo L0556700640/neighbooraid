@@ -45,11 +45,11 @@ namespace API.Controllers
             return Ok(CasesBL.GetTheCasesRelatedByTheSearch(helpCallID,searchSentence));
         }
 
-        [Route("CaseChose/{helpCallID}/{choosedCase}")]
+        [Route("CaseChose/{helpCallID}/{choosedCase}/{contactsListUrl}")]
         [HttpGet]
-        public IHttpActionResult CaseChose(int helpCallID,  int choosedCase)
+        public IHttpActionResult CaseChose(int helpCallID,  int choosedCase, string contactsListUrl)
         {
-            return Ok(CasesBL.CaseChose(helpCallID, choosedCase));
+            return Ok(CasesBL.CaseChose(helpCallID, choosedCase, contactsListUrl));
 
         }
         [Route("UpdateCasesToDoctor/{doctorID}/{newCasesList}")]

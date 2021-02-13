@@ -181,14 +181,17 @@ namespace BL
         {
             try
             {
-                XDocument helpCallDocument = XDocument.Load("HelpCallXMLS/CorrentHelpCall.xml");
+                XDocument helpCallDocument = new XDocument();
+                helpCallDocument = XDocument.Load(DTO.StartPoint.Hadar+"BL/HelpCallXMLS/CorrentHelpCall.xml");
                 var helpCalls = helpCallDocument.Descendants("helpCall");
                 //todo: check- this is problem (cast)?
-                List<XElement> keywordsInCorrentCall = (List<XElement>)
+                List<XElement> keywordsInCorrentCall = new List<XElement>();
+                keywordsInCorrentCall = (List<XElement>)
                                             (from hc in helpCalls.Elements()
                                             where hc.Name == "helpCall" &&
                                             int.Parse(hc.Attribute("id").Value) == helpCallID
-                                            select hc.Element("keywords").Elements("keyword").ToList());
+                                            select hc.Element("keywords").Elements("keyword"));
+
                 List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
                 foreach (var keywordElement in keywordsInCorrentCall)
                 {

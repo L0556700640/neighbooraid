@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { url } from 'inspector';
 import { Cases } from 'src/app/shared/models/cases.model';
 import { RelatedDoctorToCases } from 'src/app/shared/models/RelatedDoctorToCases';
 import { CasesService } from 'src/app/shared/services/cases.service';
@@ -14,6 +15,7 @@ import { HelpCallService } from '../../shared/services/help-call.service';
   styleUrls: ['./microphone.component.scss'],
 })
 export class MicrophoneComponent implements OnInit {
+  url:string;
   doctorsPage = false;
   responsePage = false;
   
@@ -28,7 +30,7 @@ export class MicrophoneComponent implements OnInit {
   splitedCases: [Cases[]] = [[]]
   casesToDoctor: Cases[] = []
 
-
+ authConfig: { client_id: string; scope: string; };
   matches: String[];
   isRecording = false;
   constructor(private casesService: CasesService, public microphoneService: VoiceRecognitionService, private router: Router,private doctorService:DoctorService,private relatedDoctorService:RelatedDoctorToCasesService, private helpCallService:HelpCallService) { 
@@ -39,7 +41,13 @@ export class MicrophoneComponent implements OnInit {
     console.log(this.myList);
   }
 
-  ngOnInit() {}
+  ngOnInit() 
+  {
+    this.authConfig = {
+      client_id: '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com',
+      scope: 'https://www.googleapis.com/auth/contacts.readonly'
+  }
+}
   showFullCasesList() {
     this.casesService.getAllCases().subscribe(
       res => { 
@@ -89,32 +97,62 @@ export class MicrophoneComponent implements OnInit {
   getTheProfessionalDoctors(){
     
   }
-
+  colorCases()
+  {
+    return this.isChoose[this.i]
+  }
   clickCases(i) 
   {
-  if(this.fullCasesList==true)
-  {
-    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[i]).subscribe()
-    this.casesService.setCurrentCase(this.allCases[i])
-    this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i].caseId).subscribe(
-      res=>{
-        this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
-        console.log(res.closeDoctors)
-        this.relatedDoctorService.setCurrentcontacts(res.contacts);
+    this.i=i
+    i--;
+    this.isChoose[i] = !this.isChoose[i]
+    let url
+    gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
+    gapi.auth2.authorize(this.authConfig, (authorizationResult)=> 
+    {
+      if (authorizationResult && !authorizationResult.error) 
+      {
+        url = "https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
+        // var url="https://www.google.com/m8/feeds/contacts/default/full?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
+  
+        //   //process the response here
+        console.log(url);
+        this.goToDoctors(url)
       }
-    )
-  }else
-  {
-    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.relatedCases[i]).subscribe()
-    this.casesService.setCurrentCase(this.relatedCases[i])
-    this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.relatedCases[i].caseId).subscribe(
-      res=>{
-        this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
-        this.relatedDoctorService.setCurrentcontacts(res.contacts);
-      }
-    )
+    })
+    
   }
-    this.router.navigateByUrl('contacts')
+ 
+  
+  goToDoctors(url)
+  {
+    if(this.fullCasesList==true)
+    {
+      this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[this.i].caseId,url).subscribe( 
+        res=>{
+          this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
+          console.log(res.closeDoctors)
+          this.relatedDoctorService.setCurrentcontacts(res.contacts);
+        })
+      this.casesService.setCurrentCase(this.allCases[this.i])
+      // this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i].caseId).subscribe(
+       
+      // )
+    }else
+    {
+      this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.relatedCases[this.i].caseId,url).subscribe( 
+        res=>{
+          this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
+          this.relatedDoctorService.setCurrentcontacts(res.contacts);
+        })
+      this.casesService.setCurrentCase(this.relatedCases[this.i])
+      // this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.relatedCases[i].caseId).subscribe(
+       
+      // )
+    }
+      this.router.navigateByUrl('contacts')
+  
+  
   }
 }
 
