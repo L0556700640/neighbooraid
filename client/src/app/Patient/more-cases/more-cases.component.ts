@@ -86,6 +86,7 @@ export class MoreCasesComponent implements OnInit {
   {
 
     i--;
+
     this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[i * 3 + j].caseId,this.contactsUrl).subscribe()
     
     this.casesService.setCurrentCase(this.allCases[i * 3 + j])

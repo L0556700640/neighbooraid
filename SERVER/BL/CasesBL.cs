@@ -240,6 +240,8 @@ namespace BL
         {
             try
             {
+                //     contactsListUrl = "https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=ya29.a0AfH6SMDUBUYpexaB7Cup1hW-ZVi1iP3jUkrgHk33zNWVue4To6K02oz-G3QMVsjbGcovaUZKIxQV_i7RxvBucCMGzYTVML3vC8sOzTfzewJDL4Ibc7ko-v7YYZNnRPeehbVnw_jnh_yyBC00AZJIPj5MEkfowpDt7NtpPt-v8Qx2&max-results=500&v=3.0";
+                SaveCaseToHelpCallId(helpCallID, choosedCase);
                 KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
                 return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase,contactsListUrl);
             }
@@ -250,7 +252,13 @@ namespace BL
             }
         }
 
-
-
+        private static void SaveCaseToHelpCallId(int helpCallID, int choosedCase)
+        {
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                db.HelpCalls.FirstOrDefault(h => h.callId == helpCallID).caseId = choosedCase;
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -45,11 +45,12 @@ namespace API.Controllers
             return Ok(CasesBL.GetTheCasesRelatedByTheSearch(helpCallID,searchSentence));
         }
 
-        [Route("CaseChose/{helpCallID}/{choosedCase}/{contactsListUrl}")]
-        [HttpGet]
-        public IHttpActionResult CaseChose(int helpCallID, int choosedCase, string contactsListUrl)
+        [Route("CaseChose")]
+        [HttpPost]
+        //todo: get the information from client dto object in the c#
+        public IHttpActionResult CaseChose([FromBody]int helpCallID, [FromBody] int choosedCase, [FromBody] string contactsListUrl)
         {
-            return Ok(CasesBL.CaseChose(helpCallID, choosedCase, contactsListUrl));
+            return Ok(CasesBL.CaseChose(helpCallID, choosedCase, "https://www.google.com/m8/feeds/contacts/default/thin?alt=json_access_token=ya29.A0AfH6SMAp22-TJXYMU2t2b5kn6r3Tpf9aVPQJcpv0BQDcNpMtyIhFFQplo_MeZ59oDtFkVzY2BfhyXS-0LwyzqDTed8OeVi3vh0s-OOGmDr_3kOB2bZOYU23xdFRxhVRvLjASNm_028EFfkj2FM1A353PNFZHIw&max-results=500&v=3.0"));
 
         }
         [Route("UpdateCasesToDoctor/{doctorID}/{newCasesList}")]

@@ -53,8 +53,9 @@ namespace BL
                     db.HelpCalls.FirstOrDefault(h => h.callId == helpCallId).addressX +
                     "," +
                     db.HelpCalls.FirstOrDefault(h => h.callId == helpCallId).addressY;
-                string key ="AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0";
-                string uri = "https://maps.google.com/maps/api/geocode/xml?key=" + key + "&latlng=" + latLng + "&sensor=false";
+                //string key ="AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0";
+               // string key = "";
+                string uri = "https://maps.google.com/maps/api/geocode/xml?key=" + "AIzaSyD6s4nF_IyVnzwthb1kIIje709yY7Tl1nY" + "&latlng=" + latLng + "&sensor=false";
                // string uri2 = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=" + latLng + "&key=" + key;
 
                 try
@@ -71,7 +72,7 @@ namespace BL
                 {
                     return "";
                 }
-               
+
             }
         }
         public static DTO.HelpCall GetHelpCallByID(int helpCallID)

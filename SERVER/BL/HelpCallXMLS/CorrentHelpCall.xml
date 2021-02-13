@@ -300,4 +300,109 @@
       <keyword keywordId="4113">red</keyword>
     </keywords>
   </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="4083">boy</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4192">water</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="4087">receive</keyword>
+      <keyword keywordId="4088">offer</keyword>
+      <keyword keywordId="4085">take</keyword>
+      <keyword keywordId="4089">make</keyword>
+      <keyword keywordId="4091">give</keyword>
+      <keyword keywordId="7002">earn</keyword>
+      <keyword keywordId="4094">blow</keyword>
+      <keyword keywordId="4103">cry</keyword>
+      <keyword keywordId="4129">really</keyword>
+      <keyword keywordId="4131">apparently</keyword>
+      <keyword keywordId="4132">sometimes</keyword>
+      <keyword keywordId="4133">probably</keyword>
+      <keyword keywordId="4134">although</keyword>
+      <keyword keywordId="4162">without</keyword>
+      <keyword keywordId="4136">whether</keyword>
+      <keyword keywordId="4163">usually</keyword>
+      <keyword keywordId="4137">however</keyword>
+      <keyword keywordId="4138">despite</keyword>
+      <keyword keywordId="4139">already</keyword>
+      <keyword keywordId="4140">though</keyword>
+      <keyword keywordId="4166">longer</keyword>
+      <keyword keywordId="4142">indeed</keyword>
+      <keyword keywordId="4143">enough</keyword>
+      <keyword keywordId="4144">either</keyword>
+      <keyword keywordId="4167">always</keyword>
+      <keyword keywordId="7003">accord</keyword>
+      <keyword keywordId="4145">still</keyword>
+      <keyword keywordId="4146">since</keyword>
+      <keyword keywordId="4148">often</keyword>
+      <keyword keywordId="4149">never</keyword>
+      <keyword keywordId="4150">well</keyword>
+      <keyword keywordId="4169">thus</keyword>
+      <keyword keywordId="4151">just</keyword>
+      <keyword keywordId="4152">even</keyword>
+      <keyword keywordId="4153">also</keyword>
+      <keyword keywordId="4154">yet</keyword>
+      <keyword keywordId="4097">hurt</keyword>
+      <keyword keywordId="4095">hand</keyword>
+      <keyword keywordId="4105">break</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="4083">boy</keyword>
+      <keyword keywordId="8002">extinguish</keyword>
+      <keyword keywordId="4095">hand</keyword>
+      <keyword keywordId="4196">pour</keyword>
+      <keyword keywordId="4197">boil</keyword>
+      <keyword keywordId="4192">water</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="8003">child</keyword>
+      <keyword keywordId="4176">person</keyword>
+      <keyword keywordId="8004">son</keyword>
+      <keyword keywordId="8002">extinguish</keyword>
+      <keyword keywordId="4095">hand</keyword>
+      <keyword keywordId="8005">family</keyword>
+      <keyword keywordId="8006">boiling</keyword>
+      <keyword keywordId="4192">water</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="8003">child</keyword>
+      <keyword keywordId="4087">receive</keyword>
+      <keyword keywordId="4085">take</keyword>
+      <keyword keywordId="4089">make</keyword>
+      <keyword keywordId="4091">give</keyword>
+      <keyword keywordId="7002">earn</keyword>
+      <keyword keywordId="4092">strong</keyword>
+      <keyword keywordId="4093">weak</keyword>
+      <keyword keywordId="4094">blow</keyword>
+      <keyword keywordId="9002">painful</keyword>
+      <keyword keywordId="4095">hand</keyword>
+      <keyword keywordId="9003">mistake</keyword>
+      <keyword keywordId="9004">swollen</keyword>
+      <keyword keywordId="4113">red</keyword>
+      <keyword keywordId="4113">red</keyword>
+    </keywords>
+  </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="4083">boy</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4084">fall</keyword>
+      <keyword keywordId="4120">purple</keyword>
+      <keyword keywordId="4113">red</keyword>
+      <keyword keywordId="4113">red</keyword>
+      <keyword keywordId="4105">break</keyword>
+    </keywords>
+  </helpCall>
 </helpCalls>

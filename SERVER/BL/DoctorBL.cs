@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DTO;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -206,6 +207,8 @@ namespace BL
                     doctorsToCorrentCase.Add(
                         Convertors.DoctorConvertor.ConvertDoctorToDTO(doctor));
                 }
+                GetDoctorsByDistance(helpCallId, doctorsToCorrentCase);
+
                 //now the func check which doctor from the list live close to the help call
                 //and also find the doctors from google contacts.
                 return new ReturnedDoctorsToCase(
@@ -282,8 +285,11 @@ namespace BL
             {
                  json = wc.DownloadString(contactsListUrl);
             }
-                GoogleContacts googleContacts = new GoogleContacts();
-                googleContacts = JsonSerializer.Deserialize<GoogleContacts>(json);
+           JObject arr = JObject.Parse(json);
+            GoogleContacts googleContacts = new GoogleContacts();
+
+            googleContacts=(GoogleContacts)arr.ToObject(typeof(GoogleContacts));
+          //googleContacts = JsonSerializer.Deserialize<GoogleContacts>(json);
                 foreach (var contact in googleContacts.feed.entry)
                 {
                     if (contact.gdphoneNumber.Length > 0) {
