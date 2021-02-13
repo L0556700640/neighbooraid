@@ -104,7 +104,7 @@ export class MicrophoneComponent implements OnInit {
   clickCases(i) 
   {
     this.i=i
-    i--;
+
     this.isChoose[i] = !this.isChoose[i]
     let url
     gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
@@ -117,30 +117,33 @@ export class MicrophoneComponent implements OnInit {
   
         //   //process the response here
         console.log(url);
-        this.goToDoctors(url)
+       localStorage.setItem("url",url)
+       
       }
     })
     
   }
  
   
-  goToDoctors(url)
+  goToDoctors()
   {
+    this.url=localStorage.getItem("url")
     if(this.fullCasesList==true)
     {
-      this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[this.i].caseId,url).subscribe( 
-        res=>{
+      this.casesService.setCurrentCase(this.allCases[this.i])
+      this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[this.i].caseId,this.url).subscribe( 
+        (res)=>{
           this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
           console.log(res.closeDoctors)
           this.relatedDoctorService.setCurrentcontacts(res.contacts);
         })
-      this.casesService.setCurrentCase(this.allCases[this.i])
+      
       // this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i].caseId).subscribe(
        
       // )
     }else
     {
-      this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.relatedCases[this.i].caseId,url).subscribe( 
+      this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.relatedCases[this.i].caseId,this.url).subscribe( 
         res=>{
           this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
           this.relatedDoctorService.setCurrentcontacts(res.contacts);
