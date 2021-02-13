@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-public class Rootobject
+public class GoogleContacts
 {
     public string version { get; set; }
     public string encoding { get; set; }

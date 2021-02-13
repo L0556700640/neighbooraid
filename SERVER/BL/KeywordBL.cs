@@ -150,8 +150,8 @@ namespace BL
         {
             try
             {
-                //  string xmlFileFullPath = DTO.StartPoint.HadarHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
-                string xmlFileFullPath = DTO.StartPoint.Hadar + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                //  string xmlFileFullPath = DTO.StartPoint.LirazHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                string xmlFileFullPath = DTO.StartPoint.Liraz + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
                 XElement newHelpCall = new XElement("helpCall");
@@ -181,17 +181,13 @@ namespace BL
         {
             try
             {
-                XDocument helpCallDocument = new XDocument();
-                helpCallDocument = XDocument.Load(DTO.StartPoint.Hadar+"BL/HelpCallXMLS/CorrentHelpCall.xml");
+                XDocument helpCallDocument = XDocument.Load(StartPoint.Liraz+"/BL/HelpCallXMLS/CorrentHelpCall.xml");
                 var helpCalls = helpCallDocument.Descendants("helpCall");
                 //todo: check- this is problem (cast)?
                 List<XElement> keywordsInCorrentCall = new List<XElement>();
-                keywordsInCorrentCall = (List<XElement>)
-                                            (from hc in helpCalls.Elements()
-                                            where hc.Name == "helpCall" &&
-                                            int.Parse(hc.Attribute("id").Value) == helpCallID
-                                            select hc.Element("keywords").Elements("keyword"));
-
+                XElement x = new XElement("helpCall");
+                x = helpCalls.FirstOrDefault(a => a.Attribute("id").Value == "1");// helpCallID.ToString());
+                keywordsInCorrentCall= x.Element("keywords").Elements("keyword").ToList();
                 List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
                 foreach (var keywordElement in keywordsInCorrentCall)
                 {

@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DTO;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
@@ -27,7 +29,7 @@ namespace BL
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
                     string pathToGetExtension = string.Format(@"c:\" + file.FileName);
-                    string diplomaDocumentNewPath = DTO.StartPoint.Hadar+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
+                    string diplomaDocumentNewPath = DTO.StartPoint.Liraz+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
                     file.SaveAs(diplomaDocumentNewPath);
                     newDoctor.pictureDiploma = diplomaDocumentNewPath;
 
@@ -205,6 +207,8 @@ namespace BL
                     doctorsToCorrentCase.Add(
                         Convertors.DoctorConvertor.ConvertDoctorToDTO(doctor));
                 }
+                GetDoctorsByDistance(helpCallId, doctorsToCorrentCase);
+
                 //now the func check which doctor from the list live close to the help call
                 //and also find the doctors from google contacts.
                 return new ReturnedDoctorsToCase(
@@ -276,21 +280,27 @@ namespace BL
              List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
             List<DTO.Contact> contacts = new List<DTO.Contact>();
             //todo: fill the function
+            var json="";
             using (WebClient wc = new WebClient())
             {
-                var json = wc.DownloadString(contactsListUrl);
+                 json = wc.DownloadString(contactsListUrl);
             }
-            //link: https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth
-            /*
-                public static void getContactsPhonesFromGoogleAcount()
-        {
-            PeopleResource.ConnectionsResource.ListRequest peopleRequest =
-            peopleService.People.Connections.List("people/me");
-            peopleRequest.PersonFields = "names,emailAddresses";
-            ListConnectionsResponse connectionsResponse = peopleRequest.Execute();
-            IList<Person> connections = connectionsResponse.Connections;
-        }
-             */
+           JObject arr = JObject.Parse(json);
+            GoogleContacts googleContacts = new GoogleContacts();
+
+            googleContacts=(GoogleContacts)arr.ToObject(typeof(GoogleContacts));
+          //googleContacts = JsonSerializer.Deserialize<GoogleContacts>(json);
+                foreach (var contact in googleContacts.feed.entry)
+                {
+                    if (contact.gdphoneNumber.Length > 0) {
+                        contacts.Add(new Contact
+                        {
+                            Name = contact.gdname.gdfullName.t,
+                            Phone = contact.gdphoneNumber[0].t
+                        });
+                     }
+                }
+
             int s;
             foreach (var c in contacts)
             {
@@ -354,7 +364,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -368,7 +378,7 @@ namespace BL
 
                 msg.Subject = "אישור רופא "+doctor.doctorId;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
@@ -559,7 +569,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -571,7 +581,7 @@ namespace BL
                 msg.To.Add(new MailAddress(doctor.mail));
                 msg.Subject = "אישור הרשמה לNeighborAid עבור דר'  " + doctor.lastName;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
