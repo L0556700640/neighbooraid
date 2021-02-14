@@ -240,7 +240,7 @@ namespace BL
         {
             try
             {
-              // KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
+                KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
                 return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase,contactsListUrl);
             }
             catch(Exception ex)

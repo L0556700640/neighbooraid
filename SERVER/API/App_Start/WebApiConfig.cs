@@ -12,7 +12,7 @@ namespace API
         {
             // Web API configuration and services
             AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
-            CasesBL.CaseChose(8004, 1, "https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=ya29.A0AfH6SMCNDEjvRuHb2DXwzTXknZKMdsFuGpxd-EeVOnysHEkulwjitjNBZGfB9rIgOxhhCV21ng1BIxp2aHPe3utuuqb_50eZiEsIByWfooDQPWznDOxq2KQJZfdI_qbyyWV1pIloTByCHgwTeOdjyCM8qOMxDA&max-results=500&v=3.0");
+            //CasesBL.CaseChose(8004, 1, "https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=ya29.A0AfH6SMCNDEjvRuHb2DXwzTXknZKMdsFuGpxd-EeVOnysHEkulwjitjNBZGfB9rIgOxhhCV21ng1BIxp2aHPe3utuuqb_50eZiEsIByWfooDQPWznDOxq2KQJZfdI_qbyyWV1pIloTByCHgwTeOdjyCM8qOMxDA&max-results=500&v=3.0");
 
             // Web API routes
             config.MapHttpAttributeRoutes();
