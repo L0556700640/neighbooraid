@@ -129,7 +129,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript"
-    src="https://maps.googleapis.commaps/api/js?key=AIzaSyD7Wui1ikC-x4CMLYBpPz-8Yutf2l3glNo&sensor=true&libraries=places,geometry,drawing&sensor=true&language=he"></script>
+      src="https://maps.googleapis.commaps/api/js?key=AIzaSyD7Wui1ikC-x4CMLYBpPz-8Yutf2l3glNo&sensor=true&libraries=places,geometry,drawing&sensor=true&language=he"></script>
 
   </head>
 
@@ -201,7 +201,7 @@
         <span>צירוף תעודה</span>
       </div>
       <div id="__bc">
-        <span>בחירת התמחויות</span> 
+        <span>בחירת התמחויות</span>
       </div>
       <svg class="Line_30" viewBox="0 0 83.066 6">
         <path id="Line_30" d="M 83.06571197509766 0 L 0 0">
@@ -270,35 +270,87 @@
 
   </form> 
     </ion-card>-->
-      <form id="form" [formGroup]="myForm">
+    <form id="form" [formGroup]="myForm">
       <div class="from-group">
-        <ion-label position="fixed" >שם פרטי</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.firstName" formControlName="firstName" class="form-control" style="font-size: 13px;"></ion-input>
+        <ion-label position="fixed">
+          שם פרטי
+          <ion-label class="error" *ngIf="myForm.controls['firstName'].errors!=null">
+            <ion-label *ngIf="myForm.controls['firstName'].errors.required!=null">*שדה נדרש</ion-label>
+            <ion-label *ngIf="myForm.controls['firstName'].errors.pattern!=null">הרשמה בעברית בלבד</ion-label>
+          </ion-label>
+        </ion-label>
+        <input [(ngModel)]="doctor.Doctor.firstName" formControlName="firstName" class="form-control"
+          style="font-size: 13px;">
+
+
+
       </div>
       <div class="from-group">
-        <ion-label position="fixed"  >שם משפחה</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.lastName" formControlName="lastName" class="form-control" style="font-size: 13px;"></ion-input>
+        <ion-label position="fixed">
+          שם משפחה
+          <ion-label class="error" *ngIf="myForm.controls['lastName'].errors!=null">
+            <ion-label *ngIf="myForm.controls['lastName'].errors.required!=null">*שדה נדרש</ion-label>
+            <ion-label *ngIf="myForm.controls['lastName'].errors.pattern!=null">*הרשמה בעברית בלבד</ion-label>
+          </ion-label>
+        </ion-label>
+        <ion-input [(ngModel)]="doctor.Doctor.lastName" formControlName="lastName" class="form-control"
+        style="font-size: 13px;"></ion-input>
       </div>
       <div class="from-group">
-        <ion-label position="fixed"  >תעודת זהות</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.doctorId" formControlName="id" class="form-control" style="font-size: 13px;"></ion-input>
+        <ion-label position="fixed">
+          תעודת זהות
+          <ion-label class="error" *ngIf="myForm.controls['id'].errors!=null">
+            <ion-label *ngIf="myForm.controls['id'].errors.required!=null">*שדה נדרש</ion-label>
+            <ion-label *ngIf="id==false">תעודת זהות זו כבר קיימת במערכת</ion-label>  
+          </ion-label>
+        </ion-label>
+        <ion-input [(ngModel)]="doctor.Doctor.doctorId" formControlName="id" class="form-control"
+        style="font-size: 13px;"></ion-input>
       </div>
-     
+
       <div class="from-group">
-        <ion-label position="fixed">פלאפון</ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.doctorPhone" formControlName="phone" class="form-control" style="font-size: 13px;" > </ion-input>
+        <ion-label position="fixed">
+          פלאפון
+          <ion-label class="error" *ngIf="myForm.controls['phone'].errors!=null">
+            <ion-label *ngIf="myForm.controls['phone'].errors.required!=null">*שדה נדרש</ion-label>
+            <ion-label *ngIf="myForm.controls['phone'].errors.pattern!=null">*מספר טלפון לא תקין</ion-label>
+          </ion-label>
+        </ion-label>
+        <ion-input [(ngModel)]="doctor.Doctor.doctorPhone" formControlName="phone" class="form-control"
+          style="font-size: 13px;"> </ion-input>
+
+
       </div>
       <div class="from-group">
-        <ion-label position="fixed" >מייל\דואר אלקטרוני</ion-label>
-        <input type="email" id="email" formControlName="mail" [(ngModel)]="doctor.Doctor.mail" pattern=".+@globex.com" class="form-control" style="font-size: 13px;">
+        <ion-label position="fixed">
+          מייל\דואר אלקטרוני
+          <ion-label class="error" *ngIf="myForm.controls['mail'].errors!=null">
+            <ion-label *ngIf="myForm.controls['mail'].errors.required!=null">*שדה נדרש</ion-label>
+            <!-- <div *ngIf="myForm.controls['mail'].errors.pattern!=null">מספר טלפון לא תקין</div>   -->
+          </ion-label>
+        </ion-label>
+        <input type="email" id="email" formControlName="mail" [(ngModel)]="doctor.Doctor.mail" pattern=".+@globex.com"
+          class="form-control" style="font-size: 13px;">
+
       </div>
+
       <div class="from-group">
-        <ion-label position="fixed">כתובת<br></ion-label>
-       <!-- <ion-img src="../../assets/img/Location.png" style="height: 40px;"></ion-img>  -->
+        <ion-label position="fixed">
+          כתובת
+          <ion-label class="error" *ngIf="myForm.controls['address'].errors!=null">
+            <ion-label *ngIf="myForm.controls['address'].errors.required!=null">*שדה נדרש</ion-label>
+            <!-- <div *ngIf="myForm.controls['address'].errors.pattern!=null">מספר טלפון לא תקין</div>   -->
+          </ion-label>
+          <br>
+        </ion-label>
+        <!-- <ion-img src="../../assets/img/Location.png" style="height: 40px;"></ion-img>  -->
         <!-- <ion-input [(ngModel)]="doctor.Doctor.address"></ion-input> -->
-        <input  ngx-google-places-autocomplete #placesRef="ngx-places"
-          (onAddressChange)="handleDestinationChange($event)"
-          [(ngModel)]="doctor.Doctor.address" formControlName="address" class="form-control" style="font-size: 13px;">‏
+        <input ngx-google-places-autocomplete #placesRef="ngx-places"
+          (onAddressChange)="handleDestinationChange($event)" [(ngModel)]="doctor.Doctor.address"
+          formControlName="address" class="form-control" style="font-size: 13px;">‏
+
+
+
       </div>
     </form>
   </body>

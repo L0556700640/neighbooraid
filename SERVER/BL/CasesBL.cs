@@ -106,7 +106,7 @@ namespace BL
 
                     msg.Subject = "עדכון התמחויות לרופא " + doctor.doctorId;
 
-                    LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
+                    LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
                     res.ContentId = Guid.NewGuid().ToString();
 
                     #region buildHtmlMessageBody
@@ -241,7 +241,7 @@ namespace BL
             try
             {
                 UpdateCaseToHelpCall(helpCallID, choosedCase);
-              KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
+                KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
                 return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase,contactsListUrl);
             }
             catch(Exception ex)
@@ -259,5 +259,7 @@ namespace BL
                 db.SaveChanges();
             }
         }
+
+
     }
 }

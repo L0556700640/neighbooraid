@@ -832,4 +832,28 @@
       top: 64.539px;
       transform: matrix(1,0,0,1,0,0);
     }
+
+    #form
+{
+	text-align: right;
+	font-family: Heebo;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	//color: rgba(0,0,0,1);
+	filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.31));
+	position: absolute;
+	direction: rtl;;
+	width: 98%;
+	//height: 125px;
+  left: 0px;
+	top: 210px;
+	height: 52%;
+	fill: rgba(255,255,255,1);
+	overflow-y:scroll !important; 
+  overflow-x:hidden;
+  //margin: 10px;
+  
+	
+}
   
