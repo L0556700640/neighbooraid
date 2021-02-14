@@ -163,7 +163,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=load"></script>    
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 
   </head>
 
@@ -204,7 +208,7 @@
         <path id="Line_3" d="M 0 0 L 130.3885955810547 0">
         </path>
       </svg>
-      <button routerLink="/contacts" routerLinkActive="activelink">
+      <button (click)="goToDoctors()"routerLinkActive="activelink">
         <div id="Component_1__7" class="Component_1___7">
           <svg class="Rectangle_8">
             <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="275" height="40">
@@ -323,7 +327,7 @@
       
         <ion-list id="form" *ngIf="fullCasesList==true">
           <ion-item  *ngFor="let case of allCases,let i=index" >
-         <ion-label (click)="clickCases(i)">{{case.caseName}}</ion-label>
+         <ion-label (click)="clickCases(i)" >{{case.caseName}}</ion-label>
          <ion-radio slot="start" value="case.caseId" hidden ></ion-radio>
           </ion-item>
        </ion-list>

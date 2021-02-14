@@ -124,3 +124,15 @@ C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullPr
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\System.Text.Encodings.Web.xml
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\System.Text.Json.xml
 C:\Users\Owner\Documents\לימודים מחשבים אופקים\PROJECT\fullProject\neighbooraid\SERVER\BL\bin\Debug\System.ValueTuple.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Buffers.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Memory.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Text.Json.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.ValueTuple.dll
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Buffers.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Memory.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.Text.Json.xml
+C:\Users\hadar\Desktop\למידה מרחוק\פרויקט\neighbooraid\SERVER\BL\bin\Debug\System.ValueTuple.xml

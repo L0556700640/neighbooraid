@@ -36,12 +36,15 @@ export class CasesService {
     return this.http.get<String>(environment.url + "Cases/getCaseName/" + id);
 
   }
-   choseCaseAction(helpCallID,choosedCase,contactsUrl):Observable<RelatedDoctorToCases>{
+   choseCaseAction(helpCallID:number,choosedCase:number,contactsListUrl:string):Observable<RelatedDoctorToCases>{
    
-    contactsUrl="https://www.google.com/m8/feeds/contacts/default/thin?alt=json_access_token=ya29.A0AfH6SMAp22-TJXYMU2t2b5kn6r3Tpf9aVPQJcpv0BQDcNpMtyIhFFQplo_MeZ59oDtFkVzY2BfhyXS-0LwyzqDTed8OeVi3vh0s-OOGmDr_3kOB2bZOYU23xdFRxhVRvLjASNm_028EFfkj2FM1A353PNFZHIw_max-results=500_v=3.0"
-
+    //contactsUrl="https://www.google.com/m8/feeds/contacts/default/thin?alt=json_access_token=ya29.A0AfH6SMAp22-TJXYMU2t2b5kn6r3Tpf9aVPQJcpv0BQDcNpMtyIhFFQplo_MeZ59oDtFkVzY2BfhyXS-0LwyzqDTed8OeVi3vh0s-OOGmDr_3kOB2bZOYU23xdFRxhVRvLjASNm_028EFfkj2FM1A353PNFZHIw_max-results=500_v=3.0"
+    const data = new FormData();
+    data.append('helpCallID', JSON.stringify(helpCallID));
+    data.append('choosedCase', JSON.stringify(choosedCase));
+    data.append('contactsListUrl', JSON.stringify(contactsListUrl));
    
-    return this.http.post<RelatedDoctorToCases>(environment.url +"Cases/CaseChose", {helpCallID,choosedCase,contactsUrl});
+    return this.http.post<RelatedDoctorToCases>(environment.url +"Cases/CaseChose", data);
   }
 
 }
