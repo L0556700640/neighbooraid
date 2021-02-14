@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DTO;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
@@ -277,51 +278,62 @@ namespace BL
         }
         public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount(int helpCallId, List<DTO.Doctor> relatedDoctors, string contactsListUrl)
         {
-             List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
-            List<DTO.Contact> contacts = new List<DTO.Contact>();
-            //todo: fill the function
-            var json="";
-            using (WebClient wc = new WebClient())
+            try
             {
-                 json = wc.DownloadString(contactsListUrl);
-            }
-           JObject arr = JObject.Parse(json);
-            GoogleContacts googleContacts = new GoogleContacts();
+                List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
+                List<DTO.Contact> contacts = new List<DTO.Contact>();
+                //todo: fill the function
+                var json = "";
+                using (WebClient wc = new WebClient())
+                {
+                    json = wc.DownloadString(contactsListUrl);
+                }
+                //    JObject arr = JObject.Parse(json);
+                GoogleContacts googleContacts = new GoogleContacts();
 
-            googleContacts=(GoogleContacts)arr.ToObject(typeof(GoogleContacts));
-          //googleContacts = JsonSerializer.Deserialize<GoogleContacts>(json);
+                //googleContacts=(GoogleContacts)arr.ToObject(typeof(GoogleContacts));
+                //googleContacts = JsonSerializer.Deserialize<GoogleContacts>(json);
+                googleContacts = JsonConvert.DeserializeObject<GoogleContacts>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+
                 foreach (var contact in googleContacts.feed.entry)
                 {
-                    if (contact.gdphoneNumber.Length > 0) {
+                    if (contact.gdphoneNumber != null && contact.gdname != null && contact.gdphoneNumber.Length > 0)
+                    {
                         contacts.Add(new Contact
                         {
                             Name = contact.gdname.gdfullName.t,
                             Phone = contact.gdphoneNumber[0].t
                         });
-                     }
-                }
-
-            int s;
-            foreach (var c in contacts)
-            {
-                foreach (var doctor in relatedDoctors)
-                {
-                    if (c.Phone.Equals(doctor.doctorPhone))
-                    {
-                        using (neighboorAidDBEntities db = new neighboorAidDBEntities())
-                        {
-                            s = db.CasesToDoctors
-                                .FirstOrDefault(ctd => ctd.doctorId == doctor.doctorId
-                            && ctd.Case.caseId ==
-                            (db.HelpCalls
-                            .FirstOrDefault(h => h.callId == helpCallId).caseId))
-                                .satisfaction;
-                        }
-                        contactsDoctorsToThisCase.Add(new ContactsDoctor(doctor,c.Name,s));
                     }
                 }
+
+                int s;
+                foreach (var c in contacts)
+                {
+                    foreach (var doctor in relatedDoctors)
+                    {
+                        if (c.Phone.Equals(doctor.doctorPhone))
+                        {
+                            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                            {
+                                s = db.CasesToDoctors
+                                    .FirstOrDefault(ctd => ctd.doctorId == doctor.doctorId
+                                && ctd.Case.caseId ==
+                                (db.HelpCalls
+                                .FirstOrDefault(h => h.callId == helpCallId).caseId))
+                                    .satisfaction;
+                            }
+                            contactsDoctorsToThisCase.Add(new ContactsDoctor(doctor, c.Name, s));
+                        }
+                    }
+                }
+                return contactsDoctorsToThisCase;
             }
-            return contactsDoctorsToThisCase;
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
         }
         public static List<DTO.Doctor> GetAllDoctors()
         {
