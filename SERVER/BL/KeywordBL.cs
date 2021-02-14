@@ -150,8 +150,8 @@ namespace BL
         {
             try
             {
-                //  string xmlFileFullPath = DTO.StartPoint.HadarHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
-                string xmlFileFullPath = DTO.StartPoint.Hadar + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                //  string xmlFileFullPath = DTO.StartPoint.LirazHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                string xmlFileFullPath = DTO.StartPoint.Liraz + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
                 XElement newHelpCall = new XElement("helpCall");
@@ -181,7 +181,7 @@ namespace BL
         {
             try
             {
-                XDocument helpCallDocument = XDocument.Load(StartPoint.Hadar+"/BL/HelpCallXMLS/CorrentHelpCall.xml");
+                XDocument helpCallDocument = XDocument.Load(StartPoint.Liraz+"/BL/HelpCallXMLS/CorrentHelpCall.xml");
                 var helpCalls = helpCallDocument.Descendants("helpCall");
                 //todo: check- this is problem (cast)?
                 List<XElement> keywordsInCorrentCall = new List<XElement>();

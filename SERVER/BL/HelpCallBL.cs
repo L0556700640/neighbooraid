@@ -77,8 +77,6 @@ namespace BL
         }
         public static DTO.HelpCall GetHelpCallByID(int helpCallID)
         {
-            //todo: delete the raw
-            helpCallID = helpCallID++;
             //todo: fill the function
             return new DTO.HelpCall();
         }

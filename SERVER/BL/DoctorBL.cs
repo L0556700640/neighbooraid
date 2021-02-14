@@ -8,15 +8,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
-
+using System.Xml.Serialization;
 
 namespace BL
 {
@@ -30,7 +31,7 @@ namespace BL
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
                     string pathToGetExtension = string.Format(@"c:\" + file.FileName);
-                    string diplomaDocumentNewPath = DTO.StartPoint.Hadar+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
+                    string diplomaDocumentNewPath = DTO.StartPoint.Liraz+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
                     file.SaveAs(diplomaDocumentNewPath);
                     newDoctor.pictureDiploma = diplomaDocumentNewPath;
 
@@ -70,7 +71,7 @@ namespace BL
                         .isConfirmed = isConfirmed;
                     db.SaveChanges();
             }
-            SendMailToDoctorAfterConfirm(doctor);
+         //   SendMailToDoctorAfterConfirm(doctor);
 
         }
         public static bool CheckUser(string firstName, string id)
@@ -207,8 +208,6 @@ namespace BL
                     doctorsToCorrentCase.Add(
                         Convertors.DoctorConvertor.ConvertDoctorToDTO(doctor));
                 }
-                GetDoctorsByDistance(helpCallId, doctorsToCorrentCase);
-
                 //now the func check which doctor from the list live close to the help call
                 //and also find the doctors from google contacts.
                 return new ReturnedDoctorsToCase(
@@ -281,35 +280,44 @@ namespace BL
             {
                 List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
                 List<DTO.Contact> contacts = new List<DTO.Contact>();
+                XmlTextReader reader = new XmlTextReader(contactsListUrl);
                 //todo: fill the function
                 var json = "";
                 using (WebClient wc = new WebClient())
                 {
+                    wc.Encoding = Encoding.UTF8;
                     json = wc.DownloadString(contactsListUrl);
                 }
-                //    JObject arr = JObject.Parse(json);
+                json=json.Replace("$","");
+
                 GoogleContacts googleContacts = new GoogleContacts();
 
-                //googleContacts=(GoogleContacts)arr.ToObject(typeof(GoogleContacts));
-                //googleContacts = JsonSerializer.Deserialize<GoogleContacts>(json);
-                googleContacts = JsonConvert.DeserializeObject<GoogleContacts>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+             googleContacts = JsonConvert.DeserializeObject<GoogleContacts>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+                XmlSerializer serializer = new XmlSerializer(typeof(GoogleContacts));
 
+                var p = "";
                 foreach (var contact in googleContacts.feed.entry)
                 {
                     if (contact.gdphoneNumber != null && contact.gdname != null && contact.gdphoneNumber.Length > 0)
                     {
+                        p = contact.gdphoneNumber[0].t;
+                        p=p.Replace("-", "");
+                        if (p.StartsWith("+972 "))
+                        {
+                            p = p.Replace("+972 ", "0");
+                        }
                         contacts.Add(new Contact
                         {
                             Name = contact.gdname.gdfullName.t,
-                            Phone = contact.gdphoneNumber[0].t
+                            Phone = p
                         });
                     }
                 }
 
                 int s;
-                foreach (var c in contacts)
-                {
-                    foreach (var doctor in relatedDoctors)
+                foreach (var doctor in relatedDoctors)
+                { 
+                  foreach (var c in contacts)
                     {
                         if (c.Phone.Equals(doctor.doctorPhone))
                         {
@@ -323,6 +331,7 @@ namespace BL
                                     .satisfaction;
                             }
                             contactsDoctorsToThisCase.Add(new ContactsDoctor(doctor, c.Name, s));
+                            break;
                         }
                     }
                 }
@@ -334,6 +343,14 @@ namespace BL
                 return null;
             }
         }
+
+        /*
+        private static void ErrorHandler(object x, ErrorEventArgs error)
+        {
+            Console.WriteLine(error.ErrorContext.Error);
+            error.ErrorContext.Handled = true;
+        }
+        */
         public static List<DTO.Doctor> GetAllDoctors()
         {
             List<DTO.Doctor> doctors= new List<DTO.Doctor>();
@@ -375,7 +392,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -389,7 +406,7 @@ namespace BL
 
                 msg.Subject = "אישור רופא "+doctor.doctorId;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
@@ -580,7 +597,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -592,7 +609,7 @@ namespace BL
                 msg.To.Add(new MailAddress(doctor.mail));
                 msg.Subject = "אישור הרשמה לNeighborAid עבור דר'  " + doctor.lastName;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
