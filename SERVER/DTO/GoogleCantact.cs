@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 public class GoogleContacts
 {
@@ -17,6 +18,7 @@ public class GoogleContacts
         this.feed = feed;
     }
 }
+[XmlRoot("feed", Namespace = "http://www.w3.org/2005/Atom")]
 public class Feed
 {
     public string xmlns { get; set; }
