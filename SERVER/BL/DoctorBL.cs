@@ -8,11 +8,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
@@ -292,8 +293,8 @@ namespace BL
                 GoogleContacts googleContacts = new GoogleContacts();
 
                 //googleContacts=(GoogleContacts)arr.ToObject(typeof(GoogleContacts));
-                //googleContacts = JsonSerializer.Deserialize<GoogleContacts>(json);
-                googleContacts = JsonConvert.DeserializeObject<GoogleContacts>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+                googleContacts = System.Text.Json.JsonSerializer.Deserialize<GoogleContacts>(json);
+                //googleContacts = JsonConvert.DeserializeObject<GoogleContacts>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
 
                 foreach (var contact in googleContacts.feed.entry)
                 {
