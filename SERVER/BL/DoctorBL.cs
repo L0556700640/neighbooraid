@@ -129,6 +129,8 @@ namespace BL
 
         }
 
+    
+
         public static bool UpdateDoctorDetailsBL(DTO.Doctor doctorDetails)
         {
 
@@ -166,11 +168,8 @@ namespace BL
             {
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
-                    var doctors = (from d in db.Doctors
-                                   where d.doctorId.Equals(id)
-                                   select d).ToList();
+                    db.Doctors.FirstOrDefault(d => d.doctorId ==id).isConfirmed = false;
 
-                    db.Doctors.Remove(doctors.FirstOrDefault());
                     db.SaveChanges();
                 }
                 return true;
@@ -273,7 +272,7 @@ namespace BL
                      ));
                 }
             }
-            return closeDoctor.OrderBy(doctor => doctor.Satisfaction).ToList();
+            return closeDoctor.OrderBy(doctor => doctor.DistanceInMinutesFromPatient).ToList();
 
         }
         public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount(int helpCallId, List<DTO.Doctor> relatedDoctors, string contactsListUrl)
@@ -650,6 +649,19 @@ namespace BL
                 throw ex;
             }
         }
+        public static bool idDoctor(string id)
+        {
+            List<DAL.Doctor> dd;
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                dd = (from d in db.Doctors
+                      where d.doctorId.Equals(id)&& d.isConfirmed == true
+                      select d).ToList();
 
+            }
+            if (dd.Count > 0)
+                return true;
+            return false;
+        }
     }
 }

@@ -240,6 +240,7 @@ namespace BL
         {
             try
             {
+                UpdateCaseToHelpCall(helpCallID, choosedCase);
                 KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
                 return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase,contactsListUrl);
             }
@@ -250,6 +251,14 @@ namespace BL
             }
         }
 
+        private static void UpdateCaseToHelpCall(int helpCallID, int choosedCase)
+        {
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                db.HelpCalls.FirstOrDefault(h => h.callId == helpCallID).caseId = choosedCase;
+                db.SaveChanges();
+            }
+        }
 
 
     }

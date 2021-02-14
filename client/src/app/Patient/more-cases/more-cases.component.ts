@@ -65,8 +65,8 @@ url
     i--;
     this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[i * 3 + j].caseId,this.url).subscribe( 
       res=>{
-        this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
-        console.log(res.closeDoctors)
+        this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctor)
+        console.log(res.closeDoctor)
         this.relatedDoctorService.setCurrentcontacts(res.contacts);
       })
     

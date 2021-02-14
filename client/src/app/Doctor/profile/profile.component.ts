@@ -63,32 +63,35 @@ export class ProfileComponent implements OnInit {
   }
 
   async deleteDoctor() {
+   if(confirm("האם אתה בטוח שברצונך להשבית פרופיל זה?")){
+ this.doctorService.delete(this.loginService.CurrnetUser).subscribe(
+      res => alert("הפרופיל הושבת")
+    )
+   }
 
-    // this.doctorService.delete(this.loginService.CurrnetUser).subscribe(
-    //   res => alert(res)
-    // )
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>text</strong>!!!',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Okay',
-          handler: () => {
-            console.log('Confirm Okay');
-          }
-        }
-      ]
-    });
+   
+    // const alert = await this.alertController.create({
+    //   cssClass: 'my-custom-class',
+    //   header: 'Confirm!',
+    //   message: 'Message <strong>text</strong>!!!',
+    //   buttons: [
+    //     {
+    //       text: 'Cancel',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: () => {
+    //         console.log('Confirm Cancel: blah');
+    //       }
+    //     }, {
+    //       text: 'Okay',
+    //       handler: () => {
+    //         console.log('Confirm Okay');
+    //       }
+    //     }
+    //   ]
+    // });
 
-    await alert.present();
+    // await alert.present();
 
   }
 }

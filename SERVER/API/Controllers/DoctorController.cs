@@ -113,7 +113,13 @@ namespace API.Controllers
             return Ok(BL.DoctorBL.UpdateDoctorDetailsBL(doctorDetails));
         }
 
-
+        [Route("idDoctor/{id}")]
+        [HttpGet]
+        public IHttpActionResult idDoctor(string id)
+        {
+            return Ok(BL.DoctorBL.idDoctor(id));
+        }
+        
     }
 
 }

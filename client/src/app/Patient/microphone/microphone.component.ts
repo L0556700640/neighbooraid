@@ -133,8 +133,9 @@ export class MicrophoneComponent implements OnInit {
       this.casesService.setCurrentCase(this.allCases[this.i])
       this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[this.i].caseId,this.url).subscribe( 
         (res)=>{
-          this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
-          console.log(res.closeDoctors)
+          console.log(res)
+          this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctor)
+          console.log(res.closeDoctor)
           this.relatedDoctorService.setCurrentcontacts(res.contacts);
         })
       
@@ -145,7 +146,7 @@ export class MicrophoneComponent implements OnInit {
     {
       this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.relatedCases[this.i].caseId,this.url).subscribe( 
         res=>{
-          this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctors)
+          this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctor)
           this.relatedDoctorService.setCurrentcontacts(res.contacts);
         })
       this.casesService.setCurrentCase(this.relatedCases[this.i])
