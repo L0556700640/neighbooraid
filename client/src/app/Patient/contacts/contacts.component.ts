@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CasesService } from 'src/app/shared/services/cases.service';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
+import { HelpCallService } from 'src/app/shared/services/help-call.service';
 import { RelatedDoctorToCasesService } from 'src/app/shared/services/related-doctor-to-cases.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ContactsComponent implements OnInit {
   nameDoctor: string[] = [];
 
  
-  constructor(private casesService:CasesService,private doctorService:DoctorService,private relatedDoctorService: RelatedDoctorToCasesService,private router: Router) 
+  constructor(private casesService:CasesService,private doctorService:DoctorService,private relatedDoctorService: RelatedDoctorToCasesService,private router: Router,private helpCallService:HelpCallService) 
   {   
     this.case=this.casesService.CurrnetCase
    
@@ -45,6 +46,15 @@ export class ContactsComponent implements OnInit {
   
   
   }
-
+  callDoctor(d) {
+    this.helpCallService.setCurrentDoctorToHelpCall(d);
+    this.helpCallService.AddDoctorToHelpCall(this.helpCallService.CurrnetHelpCall,d.doctorId).subscribe(
+      (res)=>
+      {
+        console.log(res)
+      }
+    )
+    this.router.navigate(['/call']);
+   }
   
 }
