@@ -213,14 +213,14 @@
         <rect id="Rectangle_129" rx="5" ry="5" x="0" y="0" width="31" height="10">
         </rect>
       </svg> -->
-      <ion-grid>
+      <ion-grid> 
         <tbody id="form" class="scrollbar scrollbar-primary">
           <ion-row *ngFor="let d of doctors; let i=index" style="padding: 20px;">
             <ion-grid >
               <ion-row>
                 <ion-col size="5">{{d.Name}}</ion-col>
                 <ion-col size="5">{{d.Doctor.doctorPhone}}</ion-col>
-                <ion-col size="2"> <ion-icon name="call" style="color: rgba(253,0,16,1); font-size: large !important;" (click)="calloctor(d.Doctor)"></ion-icon></ion-col>
+                <ion-col size="2" (click)="calloctor(d.Doctor)"> <ion-icon name="call" style="color: rgba(253,0,16,1); font-size: large !important;"></ion-icon></ion-col>
                
               </ion-row>
               <ion-row>

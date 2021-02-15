@@ -53,7 +53,7 @@
   font-family: Heebo;
   font-style: normal;
   font-weight: normal;
-  font-size: 9px;
+  font-size: 12px;
   color: rgba(0,0,0,1);
 }
 #___t {
@@ -101,7 +101,7 @@
   font-family: Heebo;
   font-style: normal;
   font-weight: normal;
-  font-size: 9px;
+  font-size: 12px;
   color: rgba(0,0,0,1);
 }
 #____w {
@@ -117,7 +117,7 @@
   font-family: Heebo;
   font-style: normal;
   font-weight: normal;
-  font-size: 11px;
+ // font-size: 11px;
   color: rgba(0,0,0,1);
 }
 #_____ {
@@ -153,7 +153,8 @@
   color: rgba(0,0,0,1);
 }
 #Rectangle_55 {
-  fill: transparent;
+  color:  rgba(253,0,16,1);
+  fill: rgba(253,0,16,1);;
   stroke: rgba(0,189,101,1);
   stroke-width: 1px;
   stroke-linejoin: miter;
@@ -161,14 +162,31 @@
   stroke-miterlimit: 4;
   shape-rendering: auto;
 }
-.Rectangle_55 {
+.custom-range {
   position: absolute;
   overflow: visible;
   width: 190px;
   height: 12px;
   left: 32px;
   top: 315px;
+  color:  rgba(253,0,16,1);
 }
+.custom-range::-webkit-slider-thumb {
+  background:  rgba(253,0,16,1);
+  color:  rgba(253,0,16,1);
+  background-color: rgba(253,0,16,1) ;
+}
+
+.custom-range::-moz-range-thumb {
+  background:  rgba(253,0,16,1);
+  color:  rgba(253,0,16,1);
+}
+
+.custom-range::-ms-thumb {
+  background:  rgba(253,0,16,1);
+  color:  rgba(253,0,16,1);
+}
+
 #Rectangle_56 {
   fill: rgba(0,189,101,1);
 }
@@ -193,8 +211,8 @@
   font-family: Heebo;
   font-style: normal;
   font-weight: bold;
-  font-size: 8px;
-  color: rgba(0,189,101,1);
+  font-size: 13px;
+  color:  rgba(253,0,16,1);
 }
 #Component_1__6 {
   position: absolute;
@@ -244,10 +262,11 @@
   overflow: visible;
   position: absolute;
   width: 218.557px;
-  height: 1px;
+  height: 50px;
   left: 31.062px;
-  top: 392.498px;
-  transform: matrix(1,0,0,1,0,0);
+  top: 370px;
+  border: 5px;
+ // transform: matrix(1,0,0,1,0,0);
 }
 #Line_28 {
   fill: transparent;
