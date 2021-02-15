@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { String } from 'lodash';
 import { closeDoctor } from 'src/app/shared/models/closeDoctor.model';
 import { CasesService } from 'src/app/shared/services/cases.service';
 import { HelpCallService } from 'src/app/shared/services/help-call.service';

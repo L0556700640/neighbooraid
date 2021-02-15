@@ -16,11 +16,12 @@
       <div id="___">
         <span>לחץ על פציעות נוספות</span>
       </div>
+      
       <table>
         <tbody id="form" class="scrollbar scrollbar-primary" >
           <tr *ngFor="let list of splitedCases ; let i=index" >
               <td  *ngFor="let case of list; let j=index"  class="Rectangle_76" (click)="clickCases(i,j)">
-                <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75">
+                <ion-card id="Rectangle_76" tabindex="0" rx="20" ry="20" x="0" y="0" width="63" height="75" [class.choose]="isChoosen(i,j)">
                   <div id="firstLetter" >
                     <span>{{case.caseName[0]}} </span>
                   </div>
@@ -32,7 +33,7 @@
           </tr>
         </tbody>
       </table>
-      <!-- <button (click)="addCases()" routerLinkActive="activelink" >
+      <button (click)="goToDoctors()" routerLinkActive="activelink" >
         <div id="Component_1__8" class="Component_1___8">
           <svg class="Rectangle_8">
             <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="307" height="41">
@@ -43,7 +44,7 @@
               <הבא</span>
           </div>
         </div>
-      </button> -->
+      </button>
       <button routerLink="/login" routerLinkActive="activelink">
         <div id="___ds">
           <span>מגיש עזרה ראשונה</span>

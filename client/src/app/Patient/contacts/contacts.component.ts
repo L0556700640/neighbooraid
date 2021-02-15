@@ -46,7 +46,7 @@ export class ContactsComponent implements OnInit {
   
   
   }
-  callDoctor(d) {
+  calloctor(d) {
     this.helpCallService.setCurrentDoctorToHelpCall(d);
     this.helpCallService.AddDoctorToHelpCall(this.helpCallService.CurrnetHelpCall,d.doctorId).subscribe(
       (res)=>

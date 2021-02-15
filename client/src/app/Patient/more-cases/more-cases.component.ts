@@ -19,6 +19,7 @@ url
   isChoose: boolean[] = [];
   len = 0;
   i = 0;
+  j = 0;
   splitedCases: [Cases[]] = [[]]
   casesToDoctor: Cases[] = []
   authConfig: { client_id: string; scope: string; };
@@ -60,38 +61,60 @@ url
   }
   clickCases(i,j) 
   {
-    gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
-    gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
-    i--;
-    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[i * 3 + j].caseId,this.url).subscribe( 
+    this.i = i
+    this.j=j
+    // console.log(i)
+    for (let index = 0; index <this.isChoose.length; index++) {
+      this.isChoose[index]=false;
+      
+    }
+     this.isChoose[i * 3 + j] = !this.isChoose[i * 3 + j]
+     let url;
+     gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
+     gapi.auth2.authorize(this.authConfig, (authorizationResult) => {
+       var windowOpen = window.open;
+ 
+       if (authorizationResult && !authorizationResult.error) {
+         url = "https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
+         // var url="https://www.google.com/m8/feeds/contacts/default/full?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
+ 
+         //   //process the response here
+         console.log(url);
+         localStorage.setItem("url", url)
+       }
+ 
+     })
+ 
+   
+  }
+
+  
+
+  
+
+  isChoosen(i,j)
+  {
+    return  this.isChoose[i * 3 + j];
+  }
+ 
+
+
+  goToDoctors() {
+    this.url = localStorage.getItem("url")
+    this.casesService.choseCaseAction(this.helpCallService.CurrnetHelpCall,this.allCases[this.i * 3 + this.j].caseId,this.url).subscribe( 
       res=>{
         this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctor)
         console.log(res.closeDoctor)
         this.relatedDoctorService.setCurrentcontacts(res.contactsDoctor);
       })
     
-    this.casesService.setCurrentCase(this.allCases[i * 3 + j])
+    this.casesService.setCurrentCase(this.allCases[this.i * 3 + this.j])
     // this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i* 3 + j].caseId).subscribe(
      
     // )
     
     this.router.navigateByUrl('contacts')
-  }
 
-  handleAuthorization(authorizationResult) {
-    if (authorizationResult && !authorizationResult.error) {
-      this.url = "https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
-      // var url="https://www.google.com/m8/feeds/contacts/default/full?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
-
-      //   //process the response here
-      console.log(this.url);
-
-    }
-  }  
-
-  clickCorrectCase() {
-    //to the server
-        
   }
 
 }

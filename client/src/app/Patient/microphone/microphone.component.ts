@@ -92,12 +92,18 @@ export class MicrophoneComponent implements OnInit {
   getTheProfessionalDoctors() {
 
   }
-  colorCases() {
-    return this.isChoose[this.i]
+
+  isChoosen(i)
+  {
+    return  this.isChoose[i];
   }
   clickCases(i) {
     this.i = i
-
+   // console.log(i)
+   for (let index = 0; index <this.isChoose.length; index++) {
+     this.isChoose[index]=false;
+     
+   }
     this.isChoose[i] = !this.isChoose[i]
     let url;
     gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
@@ -114,7 +120,6 @@ export class MicrophoneComponent implements OnInit {
       }
 
     })
-    window.close();
 
    
 
