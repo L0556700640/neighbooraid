@@ -82,5 +82,22 @@ namespace BL
         }
 
 
+        public static bool UpdateDoctorToHelpCall(int helpCallID, string idDoctor)
+        {
+            try
+            {
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                {
+                    db.HelpCalls.FirstOrDefault(h => h.callId == helpCallID).doctorId = idDoctor;
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
     }
 }

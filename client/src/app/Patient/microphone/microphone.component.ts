@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { url } from 'inspector';
+// import { url } from 'inspector';
 import { Cases } from 'src/app/shared/models/cases.model';
 import { RelatedDoctorToCases } from 'src/app/shared/models/RelatedDoctorToCases';
 import { CasesService } from 'src/app/shared/services/cases.service';
