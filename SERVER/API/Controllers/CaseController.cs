@@ -55,7 +55,6 @@ namespace API.Controllers
             int caseid = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request["choosedCase"]);
             var url = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["contactsListUrl"]);
             return Ok(CasesBL.CaseChose(helpcallid,caseid,url));
-
         }
         [Route("UpdateCasesToDoctor/{doctorID}/{newCasesList}")]
         [HttpPost]

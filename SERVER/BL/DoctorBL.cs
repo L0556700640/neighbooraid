@@ -18,6 +18,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
+//using Microsoft.Phone.Tasks;
+
 
 namespace BL
 {
@@ -537,10 +539,14 @@ namespace BL
                 throw ex;
             }
         }
-        public static void CallToTheDoctor(int doctorId)
-        {
-            //todo: endTheFunc
-        }
+        //public static void CallToTheDoctor(int doctorId)
+        //{
+        //    PhoneCallTask phoneCallTask = new PhoneCallTask();
+
+        //    phoneCallTask.PhoneNumber = "2065550123";
+        //    phoneCallTask.DisplayName = "Gage";
+        //    phoneCallTask.Show();
+        //}
 
         public static List<DTO.Doctor> DoctorsToCase(DTO.Cases correntCase)
         {
