@@ -1,5 +1,6 @@
 ﻿using BL;
 using DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,11 +46,15 @@ namespace API.Controllers
             return Ok(CasesBL.GetTheCasesRelatedByTheSearch(helpCallID,searchSentence));
         }
 
-        [Route("CaseChose/{helpCallID}/{choosedCase}")]
-        [HttpGet]
-        public IHttpActionResult CaseChose(int helpCallID,  int choosedCase)
+        [Route("CaseChose")]
+        [HttpPost]
+        //todo: get the information from client dto object in the c#
+        public IHttpActionResult CaseChose()
         {
-            return Ok(CasesBL.CaseChose(helpCallID, choosedCase));
+            int helpcallid = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request["helpCallID"]);
+            int caseid = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request["choosedCase"]);
+            var url = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["contactsListUrl"]);
+            return Ok(CasesBL.CaseChose(helpcallid,caseid,url));
 
         }
         [Route("UpdateCasesToDoctor/{doctorID}/{newCasesList}")]

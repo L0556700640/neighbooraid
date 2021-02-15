@@ -150,8 +150,8 @@ namespace BL
         {
             try
             {
-                //  string xmlFileFullPath = DTO.StartPoint.HadarHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
-                string xmlFileFullPath = DTO.StartPoint.Hadar + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                //  string xmlFileFullPath = DTO.StartPoint.LirazHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                string xmlFileFullPath = DTO.StartPoint.Liraz + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
                 XElement newHelpCall = new XElement("helpCall");
@@ -181,25 +181,28 @@ namespace BL
         {
             try
             {
-                XDocument helpCallDocument = XDocument.Load("HelpCallXMLS/CorrentHelpCall.xml");
+                XDocument helpCallDocument = XDocument.Load(StartPoint.Liraz+"/BL/HelpCallXMLS/CorrentHelpCall.xml");
                 var helpCalls = helpCallDocument.Descendants("helpCall");
                 //todo: check- this is problem (cast)?
-                List<XElement> keywordsInCorrentCall = (List<XElement>)
-                                            (from hc in helpCalls.Elements()
-                                            where hc.Name == "helpCall" &&
-                                            int.Parse(hc.Attribute("id").Value) == helpCallID
-                                            select hc.Element("keywords").Elements("keyword").ToList());
-                List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
-                foreach (var keywordElement in keywordsInCorrentCall)
+                List<XElement> keywordsInCorrentCall = new List<XElement>();
+                XElement x = new XElement("helpCall");
+                x = helpCalls.FirstOrDefault(a => a.Attribute("id").Value == helpCallID.ToString());
+                if (x != null)
                 {
-                    keywordsInThisSearch.Add(
-                        new DTO.Keyword
+                    keywordsInCorrentCall = x.Element("keywords").Elements("keyword").ToList();
+                    List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
+                    foreach (var keywordElement in keywordsInCorrentCall)
                     {
-                        keywordId = int.Parse(keywordElement.Attribute("keywordId").Value),
-                        keyWord1 = keywordElement.Value
-                    });
+                        keywordsInThisSearch.Add(
+                            new DTO.Keyword
+                            {
+                                keywordId = int.Parse(keywordElement.Attribute("keywordId").Value),
+                                keyWord1 = keywordElement.Value
+                            });
+                    }
+                    return keywordsInThisSearch;
                 }
-                return keywordsInThisSearch;
+                else return new List<DTO.Keyword>();
             }
             catch (Exception ex)
             {

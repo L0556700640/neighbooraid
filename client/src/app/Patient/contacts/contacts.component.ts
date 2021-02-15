@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CasesService } from 'src/app/shared/services/cases.service';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
+import { HelpCallService } from 'src/app/shared/services/help-call.service';
+import { RelatedDoctorToCasesService } from 'src/app/shared/services/related-doctor-to-cases.service';
 
 @Component({
   selector: 'app-contacts',
@@ -9,44 +12,49 @@ import { DoctorService } from 'src/app/shared/services/doctor.service';
 })
 export class ContactsComponent implements OnInit {
  case;
- doctor;
- authConfig: { client_id: string; scope: string; };
-  constructor(private casesService:CasesService,private doctorService:DoctorService) { }
+ doctors;
+  nameDoctor: string[] = [];
 
-  clientId = '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com';
-  apiKey = 'AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0';
-  scopes = 'https://www.googleapis.com/auth/contacts.readonly';
+ 
+  constructor(private casesService:CasesService,private doctorService:DoctorService,private relatedDoctorService: RelatedDoctorToCasesService,private router: Router,private helpCallService:HelpCallService) 
+  {   
+    this.case=this.casesService.CurrnetCase
+   
+    var j = 0 
+    const sleep = (milliseconds) => {
+      return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+    sleep(5000).then(() => {
+      this.doctors = this.relatedDoctorService.Currnetcontacts
+    this.doctors.forEach(d => {
+      //this.nameDoctor[j] = (d.Doctor.firstName + " " + d.Doctor.lastName).toString();
+      let s = d.Satisfaction.toString() + "%";
+      document.close();
+     // document.getElementById(d.Doctor.doctorId).style.width = s;
+      j++
+    });
+    })
+   
+  }
+ 
+
+
 
   ngOnInit() {
-    this.case=this.casesService.CurrnetCase
+   
    // this.doctor=this.doctorService.GetDoctorsToCase(this.case);
-   this.authConfig = {
-    client_id: '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com',
-    scope: 'https://www.googleapis.com/auth/contacts.readonly'
-  };
-  this.googleContacts() ;
+  
+  
   }
-
-  googleContacts(){
-
-    gapi.client.setApiKey('AIzaSyBrXhPtMorEH1jvdOptRJsshnym-Ut5bw0');
-    gapi.auth2.authorize(this.authConfig, this.handleAuthorization);
-           // gapi.client.setApiKey(this.apiKey);
-            // window.setTimeout(this.authorize);
-    }
- 
-    authorize() {
-     gapi.auth.authorize({client_id: this.clientId, scope: this.scopes, immediate: false}, this.handleAuthorization);
+  callDoctor(d) {
+    this.helpCallService.setCurrentDoctorToHelpCall(d);
+    this.helpCallService.AddDoctorToHelpCall(this.helpCallService.CurrnetHelpCall,d.doctorId).subscribe(
+      (res)=>
+      {
+        console.log(res)
+      }
+    )
+    this.router.navigate(['/call']);
    }
- 
-   handleAuthorization(authorizationResult) {
-     if (authorizationResult && !authorizationResult.error) {
-       var url="https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
-       // var url="https://www.google.com/m8/feeds/contacts/default/full?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0";
- 
-        //   //process the response here
-           console.log(url);
-       
-     }
-   }
+  
 }

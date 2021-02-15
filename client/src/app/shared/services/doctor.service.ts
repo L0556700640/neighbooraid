@@ -58,5 +58,8 @@ export class DoctorService {
 
   }
 
-
+ idDoctors(id:string): Observable<boolean>
+ {
+   return this.http.get<boolean>(environment.url + 'Doctor/idDoctor/'+id)
+ }
 }

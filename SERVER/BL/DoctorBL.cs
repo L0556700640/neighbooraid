@@ -1,11 +1,15 @@
 ﻿using DAL;
 using DTO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
@@ -13,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
-
+using System.Xml.Serialization;
 
 namespace BL
 {
@@ -27,7 +31,7 @@ namespace BL
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
                     string pathToGetExtension = string.Format(@"c:\" + file.FileName);
-                    string diplomaDocumentNewPath = DTO.StartPoint.Hadar+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
+                    string diplomaDocumentNewPath = DTO.StartPoint.Liraz+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
                     file.SaveAs(diplomaDocumentNewPath);
                     newDoctor.pictureDiploma = diplomaDocumentNewPath;
 
@@ -126,6 +130,8 @@ namespace BL
 
         }
 
+    
+
         public static bool UpdateDoctorDetailsBL(DTO.Doctor doctorDetails)
         {
 
@@ -163,11 +169,8 @@ namespace BL
             {
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
-                    var doctors = (from d in db.Doctors
-                                   where d.doctorId.Equals(id)
-                                   select d).ToList();
+                    db.Doctors.FirstOrDefault(d => d.doctorId ==id).isConfirmed = false;
 
-                    db.Doctors.Remove(doctors.FirstOrDefault());
                     db.SaveChanges();
                 }
                 return true;
@@ -268,51 +271,86 @@ namespace BL
                      ));
                 }
             }
-            return closeDoctor.OrderBy(doctor => doctor.Satisfaction).ToList();
+            return closeDoctor.OrderBy(doctor => doctor.DistanceInMinutesFromPatient).ToList();
 
         }
         public static List<DTO.ContactsDoctor> GetContactsDoctorsFromGoogleAccount(int helpCallId, List<DTO.Doctor> relatedDoctors, string contactsListUrl)
         {
-             List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
-            List<DTO.Contact> contacts = new List<DTO.Contact>();
-            //todo: fill the function
-            using (WebClient wc = new WebClient())
+            try
             {
-                var json = wc.DownloadString(contactsListUrl);
-            }
-            //link: https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth
-            /*
-                public static void getContactsPhonesFromGoogleAcount()
-        {
-            PeopleResource.ConnectionsResource.ListRequest peopleRequest =
-            peopleService.People.Connections.List("people/me");
-            peopleRequest.PersonFields = "names,emailAddresses";
-            ListConnectionsResponse connectionsResponse = peopleRequest.Execute();
-            IList<Person> connections = connectionsResponse.Connections;
-        }
-             */
-            int s;
-            foreach (var c in contacts)
-            {
-                foreach (var doctor in relatedDoctors)
+                List<ContactsDoctor> contactsDoctorsToThisCase = new List<ContactsDoctor>();
+                List<DTO.Contact> contacts = new List<DTO.Contact>();
+                XmlTextReader reader = new XmlTextReader(contactsListUrl);
+                //todo: fill the function
+                var json = "";
+                using (WebClient wc = new WebClient())
                 {
-                    if (c.Phone.Equals(doctor.doctorPhone))
+                    wc.Encoding = Encoding.UTF8;
+                    json = wc.DownloadString(contactsListUrl);
+                }
+                json=json.Replace("$","");
+
+                GoogleContacts googleContacts = new GoogleContacts();
+
+             googleContacts = JsonConvert.DeserializeObject<GoogleContacts>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+                XmlSerializer serializer = new XmlSerializer(typeof(GoogleContacts));
+
+                var p = "";
+                foreach (var contact in googleContacts.feed.entry)
+                {
+                    if (contact.gdphoneNumber != null && contact.gdname != null && contact.gdphoneNumber.Length > 0)
                     {
-                        using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                        p = contact.gdphoneNumber[0].t;
+                        p=p.Replace("-", "");
+                        if (p.StartsWith("+972 "))
                         {
-                            s = db.CasesToDoctors
-                                .FirstOrDefault(ctd => ctd.doctorId == doctor.doctorId
-                            && ctd.Case.caseId ==
-                            (db.HelpCalls
-                            .FirstOrDefault(h => h.callId == helpCallId).caseId))
-                                .satisfaction;
+                            p = p.Replace("+972 ", "0");
                         }
-                        contactsDoctorsToThisCase.Add(new ContactsDoctor(doctor,c.Name,s));
+                        contacts.Add(new Contact
+                        {
+                            Name = contact.gdname.gdfullName.t,
+                            Phone = p
+                        });
                     }
                 }
+
+                int s;
+                foreach (var doctor in relatedDoctors)
+                { 
+                  foreach (var c in contacts)
+                    {
+                        if (c.Phone.Equals(doctor.doctorPhone))
+                        {
+                            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                            {
+                                s = db.CasesToDoctors
+                                    .FirstOrDefault(ctd => ctd.doctorId == doctor.doctorId
+                                && ctd.Case.caseId ==
+                                (db.HelpCalls
+                                .FirstOrDefault(h => h.callId == helpCallId).caseId))
+                                    .satisfaction;
+                            }
+                            contactsDoctorsToThisCase.Add(new ContactsDoctor(doctor, c.Name, s));
+                            break;
+                        }
+                    }
+                }
+                return contactsDoctorsToThisCase;
             }
-            return contactsDoctorsToThisCase;
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
         }
+
+        /*
+        private static void ErrorHandler(object x, ErrorEventArgs error)
+        {
+            Console.WriteLine(error.ErrorContext.Error);
+            error.ErrorContext.Handled = true;
+        }
+        */
         public static List<DTO.Doctor> GetAllDoctors()
         {
             List<DTO.Doctor> doctors= new List<DTO.Doctor>();
@@ -354,7 +392,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -368,7 +406,7 @@ namespace BL
 
                 msg.Subject = "אישור רופא "+doctor.doctorId;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
@@ -559,7 +597,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -571,7 +609,7 @@ namespace BL
                 msg.To.Add(new MailAddress(doctor.mail));
                 msg.Subject = "אישור הרשמה לNeighborAid עבור דר'  " + doctor.lastName;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
@@ -628,6 +666,19 @@ namespace BL
                 throw ex;
             }
         }
+        public static bool idDoctor(string id)
+        {
+            List<DAL.Doctor> dd;
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                dd = (from d in db.Doctors
+                      where d.doctorId.Equals(id)&& d.isConfirmed == true
+                      select d).ToList();
 
+            }
+            if (dd.Count > 0)
+                return true;
+            return false;
+        }
     }
 }

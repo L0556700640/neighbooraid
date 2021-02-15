@@ -106,7 +106,7 @@ namespace BL
 
                     msg.Subject = "עדכון התמחויות לרופא " + doctor.doctorId;
 
-                    LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
+                    LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                     res.ContentId = Guid.NewGuid().ToString();
 
                     #region buildHtmlMessageBody
@@ -236,12 +236,13 @@ namespace BL
                 return false;
             }
         }
-        public static ReturnedDoctorsToCase CaseChose(int helpCallID, int choosedCase)
+        public static ReturnedDoctorsToCase CaseChose(int helpCallID, int choosedCase, string contactsListUrl)
         {
             try
             {
+                UpdateCaseToHelpCall(helpCallID, choosedCase);
                 KeywordBL.SaveTheCorrentCaseToKeywords(helpCallID, choosedCase);
-                return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase);
+                return DoctorBL.GetDoctorsToCase(helpCallID,choosedCase,contactsListUrl);
             }
             catch(Exception ex)
             {
@@ -249,6 +250,17 @@ namespace BL
                 return null;
             }
         }
+
+        private static void UpdateCaseToHelpCall(int helpCallID, int choosedCase)
+        {
+            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            {
+                db.HelpCalls.FirstOrDefault(h => h.callId == helpCallID).caseId = choosedCase;
+                db.SaveChanges();
+            }
+        }
+
+       
 
 
 

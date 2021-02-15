@@ -4,11 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://apis.google.com/js/platform.js"></script>
-    <script src="https://apis.google.com/js/client.js"></script>
-    <script src="https://apis.google.com/js/client.js?onload=load"></script>    
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
   </head>
 
   <body>
@@ -216,6 +213,32 @@
         <rect id="Rectangle_129" rx="5" ry="5" x="0" y="0" width="31" height="10">
         </rect>
       </svg> -->
+      <ion-grid>
+        <tbody id="form" class="scrollbar scrollbar-primary">
+          <ion-row *ngFor="let d of doctors; let i=index" style="padding: 20px;">
+            <ion-grid >
+              <ion-row>
+                <ion-col size="5">{{d.Name}}</ion-col>
+                <ion-col size="5">{{d.Doctor.doctorPhone}}</ion-col>
+                <ion-col size="2"> <ion-icon name="call" style="color: rgba(253,0,16,1); font-size: large !important;" (click)="calloctor(d.Doctor)"></ion-icon></ion-col>
+               
+              </ion-row>
+              <ion-row>
+                <ion-col size="10" style="size: 100%; width: 100%;">
+                  <div class="progress">
+                    <div [appFill]="d.Satisfaction"
+                      class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                      aria-valuemin="0" aria-valuemax="100">
+                      {{d.Satisfaction}}%
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+           
+          </ion-row>
+        </ion-grid>
+
     </div>
   </body>
 </ion-content>
