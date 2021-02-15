@@ -3,7 +3,8 @@ import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { HelpCall } from '../models/helpCall.model';
 import { environment } from 'src/environments/environment';
-import { DoctorDetails } from '../models/doctorDelails.model';
+// import { DoctorDetails } from '../models/doctorDelails.model';
+import { Doctor } from '../models/doctor.model';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { DoctorDetails } from '../models/doctorDelails.model';
 })
 export class HelpCallService {
   private currentHelpCall: number;
-private doctorInThisHelpCall:DoctorDetails;
+private doctorInThisHelpCall:Doctor;
   constructor(private http:HttpClient) { }
 
   get CurrnetHelpCall()
@@ -27,7 +28,7 @@ private doctorInThisHelpCall:DoctorDetails;
   {     
     this.doctorInThisHelpCall = doctor;   
   }
-  getCurrentDoctorToHelpCall()
+  get getCurrentDoctorToHelpCall()
   {     
    return this.doctorInThisHelpCall;   
   }
@@ -38,4 +39,12 @@ private doctorInThisHelpCall:DoctorDetails;
 
     return this.http.post<boolean>(environment.url + 'Doctor/AddHelpCall', data)
   }
+
+   AddDoctorToHelpCall(helpCallid:number,doctorid:string):Observable<boolean>
+   {
+    const data = new FormData();
+    data.append('helpCallid', JSON.stringify(helpCallid)); 
+    data.append('doctorid', JSON.stringify(doctorid)); 
+   return this.http.post<boolean>(environment.url + "Doctor/UpdateDoctorToHelpCall",data)
+   }
 }

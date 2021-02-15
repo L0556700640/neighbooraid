@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { url } from 'inspector';
+// import { url } from 'inspector';
 import { Cases } from 'src/app/shared/models/cases.model';
 import { RelatedDoctorToCases } from 'src/app/shared/models/RelatedDoctorToCases';
 import { CasesService } from 'src/app/shared/services/cases.service';
@@ -129,9 +129,9 @@ export class MicrophoneComponent implements OnInit {
         (res) => {
           console.log(res)
           this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctor)
-          console.log(res.closeDoctor)
+         // console.log(res.closeDoctor)
           this.relatedDoctorService.setCurrentcontacts(res.contactsDoctor);
-          console.log(res.contactsDoctor)
+         // console.log(res.contactsDoctor)
         })
 
       // this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i].caseId).subscribe(

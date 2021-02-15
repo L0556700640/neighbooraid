@@ -34,7 +34,13 @@ export class LocationComponent implements OnInit {
 
   }
   callDoctor(d) {
-this.helpCallService.setCurrentDoctorToHelpCall(d);
+   this.helpCallService.setCurrentDoctorToHelpCall(d);
+   this.helpCallService.AddDoctorToHelpCall(this.helpCallService.CurrnetHelpCall,d.doctorId).subscribe(
+    (res)=>
+    {
+      console.log(res)
+    }
+   )
 this.router.navigate(['/call']);
   }
 }

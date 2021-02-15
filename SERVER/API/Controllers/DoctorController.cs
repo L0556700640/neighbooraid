@@ -119,7 +119,14 @@ namespace API.Controllers
         {
             return Ok(BL.DoctorBL.idDoctor(id));
         }
-        
+        [Route("UpdateDoctorToHelpCall")]
+        [HttpPost]
+        public IHttpActionResult UpdateDoctorToHelpCall()
+        {
+           int helpCallid = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request["helpCallid"]);
+           string doctorid = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["doctorid"]);
+            return Ok(BL.HelpCallBL.UpdateDoctorToHelpCall(helpCallid,doctorid));
+        }
     }
 
 }
