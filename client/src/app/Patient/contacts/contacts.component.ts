@@ -23,7 +23,7 @@ export class ContactsComponent implements OnInit {
     const sleep = (milliseconds) => {
       return new Promise(resolve => setTimeout(resolve, milliseconds))
     }
-    sleep(5000).then(() => {
+    sleep(3500).then(() => {
       this.doctors = this.relatedDoctorService.Currnetcontacts
     this.doctors.forEach(d => {
       //this.nameDoctor[j] = (d.Doctor.firstName + " " + d.Doctor.lastName).toString();

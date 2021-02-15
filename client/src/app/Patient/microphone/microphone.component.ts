@@ -135,9 +135,9 @@ export class MicrophoneComponent implements OnInit {
         (res)=>{
           console.log(res)
           this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctor)
-          console.log(res.closeDoctor)
+         // console.log(res.closeDoctor)
           this.relatedDoctorService.setCurrentcontacts(res.contactsDoctor);
-          console.log(res.contactsDoctor)
+         // console.log(res.contactsDoctor)
         })
       
       // this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i].caseId).subscribe(
