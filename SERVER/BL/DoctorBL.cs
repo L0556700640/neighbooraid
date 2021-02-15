@@ -132,7 +132,7 @@ namespace BL
 
         }
 
-    
+
 
         public static bool UpdateDoctorDetailsBL(DTO.Doctor doctorDetails)
         {
@@ -318,7 +318,7 @@ namespace BL
 
                 int s;
                 foreach (var doctor in relatedDoctors)
-                { 
+                {
                   foreach (var c in contacts)
                     {
                         if (c.Phone.Equals(doctor.doctorPhone))
@@ -686,5 +686,6 @@ namespace BL
                 return true;
             return false;
         }
+
     }
 }

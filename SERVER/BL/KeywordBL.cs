@@ -103,6 +103,7 @@ namespace BL
             {
                 foreach (var keyword in dalKeywordsToCases)
                 {
+                    isUsed = false;
                     if (word.Equals(keyword.Keyword.keyWord1))
                     {
                         isUsed = true;

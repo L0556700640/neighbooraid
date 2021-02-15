@@ -154,12 +154,16 @@
       </svg>
       <button>
         <div id="ID1221_">
+          <a href="tel:1221">
           <span>1221 הצלה</span>
+          </a>
         </div>
       </button>
       <button>
         <div id="ID101_">
-          <span>‏101 מד"א</span>
+          <a href="tel:101">
+            <span>‏101 מד"א</span>
+          </a>
         </div>
       </button>
       <!-- <div id="ID35">
@@ -233,27 +237,33 @@
       <ion-grid>
         <tbody id="form" class="scrollbar scrollbar-primary">
           <ion-row *ngFor="let d of doctors; let i=index" style="padding: 20px;">
-            <ion-grid >
+            <ion-grid>
               <ion-row>
                 <ion-col size="5">{{d.Doctor.firstName}} {{d.Doctor.lastName}}</ion-col>
                 <ion-col size="5">{{d.Doctor.doctorPhone}}</ion-col>
-                <ion-col size="2" (click)="callDoctor(d.Doctor)"> <ion-icon name="call" style="color: rgba(253,0,16,1); font-size: large !important;"></ion-icon></ion-col>
-               
+                <ion-col size="2" (click)="callDoctor(d.Doctor)">
+                  <a href="tel:{{d.Doctor.doctorPhone}}">
+                    <ion-icon name="call" style="color: rgba(253,0,16,1); font-size: large !important;">
+                    </ion-icon>
+                  </a>
+                </ion-col>
+
               </ion-row>
               <ion-row>
                 <ion-col size="10" style="size: 100%; width: 100%;">
                   <div class="progress">
-                    <div [appFill]="d.Satisfaction" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
-                    aria-valuemin="0" aria-valuemax="100">
-                    {{d.Satisfaction}}%
+                    <div [appFill]="d.Satisfaction"
+                      class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                      aria-valuemin="0" aria-valuemax="100">
+                      {{d.Satisfaction}}%
                     </div>
-                  </div> 
+                  </div>
                 </ion-col>
                 <ion-col size="6">{{d.DistanceInMinutesFromPatient}} דקות ממך </ion-col>
               </ion-row>
             </ion-grid>
           </ion-row>
-        </ion-grid>
+      </ion-grid>
 
     </div>
 

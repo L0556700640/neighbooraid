@@ -23,12 +23,16 @@
       </svg>
       <button>
         <div id="ID1221_">
+          <a href="tel:1221">
           <span>1221 הצלה</span>
+          </a>
         </div>
       </button>
-      <button href="tel:+972-54-842-4662">
+      <button>
         <div id="ID101_">
+          <a href="tel:101">
           <span>‏101 מד"א</span>
+          </a>
         </div>
       </button>
       <svg class="Path_148" viewBox="2102.598 -254.892 21.688 6.331">
@@ -220,8 +224,11 @@
               <ion-row>
                 <ion-col size="5">{{d.Name}}</ion-col>
                 <ion-col size="5">{{d.Doctor.doctorPhone}}</ion-col>
-                <ion-col size="2" (click)="calloctor(d.Doctor)"> <ion-icon name="call" style="color: rgba(253,0,16,1); font-size: large !important;"></ion-icon></ion-col>
-               
+                <ion-col size="2" (click)="calloctor(d.Doctor)">
+                  <a href="tel:{{d.Doctor.doctorPhone}}">
+                  <ion-icon name="call" style="color: rgba(253,0,16,1); font-size: large !important;"></ion-icon>
+                </a>
+                </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="10" style="size: 100%; width: 100%;">

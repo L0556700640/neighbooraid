@@ -209,8 +209,8 @@ namespace BL
 
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
-                    if (db.CasesToDoctors.ToList().Exists
-                        (c => c.caseId == caseId && c.doctorId == doctorId) == false)
+                    if (db.CasesToDoctors.ToList().
+                        Exists(c => c.caseId == caseId && c.doctorId == doctorId) == false)
                     {
                         db.CasesToDoctors.Add(new DAL.CasesToDoctor
                         {
@@ -260,7 +260,7 @@ namespace BL
             }
         }
 
-       
+
 
 
 
