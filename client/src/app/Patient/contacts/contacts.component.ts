@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CasesService } from 'src/app/shared/services/cases.service';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
+import { RelatedDoctorToCasesService } from 'src/app/shared/services/related-doctor-to-cases.service';
 
 @Component({
   selector: 'app-contacts',
@@ -9,20 +11,38 @@ import { DoctorService } from 'src/app/shared/services/doctor.service';
 })
 export class ContactsComponent implements OnInit {
  case;
- doctor;
- authConfig: { client_id: string; scope: string; };
-  constructor(private casesService:CasesService,private doctorService:DoctorService) 
-  {  this.case=this.casesService.CurrnetCase}
+ doctors;
+  nameDoctor: string[] = [];
+
+ 
+  constructor(private casesService:CasesService,private doctorService:DoctorService,private relatedDoctorService: RelatedDoctorToCasesService,private router: Router) 
+  {   
+    this.case=this.casesService.CurrnetCase
+   
+    var j = 0 
+    const sleep = (milliseconds) => {
+      return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+    sleep(5000).then(() => {
+      this.doctors = this.relatedDoctorService.Currnetcontacts
+    this.doctors.forEach(d => {
+      //this.nameDoctor[j] = (d.Doctor.firstName + " " + d.Doctor.lastName).toString();
+      let s = d.Satisfaction.toString() + "%";
+      document.close();
+     // document.getElementById(d.Doctor.doctorId).style.width = s;
+      j++
+    });
+    })
+   
+  }
+ 
 
 
 
   ngOnInit() {
    
    // this.doctor=this.doctorService.GetDoctorsToCase(this.case);
-   this.authConfig = {
-    client_id: '799010120213-65uv1oe7cl37p0kj4ddnbbd2fcno3sgr.apps.googleusercontent.com',
-    scope: 'https://www.googleapis.com/auth/contacts.readonly'
-  };
+  
   
   }
 
