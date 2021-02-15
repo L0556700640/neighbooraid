@@ -71,7 +71,7 @@ namespace BL
                         .isConfirmed = isConfirmed;
                     db.SaveChanges();
             }
-         //   SendMailToDoctorAfterConfirm(doctor);
+            SendMailToDoctorAfterConfirm(doctor);
 
         }
         public static bool CheckUser(string firstName, string id)

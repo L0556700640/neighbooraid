@@ -26,6 +26,8 @@ import { ProfileComponent } from './Doctor/profile/profile.component';
 import { DiplomaComponent } from './Registration/diploma/diploma.component';
 import { FinishComponent } from './Registration/finish/finish.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FillDirective } from './shared/directives/fill.directive';
+import { CallComponent } from './Patient/call/call.component';
 // import { GoogleAuthService } from 'ng-gapi';
 
 //import {Contacts} from '@ionic-native/contacts/ngx';
@@ -45,6 +47,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CasesComponent,
     DiplomaComponent,
     FinishComponent,
+    FillDirective,
+    CallComponent
   ],
   entryComponents: [],
   imports: [

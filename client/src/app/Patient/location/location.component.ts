@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { String } from 'lodash';
+import { closeDoctor } from 'src/app/shared/models/closeDoctor.model';
 import { CasesService } from 'src/app/shared/services/cases.service';
+import { HelpCallService } from 'src/app/shared/services/help-call.service';
 import { RelatedDoctorToCasesService } from 'src/app/shared/services/related-doctor-to-cases.service';
 @Component({
   selector: 'app-location',
@@ -9,24 +12,29 @@ import { RelatedDoctorToCasesService } from 'src/app/shared/services/related-doc
 })
 export class LocationComponent implements OnInit {
   case;
-  doctors;
-  nameDoctor:string[]=[];
- 
-  constructor(private casesService:CasesService,private relatedDoctorService:RelatedDoctorToCasesService) {   
-    this.case=this.casesService.CurrnetCase
-    this.doctors=this.relatedDoctorService.CurrnetCloseDoctor
-    var j=0
-    this.doctors.forEach(d => 
-      { 
-           this.nameDoctor[j]=(d.Doctor.firstName+" "+d.Doctor.lastName).toString();
-          let s = d.Satisfaction.toString() + "%";
-         
-         // document.getElementById(d.Doctor.doctorId).style.width = s;
-        j++
-        });}
+  doctors: closeDoctor[] = [];
+
+  constructor(private router: Router, private casesService: CasesService, private relatedDoctorService: RelatedDoctorToCasesService, private helpCallService:HelpCallService) {
+    console.log(this)
+
+
+  }
 
   ngOnInit() {
-  
-      
+    window.parent.close();
+    this.case = this.casesService.CurrnetCase
+    this.doctors = this.relatedDoctorService.CurrnetCloseDoctor
+    var j = 0
+    this.doctors.forEach(d => {
+      // let s = d.Satisfaction.toString() + "%";
+
+     // console.log(document.getElementById(d.Doctor.doctorId))//.style.width = s;
+      j++
+    });
+
+  }
+  callDoctor(d) {
+this.helpCallService.setCurrentDoctorToHelpCall(d);
+this.router.navigate(['/call']);
   }
 }
