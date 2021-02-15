@@ -67,7 +67,7 @@ url
       res=>{
         this.relatedDoctorService.setCurrentCloseDoctor(res.closeDoctor)
         console.log(res.closeDoctor)
-        this.relatedDoctorService.setCurrentcontacts(res.contacts);
+        this.relatedDoctorService.setCurrentcontacts(res.contactsDoctor);
       })
     
     this.casesService.setCurrentCase(this.allCases[i * 3 + j])

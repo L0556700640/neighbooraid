@@ -11,4 +11,18 @@
       <keyword keywordId="4113">red</keyword>
     </keywords>
   </helpCall>
+  <helpCall id="1">
+    <keywords>
+      <keyword keywordId="1">boy</keyword>
+      <keyword keywordId="177">fall</keyword>
+      <keyword keywordId="3">take</keyword>
+      <keyword keywordId="28">come</keyword>
+      <keyword keywordId="2">receive</keyword>
+      <keyword keywordId="6">give</keyword>
+      <keyword keywordId="251">severe</keyword>
+      <keyword keywordId="296">serious</keyword>
+      <keyword keywordId="9">blow</keyword>
+      <keyword keywordId="10">head</keyword>
+    </keywords>
+  </helpCall>
 </helpCalls>

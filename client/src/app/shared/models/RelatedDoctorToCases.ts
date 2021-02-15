@@ -3,11 +3,11 @@ import { Contact } from "./contacts.model";
 
 export class RelatedDoctorToCases 
 {
-    contacts  :Contact[];
+    contactsDoctor  :Contact[];
     closeDoctor:closeDoctor[];
     constructor()
     {
-        this.contacts=[];
+        this.contactsDoctor=[];
         this.closeDoctor=[];
     }
 
