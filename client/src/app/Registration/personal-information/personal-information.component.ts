@@ -64,18 +64,8 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   next() {
-    this.doctorService.idDoctors(this.myForm.controls.id.value).subscribe(
-      (res) => {
-        if (res) {
-          this.id = false
-
-        }
-        else {
-          this.doctorService.addDoctor(this.doctor.Doctor)
-          this.router.navigateByUrl('cases')
-        }
-
-      })
+    this.doctorService.addDoctor(this.doctor.Doctor)
+    this.router.navigateByUrl('cases');
 
   }
 }

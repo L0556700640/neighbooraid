@@ -186,19 +186,23 @@ namespace BL
                 //todo: check- this is problem (cast)?
                 List<XElement> keywordsInCorrentCall = new List<XElement>();
                 XElement x = new XElement("helpCall");
-                x = helpCalls.FirstOrDefault(a => a.Attribute("id").Value == "1");// helpCallID.ToString());
-                keywordsInCorrentCall= x.Element("keywords").Elements("keyword").ToList();
-                List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
-                foreach (var keywordElement in keywordsInCorrentCall)
+                x = helpCalls.FirstOrDefault(a => a.Attribute("id").Value == helpCallID.ToString());
+                if (x != null)
                 {
-                    keywordsInThisSearch.Add(
-                        new DTO.Keyword
+                    keywordsInCorrentCall = x.Element("keywords").Elements("keyword").ToList();
+                    List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
+                    foreach (var keywordElement in keywordsInCorrentCall)
                     {
-                        keywordId = int.Parse(keywordElement.Attribute("keywordId").Value),
-                        keyWord1 = keywordElement.Value
-                    });
+                        keywordsInThisSearch.Add(
+                            new DTO.Keyword
+                            {
+                                keywordId = int.Parse(keywordElement.Attribute("keywordId").Value),
+                                keyWord1 = keywordElement.Value
+                            });
+                    }
+                    return keywordsInThisSearch;
                 }
-                return keywordsInThisSearch;
+                else return new List<DTO.Keyword>();
             }
             catch (Exception ex)
             {
