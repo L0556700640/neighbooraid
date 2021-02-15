@@ -25,8 +25,8 @@ namespace BL
         //public static void translateByMicrosoft(string sentenceToTranslate)
         {
 
-           string path = DTO.StartPoint.Liraz+"API\\card.json";
-           // string path = DTO.StartPoint.Liraz+"API\\card.json";
+           string path = DTO.StartPoint.Hadar+"API\\card.json";
+           // string path = DTO.StartPoint.Hadar+"API\\card.json";
 
 
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);

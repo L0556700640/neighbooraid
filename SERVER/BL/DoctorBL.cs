@@ -31,7 +31,7 @@ namespace BL
                 {
                     DAL.Doctor newDoctor = Convertors.DoctorConvertor.ConvertDoctorToDAL(doctor.Doctor);
                     string pathToGetExtension = string.Format(@"c:\" + file.FileName);
-                    string diplomaDocumentNewPath = DTO.StartPoint.Liraz+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
+                    string diplomaDocumentNewPath = DTO.StartPoint.Hadar+"DAL\\Files\\"+doctor.ToString()+Path.GetExtension(pathToGetExtension);
                     file.SaveAs(diplomaDocumentNewPath);
                     newDoctor.pictureDiploma = diplomaDocumentNewPath;
 
@@ -381,6 +381,7 @@ namespace BL
                         .FirstOrDefault(ctd => ctd.doctorId == correntDoctor
                     && ctd.Case.caseId == correntCase).satisfaction =
                     (correntStatisfication * (amountOfCallsToThisCase - 1) + statisfication) / amountOfCallsToThisCase;
+                db.SaveChanges();
             }
                 return true;
 
@@ -392,7 +393,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -406,7 +407,7 @@ namespace BL
 
                 msg.Subject = "אישור רופא "+doctor.doctorId;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
@@ -597,7 +598,7 @@ namespace BL
                 string email = "neighbooraid@gmail.com";
                 string password = "VSRkhrz123";
                 /*
-                LinkedResource inline = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
+                LinkedResource inline = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.jpg", MediaTypeNames.Image.Jpeg);
                 inline.ContentId = Guid.NewGuid().ToString();
                 avHtml.LinkedResources.Add(inline);
                 */
@@ -609,7 +610,7 @@ namespace BL
                 msg.To.Add(new MailAddress(doctor.mail));
                 msg.Subject = "אישור הרשמה לNeighborAid עבור דר'  " + doctor.lastName;
 
-                LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
+                LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
                 res.ContentId = Guid.NewGuid().ToString();
 
 
@@ -666,19 +667,32 @@ namespace BL
                 throw ex;
             }
         }
-        public static bool idDoctor(string id)
+        public static List<DTO.Doctor> GetDoctor()
         {
-            List<DAL.Doctor> dd;
-            using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+            List<DAL.Doctor> doct = new List<DAL.Doctor>();
+            try
             {
-                dd = (from d in db.Doctors
-                      where d.doctorId.Equals(id)&& d.isConfirmed == true
-                      select d).ToList();
+                using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                {
+                    doct = db.Doctors.ToList();
+                    List<DTO.Doctor> doctor = new List<DTO.Doctor>();
+                    foreach (var d in doct)
+                    {
+                        doctor.Add(
+                            Convertors.DoctorConvertor.ConvertDoctorToDTO(d)
+                            );
+                    }
 
+                    return doctor;
+
+
+                }
             }
-            if (dd.Count > 0)
-                return true;
-            return false;
+            catch(Exception ex)
+            {
+                return null;
+            }
+         
         }
     }
 }

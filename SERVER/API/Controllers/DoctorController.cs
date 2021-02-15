@@ -113,11 +113,11 @@ namespace API.Controllers
             return Ok(BL.DoctorBL.UpdateDoctorDetailsBL(doctorDetails));
         }
 
-        [Route("idDoctor/{id}")]
+        [Route("GetDoctor")]
         [HttpGet]
-        public IHttpActionResult idDoctor(string id)
+        public IHttpActionResult GetDoctor()
         {
-            return Ok(BL.DoctorBL.idDoctor(id));
+            return Ok(BL.DoctorBL.GetDoctor());
         }
         [Route("UpdateDoctorToHelpCall")]
         [HttpPost]
@@ -127,6 +127,17 @@ namespace API.Controllers
            string doctorid = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["doctorid"]);
             return Ok(BL.HelpCallBL.UpdateDoctorToHelpCall(helpCallid,doctorid));
         }
+
+        [Route("AddStatisficationRateToDoctorByCase")]
+        [HttpPost]
+        public IHttpActionResult AddStatisficationRateToDoctorByCase()
+        {
+            int helpCallID = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request["helpCallID"]);
+            int statisfication = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request["statisfication"]);
+            return Ok(BL.DoctorBL.AddStatisficationRateToDoctorByCase(helpCallID, statisfication));
+        }
+
+        
     }
 
 }

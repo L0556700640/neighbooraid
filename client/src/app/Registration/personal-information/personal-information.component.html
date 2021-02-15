@@ -301,7 +301,7 @@
           תעודת זהות
           <ion-label class="error" *ngIf="myForm.controls['id'].errors!=null">
             <ion-label *ngIf="myForm.controls['id'].errors.required!=null">*שדה נדרש</ion-label>
-            <ion-label *ngIf="id==false">תעודת זהות זו כבר קיימת במערכת</ion-label>  
+            <ion-label *ngIf="myForm.controls['id'].errors.pattern!=null">*שגיאה</ion-label>  
           </ion-label>
         </ion-label>
         <ion-input [(ngModel)]="doctor.Doctor.doctorId" formControlName="id" class="form-control"
@@ -329,7 +329,7 @@
             <!-- <div *ngIf="myForm.controls['mail'].errors.pattern!=null">מספר טלפון לא תקין</div>   -->
           </ion-label>
         </ion-label>
-        <input type="email" id="email" formControlName="mail" [(ngModel)]="doctor.Doctor.mail" pattern=".+@globex.com"
+        <input type="text" id="email" formControlName="mail" [(ngModel)]="doctor.Doctor.mail"
           class="form-control" style="font-size: 13px;">
 
       </div>

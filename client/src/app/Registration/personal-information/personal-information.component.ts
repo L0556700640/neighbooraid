@@ -20,7 +20,7 @@ export class PersonalInformationComponent implements OnInit {
   myForm: FormGroup;
   doctor: DoctorDetails = new DoctorDetails();
   user: DoctorDetails = new DoctorDetails()
-  id: boolean = true
+  id = false
   constructor(private doctorService: DoctorService, private loginService: LoginService, private casesService: CasesService, private router: Router) {
     this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
 
@@ -32,7 +32,7 @@ export class PersonalInformationComponent implements OnInit {
       lastName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[א-ת ]*')])),
       phone: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[0-9]{10}')])),
       mail: new FormControl('', Validators.required),
-      id: new FormControl('', Validators.required),
+      id: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])),
       address: new FormControl('', Validators.required)
     });
 
@@ -64,8 +64,21 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   next() {
-    this.doctorService.addDoctor(this.doctor.Doctor)
-    this.router.navigateByUrl('cases');
+    this.doctorService.GetDoctors().subscribe(
+      res => {
+        res.forEach(d => {
+          if (d.doctorId == this.myForm.controls.id.value&&d.isConfirmed==true)
+            this.myForm.controls.id.setValue("תעודת הזהות כבר קימת במערכת")
+          
+        });
+        if (this.myForm.valid) 
+          {
+            this.doctorService.addDoctor(this.doctor.Doctor)
+            this.router.navigateByUrl('cases');
+          }
+      }
+    )
+
 
   }
 }
