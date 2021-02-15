@@ -58,8 +58,17 @@ export class DoctorService {
 
   }
 
- idDoctors(id:string): Observable<boolean>
+ GetDoctors(): Observable<Doctor[]>
  {
-   return this.http.get<boolean>(environment.url + 'Doctor/idDoctor/'+id)
+   return this.http.get<Doctor[]>(environment.url + 'Doctor/GetDoctor')
  }
+
+ statisfication(helpCallID,statisfication): Observable<boolean> {
+  const data = new FormData();
+  data.append('helpCallID', JSON.stringify(helpCallID));
+  data.append('statisfication', JSON.stringify(statisfication));
+  return this.http.post<boolean>(environment.url + 'Doctor/AddStatisficationRateToDoctorByCase', data)
+
+}
+
 }

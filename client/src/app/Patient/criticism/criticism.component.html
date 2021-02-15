@@ -23,10 +23,10 @@
         <span>שם מגיש העזרה</span>
       </div>
       <div id="___t">
-        <!-- <span>ד"ר {{name}}</span> -->
+        <span>ד"ר {{name}}</span>
       </div>
       <div id="___">
-        <!-- <span>{{case.caseName}}</span> -->
+        <span>{{case.caseName}}</span>
       </div>
       <div id="_">
         <span>התמחות המע"ר</span>
@@ -62,7 +62,7 @@
         <input #ramSelector id="rangeInput" type="range" name="range" [(ngModel)]="point" min="0"  max="100" class="custom-range" value='0'> 
         <ion-icon slot="end" name="heart" id="ID50" style="left: 15px !important; font-size:20px !important;"></ion-icon>
         <!-- <mat-slider min="1" max="5" step="0.5" value="1.5" class="Rectangle_55"></mat-slider> -->
-      
+      <button (click)="sendSatisfaction()">
         <div id="Component_1__6" class="Component_1___6">
         <svg class="Rectangle_8">
           <rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="281" height="40">
@@ -72,6 +72,7 @@
           <span>שלח ביקורת</span>
         </div>
       </div>
+    </button>
       <textarea class="Line_27" rows="10"></textarea>
       <!-- <svg class="Line_27" viewBox="0 0 218.557 1">
         <path id="Line_27" d="M 218.5574798583984 0 L 0 0">

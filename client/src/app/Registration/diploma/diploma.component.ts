@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonDatetime } from '@ionic/angular';
 import { DoctorDetails } from 'src/app/shared/models/doctorDelails.model';
@@ -17,12 +17,24 @@ export class DiplomaComponent implements OnInit {
   myForm: FormGroup;
   doctor: DoctorDetails = new DoctorDetails();
   user:DoctorDetails = new DoctorDetails();
+  dateToday
   constructor(private doctorService: DoctorService,private router: Router,private loginService:LoginService) { }
 
   ngOnInit() {
+    
+    var today = new Date();
+   if((today.getMonth() + 1)<10)
+     var m="0"+(today.getMonth() + 1)
+     else
+       m=(today.getMonth() + 1).toString()
+     if(today.getDate()<10)
+     var d="0"+(today.getDate())
+     else
+     d=today.getDate().toString()
+    this.dateToday= today.getFullYear() + '-' + m + '-' +d;
     this.myForm = new FormGroup({
       diploma: new FormControl(),
-      certificateNumber:new FormControl(),
+      certificateNumber:new FormControl('', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])),
       certificateValidity:new FormControl(),
 
    });
@@ -41,6 +53,8 @@ export class DiplomaComponent implements OnInit {
     this.doctorService.finishAddDoctor(this.imagePath,this.doctor).subscribe(
       (res) => { alert(res) }
     )
+
+
     this.router.navigateByUrl('finish')
   }
 

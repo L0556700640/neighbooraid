@@ -83,17 +83,23 @@
     </div>
     <form id="form" [formGroup]="myForm">
       <div class="from-group">
-        <ion-label position="fixed" class="text">מספר מע"ר</ion-label>
+        <ion-label position="fixed" class="text">
+          מספר מע"ר
+          <ion-label class="error" *ngIf="myForm.controls['certificateNumber'].errors!=null">
+            <ion-label *ngIf="myForm.controls['certificateNumber'].errors.required!=null">*שדה נדרש</ion-label>
+            <ion-label *ngIf="myForm.controls['certificateNumber'].errors.pattern!=null">*מספרים בלבד</ion-label>
+          </ion-label>
+        </ion-label>
         <ion-input class="form-control" [(ngModel)]="doctor.Doctor.certificateNumber" formControlName="certificateNumber" style="font-size: 13px;"></ion-input>
       </div>
       
       <div class="from-group">
         <ion-label position="fixed" >תוקף תעודה</ion-label>
-        <input type="date" [(ngModel)]="doctor.Doctor.certificateValidity" formControlName="certificateValidity" displayFormat="DD/MM/YYYY" value="ghh"  min="2020-01-01" max="2025-01-01" class="form-control">
+        <input type="date" [(ngModel)]="doctor.Doctor.certificateValidity" formControlName="certificateValidity" displayFormat="DD/MM/YYYY" value="ghh"  min="{{dateToday}}" max="2025-01-01" class="form-control">
       </div>
    
       <div class="from-group">
-      <input type="File" accept=".pdf, .jpg, .jpej, .png" id="uploader" (change)="changeListener($event)" class="form-control" style="font-size: 13px;" formControlName="diploma" hidden>
+      <input type="File" id="uploader" accept=".pdf, .jpg, .jpej, .png" (change)="changeListener($event)" class="form-control" style="font-size: 13px;" formControlName="diploma" hidden>
         <!-- <ion-img src="../../assets/img/Folder-Upload.png" onclick="document.querySelector('#uploader').click()"
           style="text-align: center; width: 60px;"></ion-img> -->
         <label class="form-control"  style="font-size: 13px; margin-top: 180px;" formControlName="diplomaName"  >{{imagePath.name}}</label>
