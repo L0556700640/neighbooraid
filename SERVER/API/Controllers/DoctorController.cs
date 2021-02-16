@@ -105,11 +105,14 @@ namespace API.Controllers
             DTO.HelpCall helpcall = JsonConvert.DeserializeObject<DTO.HelpCall>(HttpContext.Current.Request["helpcall"]);
             return Ok(BL.HelpCallBL.SaveHelpCallInDB(helpcall));
         }
-        [Route("UpdateDoctorDetails/{doctorDetails}")]
+        [Route("UpdateDoctorDetails")]
         [HttpPost]
-        public IHttpActionResult UpdateDoctorDetails(DTO.Doctor doctorDetails)
+        public IHttpActionResult UpdateDoctor()
         {
-            //todo להצפין קוד רופא
+            DTO.Doctor doctorDetails = JsonConvert.DeserializeObject<DTO.Doctor>(HttpContext.Current.Request["doctorDetails"]);
+            List<DTO.Cases> newCasesList = JsonConvert.DeserializeObject<List<DTO.Cases>>(HttpContext.Current.Request["newCasesList"]);
+
+            BL.CasesBL.UpdateCasesToDoctorBL(doctorDetails.doctorId, newCasesList);
             return Ok(BL.DoctorBL.UpdateDoctorDetailsBL(doctorDetails));
         }
 
@@ -137,7 +140,7 @@ namespace API.Controllers
             return Ok(BL.DoctorBL.AddStatisficationRateToDoctorByCase(helpCallID, statisfication));
         }
 
-        
+
     }
 
 }

@@ -190,7 +190,7 @@
           </svg>
           <div id="_ba">
             <span>
-              הבא></span>
+              הבא</span>
           </div>
         </div>
       </button>
@@ -304,8 +304,11 @@
             <ion-label *ngIf="myForm.controls['id'].errors.pattern!=null">*שגיאה</ion-label>  
           </ion-label>
         </ion-label>
-        <ion-input [(ngModel)]="doctor.Doctor.doctorId" formControlName="id" class="form-control"
+        <ion-input *ngIf="up==false" [(ngModel)]="doctor.Doctor.doctorId" formControlName="id" class="form-control"
         style="font-size: 13px;"></ion-input>
+        <ion-input *ngIf="up==true" [(ngModel)]="doctor.Doctor.doctorId" formControlName="id" class="form-control"
+        style="font-size: 13px;" readonly></ion-input>
+      
       </div>
 
       <div class="from-group">

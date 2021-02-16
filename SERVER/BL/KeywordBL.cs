@@ -48,7 +48,7 @@ namespace BL
             {
                 List<DTO.Keyword> keywordsInThisSearch = new List<DTO.Keyword>();
                 keywordsInThisSearch = ReadHelpCallTpXML(helpCallID);
-                DAL.Case choosedCase = new Case();
+               // DAL.Case choosedCase = new Case();
                 using (neighboorAidDBEntities db = new neighboorAidDBEntities())
                 {
                     foreach (var keyword in keywordsInThisSearch)
@@ -63,8 +63,8 @@ namespace BL
                             db.KeywordsToCases.Add(
                                 Convertors.KeywordToCaseConvertor.ConvertKeywordsToCaseToDAL
                                 (new DTO.KeywordsToCase(correntCase, keyword.keywordId)));
+                        db.SaveChanges();
                     }
-                    db.SaveChanges();
                     return true;
                 }
             }
@@ -151,8 +151,8 @@ namespace BL
         {
             try
             {
-                //  string xmlFileFullPath = DTO.StartPoint.HadarHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
-                string xmlFileFullPath = DTO.StartPoint.Hadar + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                //  string xmlFileFullPath = DTO.StartPoint.LirazHadar+"BL\\HelpCallXMLS\\CorrentHelpCall.xml";
+                string xmlFileFullPath = DTO.StartPoint.Liraz + "BL\\HelpCallXMLS\\CorrentHelpCall.xml";
                 XDocument helpCallDocument = XDocument.Load(xmlFileFullPath);
 
                 XElement newHelpCall = new XElement("helpCall");
@@ -182,7 +182,7 @@ namespace BL
         {
             try
             {
-                XDocument helpCallDocument = XDocument.Load(StartPoint.Hadar+"/BL/HelpCallXMLS/CorrentHelpCall.xml");
+                XDocument helpCallDocument = XDocument.Load(StartPoint.Liraz+"/BL/HelpCallXMLS/CorrentHelpCall.xml");
                 var helpCalls = helpCallDocument.Descendants("helpCall");
                 //todo: check- this is problem (cast)?
                 List<XElement> keywordsInCorrentCall = new List<XElement>();

@@ -50,9 +50,16 @@ export class DiplomaComponent implements OnInit {
     });
   }
   next() {
-    this.doctorService.finishAddDoctor(this.imagePath,this.doctor).subscribe(
-      (res) => { alert(res) }
-    )
+    if(this.doctorService.update==true)
+    {
+      this.doctorService.updateDoctor.Doctor.diploma==this.imagePath
+      this.doctorService.UpdateDoctorDetails(this.doctorService.updateDoctor.Doctor, this.doctorService.updateDoctor.Cases).subscribe(
+        (res) => { console.log(res) });
+    }
+       else{
+      this.doctorService.finishAddDoctor(this.imagePath,this.doctor).subscribe(
+        (res) => { console.log(res) })
+    }
 
 
     this.router.navigateByUrl('finish')

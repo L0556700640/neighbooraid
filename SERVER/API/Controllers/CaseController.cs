@@ -56,14 +56,7 @@ namespace API.Controllers
             var url = JsonConvert.DeserializeObject<string>(HttpContext.Current.Request["contactsListUrl"]);
             return Ok(CasesBL.CaseChose(helpcallid,caseid,url));
         }
-        [Route("UpdateCasesToDoctor/{doctorID}/{newCasesList}")]
-        [HttpPost]
-        public IHttpActionResult UpdateListOfCasesToDoctor(string doctorID, List<DTO.Cases> newCasesList)
-        {
-            //todo: get the file, save and add to the mail.
-            return Ok(CasesBL.UpdateCasesToDoctorBL(doctorID, newCasesList));
-
-        }
+        
 
         [Route("ConfirmCase/{caseId}/{doctorID}/{satisfaction}")]
         [HttpPost]

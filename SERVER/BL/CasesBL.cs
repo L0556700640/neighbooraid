@@ -75,24 +75,26 @@ namespace BL
             //todo: end the function
             List<DAL.CasesToDoctor> allCasesToThisDoctor= new List<DAL.CasesToDoctor>();
             List<DAL.CasesToDoctor> casesToConfirm= new List<DAL.CasesToDoctor>();
+            DAL.Doctor doctor = new DAL.Doctor();
             using (neighboorAidDBEntities db = new neighboorAidDBEntities())
             {
                 allCasesToThisDoctor= db.CasesToDoctors.Where(doc => doc.doctorId.Equals(doctorID)).ToList();
+                doctor = db.Doctors.FirstOrDefault(d => d.doctorId == doctorID);
             }
             foreach (var oneCase in newCasesList)
             {
                UpdateCaseToDoctor(doctorID,oneCase.caseId,0);
             }
             casesToConfirm = allCasesToThisDoctor.Where(c => c.satisfaction < 50).ToList();
-            sendMailToUpdateCases(casesToConfirm);
+            sendMailToUpdateCases(doctor, casesToConfirm);
             return true;
         }
 
-        private static void sendMailToUpdateCases(List<DAL.CasesToDoctor> casesToConfirm)
+        private static void sendMailToUpdateCases(DAL.Doctor d,List<DAL.CasesToDoctor> casesToConfirm)
             {
                 try
                 {
-                    DAL.Doctor doctor = casesToConfirm[0].Doctor;
+                    DAL.Doctor doctor = d;
                     string email = "neighbooraid@gmail.com";
                     string password = "VSRkhrz123";
 
@@ -106,7 +108,7 @@ namespace BL
 
                     msg.Subject = "עדכון התמחויות לרופא " + doctor.doctorId;
 
-                    LinkedResource res = new LinkedResource(DTO.StartPoint.Hadar + "DAL\\Files\\icon.png");
+                    LinkedResource res = new LinkedResource(DTO.StartPoint.Liraz + "DAL\\Files\\icon.png");
                     res.ContentId = Guid.NewGuid().ToString();
 
                     #region buildHtmlMessageBody
@@ -142,9 +144,14 @@ namespace BL
 
                 ");
 
+                DAL.Case thisCase = new Case();
 
-                    foreach (var item in casesToConfirm)
+                    foreach (DAL.CasesToDoctor item in casesToConfirm)
                     {
+                    using (neighboorAidDBEntities db = new neighboorAidDBEntities())
+                    {
+                        thisCase = db.CasesToDoctors.FirstOrDefault(c => c.caseId == item.caseId).Case;
+                    }
                         htmlBodyString += string.Format(@"<label> {0}- {3} נקודות כרגע</ label> <br />
                         <form action ='https://localhost:44314/API/Cases/ConfirmCase/{1}/{2}/50' method='post' style='display:inline-block'>
                                  <button type='submit'
@@ -159,7 +166,7 @@ namespace BL
                              </button>
 
                         </form>
-                        ", item.Case.caseName, item.caseId,item.doctorId, item.satisfaction);
+                        ", thisCase.caseName, item.caseId,item.doctorId, item.satisfaction);
                     }
                     htmlBodyString += string.Format(@"
          </div >

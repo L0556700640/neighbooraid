@@ -22,7 +22,7 @@ export class CasesComponent implements OnInit {
   constructor(private casesService: CasesService, private router: Router, private doctorService: DoctorService) {
     this.casesService.getAllCases().subscribe(res => {
       this.allCases = res;
-     
+
       let i = 0;
       for (; i < res.length - 2; i += 3) {
         this.splitedCases.push([res[i], res[i + 1], res[i + 2]]);
@@ -61,7 +61,7 @@ export class CasesComponent implements OnInit {
     console.log(i + ' ' + j)
     console.log(i * 3 + j)
     this.isChoose[i * 3 + j] = !this.isChoose[i * 3 + j]
-   
+
 
   }
   // add() {
@@ -74,14 +74,17 @@ export class CasesComponent implements OnInit {
 
   addCases() {
     for (let i = 0; i < this.allCases.length; i++) {
-       if (this.isChoose[i] == true) 
-    {
-      this.casesToDoctor.push(this.allCases[i])
+      if (this.isChoose[i] == true) {
+        this.casesToDoctor.push(this.allCases[i])
+      }
     }
+
+    if (this.doctorService.update == true) {
+      this.doctorService.updateDoctor.Cases = this.casesToDoctor
     }
-   
-    
-    this.doctorService.AddCasesToDoctor(this.casesToDoctor)
+    else {
+      this.doctorService.AddCasesToDoctor(this.casesToDoctor)
+    }
     this.router.navigateByUrl('diploma')
   }
 }

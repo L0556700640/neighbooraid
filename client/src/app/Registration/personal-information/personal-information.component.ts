@@ -16,11 +16,11 @@ import { LoginService } from 'src/app/shared/services/login.service';
 export class PersonalInformationComponent implements OnInit {
   imagePath;
   imageProvider;
+  up=false;
   allCases: Cases[] = [];
   myForm: FormGroup;
   doctor: DoctorDetails = new DoctorDetails();
   user: DoctorDetails = new DoctorDetails()
-  id = false
   constructor(private doctorService: DoctorService, private loginService: LoginService, private casesService: CasesService, private router: Router) {
     this.casesService.getAllCases().subscribe(res => { this.allCases = res; });
 
@@ -40,12 +40,15 @@ export class PersonalInformationComponent implements OnInit {
       res => {
         if (this.loginService.IsLogin) {
           this.user.Doctor = res;
+          this.doctorService.update = true
           this.myForm.controls.firstName.setValue(this.user.Doctor.firstName)
           this.myForm.controls.lastName.setValue(this.user.Doctor.lastName)
           this.myForm.controls.id.setValue(this.user.Doctor.doctorId)
           this.myForm.controls.phone.setValue(this.user.Doctor.doctorPhone)
           this.myForm.controls.mail.setValue(this.user.Doctor.mail)
           this.myForm.controls.address.setValue(this.user.Doctor.address)
+          this.up=true
+
           console.log(this.user.Doctor);
         }
 
@@ -66,16 +69,23 @@ export class PersonalInformationComponent implements OnInit {
   next() {
     this.doctorService.GetDoctors().subscribe(
       res => {
-        res.forEach(d => {
-          if (d.doctorId == this.myForm.controls.id.value&&d.isConfirmed==true)
-            this.myForm.controls.id.setValue("תעודת הזהות כבר קימת במערכת")
-          
-        });
-        if (this.myForm.valid) 
-          {
+        if (!this.doctorService.update) {
+          res.forEach(d => {
+            if (d.doctorId == this.myForm.controls.id.value && d.isConfirmed == true)
+              this.myForm.controls.id.setValue("תעודת הזהות כבר קימת במערכת")
+
+          });
+        }
+
+        if (this.myForm.valid) {
+          if (this.doctorService.update) {
+            this.doctorService.updateDoctor = this.doctor
+            console.log(this.doctorService.updateDoctor)
+          } else {
             this.doctorService.addDoctor(this.doctor.Doctor)
-            this.router.navigateByUrl('cases');
           }
+          this.router.navigateByUrl('cases');
+        }
       }
     )
 

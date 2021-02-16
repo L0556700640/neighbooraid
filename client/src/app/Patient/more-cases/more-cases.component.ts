@@ -108,7 +108,7 @@ url
         this.relatedDoctorService.setCurrentcontacts(res.contactsDoctor);
       })
     
-    this.casesService.setCurrentCase(this.allCases[this.i * 3 + this.j])
+    this.casesService.setCurrentCase(this.allCases[((this.i)-1) * 3 + this.j])
     // this.doctorService.GetDoctorsToCase(this.helpCallService.CurrnetHelpCall,this.allCases[i* 3 + j].caseId).subscribe(
      
     // )

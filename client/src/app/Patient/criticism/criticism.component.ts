@@ -29,5 +29,6 @@ point:string
     this.doctorSevice.statisfication(this.helpCallService.CurrnetHelpCall,this.point).subscribe(
       res=>console.log(res)
     )
+    this.router.navigateByUrl('finishPatiant')
   }
 }

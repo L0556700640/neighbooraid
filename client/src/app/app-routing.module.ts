@@ -14,6 +14,8 @@ import { CriticismComponent } from './Patient/criticism/criticism.component';
 import { ProfileComponent } from './Doctor/profile/profile.component';
 import { DiplomaComponent } from './Registration/diploma/diploma.component';
 import { CallComponent } from './Patient/call/call.component';
+import { FinishPatiantComponent } from './Patient/finish-patiant/finish-patiant.component';
+
 const routes: Routes = [
     // path: '',
     // loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
@@ -25,6 +27,7 @@ const routes: Routes = [
     {path:'location',component:LocationComponent},
     {path:'criticism',component:CriticismComponent},
     {path:'call',component:CallComponent},
+    {path:'finishPatiant',component:FinishPatiantComponent},
 
     {path:'profile',component:ProfileComponent},
     {path:'login',component:LoginComponent}, 
